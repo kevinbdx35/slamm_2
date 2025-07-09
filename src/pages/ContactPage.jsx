@@ -4,9 +4,6 @@ import {
   Typography,
   Card,
   CardContent,
-  List,
-  ListItem,
-  ListItemText,
   Box,
 } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
@@ -41,45 +38,65 @@ export default function ContactPage() {
           Nous contacter
         </Typography>
 
-        {/* Bloc Informations */}
-        <Card sx={{ mb: 4 }}>
-          <CardContent sx={{ height: 300 }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Informations
-            </Typography>
-            <List dense>
-              <ListItem disableGutters>
-                <ListItemText primary="📍 361 Rue de la Saudrais, 35800 Saint-Lunaire, Bretagne, France" />
-              </ListItem>
-              <ListItem disableGutters>
-                <ListItemText primary="✉️ slamm35800@gmail.com" />
-              </ListItem>
-              <ListItem disableGutters>
-                <ListItemText primary="☎️ 07 82 77 92 88" />
-              </ListItem>
-              <ListItem disableGutters>
-                <ListItemText
-                  primary="📷 Pour connaître nos dernières actualités, suivez-nous sur Instagram :"
-                />
-              </ListItem>
-              <ListItem disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
-                <InstagramIcon sx={{ mr: 1 }} />
-                <ListItemText
-                  primary={
-                    <a
-                      href="https://instagram.com/slamm35800"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: '#000', textDecoration: 'underline' }}
-                    >
-                      @slamm35800
-                    </a>
-                  }
-                />
-              </ListItem>
-            </List>
-          </CardContent>
-        </Card>
+        {/* Bloc Informations - style basé sur l'image fournie */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 2,
+            mb: 4,
+          }}
+        >
+          {[
+            {
+              icon: '📍',
+              title: 'ADRESSE',
+              content: (
+                <>
+                  361 Rue de la Saudrais<br />
+                  35800 Saint-Lunaire
+                </>
+              ),
+            },
+            {
+              icon: '☎️',
+              title: 'TÉLÉPHONE',
+              content: '07 82 77 92 88',
+            },
+            {
+              icon: '✉️',
+              title: 'EMAIL',
+              content: 'slamm35800@gmail.com',
+            },
+            {
+              icon: <InstagramIcon fontSize="large" />,
+              title: 'INSTAGRAM',
+              content: (
+                <a
+                  href="https://instagram.com/slamm35800"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'underline', color: '#000' }}
+                >
+                  @slamm35800
+                </a>
+              ),
+            },
+          ].map((item, idx) => (
+            <Card key={idx} sx={{ flex: '1 1 200px', minWidth: 200, boxShadow: 1 }}>
+              <CardContent sx={{ textAlign: 'center' }}>
+                <Box sx={{ fontSize: 30, mb: 1 }}>{item.icon}</Box>
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                  {item.content}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
 
         {/* Bloc Carte */}
         <Card>
