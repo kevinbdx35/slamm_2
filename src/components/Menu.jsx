@@ -34,13 +34,8 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [bottomNavValue, setBottomNavValue] = useState(0);
 
-  // Empêche le scroll horizontal sur body quand drawer est ouvert
   useEffect(() => {
-    if (drawerOpen) {
-      document.body.style.overflowX = 'hidden';
-    } else {
-      document.body.style.overflowX = '';
-    }
+    document.body.style.overflowX = drawerOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflowX = '';
     };
@@ -138,6 +133,8 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
           right: 0,
           zIndex: 1300,
           width: '100%',
+          height: 56,
+          boxSizing: 'border-box',
         }}
       >
         {menuItems.map((item) => (
@@ -148,7 +145,7 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
           />
         ))}
       </BottomNavigation>
-      <Box sx={{ height: 56 }} /> {/* espace pour éviter chevauchement */}
+      <Box sx={{ height: 56 }} /> {/* espace réservé pour ne pas masquer le contenu */}
     </>
   );
 
@@ -188,7 +185,7 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
   );
 
   return (
-    <Box sx={{ overflowX: 'hidden' }}>
+    <Box sx={{ overflowX: 'hidden', pb: { xs: 7, sm: 0 } }}>
       {isMobile ? (
         <>
           <AppBar position="fixed" color="primary" enableColorOnDark>
@@ -211,7 +208,7 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
             </Toolbar>
           </AppBar>
           {drawerMenu}
-          <Toolbar /> {/* Espace haut AppBar */}
+          <Toolbar /> {/* espace haut AppBar */}
           {bottomNavigation}
         </>
       ) : (
