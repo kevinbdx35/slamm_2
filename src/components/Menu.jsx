@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -34,6 +34,18 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [bottomNavValue, setBottomNavValue] = useState(0);
 
+  // Empêche le scroll horizontal sur body quand drawer est ouvert
+  useEffect(() => {
+    if (drawerOpen) {
+      document.body.style.overflowX = 'hidden';
+    } else {
+      document.body.style.overflowX = '';
+    }
+    return () => {
+      document.body.style.overflowX = '';
+    };
+  }, [drawerOpen]);
+
   const menuItems = [
     { label: 'Accueil', icon: <HomeIcon />, page: 0 },
     { label: 'Cours', icon: <ScheduleIcon />, page: 1 },
@@ -64,12 +76,13 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
       anchor="left"
       open={drawerOpen}
       onClose={() => setDrawerOpen(false)}
-      ModalProps={{ keepMounted: true }} // améliore la perf mobile
+      ModalProps={{ keepMounted: true }}
     >
       <Box
         sx={{
           width: '100vw',
           maxWidth: 320,
+          boxSizing: 'border-box',
           overflowX: 'hidden',
         }}
         role="presentation"
@@ -78,9 +91,15 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
         <List>
           {menuItems.map((item) => (
             <ListItem key={item.label} disablePadding>
-              <ListItemButton onClick={() => handleNavigate(item.page)}>
+              <ListItemButton
+                onClick={() => handleNavigate(item.page)}
+                sx={{ overflow: 'hidden' }}
+              >
                 {item.icon}
-                <ListItemText primary={item.label} sx={{ pl: 2 }} />
+                <ListItemText
+                  primary={item.label}
+                  sx={{ pl: 2, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
