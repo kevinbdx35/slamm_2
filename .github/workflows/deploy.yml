@@ -5,31 +5,33 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout le code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configurer Git (nom et email)
+      - name: Configurer Git
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'kevinbdx35'
+          git config --global user.email 'k.bardoux@orange.fr'
 
-      - name: Utiliser Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Installer les dépendances
+      - name: Install dependencies
         run: npm install
 
-      - name: Construire le site (Vite)
+      - name: Build with Vite
         run: npm run build
 
-      - name: Déployer vers GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
