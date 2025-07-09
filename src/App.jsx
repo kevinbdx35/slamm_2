@@ -65,7 +65,7 @@ export default function App({ isDark, toggleTheme }) {
 
       <Menu onNavigate={setPage} isDark={isDark} toggleTheme={toggleTheme} />
 
-      <main style={{ paddingTop: 64, paddingBottom: 56 }}>
+      <main style={{ flex: 1, overflowY: 'auto', paddingTop: 64, paddingBottom: 56 }}>
         {page === 0 && <HomePage />}
         {page === 1 && <CoursPage />}
         {page === 2 && <EquipePage />}
