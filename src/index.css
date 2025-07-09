@@ -1,3 +1,10 @@
+/* Reset global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,6 +20,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 64px;   /* hauteur AppBar */
+  padding-bottom: 56px; /* hauteur BottomNavigation */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -20,24 +42,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-/* ✅ CORRECTION ICI */
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
-
-/* ✅ Ajout pour gérer le layout principal avec flexbox */
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
 }
 
 h1 {
