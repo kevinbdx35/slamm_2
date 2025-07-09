@@ -17,8 +17,8 @@ jobs:
 
       - name: Configurer Git
         run: |
-          git config --global user.name 'kevinbdx35'
-          git config --global user.email 'k.bardoux@orange.fr'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
