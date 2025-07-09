@@ -85,12 +85,12 @@ export default function HomePage() {
   </Typography>
   <Grid container spacing={4} justifyContent="center">
   {[
-    { name: 'Saint-lunaire', logo: '/img/partenaires/stlunaire.jpg' },
-    { name: 'FMMAF', logo: '/img/partenaires/fmmaf.png' },
-    { name: 'Progress', logo: '/img/partenaires/progress.png' },
-    { name: 'Votre logo ici', logo: '/img/partenaires/logo.webp' },
-    { name: 'Votre logo ici', logo: '/img/partenaires/logo.webp' },
-    { name: 'Votre logo ici', logo: '/img/partenaires/logo.webp' }
+    { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg' },
+    { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png' },
+    { name: 'Progress', logo: 'img/partenaires/progress.png' },
+    { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' },
+    { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' },
+    { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }
   ].map((partner, i) => (
     <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
       <Box
