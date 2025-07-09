@@ -2,14 +2,12 @@ import React from 'react'
 import {
   Container,
   Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  List,
-  ListItem,
-  ListItemText,
+  Box,
+  Paper,
+  Stack,
+  Divider,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material'
 import SeoHelmet from '../components/SeoHelmet'
 
@@ -17,25 +15,29 @@ const teamMembers = [
   {
     name: 'Malik',
     role: 'Président',
-    avatar: 'M',
+    initials: 'M',
+    color: '#1976d2',
     diplomas: ['BF1 et BF2 de MMA - FMMAF', 'Référent musculation', 'PSC1'],
   },
   {
     name: 'Miguel',
     role: 'Vice-Président',
-    avatar: 'Mi',
+    initials: 'Mi',
+    color: '#2e7d32',
     diplomas: ['PSC1 et PSC2'],
   },
   {
     name: 'Thomas',
     role: 'Trésorier',
-    avatar: 'T',
+    initials: 'T',
+    color: '#d32f2f',
     diplomas: ['BF1 et BF2 de MMA - FMMAF', 'Référent pieds / poings', 'PSC1'],
   },
   {
     name: 'Kévin',
     role: 'Secrétaire',
-    avatar: 'K',
+    initials: 'K',
+    color: '#512da8',
     diplomas: [
       'BF1 et BF2 de MMA - FMMAF',
       'BF1 de grappling et grappling fight - FFL',
@@ -46,6 +48,9 @@ const teamMembers = [
 ]
 
 export default function EquipePage() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
     <>
       <SeoHelmet
@@ -55,7 +60,7 @@ export default function EquipePage() {
         image="https://mma-saint-lunaire.fr/img/equipe_social.jpg"
       />
 
-      <Container sx={{ py: 6 }}>
+      <Container sx={{ py: 6, mb: 10 }}>
         <Typography
           variant="h2"
           sx={{
@@ -87,44 +92,58 @@ export default function EquipePage() {
           Notre Équipe
         </Typography>
 
-        <Grid container spacing={4}>
-          {teamMembers.map(({ name, role, avatar, diplomas }) => (
-            <Grid item xs={12} sm={6} md={3} key={name}>
-              <Card>
-                <CardHeader
-                  avatar={
-                    <Avatar
-                      sx={{
-                        bgcolor: '#39FF14',
-                        color: 'black',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      {avatar}
-                    </Avatar>
-                  }
-                  title={<Typography sx={{ fontWeight: 700 }}>{name}</Typography>}
-                  subheader={<Typography sx={{ fontWeight: 500 }}>{role}</Typography>}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>
-                    Diplômes :
-                  </Typography>
-                  <List dense>
-                    {diplomas.map((diploma, i) => (
-                      <ListItem key={i} disableGutters>
-                        <ListItemText
-                          primary={diploma}
-                          primaryTypographyProps={{ sx: { fontSize: '0.9rem' } }}
-                        />
-                      </ListItem>
-                    ))}
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid>
+        <Stack spacing={4}>
+          {teamMembers.map(({ name, role, initials, diplomas, color }) => (
+            <Paper
+              key={name}
+              elevation={3}
+              sx={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                sx={{
+                  bgcolor: color,
+                  width: isMobile ? '100%' : 100,
+                  minHeight: isMobile ? 60 : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: 24,
+                }}
+              >
+                {initials}
+              </Box>
+
+              <Box sx={{ p: 3, flex: 1 }}>
+                <Typography variant="h6" fontWeight="bold">
+                  {name}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+                  {role}
+                </Typography>
+                <Divider sx={{ my: 1 }} />
+                <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+                  Diplômes :
+                </Typography>
+                <ul style={{ paddingLeft: 20, margin: 0 }}>
+                  {diplomas.map((d, i) => (
+                    <li key={i}>
+                      <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
+                        {d}
+                      </Typography>
+                    </li>
+                  ))}
+                </ul>
+              </Box>
+            </Paper>
           ))}
-        </Grid>
+        </Stack>
       </Container>
     </>
   )
