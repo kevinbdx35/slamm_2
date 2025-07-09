@@ -85,7 +85,7 @@ export default function HomePage() {
   </Typography>
   <Grid container spacing={4} justifyContent="center">
   {[
-    { name: 'Ville de Saint-lunaire', logo: '/img/partenaires/stlunaire.jpg' },
+    { name: 'Saint-lunaire', logo: '/img/partenaires/stlunaire.jpg' },
     { name: 'FMMAF', logo: '/img/partenaires/fmmaf.png' },
     { name: 'Progress', logo: '/img/partenaires/progress.png' },
     { name: 'Votre logo ici', logo: '/img/partenaires/logo.webp' },
