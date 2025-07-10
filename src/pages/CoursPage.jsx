@@ -1,16 +1,15 @@
 import React from "react";
 import {
-  Stack,
-  Typography,
-  Divider,
   Box,
+  Typography,
   Button,
-  Paper,
   Stepper,
   Step,
   StepLabel,
   StepContent,
+  Grid,
   useTheme,
+  Container,
 } from "@mui/material";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -59,159 +58,150 @@ export default function PageCours() {
         image="https://mma-saint-lunaire.fr/img/cours_social.jpg"
       />
 
-      <Stack
-        spacing={6}
-        alignItems="center"
-        sx={{ mt: 8, mb: 10, maxWidth: 640, mx: "auto", px: 3 }}
-      >
-        <Typography variant="h3" component="h1" gutterBottom>
-          Nos Cours
-        </Typography>
-
-        {/* Créneaux horaires */}
-        <Paper
-          elevation={3}
-          sx={{ p: 3, width: "100%", textAlign: "center", borderRadius: 0 }}
-        >
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={1}
-            justifyContent="center"
-            mb={2}
-          >
-            <EventAvailableIcon sx={{ color: theme.palette.primary.main }} />
-            <Typography variant="h5" fontWeight="medium">
-              Créneaux 2025-2026
-            </Typography>
-          </Stack>
-          <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
-            Lundi 18h00 → 19h15<br />
-            Mercredi 19h15 → 21h15<br />
-            Vendredi 19h30 → 21h00
+      <Container sx={{ mt: 8, mb: 10 }}>
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
+          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+            Nos Cours de MMA
           </Typography>
-        </Paper>
+          <Typography variant="body1" mt={1} maxWidth={1000}>
+            Que tu sois débutant ou confirmé, découvre nos créneaux, notre système d'essai, et les modalités d’inscription.
+          </Typography>
+        </Box>
 
-        {/* Timeline Cours d'essai */}
-        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 0 }}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={1}
-            justifyContent="center"
-            mb={2}
-          >
-            <LocalOfferIcon sx={{ color: theme.palette.primary.main }} />
-            <Typography variant="h5" fontWeight="medium">
-              Pack Découverte
-            </Typography>
-          </Stack>
-
-          <Stepper orientation="vertical" nonLinear activeStep={-1}>
-            {steps.map((step, index) => (
-              <Step key={index} active>
-                <StepLabel icon={step.icon}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {step.label}
+        <Grid container spacing={4} mt={6}>
+          {/* Colonne gauche : Créneaux + Pack découverte */}
+          <Grid item xs={12} md={6}>
+            <Grid container spacing={4} direction="column">
+              {/* Carte Créneaux */}
+              <Grid item>
+                <Box
+                  sx={{
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    p: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+                    <Typography variant="h5" fontWeight="bold">Créneaux 2025–2026</Typography>
+                  </Box>
+                  <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+                    Lundi 18h00 → 19h15<br />
+                    Mercredi 19h15 → 21h15<br />
+                    Vendredi 19h30 → 21h00
                   </Typography>
-                </StepLabel>
-                <StepContent>
-                  <Typography>{step.description}</Typography>
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
+                </Box>
+              </Grid>
 
-          <Box mt={3}>
-            <Button
-              variant="contained"
-              color="primary"
-              href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
-              target="_blank"
-              rel="noopener"
-              fullWidth
-              size="large"
+              {/* Carte Pack Découverte */}
+              <Grid item>
+                <Box
+                  sx={{
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    p: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Box>
+                    <Box display="flex" alignItems="center" mb={2}>
+                      <LocalOfferIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+                      <Typography variant="h5" fontWeight="bold">Pack Découverte</Typography>
+                    </Box>
+                    <Stepper orientation="vertical" nonLinear activeStep={-1}>
+                      {steps.map((step, index) => (
+                        <Step key={index} active>
+                          <StepLabel icon={step.icon}>
+                            <Typography variant="subtitle1" fontWeight="bold">
+                              {step.label}
+                            </Typography>
+                          </StepLabel>
+                          <StepContent>
+                            <Typography>{step.description}</Typography>
+                          </StepContent>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </Box>
+
+                  <Box mt={2} textAlign="center">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                      target="_blank"
+                      rel="noopener"
+                      size="medium"
+                      sx={{
+                        borderRadius: 0,
+                        fontWeight: "bold",
+                        textTransform: "none",
+                        "&:hover": {
+                          backgroundColor: "primary.dark",
+                        },
+                      }}
+                    >
+                      Réserver un cours d’essai
+                    </Button>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          {/* Colonne droite : Carte Tarifs */}
+          <Grid item xs={12} md={6}>
+            <Box
               sx={{
-                borderRadius: 0,
-                fontWeight: "bold",
-                textTransform: "none",
-                transition: "background-color 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "primary.dark",
-                },
+                border: '2px solid',
+                borderColor: 'primary.main',
+                p: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                justifyContent: 'space-between',
               }}
             >
-              Réserver un cours d’essai
-            </Button>
-            <Typography
-              variant="caption"
-              sx={{
-                mt: 1,
-                color: "text.secondary",
-                textAlign: "center",
-                display: "block",
-              }}
-            >
-              Le formulaire s'ouvrira dans un nouvel onglet.
-            </Typography>
-          </Box>
-        </Paper>
-
-        {/* Tarifs */}
-        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 0 }}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={1}
-            justifyContent="center"
-            mb={2}
-          >
-            <PriceCheckIcon sx={{ color: theme.palette.primary.main }} />
-            <Typography variant="h5" fontWeight="medium" textAlign="center">
-              Tarifs à la saison
-            </Typography>
-          </Stack>
-          <Typography
-            variant="body1"
-            sx={{ lineHeight: 1.7, mb: 2, textAlign: "center" }}
-          >
-            +25 ans : 210 €<br />
-            +16 ans : 180 €
-          </Typography>
-          <Button
-            variant="outlined"
-            color="secondary"
-            href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
-            target="_blank"
-            rel="noopener"
-            fullWidth
-            size="large"
-            sx={{
-              borderRadius: 0,
-              fontWeight: "bold",
-              textTransform: "none",
-              borderWidth: 2,
-              "&:hover": {
-                borderWidth: 2,
-                backgroundColor: "secondary.light",
-              },
-            }}
-          >
-            S'inscrire pour la saison
-          </Button>
-          <Typography
-            variant="caption"
-            sx={{
-              mt: 1,
-              color: "text.secondary",
-              textAlign: "center",
-              display: "block",
-            }}
-          >
-            Le formulaire s'ouvrira dans un nouvel onglet.
-          </Typography>
-        </Paper>
-      </Stack>
+              <Box>
+                <Box display="flex" alignItems="center" mb={2}>
+                  <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+                  <Typography variant="h5" fontWeight="bold">Tarifs 2025–2026</Typography>
+                </Box>
+                <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
+                  +25 ans : 210 €<br />
+                  +16 ans : 180 €
+                </Typography>
+              </Box>
+              <Box mt={2}>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
+                  target="_blank"
+                  rel="noopener"
+                  fullWidth
+                  size="medium"
+                  sx={{
+                    borderRadius: 0,
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    borderWidth: 2,
+                    "&:hover": {
+                      backgroundColor: "secondary.light",
+                    },
+                  }}
+                >
+                  S’inscrire pour la saison
+                </Button>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 }
