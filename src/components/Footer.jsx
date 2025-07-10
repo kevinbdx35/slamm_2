@@ -56,7 +56,7 @@ const Footer = () => {
         </Stack>
 
         <Link
-          href="https://instagram.com/slamm"
+          href="https://instagram.com/slamm35800"
           target="_blank"
           rel="noopener"
           color="inherit"
