@@ -36,7 +36,8 @@ export default function Menu({ isDark, toggleTheme }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [bottomNavValue, setBottomNavValue] = useState(location.pathname);
+
+  // Pas besoin de bottomNavValue local, on se base sur location.pathname
 
   useEffect(() => {
     document.body.style.overflowX = drawerOpen ? 'hidden' : '';
@@ -44,10 +45,6 @@ export default function Menu({ isDark, toggleTheme }) {
       document.body.style.overflowX = '';
     };
   }, [drawerOpen]);
-
-  useEffect(() => {
-    setBottomNavValue(location.pathname);
-  }, [location.pathname]);
 
   const routes = [
     { label: 'Accueil', icon: <HomeIcon />, path: '/' },
@@ -59,8 +56,9 @@ export default function Menu({ isDark, toggleTheme }) {
   ];
 
   const handleMobileNav = (path) => {
-    navigate(path);
-    setBottomNavValue(path);
+    if (path !== location.pathname) {
+      navigate(path);
+    }
     setDrawerOpen(false);
   };
 
@@ -95,6 +93,7 @@ export default function Menu({ isDark, toggleTheme }) {
               <ListItemButton
                 onClick={() => handleMobileNav(item.path)}
                 sx={{ overflow: 'hidden' }}
+                selected={location.pathname === item.path}
               >
                 {item.icon}
                 <ListItemText
@@ -130,7 +129,7 @@ export default function Menu({ isDark, toggleTheme }) {
     <>
       <BottomNavigation
         showLabels
-        value={bottomNavValue}
+        value={location.pathname}
         onChange={(event, newValue) => handleMobileNav(newValue)}
         sx={{
           position: 'fixed',
@@ -177,7 +176,10 @@ export default function Menu({ isDark, toggleTheme }) {
               color="inherit"
               component={Link}
               to={item.path}
-              sx={{ fontWeight: 600 }}
+              sx={{
+                fontWeight: 600,
+                borderBottom: location.pathname === item.path ? '2px solid white' : 'none',
+              }}
             >
               {item.label}
             </Button>
