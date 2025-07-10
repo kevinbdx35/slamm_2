@@ -162,10 +162,10 @@ export default function ContactPage() {
           ))}
         </Box>
 
-        {/* Bloc Carte améliorée (sans titre) */}
-        <Card sx={{ mb: 4 }}>
-          <CardContent sx={{ p: 0 }}>
-            <Box sx={{ width: '100%', height: 300 }}>
+        {/* Carte Leaflet sans marge/padding cachée */}
+        <Card sx={{ height: 300, mb: 4 }}>
+          <CardContent sx={{ p: 0, height: '100%' }}>
+            <Box sx={{ width: '100%', height: '100%' }}>
               <MapContainer
                 center={position}
                 zoom={15}
