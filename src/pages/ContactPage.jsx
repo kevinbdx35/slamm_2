@@ -9,7 +9,7 @@ import {
 
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
-import PhoneIcon from '@mui/icons-material/Phone'
+import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import EmailIcon from '@mui/icons-material/Email'
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -27,6 +27,12 @@ L.Icon.Default.mergeOptions({
 
 // Position GPS
 const position = [48.629194657231274, -2.1120771896734203]
+
+// Email reconstruit pour éviter les bots
+const emailUser = 'slamm35800'
+const emailDomain = 'gmail.com'
+const emailHref = `mailto:${emailUser}@${emailDomain}`
+const emailDisplay = `${emailUser}@${emailDomain}`
 
 export default function ContactPage() {
   return (
@@ -65,31 +71,72 @@ export default function ContactPage() {
               ),
             },
             {
-              icon: <PhoneIcon fontSize="large" color="primary" />,
-              title: 'TÉLÉPHONE',
-              content: '07 82 77 92 88',
+              icon: <WhatsAppIcon fontSize="large" color="primary" />,
+              title: 'WHATSAPP',
+              content: (
+                <Box
+                  component="a"
+                  href="https://wa.me/33782779288"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    textDecoration: 'underline',
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    '&:visited': {
+                      color: 'primary.main',
+                    },
+                  }}
+                >
+                  07 82 77 92 88
+                </Box>
+              ),
             },
             {
               icon: <EmailIcon fontSize="large" color="primary" />,
               title: 'EMAIL',
-              content: 'slamm35800@gmail.com',
+              content: (
+                <Box
+                  component="a"
+                  href={emailHref}
+                  title={emailDisplay}
+                  sx={{
+                    display: 'inline-block',
+                    textDecoration: 'underline',
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {emailDisplay}
+                </Box>
+              ),
             },
             {
               icon: <InstagramIcon fontSize="large" color="primary" />,
               title: 'INSTAGRAM',
               content: (
-                <a
+                <Box
+                  component="a"
                   href="https://instagram.com/slamm35800"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ textDecoration: 'underline', color: '#000' }}
+                  sx={{
+                    textDecoration: 'underline',
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    '&:visited': {
+                      color: 'primary.main',
+                    },
+                  }}
                 >
                   @slamm35800
-                </a>
+                </Box>
               ),
             },
           ].map((item, idx) => (
-            <Card key={idx} sx={{ flex: '1 1 200px', minWidth: 200, boxShadow: 1 }}>
+            <Card key={idx} sx={{ flex: '1 1 250px', minWidth: 250, boxShadow: 1 }}>
               <CardContent sx={{ textAlign: 'center' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
                   {item.icon}
@@ -97,7 +144,15 @@ export default function ContactPage() {
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
                   {item.title}
                 </Typography>
-                <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    whiteSpace: 'pre-line',
+                    wordBreak: 'break-word',
+                    overflowWrap: 'break-word',
+                    fontSize: '0.9rem',
+                  }}
+                >
                   {item.content}
                 </Typography>
               </CardContent>
