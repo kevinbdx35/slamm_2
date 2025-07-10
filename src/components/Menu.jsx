@@ -124,7 +124,6 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
         value={bottomNavValue}
         onChange={(event, newValue) => {
           setBottomNavValue(newValue);
-          onNavigate(newValue);
         }}
         sx={{
           position: 'fixed',
@@ -137,17 +136,26 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
           boxSizing: 'border-box',
         }}
       >
-        {menuItems.map((item) => (
-          <BottomNavigationAction
-            key={item.label}
-            label={item.label}
-            icon={item.icon}
-          />
-        ))}
+        <BottomNavigationAction
+          label="Accueil"
+          icon={<HomeIcon />}
+          onClick={() => handleNavigate(0)}
+        />
+        <BottomNavigationAction
+          label="Cours"
+          icon={<ScheduleIcon />}
+          onClick={() => handleNavigate(1)}
+        />
+        <BottomNavigationAction
+          label="Contact"
+          icon={<ContactMailIcon />}
+          onClick={() => handleNavigate(4)}
+        />
       </BottomNavigation>
-      <Box sx={{ height: 56 }} /> {/* espace réservé pour ne pas masquer le contenu */}
+      <Box sx={{ height: 56 }} />
     </>
   );
+  
 
   const desktopMenu = (
     <AppBar position="static" color="primary" enableColorOnDark>
