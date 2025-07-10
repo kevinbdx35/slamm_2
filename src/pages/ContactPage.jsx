@@ -76,7 +76,7 @@ export default function ContactPage() {
               content: (
                 <Box
                   component="a"
-                  href="https://wa.me/33782779288"
+                  href="https://wa.me/33782779288?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20club%20de%20MMA."
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
@@ -161,7 +161,7 @@ export default function ContactPage() {
         </Box>
 
         {/* Bloc Carte */}
-        <Card>
+        <Card sx={{ mb: 4 }}>
           <CardContent sx={{ p: 0, height: 300 }}>
             <Typography variant="h6" sx={{ p: 2, pb: 0 }}>
               Où nous trouver ?
