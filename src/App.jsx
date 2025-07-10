@@ -8,11 +8,11 @@ import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import FloatingTrialButton from './components/FloatingTrialButton'
 import SeoHelmet from './components/SeoHelmet.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx' // ← IMPORT AJOUTÉ
 
 export default function App({ isDark, toggleTheme }) {
   const [page, setPage] = useState(0)
 
-  // Données SEO pour chaque page (à personnaliser)
   const seoData = [
     {
       title: "Accueil - SLAMM MMA Saint-Lunaire",
@@ -62,6 +62,9 @@ export default function App({ isDark, toggleTheme }) {
         url={currentSeo.url}
         image={currentSeo.image}
       />
+
+      {/* Scroll en haut à chaque changement de page */}
+      <ScrollToTop trigger={page} />
 
       <Menu onNavigate={setPage} isDark={isDark} toggleTheme={toggleTheme} />
 
