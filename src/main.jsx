@@ -5,7 +5,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material'
 import { lightTheme, darkTheme } from './theme.js'
 import '@fontsource/roboto-mono'
 import '@fontsource/cinzel/700.css'
-import { BrowserRouter } from 'react-router-dom'  // ← Import
+import { HashRouter } from 'react-router-dom'  // ← Remplacé BrowserRouter par HashRouter
 
 function Root() {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -24,9 +24,9 @@ function Root() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <HashRouter>
         <App isDark={isDark} toggleTheme={toggleTheme} />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }
