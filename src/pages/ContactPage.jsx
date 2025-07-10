@@ -11,7 +11,6 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import EmailIcon from '@mui/icons-material/Email'
-import LinkIcon from '@mui/icons-material/Link'
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -138,28 +137,6 @@ export default function ContactPage() {
                 </Box>
               ),
             },
-            {
-              icon: <LinkIcon fontSize="large" color="primary" />,
-              title: 'LINKTREE',
-              content: (
-                <Box
-                  component="a"
-                  href="https://linktr.ee/slamm35800"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{
-                    textDecoration: 'underline',
-                    color: 'primary.main',
-                    fontWeight: 'bold',
-                    '&:visited': {
-                      color: 'primary.main',
-                    },
-                  }}
-                >
-                  linktr.ee/slamm35800
-                </Box>
-              ),
-            },
           ].map((item, idx) => (
             <Card key={idx} sx={{ flex: '1 1 250px', minWidth: 250, boxShadow: 1 }}>
               <CardContent sx={{ textAlign: 'center' }}>
@@ -185,13 +162,10 @@ export default function ContactPage() {
           ))}
         </Box>
 
-        {/* Bloc Carte améliorée */}
+        {/* Bloc Carte améliorée (sans titre) */}
         <Card sx={{ mb: 4 }}>
-          <CardContent sx={{ p: 0, height: 300 }}>
-            <Typography variant="h6" sx={{ p: 2, pb: 0 }}>
-              Où nous trouver ?
-            </Typography>
-            <Box sx={{ width: '100%', height: '100%' }}>
+          <CardContent sx={{ p: 0 }}>
+            <Box sx={{ width: '100%', height: 300 }}>
               <MapContainer
                 center={position}
                 zoom={15}
