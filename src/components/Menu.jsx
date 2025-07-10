@@ -37,8 +37,6 @@ export default function Menu({ isDark, toggleTheme }) {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Pas besoin de bottomNavValue local, on se base sur location.pathname
-
   useEffect(() => {
     document.body.style.overflowX = drawerOpen ? 'hidden' : '';
     return () => {
@@ -187,8 +185,15 @@ export default function Menu({ isDark, toggleTheme }) {
           {ThemeToggleButton}
           <Button
             variant="contained"
-            color="secondary"
-            sx={{ ml: 2 }}
+            sx={{
+              ml: 2,
+              backgroundColor: '#FF6F00',
+              color: '#fff',
+              fontWeight: 'bold',
+              '&:hover': {
+                backgroundColor: '#e65c00',
+              },
+            }}
             onClick={() => alert('Réserver ton cours d’essai')}
           >
             Réserve ton essai
