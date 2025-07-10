@@ -6,7 +6,12 @@ import {
   CardContent,
   Box,
 } from '@mui/material'
+
 import InstagramIcon from '@mui/icons-material/Instagram'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import PhoneIcon from '@mui/icons-material/Phone'
+import EmailIcon from '@mui/icons-material/Email'
+
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -38,7 +43,7 @@ export default function ContactPage() {
           Nous contacter
         </Typography>
 
-        {/* Bloc Informations - style basé sur l'image fournie */}
+        {/* Bloc Informations */}
         <Box
           sx={{
             display: 'flex',
@@ -50,7 +55,7 @@ export default function ContactPage() {
         >
           {[
             {
-              icon: '📍',
+              icon: <LocationOnIcon fontSize="large" color="primary" />,
               title: 'ADRESSE',
               content: (
                 <>
@@ -60,17 +65,17 @@ export default function ContactPage() {
               ),
             },
             {
-              icon: '☎️',
+              icon: <PhoneIcon fontSize="large" color="primary" />,
               title: 'TÉLÉPHONE',
               content: '07 82 77 92 88',
             },
             {
-              icon: '✉️',
+              icon: <EmailIcon fontSize="large" color="primary" />,
               title: 'EMAIL',
               content: 'slamm35800@gmail.com',
             },
             {
-              icon: <InstagramIcon fontSize="large" />,
+              icon: <InstagramIcon fontSize="large" color="primary" />,
               title: 'INSTAGRAM',
               content: (
                 <a
@@ -86,7 +91,9 @@ export default function ContactPage() {
           ].map((item, idx) => (
             <Card key={idx} sx={{ flex: '1 1 200px', minWidth: 200, boxShadow: 1 }}>
               <CardContent sx={{ textAlign: 'center' }}>
-                <Box sx={{ fontSize: 30, mb: 1 }}>{item.icon}</Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
+                  {item.icon}
+                </Box>
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
                   {item.title}
                 </Typography>
