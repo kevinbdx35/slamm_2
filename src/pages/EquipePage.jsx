@@ -3,7 +3,6 @@ import {
   Container,
   Typography,
   Box,
-  Paper,
   Stack,
   Divider,
   useMediaQuery,
@@ -61,89 +60,77 @@ export default function EquipePage() {
       />
 
       <Container sx={{ py: 6, mb: 10 }}>
-        <Typography
-          variant="h2"
-          sx={{
-            borderBottom: '2px solid',
-            display: 'inline-block',
-            mb: 3,
-          }}
-        >
-          Qui sommes-nous
-        </Typography>
+        {/* Titre principal */}
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
+          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+            L’Équipe SLAMM
+          </Typography>
+          <Typography variant="body1" mt={1} maxWidth={1000}>
+            SLAMM est née de la vision partagée de trois passionnés de MMA, chacun apportant des compétences complémentaires. 
+            Nous encourageons une pratique loisirs bienveillante, respectueuse et adaptée à chacun.
+          </Typography>
+        </Box>
 
-        <Typography variant="body1" sx={{ mb: 6, maxWidth: 1000 }}>
-          SLAMM association loi 1901 est née de la vision partagée de trois
-          passionnés de MMA (Kévin, Malik, Thomas), chacun apportant des
-          compétences complémentaires. Nous encourageons une pratique loisirs
-          basée sur la bienveillance, le respect et l'écoute mutuelle, afin de
-          permettre à chaque membre de progresser dans un environnement adapté
-          à ses envies et à ses capacités physiques.
-        </Typography>
+        <Box component="section" mt={6}>
+          <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+            Membres fondateurs
+          </Typography>
 
-        <Typography
-          variant="h2"
-          sx={{
-            borderBottom: '2px solid',
-            display: 'inline-block',
-            mb: 3,
-          }}
-        >
-          Notre Équipe
-        </Typography>
-
-        <Stack spacing={4}>
-          {teamMembers.map(({ name, role, initials, diplomas, color }) => (
-            <Paper
-              key={name}
-              elevation={3}
-              sx={{
-                display: 'flex',
-                flexDirection: isMobile ? 'column' : 'row',
-                borderRadius: 2,
-                overflow: 'hidden',
-              }}
-            >
+          <Stack spacing={4} mt={4}>
+            {teamMembers.map(({ name, role, initials, diplomas, color }) => (
               <Box
+                key={name}
                 sx={{
-                  bgcolor: color,
-                  width: isMobile ? '100%' : 100,
-                  minHeight: isMobile ? 60 : 'auto',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: 24,
+                  flexDirection: isMobile ? 'column' : 'row',
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  borderRadius: 0,
+                  overflow: 'hidden',
                 }}
               >
-                {initials}
-              </Box>
+                <Box
+                  sx={{
+                    bgcolor: color,
+                    width: isMobile ? '100%' : 100,
+                    minHeight: isMobile ? 60 : 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontWeight: 'bold',
+                    fontSize: 24,
+                    p: 2,
+                  }}
+                >
+                  {initials}
+                </Box>
 
-              <Box sx={{ p: 3, flex: 1 }}>
-                <Typography variant="h6" fontWeight="bold">
-                  {name}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-                  {role}
-                </Typography>
-                <Divider sx={{ my: 1 }} />
-                <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
-                  Diplômes :
-                </Typography>
-                <ul style={{ paddingLeft: 20, margin: 0 }}>
-                  {diplomas.map((d, i) => (
-                    <li key={i}>
-                      <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-                        {d}
-                      </Typography>
-                    </li>
-                  ))}
-                </ul>
+                <Box sx={{ p: 3, flex: 1 }}>
+                  <Typography variant="h6" fontWeight="bold">
+                    {name}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+                    {role}
+                  </Typography>
+                  <Divider sx={{ my: 1 }} />
+                  <Typography variant="subtitle2" fontWeight="bold" gutterBottom>
+                    Diplômes :
+                  </Typography>
+                  <ul style={{ paddingLeft: 20, margin: 0 }}>
+                    {diplomas.map((d, i) => (
+                      <li key={i}>
+                        <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
+                          {d}
+                        </Typography>
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
               </Box>
-            </Paper>
-          ))}
-        </Stack>
+            ))}
+          </Stack>
+        </Box>
       </Container>
     </>
   )
