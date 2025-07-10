@@ -11,6 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import EmailIcon from '@mui/icons-material/Email'
+import LinkIcon from '@mui/icons-material/Link'
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -26,7 +27,9 @@ L.Icon.Default.mergeOptions({
 })
 
 // Position GPS
-const position = [48.629194657231274, -2.1120771896734203]
+const lat = 48.629194657231274
+const lng = -2.1120771896734203
+const position = [lat, lng]
 
 // Email reconstruit pour éviter les bots
 const emailUser = 'slamm35800'
@@ -135,6 +138,28 @@ export default function ContactPage() {
                 </Box>
               ),
             },
+            {
+              icon: <LinkIcon fontSize="large" color="primary" />,
+              title: 'LINKTREE',
+              content: (
+                <Box
+                  component="a"
+                  href="https://linktr.ee/slamm35800"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    textDecoration: 'underline',
+                    color: 'primary.main',
+                    fontWeight: 'bold',
+                    '&:visited': {
+                      color: 'primary.main',
+                    },
+                  }}
+                >
+                  linktr.ee/slamm35800
+                </Box>
+              ),
+            },
           ].map((item, idx) => (
             <Card key={idx} sx={{ flex: '1 1 250px', minWidth: 250, boxShadow: 1 }}>
               <CardContent sx={{ textAlign: 'center' }}>
@@ -160,7 +185,7 @@ export default function ContactPage() {
           ))}
         </Box>
 
-        {/* Bloc Carte */}
+        {/* Bloc Carte améliorée */}
         <Card sx={{ mb: 4 }}>
           <CardContent sx={{ p: 0, height: 300 }}>
             <Typography variant="h6" sx={{ p: 2, pb: 0 }}>
@@ -170,16 +195,26 @@ export default function ContactPage() {
               <MapContainer
                 center={position}
                 zoom={15}
+                scrollWheelZoom={false}
+                touchZoom={false}
+                doubleClickZoom={false}
                 style={{ height: '100%', width: '100%' }}
               >
                 <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors & Carto'
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                 />
                 <Marker position={position}>
                   <Popup>
-                    SLAMM MMA<br />
-                    361 Rue de la Saudrais, Saint-Lunaire
+                    <strong>SLAMM MMA</strong><br />
+                    361 Rue de la Saudrais<br />
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ➤ Itinéraire Google Maps
+                    </a>
                   </Popup>
                 </Marker>
               </MapContainer>
