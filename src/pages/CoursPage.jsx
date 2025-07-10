@@ -9,7 +9,8 @@ import {
   Stepper,
   Step,
   StepLabel,
-  StepContent
+  StepContent,
+  useTheme,
 } from "@mui/material";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -22,12 +23,12 @@ import SeoHelmet from "../components/SeoHelmet";
 const steps = [
   {
     label: "OBSERVE UN COURS",
-    icon: <VisibilityIcon />,
+    icon: <VisibilityIcon sx={{ color: "primary.main" }} />,
     description: "Aucune pression, juste pour découvrir.",
   },
   {
     label: "ESSAYE JUSQU’À 2 SÉANCES D’ESSAI",
-    icon: <CheckCircleIcon />,
+    icon: <CheckCircleIcon sx={{ color: "primary.main" }} />,
     description: (
       <>
         <Typography variant="body2" color="error" sx={{ fontWeight: "bold" }}>
@@ -41,12 +42,14 @@ const steps = [
   },
   {
     label: "INSCRIPTION",
-    icon: <AssignmentIcon />,
+    icon: <AssignmentIcon sx={{ color: "primary.main" }} />,
     description: "Bienvenue dans l’équipe!",
   },
 ];
 
 export default function PageCours() {
+  const theme = useTheme();
+
   return (
     <>
       <SeoHelmet
@@ -56,17 +59,31 @@ export default function PageCours() {
         image="https://mma-saint-lunaire.fr/img/cours_social.jpg"
       />
 
-
-    <Stack spacing={6} alignItems="center" sx={{ mt: 8, mb: 10, maxWidth: 640, mx: "auto", px: 3 }}>
-        <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
+      <Stack
+        spacing={6}
+        alignItems="center"
+        sx={{ mt: 8, mb: 10, maxWidth: 640, mx: "auto", px: 3 }}
+      >
+        <Typography variant="h3" component="h1" gutterBottom>
           Nos Cours
         </Typography>
 
         {/* Créneaux horaires */}
-        <Paper elevation={3} sx={{ p: 3, width: "100%", textAlign: "center", borderRadius: 3 }}>
-          <Stack direction="row" alignItems="center" spacing={1} justifyContent="center" mb={2}>
-            <EventAvailableIcon color="primary" />
-            <Typography variant="h5" fontWeight="medium">Créneaux 2025-2026</Typography>
+        <Paper
+          elevation={3}
+          sx={{ p: 3, width: "100%", textAlign: "center", borderRadius: 0 }}
+        >
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="center"
+            mb={2}
+          >
+            <EventAvailableIcon sx={{ color: theme.palette.primary.main }} />
+            <Typography variant="h5" fontWeight="medium">
+              Créneaux 2025-2026
+            </Typography>
           </Stack>
           <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
             Lundi 18h00 → 19h15<br />
@@ -76,9 +93,15 @@ export default function PageCours() {
         </Paper>
 
         {/* Timeline Cours d'essai */}
-        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 3 }}>
-          <Stack direction="row" alignItems="center" spacing={1} justifyContent="center" mb={2}>
-            <LocalOfferIcon color="secondary" />
+        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 0 }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="center"
+            mb={2}
+          >
+            <LocalOfferIcon sx={{ color: theme.palette.primary.main }} />
             <Typography variant="h5" fontWeight="medium">
               Pack Découverte
             </Typography>
@@ -109,7 +132,7 @@ export default function PageCours() {
               fullWidth
               size="large"
               sx={{
-                borderRadius: 2,
+                borderRadius: 0,
                 fontWeight: "bold",
                 textTransform: "none",
                 transition: "background-color 0.3s ease",
@@ -120,21 +143,38 @@ export default function PageCours() {
             >
               Réserver un cours d’essai
             </Button>
-            <Typography variant="caption" sx={{ mt: 1, color: "text.secondary", textAlign: "center", display: "block" }}>
+            <Typography
+              variant="caption"
+              sx={{
+                mt: 1,
+                color: "text.secondary",
+                textAlign: "center",
+                display: "block",
+              }}
+            >
               Le formulaire s'ouvrira dans un nouvel onglet.
             </Typography>
           </Box>
         </Paper>
 
         {/* Tarifs */}
-        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 3 }}>
-          <Stack direction="row" alignItems="center" spacing={1} justifyContent="center" mb={2}>
-            <PriceCheckIcon color="info" />
+        <Paper elevation={3} sx={{ p: 3, width: "100%", borderRadius: 0 }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="center"
+            mb={2}
+          >
+            <PriceCheckIcon sx={{ color: theme.palette.primary.main }} />
             <Typography variant="h5" fontWeight="medium" textAlign="center">
               Tarifs à la saison
             </Typography>
           </Stack>
-          <Typography variant="body1" sx={{ lineHeight: 1.7, mb: 2, textAlign: "center" }}>
+          <Typography
+            variant="body1"
+            sx={{ lineHeight: 1.7, mb: 2, textAlign: "center" }}
+          >
             +25 ans : 210 €<br />
             +16 ans : 180 €
           </Typography>
@@ -147,7 +187,7 @@ export default function PageCours() {
             fullWidth
             size="large"
             sx={{
-              borderRadius: 2,
+              borderRadius: 0,
               fontWeight: "bold",
               textTransform: "none",
               borderWidth: 2,
@@ -159,7 +199,15 @@ export default function PageCours() {
           >
             S'inscrire pour la saison
           </Button>
-          <Typography variant="caption" sx={{ mt: 1, color: "text.secondary", textAlign: "center", display: "block" }}>
+          <Typography
+            variant="caption"
+            sx={{
+              mt: 1,
+              color: "text.secondary",
+              textAlign: "center",
+              display: "block",
+            }}
+          >
             Le formulaire s'ouvrira dans un nouvel onglet.
           </Typography>
         </Paper>

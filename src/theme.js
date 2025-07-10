@@ -2,10 +2,10 @@
 import { createTheme } from '@mui/material/styles';
 
 const colors = {
-  black: 'hsl(190, 65%, 9%)',
+  black: 'hsl(190, 65%, 9%)',       // Très sombre bleuté
   blackSurface: 'hsl(190, 65%, 9%)',
   white: '#FFFFFF',
-  neonGreen: 'hsl(135, 90%, 41%)',
+  neonGreen: '#00ff5e',             // Vert vif
 };
 
 const sharedComponents = {
@@ -22,8 +22,8 @@ const sharedComponents = {
       root: {
         border: `2px solid ${colors.neonGreen}`,
         borderRadius: 0,
-        display: 'flex',
-        flexDirection: 'column',
+        backgroundColor: colors.black,
+        color: colors.neonGreen,
       },
     },
   },
@@ -43,7 +43,17 @@ const sharedComponents = {
       },
     },
   },
-}
+  MuiLink: {
+    styleOverrides: {
+      root: {
+        color: colors.neonGreen,
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      },
+    },
+  },
+};
 
 export const lightTheme = createTheme({
   palette: {

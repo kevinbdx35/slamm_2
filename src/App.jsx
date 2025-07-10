@@ -1,14 +1,12 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import Menu from './components/Menu.jsx'
+import Layout from './components/Layout.jsx'  // chemin corrigé
 import HomePage from './pages/HomePage.jsx'
 import CoursPage from './pages/CoursPage.jsx'
 import EquipePage from './pages/EquipePage.jsx'
 import ActualitesPage from './pages/ActualitesPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
-import FloatingTrialButton from './components/FloatingTrialButton'
 import SeoHelmet from './components/SeoHelmet.jsx'
-import ScrollToTop from './components/ScrollToTop.jsx'
 
 export default function App({ isDark, toggleTheme }) {
   const location = useLocation()
@@ -63,11 +61,7 @@ export default function App({ isDark, toggleTheme }) {
         image={currentSeo.image}
       />
 
-      <ScrollToTop />
-
-      <Menu isDark={isDark} toggleTheme={toggleTheme} />
-
-      <main>
+      <Layout isDark={isDark} toggleTheme={toggleTheme}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cours" element={<CoursPage />} />
@@ -76,9 +70,7 @@ export default function App({ isDark, toggleTheme }) {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
         </Routes>
-      </main>
-
-      <FloatingTrialButton />
+      </Layout>
     </>
   )
 }
