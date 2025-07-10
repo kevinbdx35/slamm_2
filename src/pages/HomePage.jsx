@@ -20,7 +20,7 @@ export default function HomePage() {
             Saint-Lunaire Arts Martiaux Mixtes - Académie de MMA
           </Typography>
           <Typography variant="body1" mt={1} maxWidth={1000}>
-            Association loi 1901 dédiée à l'enseignement et la pratique des Arts Martiaux Mixtes.
+            Association loi 1901 dédiée à l'enseignement et la pratique des Arts Martiaux Mixtes depuis 2023.
             Découvre nos cours, notre ambiance, et rejoins-nous pour tester le MMA.
           </Typography>
         </Box>
