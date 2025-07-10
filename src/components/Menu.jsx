@@ -17,22 +17,26 @@ import {
   Tooltip,
   useTheme,
 } from '@mui/material';
+import {
+  Home as HomeIcon,
+  Schedule as ScheduleIcon,
+  People as PeopleIcon,
+  Article as ArticleIcon,
+  ContactMail as ContactMailIcon,
+  HelpOutline as HelpOutlineIcon,
+  Brightness4 as Brightness4Icon,
+  Brightness7 as Brightness7Icon,
+  Menu as MenuIcon,
+} from '@mui/icons-material';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import ScheduleIcon from '@mui/icons-material/Schedule';
-import PeopleIcon from '@mui/icons-material/People';
-import ArticleIcon from '@mui/icons-material/Article';
-import ContactMailIcon from '@mui/icons-material/ContactMail';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-
-export default function Menu({ onNavigate, isDark, toggleTheme }) {
+export default function Menu({ isDark, toggleTheme }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const location = useLocation();
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [bottomNavValue, setBottomNavValue] = useState(0);
+  const [bottomNavValue, setBottomNavValue] = useState(location.pathname);
 
   useEffect(() => {
     document.body.style.overflowX = drawerOpen ? 'hidden' : '';
@@ -41,21 +45,23 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
     };
   }, [drawerOpen]);
 
-  const menuItems = [
-    { label: 'Accueil', icon: <HomeIcon />, page: 0 },
-    { label: 'Cours', icon: <ScheduleIcon />, page: 1 },
-    { label: 'Équipe', icon: <PeopleIcon />, page: 2 },
-    { label: 'Actualités', icon: <ArticleIcon />, page: 3 },
-    { label: 'Contact', icon: <ContactMailIcon />, page: 4 },
-    { label: 'FAQ', icon: <HelpOutlineIcon />, page: 5 },
+  useEffect(() => {
+    setBottomNavValue(location.pathname);
+  }, [location.pathname]);
+
+  const routes = [
+    { label: 'Accueil', icon: <HomeIcon />, path: '/' },
+    { label: 'Cours', icon: <ScheduleIcon />, path: '/cours' },
+    { label: 'Équipe', icon: <PeopleIcon />, path: '/equipe' },
+    { label: 'Actualités', icon: <ArticleIcon />, path: '/actualites' },
+    { label: 'Contact', icon: <ContactMailIcon />, path: '/contact' },
+    { label: 'FAQ', icon: <HelpOutlineIcon />, path: '/faq' },
   ];
 
-  const handleNavigate = (page) => {
-    onNavigate(page);
-    if (isMobile) {
-      setBottomNavValue(page);
-      setDrawerOpen(false);
-    }
+  const handleMobileNav = (path) => {
+    navigate(path);
+    setBottomNavValue(path);
+    setDrawerOpen(false);
   };
 
   const ThemeToggleButton = (
@@ -84,10 +90,10 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
         onClick={() => setDrawerOpen(false)}
       >
         <List>
-          {menuItems.map((item) => (
+          {routes.map((item) => (
             <ListItem key={item.label} disablePadding>
               <ListItemButton
-                onClick={() => handleNavigate(item.page)}
+                onClick={() => handleMobileNav(item.path)}
                 sx={{ overflow: 'hidden' }}
               >
                 {item.icon}
@@ -109,7 +115,10 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton onClick={() => alert('Réserver ton cours d’essai')}>
-              <ListItemText primary="Réserve ton essai" sx={{ pl: 2, fontWeight: 'bold' }} />
+              <ListItemText
+                primary="Réserve ton essai"
+                sx={{ pl: 2, fontWeight: 'bold' }}
+              />
             </ListItemButton>
           </ListItem>
         </List>
@@ -122,9 +131,7 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
       <BottomNavigation
         showLabels
         value={bottomNavValue}
-        onChange={(event, newValue) => {
-          setBottomNavValue(newValue);
-        }}
+        onChange={(event, newValue) => handleMobileNav(newValue)}
         sx={{
           position: 'fixed',
           bottom: 0,
@@ -136,26 +143,20 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
           boxSizing: 'border-box',
         }}
       >
-        <BottomNavigationAction
-          label="Accueil"
-          icon={<HomeIcon />}
-          onClick={() => handleNavigate(0)}
-        />
-        <BottomNavigationAction
-          label="Cours"
-          icon={<ScheduleIcon />}
-          onClick={() => handleNavigate(1)}
-        />
-        <BottomNavigationAction
-          label="Contact"
-          icon={<ContactMailIcon />}
-          onClick={() => handleNavigate(4)}
-        />
+        {routes
+          .filter((r) => ['/', '/cours', '/contact'].includes(r.path))
+          .map((item) => (
+            <BottomNavigationAction
+              key={item.label}
+              label={item.label}
+              value={item.path}
+              icon={item.icon}
+            />
+          ))}
       </BottomNavigation>
       <Box sx={{ height: 56 }} />
     </>
   );
-  
 
   const desktopMenu = (
     <AppBar position="static" color="primary" enableColorOnDark>
@@ -163,16 +164,19 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
         <Typography
           variant="h6"
           sx={{ fontWeight: 'bold', cursor: 'pointer' }}
-          onClick={() => handleNavigate(0)}
+          component={Link}
+          to="/"
+          color="inherit"
         >
           SLAMM
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-          {menuItems.map((item) => (
+          {routes.map((item) => (
             <Button
               key={item.label}
               color="inherit"
-              onClick={() => handleNavigate(item.page)}
+              component={Link}
+              to={item.path}
               sx={{ fontWeight: 600 }}
             >
               {item.label}
@@ -208,7 +212,7 @@ export default function Menu({ onNavigate, isDark, toggleTheme }) {
               <Typography
                 variant="h6"
                 sx={{ fontWeight: 'bold', cursor: 'pointer' }}
-                onClick={() => handleNavigate(0)}
+                onClick={() => handleMobileNav('/')}
               >
                 SLAMM
               </Typography>

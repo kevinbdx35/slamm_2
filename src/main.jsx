@@ -1,4 +1,3 @@
-// main.jsx
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -6,6 +5,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material'
 import { lightTheme, darkTheme } from './theme.js'
 import '@fontsource/roboto-mono'
 import '@fontsource/cinzel/700.css'
+import { BrowserRouter } from 'react-router-dom'  // ← Import
 
 function Root() {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -24,7 +24,9 @@ function Root() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App isDark={isDark} toggleTheme={toggleTheme} />
+      <BrowserRouter>
+        <App isDark={isDark} toggleTheme={toggleTheme} />
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
