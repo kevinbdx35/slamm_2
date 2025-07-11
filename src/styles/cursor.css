@@ -1,0 +1,104 @@
+/* Custom Cursor Styles Avancés */
+
+/* Disable default cursor globalement */
+* {
+  cursor: none !important;
+}
+
+/* Curseur animé suiveur de souris */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #00ff5e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: all 0.15s cubic-bezier(0.23, 1, 0.320, 1);
+  mix-blend-mode: difference;
+  opacity: 0.8;
+}
+
+/* Curseur en mode hover */
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 255, 94, 0.3);
+  border: 2px solid #00ff5e;
+  animation: pulse 1s infinite;
+}
+
+/* Curseur en mode click */
+.custom-cursor.click {
+  width: 15px;
+  height: 15px;
+  background: #ff6b35;
+  animation: click-ripple 0.3s ease;
+}
+
+/* Curseur pour texte */
+.custom-cursor.text {
+  width: 2px;
+  height: 24px;
+  background: #00ff5e;
+  border-radius: 1px;
+  animation: blink 1s infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes click-ripple {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Fallback cursors avec SVG inline */
+body {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIgZmlsbD0iIzAwZmY1ZSIgZmlsbC1vcGFjaXR5PSIwLjgiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOCIgc3Ryb2tlPSIjMDBmZjVlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1vcGFjaXR5PSIwLjQiLz4KPC9zdmc+') 12 12, auto !important;
+}
+
+/* Boutons et liens */
+a, button, [role="button"], .MuiButton-root, .MuiIconButton-root, .MuiBottomNavigationAction-root, .MuiListItemButton-root {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNiIgZmlsbD0iIzAwZmY1ZSIgZmlsbC1vcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIHN0cm9rZT0iIzAwZmY1ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC42Ii8+Cjx0ZXh0IHg9IjEyIiB5PSIxNiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjgiIGZpbGw9IiMwYTE0MTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfpYo8L3RleHQ+Cjwvc3ZnPg==') 12 12, pointer !important;
+}
+
+/* Inputs */
+input, textarea, [contenteditable] {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGxpbmUgeDE9IjEyIiB5MT0iNCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0iIzAwZmY1ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSI4IiB5MT0iNCIgeDI9IjE2IiB5Mj0iNCIgc3Ryb2tlPSIjMDBmZjVlIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjgiIHkxPSIyMCIgeDI9IjE2IiB5Mj0iMjAiIHN0cm9rZT0iIzAwZmY1ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==') 12 12, text !important;
+}
+
+/* Images avec zoom */
+img {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIgc3Ryb2tlPSIjMDBmZjVlIiBzdHJva2Utd2lkdGg9IjIiLz4KPHA%2BaW5lIHgxPSIyMSIgeTE9IjIxIiB4Mj0iMTYuNjUiIHkyPSIxNi42NSIgc3Ryb2tlPSIjMDBmZjVlIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjExIiB5MT0iOCIgeDI9IjExIiB5Mj0iMTQiIHN0cm9rZT0iIzAwZmY1ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSI4IiB5MT0iMTEiIHgyPSIxNCIgeTI9IjExIiBzdHJva2U9IiMwMGZmNWUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K') 12 12, zoom-in !important;
+}
+
+/* Mobile - désactiver curseur custom */
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Mode sombre - ajustements */
+@media (prefers-color-scheme: dark) {
+  .custom-cursor {
+    background: #00ff5e;
+    mix-blend-mode: screen;
+  }
+}

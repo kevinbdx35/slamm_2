@@ -98,8 +98,46 @@ export default function Menu({ isDark, toggleTheme }) {
 
   const ThemeToggleButton = useMemo(() => (
     <Tooltip title={isDark ? 'Thème clair' : 'Thème sombre'}>
-      <IconButton onClick={toggleTheme} color="inherit">
-        {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+      <IconButton 
+        onClick={toggleTheme} 
+        color="inherit"
+        sx={{
+          position: 'relative',
+          overflow: 'hidden',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            transform: 'scale(1.1)',
+          },
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '0',
+            height: '0',
+            borderRadius: '50%',
+            background: 'rgba(0, 255, 94, 0.3)',
+            transform: 'translate(-50%, -50%)',
+            transition: 'width 0.4s, height 0.4s',
+            pointerEvents: 'none',
+          },
+          '&:active::before': {
+            width: '50px',
+            height: '50px',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: isDark ? 'rotate(180deg)' : 'rotate(0deg)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+        </Box>
       </IconButton>
     </Tooltip>
   ), [isDark, toggleTheme]);
@@ -149,12 +187,27 @@ export default function Menu({ isDark, toggleTheme }) {
             );
           })}
           <ListItem disablePadding>
-            <ListItemButton onClick={toggleTheme}>
+            <ListItemButton 
+              onClick={toggleTheme}
+              sx={{
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 255, 94, 0.1)',
+                }
+              }}
+            >
               <ListItemText
                 primary={isDark ? 'Thème clair' : 'Thème sombre'}
                 sx={{ pl: 2 }}
               />
-              {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+              <Box
+                sx={{
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transform: isDark ? 'rotate(180deg)' : 'rotate(0deg)',
+                  color: theme.palette.primary.main,
+                }}
+              >
+                {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+              </Box>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -196,7 +249,10 @@ export default function Menu({ isDark, toggleTheme }) {
           width: '100%',
           height: 56,
           boxSizing: 'border-box',
-          borderTop: `2px solid ${theme.palette.primary.main}`, // ✅ Ajout
+          borderTop: `2px solid ${theme.palette.primary.main}`,
+          // Safe Area iOS
+          paddingBottom: 'env(safe-area-inset-bottom)',
+          minHeight: 'calc(56px + env(safe-area-inset-bottom))',
         }}
       >
         {routes
@@ -252,7 +308,7 @@ export default function Menu({ isDark, toggleTheme }) {
             );
           })}
       </BottomNavigation>
-      <Box sx={{ height: 56 }} />
+      <Box sx={{ height: 'calc(56px + env(safe-area-inset-bottom))' }} />
     </>
   );
 
@@ -324,7 +380,17 @@ export default function Menu({ isDark, toggleTheme }) {
     <Box sx={{ overflowX: 'hidden', pb: { xs: 7, sm: 0 } }}>
       {isMobile ? (
         <>
-          <AppBar position="fixed" color="primary" enableColorOnDark>
+          <AppBar 
+            position="fixed" 
+            color="primary" 
+            enableColorOnDark
+            sx={{
+              // Safe Area iOS
+              paddingTop: 'env(safe-area-inset-top)',
+              paddingLeft: 'env(safe-area-inset-left)',
+              paddingRight: 'env(safe-area-inset-right)',
+            }}
+          >
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <IconButton
                 color="inherit"
@@ -344,7 +410,7 @@ export default function Menu({ isDark, toggleTheme }) {
             </Toolbar>
           </AppBar>
           {drawerMenu}
-          <Toolbar /> {/* espace haut AppBar */}
+          <Box sx={{ height: 'calc(64px + env(safe-area-inset-top))' }} /> {/* espace haut AppBar avec safe area */}
           {bottomNavigation}
         </>
       ) : (
