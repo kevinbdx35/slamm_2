@@ -1,11 +1,12 @@
 // pages/FaqPage.jsx
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Box,
   Typography,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Container,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SeoHelmet from '../components/SeoHelmet'
@@ -53,6 +54,12 @@ const faqs = [
 ]
 
 export default function FaqPage() {
+  const [expanded, setExpanded] = useState(false)
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
+
   return (
     <>
       <SeoHelmet
@@ -60,26 +67,54 @@ export default function FaqPage() {
         description="Toutes les réponses à vos questions sur la pratique du MMA au sein de l'association SLAMM à Saint-Lunaire. Inscriptions, équipement, âge, sécurité, etc."
         url="https://mma-saint-lunaire.fr/faq"
       />
-      <Box sx={{ px: 2, py: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
-          FAQ – Questions fréquentes
-        </Typography>
 
-        {faqs.map((item, index) => (
-          <Accordion key={index}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`faq-content-${index}`}
-              id={`faq-header-${index}`}
-            >
-              <Typography fontWeight="medium">{item.question}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{item.answer}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
-      </Box>
+      <Container>
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2, mt: 4 }}>
+          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+            FAQ – Questions fréquentes
+          </Typography>
+          <Typography variant="body1" mt={1} maxWidth={1000}>
+            Toutes les réponses à vos questions sur la pratique du MMA au sein de notre association.
+          </Typography>
+        </Box>
+
+        <Box mt={6}>
+          <Typography
+            variant="h2"
+            mb={2}
+            sx={{
+              borderBottom: '2px solid',
+              borderColor: 'primary.main',
+              display: 'inline-block',
+            }}
+          >
+            Vos questions les plus fréquentes
+          </Typography>
+
+          {faqs.map((item, index) => {
+            const panelId = `panel-${index}`
+            return (
+              <Accordion
+                key={panelId}
+                expanded={expanded === panelId}
+                onChange={handleChange(panelId)}
+                sx={{ mb: 2 }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`${panelId}-content`}
+                  id={`${panelId}-header`}
+                >
+                  <Typography fontWeight="medium">{item.question}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{item.answer}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            )
+          })}
+        </Box>
+      </Container>
     </>
   )
 }
