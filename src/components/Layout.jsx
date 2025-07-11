@@ -1,5 +1,6 @@
+// components/Layout.jsx
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Menu from "./Menu.jsx";
 import Footer from "./Footer.jsx";
 import FloatingTrialButton from "./FloatingTrialButton.jsx";
@@ -17,25 +18,27 @@ export default function Layout({ children, isDark, toggleTheme }) {
       }}
     >
       <ScrollToTop />
-
       <Menu isDark={isDark} toggleTheme={toggleTheme} />
 
       <Box
         component="main"
         sx={{
           flex: 1,
-          px: 3,
-          py: 4,
-          width: "100%",
-          maxWidth: 1200,
-          mx: "auto",
+          py: 4, // Padding vertical global uniforme
         }}
       >
-        {children}
+        <Container
+          maxWidth="lg"
+          disableGutters={false}
+          sx={{
+            px: 3, // Padding horizontal
+          }}
+        >
+          {children}
+        </Container>
       </Box>
 
       <Footer />
-
       <FloatingTrialButton />
     </Box>
   );

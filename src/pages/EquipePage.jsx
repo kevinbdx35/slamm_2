@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Container,
   Typography,
   Box,
   Stack,
@@ -59,7 +58,16 @@ export default function EquipePage() {
         image="https://mma-saint-lunaire.fr/img/equipe_social.jpg"
       />
 
-      <Container sx={{ py: 6, mb: 10 }}>
+      <Box
+        sx={{
+          py: 6,
+          mb: 10,
+          maxWidth: 1200,
+          mx: "auto",
+          width: "100%",
+          px: 3,
+        }}
+      >
         {/* Titre principal */}
         <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
           <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
@@ -131,7 +139,7 @@ export default function EquipePage() {
             ))}
           </Stack>
         </Box>
-      </Container>
+      </Box>
     </>
   )
 }

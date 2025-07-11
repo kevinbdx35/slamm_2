@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Container,
   Typography,
   Card,
   CardContent,
@@ -46,7 +45,16 @@ export default function ContactPage() {
         image="https://mma-saint-lunaire.fr/img/slamm_map.jpg"
       />
 
-      <Container maxWidth="lg" sx={{ mt: 8, mb: 10 }}>
+      <Box
+        sx={{
+          mt: 8,
+          mb: 10,
+          px: 3,
+          maxWidth: 1200,
+          mx: 'auto',
+          width: '100%',
+        }}
+      >
         <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
           <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
             Nous contacter
@@ -142,8 +150,8 @@ export default function ContactPage() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  backgroundColor: 'transparent', // <-- clé pour pas de fond blanc
-                  boxShadow: 'none', // désactive ombre si elle existe
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
                 }}
               >
                 <Box display="flex" alignItems="center" mb={2}>
@@ -212,7 +220,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
         </Box>
-      </Container>
+      </Box>
     </>
   )
 }

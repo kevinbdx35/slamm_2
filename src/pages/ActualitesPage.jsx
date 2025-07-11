@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import SeoHelmet from "../components/SeoHelmet";
 
 export default function ActualitesPage() {
@@ -12,7 +12,15 @@ export default function ActualitesPage() {
         image="https://mma-saint-lunaire.fr/img/actualites_social.jpg"
       />
 
-      <Container sx={{ py: 4 }}>
+      <Box
+        sx={{
+          py: 4,
+          px: 3,
+          maxWidth: 1200,
+          mx: "auto",
+          width: "100%",
+        }}
+      >
         <Typography
           variant="h1"
           sx={{ borderBottom: "4px solid", borderColor: "primary.main", pb: 2, mb: 4 }}
@@ -20,7 +28,7 @@ export default function ActualitesPage() {
           Actualités
         </Typography>
 
-        <Typography variant="body1" maxWidth={1000} mb={4}>
+        <Typography variant="body1" maxWidth={1000} mb={4} color="text.primary">
           Restez informé des dernières nouvelles et événements du club.
         </Typography>
 
@@ -42,7 +50,7 @@ export default function ActualitesPage() {
             Les cours reprendront le lundi 15 septembre 2025.
           </Typography>
         </Box>
-      </Container>
+      </Box>
     </>
   );
 }

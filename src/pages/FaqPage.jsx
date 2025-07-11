@@ -6,7 +6,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Container,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SeoHelmet from '../components/SeoHelmet'
@@ -68,8 +67,17 @@ export default function FaqPage() {
         url="https://mma-saint-lunaire.fr/faq"
       />
 
-      <Container>
-        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2, mt: 4 }}>
+      <Box
+        sx={{
+          mt: 4,
+          px: 3,
+          maxWidth: 1200,
+          mx: 'auto',
+          width: '100%',
+          mb: 10,
+        }}
+      >
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
           <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
             FAQ – Questions fréquentes
           </Typography>
@@ -114,7 +122,7 @@ export default function FaqPage() {
             )
           })}
         </Box>
-      </Container>
+      </Box>
     </>
   )
 }
