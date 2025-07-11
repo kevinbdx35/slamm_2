@@ -66,12 +66,80 @@ export default function PageCours() {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} mt={6}>
-        {/* Colonne gauche : Créneaux + Pack découverte + Tarifs (mobile) */}
-        <Grid item xs={12} md={6}>
-          <Grid container spacing={4} direction="column">
+      {/* GRID ASYMÉTRIQUE AVANCÉ */}
+      <Box sx={{ mt: 6 }}>
+        {/* En MOBILE : Stack vertical de toutes les cartes */}
+        <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+          <Grid container spacing={3} direction="column">
+            {/* Carte Pack Découverte */}
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  border: '3px solid',
+                  borderColor: 'primary.main',
+                  p: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: 'linear-gradient(135deg, rgba(0,255,94,0.03) 0%, rgba(0,255,94,0.01) 100%)',
+                }}
+              >
+                <Box display="flex" alignItems="center" mb={3}>
+                  <LocalOfferIcon sx={{ mr: 1.5, color: theme.palette.primary.main, fontSize: 32 }} />
+                  <Typography variant="h4" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
+                    Pack Découverte MMA
+                  </Typography>
+                </Box>
+                
+                <Stepper orientation="vertical" nonLinear activeStep={-1} sx={{ flex: 1 }}>
+                  {steps.map((step, index) => (
+                    <Step key={index} active>
+                      <StepLabel icon={step.icon}>
+                        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: '1.1rem' }}>
+                          {step.label}
+                        </Typography>
+                      </StepLabel>
+                      <StepContent>
+                        <Typography sx={{ fontSize: '1rem' }}>{step.description}</Typography>
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+
+                <Box mt={3}>
+                  <Button
+                    variant="outlined"
+                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    target="_blank"
+                    rel="noopener"
+                    fullWidth
+                    size="large"
+                    startIcon={<EventAvailableIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 3,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      py: 1.5,
+                      fontSize: '1.1rem',
+                      "&:hover": {
+                        backgroundColor: '#00ff5e',
+                        color: '#0a1414',
+                        borderColor: '#00ff5e',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
+                      },
+                    }}
+                  >
+                    Réserver ton cours d'essai
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+
             {/* Carte Créneaux */}
-            <Grid item>
+            <Grid item xs={12}>
               <Box
                 sx={{
                   border: '2px solid',
@@ -82,19 +150,19 @@ export default function PageCours() {
                 }}
               >
                 <Box display="flex" alignItems="center" mb={2}>
-                  <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
-                  <Typography variant="h5" fontWeight="bold">Créneaux 2025–2026</Typography>
+                  <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
+                  <Typography variant="h6" fontWeight="bold">Créneaux 2025–2026</Typography>
                 </Box>
-                <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
-                  Lundi 18h00 → 19h15<br />
-                  Mercredi 19h15 → 21h15<br />
-                  Vendredi 19h30 → 21h00
+                <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem', flex: 1 }}>
+                  <strong>Lundi</strong> 18h00 → 19h15<br />
+                  <strong>Mercredi</strong> 19h15 → 21h15<br />
+                  <strong>Vendredi</strong> 19h30 → 21h00
                 </Typography>
               </Box>
             </Grid>
 
-            {/* Carte Pack Découverte */}
-            <Grid item>
+            {/* Carte Tarifs */}
+            <Grid item xs={12}>
               <Box
                 sx={{
                   border: '2px solid',
@@ -107,73 +175,12 @@ export default function PageCours() {
               >
                 <Box>
                   <Box display="flex" alignItems="center" mb={2}>
-                    <LocalOfferIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
-                    <Typography variant="h5" fontWeight="bold">Pack Découverte</Typography>
+                    <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
+                    <Typography variant="h6" fontWeight="bold">Tarifs 2025–2026</Typography>
                   </Box>
-                  <Stepper orientation="vertical" nonLinear activeStep={-1}>
-                    {steps.map((step, index) => (
-                      <Step key={index} active>
-                        <StepLabel icon={step.icon}>
-                          <Typography variant="subtitle1" fontWeight="bold">
-                            {step.label}
-                          </Typography>
-                        </StepLabel>
-                        <StepContent>
-                          <Typography>{step.description}</Typography>
-                        </StepContent>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </Box>
-
-                <Box mt={2} textAlign="center">
-                  <Button
-                    variant="outlined"
-                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
-                    target="_blank"
-                    rel="noopener"
-                    fullWidth
-                    size="medium"
-                    sx={{
-                      borderRadius: 0,
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      borderWidth: 2,
-                      borderColor: 'primary.main',
-                      color: 'primary.main',
-                      "&:hover": {
-                        backgroundColor: '#00ff5e',
-                        color: '#0a1414',
-                        borderColor: '#00ff5e',
-                      },
-                    }}
-                  >
-                    Réserver un cours d'essai
-                  </Button>
-                </Box>
-              </Box>
-            </Grid>
-
-            {/* Carte Tarifs - visible seulement sur mobile */}
-            <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
-              <Box
-                sx={{
-                  border: '2px solid',
-                  borderColor: 'primary.main',
-                  p: 3,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Box>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
-                    <Typography variant="h5" fontWeight="bold">Tarifs 2025–2026</Typography>
-                  </Box>
-                  <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
-                    +25 ans : 210 €<br />
-                    +16 ans : 180 €
+                  <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
+                    <strong>+25 ans</strong> : 210 €<br />
+                    <strong>+16 ans</strong> : 180 €
                   </Typography>
                 </Box>
                 <Box mt={2}>
@@ -184,6 +191,7 @@ export default function PageCours() {
                     rel="noopener"
                     fullWidth
                     size="medium"
+                    startIcon={<AssignmentIcon />}
                     sx={{
                       borderRadius: 0,
                       fontWeight: "bold",
@@ -195,68 +203,173 @@ export default function PageCours() {
                         backgroundColor: '#ff6b35',
                         color: '#ffffff',
                         borderColor: '#ff6b35',
+                        transform: 'translateY(-1px)',
                       },
                     }}
                   >
-                    S'inscrire pour la saison
+                    S'inscrire
                   </Button>
                 </Box>
               </Box>
             </Grid>
           </Grid>
-        </Grid>
+        </Box>
 
-        {/* Colonne droite : Carte Tarifs - visible seulement sur desktop */}
-        <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
-          <Box
-            sx={{
-              border: '2px solid',
-              borderColor: 'primary.main',
-              p: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Box>
-              <Box display="flex" alignItems="center" mb={2}>
-                <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
-                <Typography variant="h5" fontWeight="bold">Tarifs 2025–2026</Typography>
-              </Box>
-              <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
-                +25 ans : 210 €<br />
-                +16 ans : 180 €
-              </Typography>
-            </Box>
-            <Box mt={2}>
-              <Button
-                variant="outlined"
-                href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
-                target="_blank"
-                rel="noopener"
-                fullWidth
-                size="medium"
+        {/* En DESKTOP : Layout asymétrique */}
+        <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+          <Grid container spacing={3}>
+            {/* HERO SECTION - Pack Découverte (Grande carte principale) */}
+            <Grid item lg={8}>
+              <Box
                 sx={{
-                  borderRadius: 0,
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  borderWidth: 2,
+                  border: '3px solid',
                   borderColor: 'primary.main',
-                  color: 'primary.main',
-                  "&:hover": {
-                    backgroundColor: '#ff6b35',
-                    color: '#ffffff',
-                    borderColor: '#ff6b35',
-                  },
+                  p: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: 400,
+                  background: 'linear-gradient(135deg, rgba(0,255,94,0.03) 0%, rgba(0,255,94,0.01) 100%)',
                 }}
               >
-                S'inscrire pour la saison
-              </Button>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
+                <Box display="flex" alignItems="center" mb={3}>
+                  <LocalOfferIcon sx={{ mr: 1.5, color: theme.palette.primary.main, fontSize: 32 }} />
+                  <Typography variant="h4" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
+                    Pack Découverte MMA
+                  </Typography>
+                </Box>
+                
+                <Stepper orientation="vertical" nonLinear activeStep={-1} sx={{ flex: 1 }}>
+                  {steps.map((step, index) => (
+                    <Step key={index} active>
+                      <StepLabel icon={step.icon}>
+                        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: '1.1rem' }}>
+                          {step.label}
+                        </Typography>
+                      </StepLabel>
+                      <StepContent>
+                        <Typography sx={{ fontSize: '1rem' }}>{step.description}</Typography>
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+
+                <Box mt={3}>
+                  <Button
+                    variant="outlined"
+                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    target="_blank"
+                    rel="noopener"
+                    fullWidth
+                    size="large"
+                    startIcon={<EventAvailableIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 3,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      py: 1.5,
+                      fontSize: '1.1rem',
+                      "&:hover": {
+                        backgroundColor: '#00ff5e',
+                        color: '#0a1414',
+                        borderColor: '#00ff5e',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
+                      },
+                    }}
+                  >
+                    Réserver ton cours d'essai
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+
+            {/* SIDEBAR - Cartes compactes */}
+            <Grid item lg={4}>
+              <Grid container spacing={3} direction="column">
+                {/* Carte Créneaux - Compacte */}
+                <Grid item>
+                  <Box
+                    sx={{
+                      border: '2px solid',
+                      borderColor: 'primary.main',
+                      p: 3,
+                      minHeight: 180,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Box display="flex" alignItems="center" mb={2}>
+                      <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
+                      <Typography variant="h6" fontWeight="bold">Créneaux 2025–2026</Typography>
+                    </Box>
+                    <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem', flex: 1 }}>
+                      <strong>Lundi</strong> 18h00 → 19h15<br />
+                      <strong>Mercredi</strong> 19h15 → 21h15<br />
+                      <strong>Vendredi</strong> 19h30 → 21h00
+                    </Typography>
+                  </Box>
+                </Grid>
+
+                {/* Carte Tarifs - Compacte */}
+                <Grid item>
+                  <Box
+                    sx={{
+                      border: '2px solid',
+                      borderColor: 'primary.main',
+                      p: 3,
+                      minHeight: 180,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Box>
+                      <Box display="flex" alignItems="center" mb={2}>
+                        <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
+                        <Typography variant="h6" fontWeight="bold">Tarifs 2025–2026</Typography>
+                      </Box>
+                      <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
+                        <strong>+25 ans</strong> : 210 €<br />
+                        <strong>+16 ans</strong> : 180 €
+                      </Typography>
+                    </Box>
+                    <Box mt={2}>
+                      <Button
+                        variant="outlined"
+                        href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
+                        target="_blank"
+                        rel="noopener"
+                        fullWidth
+                        size="medium"
+                        startIcon={<AssignmentIcon />}
+                        sx={{
+                          borderRadius: 0,
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          borderWidth: 2,
+                          borderColor: 'primary.main',
+                          color: 'primary.main',
+                          "&:hover": {
+                            backgroundColor: '#ff6b35',
+                            color: '#ffffff',
+                            borderColor: '#ff6b35',
+                            transform: 'translateY(-1px)',
+                          },
+                        }}
+                      >
+                        S'inscrire
+                      </Button>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 }

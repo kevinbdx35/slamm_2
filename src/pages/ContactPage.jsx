@@ -139,8 +139,27 @@ export default function ContactPage() {
                     href={emailHref}
                     sx={{ 
                       color: 'primary.main', 
-                      textDecoration: 'none',
-                      "&:hover": { textDecoration: 'underline' }
+                      textDecoration: 'underline',
+                      textDecorationColor: 'rgba(0, 255, 94, 0.6)',
+                      textDecorationThickness: '1.5px',
+                      textUnderlineOffset: '3px',
+                      transition: 'all 0.2s ease-in-out',
+                      borderRadius: '4px',
+                      px: 1,
+                      py: 0.5,
+                      mx: -1,
+                      my: -0.5,
+                      "&:hover": { 
+                        textDecorationColor: 'primary.main',
+                        textDecorationThickness: '2px',
+                        backgroundColor: 'rgba(0, 255, 94, 0.08)',
+                        transform: 'translateX(2px)',
+                      },
+                      "&:focus": {
+                        outline: '2px solid',
+                        outlineColor: 'primary.main',
+                        outlineOffset: '2px',
+                      }
                     }}
                   >
                     <Typography variant="body1">{emailDisplay}</Typography>
@@ -158,15 +177,36 @@ export default function ContactPage() {
                     href="https://instagram.com/slamm35800"
                     target="_blank"
                     rel="noopener"
+                    aria-label="Suivez-nous sur Instagram @slamm35800"
                     sx={{ 
                       color: 'primary.main', 
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      "&:hover": { textDecoration: 'underline' }
+                      textDecoration: 'underline',
+                      textDecorationColor: 'rgba(0, 255, 94, 0.6)',
+                      textDecorationThickness: '1.5px',
+                      textUnderlineOffset: '3px',
+                      display: 'inline-flex',
+                      alignItems: 'baseline',
+                      gap: 0.5,
+                      transition: 'all 0.2s ease-in-out',
+                      borderRadius: '4px',
+                      px: 1,
+                      py: 0.5,
+                      mx: -1,
+                      my: -0.5,
+                      "&:hover": { 
+                        textDecorationColor: 'primary.main',
+                        textDecorationThickness: '2px',
+                        backgroundColor: 'rgba(0, 255, 94, 0.08)',
+                        transform: 'translateX(2px)',
+                      },
+                      "&:focus": {
+                        outline: '2px solid',
+                        outlineColor: 'primary.main',
+                        outlineOffset: '2px',
+                      }
                     }}
                   >
-                    <InstagramIcon sx={{ mr: 1, fontSize: 20 }} />
+                    <InstagramIcon sx={{ fontSize: '1.5rem' }} />
                     <Typography variant="body1">@slamm35800</Typography>
                   </Box>
                 </Box>
@@ -241,6 +281,9 @@ export default function ContactPage() {
                   borderColor: 'primary.main',
                   color: 'primary.main',
                   flex: 1,
+                  whiteSpace: 'nowrap',
+                  px: 3,
+                  py: 1.5,
                   "&:hover": {
                     backgroundColor: '#00ff5e',
                     color: '#0a1414',

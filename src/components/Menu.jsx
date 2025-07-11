@@ -19,11 +19,17 @@ import {
 } from '@mui/material';
 import {
   Home as HomeIcon,
+  HomeOutlined as HomeOutlinedIcon,
   Schedule as ScheduleIcon,
+  ScheduleOutlined as ScheduleOutlinedIcon,
   People as PeopleIcon,
+  PeopleOutlined as PeopleOutlinedIcon,
   Article as ArticleIcon,
+  ArticleOutlined as ArticleOutlinedIcon,
   ContactMail as ContactMailIcon,
+  ContactMailOutlined as ContactMailOutlinedIcon,
   HelpOutline as HelpOutlineIcon,
+  Help as HelpIcon,
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
   Menu as MenuIcon,
@@ -45,12 +51,42 @@ export default function Menu({ isDark, toggleTheme }) {
   }, [drawerOpen]);
 
   const routes = useMemo(() => [
-    { label: 'Accueil', icon: <HomeIcon />, path: '/' },
-    { label: 'Cours', icon: <ScheduleIcon />, path: '/cours' },
-    { label: 'Équipe', icon: <PeopleIcon />, path: '/equipe' },
-    { label: 'Actualités', icon: <ArticleIcon />, path: '/actualites' },
-    { label: 'Contact', icon: <ContactMailIcon />, path: '/contact' },
-    { label: 'FAQ', icon: <HelpOutlineIcon />, path: '/faq' },
+    { 
+      label: 'Accueil', 
+      icon: <HomeOutlinedIcon />, 
+      activeIcon: <HomeIcon />, 
+      path: '/' 
+    },
+    { 
+      label: 'Cours', 
+      icon: <ScheduleOutlinedIcon />, 
+      activeIcon: <ScheduleIcon />, 
+      path: '/cours' 
+    },
+    { 
+      label: 'Équipe', 
+      icon: <PeopleOutlinedIcon />, 
+      activeIcon: <PeopleIcon />, 
+      path: '/equipe' 
+    },
+    { 
+      label: 'Actualités', 
+      icon: <ArticleOutlinedIcon />, 
+      activeIcon: <ArticleIcon />, 
+      path: '/actualites' 
+    },
+    { 
+      label: 'Contact', 
+      icon: <ContactMailOutlinedIcon />, 
+      activeIcon: <ContactMailIcon />, 
+      path: '/contact' 
+    },
+    { 
+      label: 'FAQ', 
+      icon: <HelpOutlineIcon />, 
+      activeIcon: <HelpIcon />, 
+      path: '/faq' 
+    },
   ], []);
 
   const handleMobileNav = useCallback((path) => {
@@ -86,21 +122,32 @@ export default function Menu({ isDark, toggleTheme }) {
         onClick={() => setDrawerOpen(false)}
       >
         <List>
-          {routes.map((item) => (
-            <ListItem key={item.label} disablePadding>
-              <ListItemButton
-                onClick={() => handleMobileNav(item.path)}
-                sx={{ overflow: 'hidden' }}
-                selected={location.pathname === item.path}
-              >
-                {item.icon}
-                <ListItemText
-                  primary={item.label}
-                  sx={{ pl: 2, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {routes.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <ListItem key={item.label} disablePadding>
+                <ListItemButton
+                  onClick={() => handleMobileNav(item.path)}
+                  sx={{ overflow: 'hidden' }}
+                  selected={isActive}
+                >
+                  <Box sx={{ color: isActive ? theme.palette.primary.main : 'inherit' }}>
+                    {isActive ? item.activeIcon : item.icon}
+                  </Box>
+                  <ListItemText
+                    primary={item.label}
+                    sx={{ 
+                      pl: 2, 
+                      whiteSpace: 'nowrap', 
+                      textOverflow: 'ellipsis', 
+                      overflow: 'hidden',
+                      fontWeight: isActive ? 'bold' : 'normal',
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
           <ListItem disablePadding>
             <ListItemButton onClick={toggleTheme}>
               <ListItemText
@@ -153,15 +200,57 @@ export default function Menu({ isDark, toggleTheme }) {
         }}
       >
         {routes
-          .filter((r) => ['/', '/cours', '/contact'].includes(r.path))
-          .map((item) => (
-            <BottomNavigationAction
-              key={item.label}
-              label={item.label}
-              value={item.path}
-              icon={item.icon}
-            />
-          ))}
+          .filter((r) => ['/', '/cours', '/equipe', '/contact', '/faq'].includes(r.path))
+          .map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <BottomNavigationAction
+                key={item.label}
+                label={item.label}
+                value={item.path}
+                icon={
+                  <Box
+                    sx={{
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                      color: isActive ? theme.palette.primary.main : 'inherit',
+                    }}
+                  >
+                    {isActive ? item.activeIcon : item.icon}
+                  </Box>
+                }
+                sx={{
+                  minWidth: 0,
+                  padding: '6px 0',
+                  '& .MuiBottomNavigationAction-label': {
+                    fontSize: '0.75rem',
+                    transition: 'all 0.3s ease',
+                    fontWeight: isActive ? 'bold' : 'normal',
+                    color: isActive ? theme.palette.primary.main : 'inherit',
+                    opacity: isActive ? 1 : 0.7,
+                    transform: isActive ? 'translateY(-1px)' : 'translateY(0)',
+                  },
+                  '&.Mui-selected': {
+                    '& .MuiBottomNavigationAction-label': {
+                      fontSize: '0.8rem',
+                    },
+                  },
+                  '&:before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: isActive ? '40px' : '0px',
+                    height: '3px',
+                    backgroundColor: theme.palette.primary.main,
+                    borderRadius: '0 0 2px 2px',
+                    transition: 'width 0.3s ease',
+                  },
+                }}
+              />
+            );
+          })}
       </BottomNavigation>
       <Box sx={{ height: 56 }} />
     </>
