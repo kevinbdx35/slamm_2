@@ -138,6 +138,7 @@ export default function Menu({ isDark, toggleTheme }) {
           width: '100%',
           height: 56,
           boxSizing: 'border-box',
+          borderTop: `2px solid ${theme.palette.primary.main}`, // ✅ Ajout
         }}
       >
         {routes
