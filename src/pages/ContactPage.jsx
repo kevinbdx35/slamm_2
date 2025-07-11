@@ -59,21 +59,20 @@ export default function ContactPage() {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} mt={6}>
-        {/* Colonne gauche : Informations de contact */}
-        <Grid item xs={12} md={6}>
-          <Grid container spacing={4} direction="column">
-            {/* Contact rapide */}
-            <Grid item>
-              <Box
-                sx={{
-                  border: '2px solid',
-                  borderColor: 'primary.main',
-                  p: 3,
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
+      {/* EN MOBILE : Stack vertical de toutes les cartes */}
+      <Box sx={{ display: { xs: 'block', md: 'none' }, mt: 6 }}>
+        <Grid container spacing={4} direction="column">
+          {/* Contact rapide */}
+          <Grid item xs={12}>
+            <Card
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ p: 3 }}>
                 <Box display="flex" alignItems="center" mb={3}>
                   <WhatsAppIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
                   <Typography variant="h5" fontWeight="bold">Contact Rapide</Typography>
@@ -111,20 +110,21 @@ export default function ContactPage() {
                 >
                   Écrire sur WhatsApp
                 </Button>
-              </Box>
-            </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
 
-            {/* Autres contacts */}
-            <Grid item>
-              <Box
-                sx={{
-                  border: '2px solid',
-                  borderColor: 'primary.main',
-                  p: 3,
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
+          {/* Autres contacts */}
+          <Grid item xs={12}>
+            <Card
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ p: 3 }}>
                 <Box display="flex" alignItems="center" mb={3}>
                   <EmailIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
                   <Typography variant="h5" fontWeight="bold">Autres contacts</Typography>
@@ -210,93 +210,337 @@ export default function ContactPage() {
                     <Typography variant="body1">@slamm35800</Typography>
                   </Box>
                 </Box>
-              </Box>
-            </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Localisation */}
+          <Grid item xs={12}>
+            <Card
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <Box display="flex" alignItems="center" mb={3}>
+                  <LocationOnIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                  <Typography variant="h5" fontWeight="bold">Localisation</Typography>
+                </Box>
+                
+                <Box mb={3}>
+                  <Typography variant="body1" sx={{ lineHeight: 1.6, fontSize: '1.1rem' }}>
+                    361 Rue de la Saudrais<br />
+                    35800 Saint-Lunaire<br />
+                    <Typography component="span" color="text.secondary" variant="body2">
+                      Bretagne, France
+                    </Typography>
+                  </Typography>
+                </Box>
+
+                <Box mt="auto" display="flex" gap={2} flexDirection={{ xs: 'column', sm: 'row' }}>
+                  <Button
+                    variant="outlined"
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                    target="_blank"
+                    rel="noopener"
+                    startIcon={<DirectionsIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      flex: 1,
+                      "&:hover": {
+                        backgroundColor: '#4285F4',
+                        color: '#ffffff',
+                        borderColor: '#4285F4',
+                      },
+                    }}
+                  >
+                    Itinéraire
+                  </Button>
+                  
+                  <Button
+                    variant="outlined"
+                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    target="_blank"
+                    rel="noopener"
+                    startIcon={<EventAvailableIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      flex: 1,
+                      whiteSpace: 'nowrap',
+                      px: 3,
+                      py: 1.5,
+                      "&:hover": {
+                        backgroundColor: '#00ff5e',
+                        color: '#0a1414',
+                        borderColor: '#00ff5e',
+                      },
+                    }}
+                  >
+                    Réserve ton essai
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
+      </Box>
 
-        {/* Colonne droite : Localisation */}
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              border: '2px solid',
-              borderColor: 'primary.main',
-              p: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100%',
-            }}
-          >
-            <Box display="flex" alignItems="center" mb={3}>
-              <LocationOnIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
-              <Typography variant="h5" fontWeight="bold">Localisation</Typography>
-            </Box>
-            
-            <Box mb={3}>
-              <Typography variant="body1" sx={{ lineHeight: 1.6, fontSize: '1.1rem' }}>
-                361 Rue de la Saudrais<br />
-                35800 Saint-Lunaire<br />
-                <Typography component="span" color="text.secondary" variant="body2">
-                  Bretagne, France
-                </Typography>
-              </Typography>
-            </Box>
+      {/* EN DESKTOP : Layout 2 colonnes */}
+      <Box sx={{ display: { xs: 'none', md: 'block' }, mt: 6 }}>
+        <Grid container spacing={4}>
+          {/* Colonne gauche : Informations de contact */}
+          <Grid item md={6}>
+            <Grid container spacing={4} direction="column">
+              {/* Contact rapide */}
+              <Grid item>
+                <Card
+                  sx={{
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    borderRadius: 0,
+                    height: '100%',
+                  }}
+                >
+                  <CardContent sx={{ p: 3 }}>
+                    <Box display="flex" alignItems="center" mb={3}>
+                      <WhatsAppIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                      <Typography variant="h5" fontWeight="bold">Contact Rapide</Typography>
+                    </Box>
+                    
+                    <Box mb={3}>
+                      <Typography variant="body1" mb={1} fontWeight="bold">
+                        WhatsApp / Téléphone
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
+                        07 82 77 92 88
+                      </Typography>
+                    </Box>
 
-            <Box mt="auto" display="flex" gap={2} flexDirection={{ xs: 'column', sm: 'row' }}>
-              <Button
-                variant="outlined"
-                href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
-                target="_blank"
-                rel="noopener"
-                startIcon={<DirectionsIcon />}
-                sx={{
-                  borderRadius: 0,
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  borderWidth: 2,
-                  borderColor: 'primary.main',
-                  color: 'primary.main',
-                  flex: 1,
-                  "&:hover": {
-                    backgroundColor: '#4285F4',
-                    color: '#ffffff',
-                    borderColor: '#4285F4',
-                  },
-                }}
-              >
-                Itinéraire
-              </Button>
-              
-              <Button
-                variant="outlined"
-                href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
-                target="_blank"
-                rel="noopener"
-                startIcon={<EventAvailableIcon />}
-                sx={{
-                  borderRadius: 0,
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  borderWidth: 2,
-                  borderColor: 'primary.main',
-                  color: 'primary.main',
-                  flex: 1,
-                  whiteSpace: 'nowrap',
-                  px: 3,
-                  py: 1.5,
-                  "&:hover": {
-                    backgroundColor: '#00ff5e',
-                    color: '#0a1414',
-                    borderColor: '#00ff5e',
-                  },
-                }}
-              >
-                Réserve ton essai
-              </Button>
-            </Box>
-          </Box>
+                    <Button
+                      variant="outlined"
+                      href="https://wa.me/33782779288?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20club%20de%20MMA."
+                      target="_blank"
+                      rel="noopener"
+                      fullWidth
+                      size="medium"
+                      sx={{
+                        borderRadius: 0,
+                        fontWeight: "bold",
+                        textTransform: "none",
+                        borderWidth: 2,
+                        borderColor: 'primary.main',
+                        color: 'primary.main',
+                        "&:hover": {
+                          backgroundColor: '#25D366',
+                          color: '#ffffff',
+                          borderColor: '#25D366',
+                        },
+                      }}
+                    >
+                      Écrire sur WhatsApp
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+
+              {/* Autres contacts */}
+              <Grid item>
+                <Card
+                  sx={{
+                    border: '2px solid',
+                    borderColor: 'primary.main',
+                    borderRadius: 0,
+                    height: '100%',
+                  }}
+                >
+                  <CardContent sx={{ p: 3 }}>
+                    <Box display="flex" alignItems="center" mb={3}>
+                      <EmailIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                      <Typography variant="h5" fontWeight="bold">Autres contacts</Typography>
+                    </Box>
+                    
+                    <Box mb={2}>
+                      <Typography variant="subtitle2" color="text.secondary" mb={1}>
+                        EMAIL
+                      </Typography>
+                      <Box
+                        component="a"
+                        href={emailHref}
+                        sx={{ 
+                          color: 'primary.main', 
+                          textDecoration: 'underline',
+                          textDecorationColor: 'rgba(0, 255, 94, 0.6)',
+                          textDecorationThickness: '1.5px',
+                          textUnderlineOffset: '3px',
+                          transition: 'all 0.2s ease-in-out',
+                          borderRadius: '4px',
+                          px: 1,
+                          py: 0.5,
+                          mx: -1,
+                          my: -0.5,
+                          "&:hover": { 
+                            textDecorationColor: 'primary.main',
+                            textDecorationThickness: '2px',
+                            backgroundColor: 'rgba(0, 255, 94, 0.08)',
+                            transform: 'translateX(2px)',
+                          },
+                          "&:focus": {
+                            outline: '2px solid',
+                            outlineColor: 'primary.main',
+                            outlineOffset: '2px',
+                          }
+                        }}
+                      >
+                        <Typography variant="body1">{emailDisplay}</Typography>
+                      </Box>
+                    </Box>
+
+                    <Divider sx={{ my: 2, borderColor: 'primary.main' }} />
+
+                    <Box>
+                      <Typography variant="subtitle2" color="text.secondary" mb={1}>
+                        INSTAGRAM
+                      </Typography>
+                      <Box
+                        component="a"
+                        href="https://instagram.com/slamm35800"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Suivez-nous sur Instagram @slamm35800"
+                        sx={{ 
+                          color: 'primary.main', 
+                          textDecoration: 'underline',
+                          textDecorationColor: 'rgba(0, 255, 94, 0.6)',
+                          textDecorationThickness: '1.5px',
+                          textUnderlineOffset: '3px',
+                          display: 'inline-flex',
+                          alignItems: 'baseline',
+                          gap: 0.5,
+                          transition: 'all 0.2s ease-in-out',
+                          borderRadius: '4px',
+                          px: 1,
+                          py: 0.5,
+                          mx: -1,
+                          my: -0.5,
+                          "&:hover": { 
+                            textDecorationColor: 'primary.main',
+                            textDecorationThickness: '2px',
+                            backgroundColor: 'rgba(0, 255, 94, 0.08)',
+                            transform: 'translateX(2px)',
+                          },
+                          "&:focus": {
+                            outline: '2px solid',
+                            outlineColor: 'primary.main',
+                            outlineOffset: '2px',
+                          }
+                        }}
+                      >
+                        <InstagramIcon sx={{ fontSize: '1.5rem' }} />
+                        <Typography variant="body1">@slamm35800</Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          {/* Colonne droite : Localisation */}
+          <Grid item md={6}>
+            <Card
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                height: '100%',
+              }}
+            >
+              <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <Box display="flex" alignItems="center" mb={3}>
+                  <LocationOnIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                  <Typography variant="h5" fontWeight="bold">Localisation</Typography>
+                </Box>
+                
+                <Box mb={3}>
+                  <Typography variant="body1" sx={{ lineHeight: 1.6, fontSize: '1.1rem' }}>
+                    361 Rue de la Saudrais<br />
+                    35800 Saint-Lunaire<br />
+                    <Typography component="span" color="text.secondary" variant="body2">
+                      Bretagne, France
+                    </Typography>
+                  </Typography>
+                </Box>
+
+                <Box mt="auto" display="flex" gap={2} flexDirection={{ xs: 'column', sm: 'row' }}>
+                  <Button
+                    variant="outlined"
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                    target="_blank"
+                    rel="noopener"
+                    startIcon={<DirectionsIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      flex: 1,
+                      "&:hover": {
+                        backgroundColor: '#4285F4',
+                        color: '#ffffff',
+                        borderColor: '#4285F4',
+                      },
+                    }}
+                  >
+                    Itinéraire
+                  </Button>
+                  
+                  <Button
+                    variant="outlined"
+                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    target="_blank"
+                    rel="noopener"
+                    startIcon={<EventAvailableIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      flex: 1,
+                      whiteSpace: 'nowrap',
+                      px: 3,
+                      py: 1.5,
+                      "&:hover": {
+                        backgroundColor: '#00ff5e',
+                        color: '#0a1414',
+                        borderColor: '#00ff5e',
+                      },
+                    }}
+                  >
+                    Réserve ton essai
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
 
       {/* CARTE MAP */}
       <Box component="section" mt={6} mb={4}>
