@@ -1,35 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import { lightTheme, darkTheme } from './theme.js'
+import Root from './components/Root.jsx'
 import '@fontsource/roboto-mono'
 import '@fontsource/cinzel/700.css'
-import { HashRouter } from 'react-router-dom'  // ← Remplacé BrowserRouter par HashRouter
-
-function Root() {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const [isDark, setIsDark] = useState(prefersDark)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handler = (e) => setIsDark(e.matches)
-    mediaQuery.addEventListener('change', handler)
-    return () => mediaQuery.removeEventListener('change', handler)
-  }, [])
-
-  const toggleTheme = () => setIsDark(!isDark)
-  const theme = isDark ? darkTheme : lightTheme
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <HashRouter>
-        <App isDark={isDark} toggleTheme={toggleTheme} />
-      </HashRouter>
-    </ThemeProvider>
-  )
-}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

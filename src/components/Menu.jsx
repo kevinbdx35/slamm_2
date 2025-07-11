@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -44,29 +44,29 @@ export default function Menu({ isDark, toggleTheme }) {
     };
   }, [drawerOpen]);
 
-  const routes = [
+  const routes = useMemo(() => [
     { label: 'Accueil', icon: <HomeIcon />, path: '/' },
     { label: 'Cours', icon: <ScheduleIcon />, path: '/cours' },
     { label: 'Équipe', icon: <PeopleIcon />, path: '/equipe' },
     { label: 'Actualités', icon: <ArticleIcon />, path: '/actualites' },
     { label: 'Contact', icon: <ContactMailIcon />, path: '/contact' },
     { label: 'FAQ', icon: <HelpOutlineIcon />, path: '/faq' },
-  ];
+  ], []);
 
-  const handleMobileNav = (path) => {
+  const handleMobileNav = useCallback((path) => {
     if (path !== location.pathname) {
       navigate(path);
     }
     setDrawerOpen(false);
-  };
+  }, [location.pathname, navigate]);
 
-  const ThemeToggleButton = (
+  const ThemeToggleButton = useMemo(() => (
     <Tooltip title={isDark ? 'Thème clair' : 'Thème sombre'}>
       <IconButton onClick={toggleTheme} color="inherit">
         {isDark ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Tooltip>
-  );
+  ), [isDark, toggleTheme]);
 
   const drawerMenu = (
     <Drawer

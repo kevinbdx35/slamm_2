@@ -4,12 +4,17 @@ import {
   Card,
   CardContent,
   Box,
+  Grid,
+  Button,
+  Divider,
 } from '@mui/material'
 
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import EmailIcon from '@mui/icons-material/Email'
+import DirectionsIcon from '@mui/icons-material/Directions'
+import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -45,165 +50,275 @@ export default function ContactPage() {
         image="https://mma-saint-lunaire.fr/img/slamm_map.jpg"
       />
 
-      <Box
-        sx={{
-          mt: 8,
-          mb: 10,
-          px: 3,
-          maxWidth: 1200,
-          mx: 'auto',
-          width: '100%',
-        }}
-      >
-        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
-          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
-            Nous contacter
-          </Typography>
-          <Typography variant="body1" mt={1} maxWidth={1000}>
-            Pour toute question concernant les cours, les inscriptions ou le club, voici comment nous joindre.
-          </Typography>
-        </Box>
+      <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
+        <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+          Nous contacter
+        </Typography>
+        <Typography variant="body1" mt={1} maxWidth={1000}>
+          Pour toute question concernant les cours, les inscriptions ou le club, voici comment nous joindre.
+        </Typography>
+      </Box>
 
-        {/* INFOS DE CONTACT */}
-        <Box component="section" mt={6} mb={6}>
-          <Box display="flex" flexWrap="wrap" gap={4}>
-            {[
-              {
-                icon: <LocationOnIcon sx={{ color: 'primary.main', fontSize: 30, mr: 1 }} />,
-                title: 'ADRESSE',
-                content: (
-                  <>
-                    361 Rue de la Saudrais<br />
-                    35800 Saint-Lunaire
-                  </>
-                ),
-              },
-              {
-                icon: <WhatsAppIcon sx={{ color: 'primary.main', fontSize: 30, mr: 1 }} />,
-                title: 'WHATSAPP',
-                content: (
-                  <Box
-                    component="a"
-                    href="https://wa.me/33782779288?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20club%20de%20MMA."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ textDecoration: 'underline', color: 'inherit' }}
-                  >
+      <Grid container spacing={4} mt={6}>
+        {/* Colonne gauche : Informations de contact */}
+        <Grid item xs={12} md={6}>
+          <Grid container spacing={4} direction="column">
+            {/* Contact rapide */}
+            <Grid item>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  p: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Box display="flex" alignItems="center" mb={3}>
+                  <WhatsAppIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                  <Typography variant="h5" fontWeight="bold">Contact Rapide</Typography>
+                </Box>
+                
+                <Box mb={3}>
+                  <Typography variant="body1" mb={1} fontWeight="bold">
+                    WhatsApp / Téléphone
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
                     07 82 77 92 88
-                  </Box>
-                ),
-              },
-              {
-                icon: <EmailIcon sx={{ color: 'primary.main', fontSize: 30, mr: 1 }} />,
-                title: 'EMAIL',
-                content: (
+                  </Typography>
+                </Box>
+
+                <Button
+                  variant="outlined"
+                  href="https://wa.me/33782779288?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20club%20de%20MMA."
+                  target="_blank"
+                  rel="noopener"
+                  fullWidth
+                  size="medium"
+                  sx={{
+                    borderRadius: 0,
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    borderWidth: 2,
+                    borderColor: 'primary.main',
+                    color: 'primary.main',
+                    "&:hover": {
+                      backgroundColor: '#25D366',
+                      color: '#ffffff',
+                      borderColor: '#25D366',
+                    },
+                  }}
+                >
+                  Écrire sur WhatsApp
+                </Button>
+              </Box>
+            </Grid>
+
+            {/* Autres contacts */}
+            <Grid item>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  p: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Box display="flex" alignItems="center" mb={3}>
+                  <EmailIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+                  <Typography variant="h5" fontWeight="bold">Autres contacts</Typography>
+                </Box>
+                
+                <Box mb={2}>
+                  <Typography variant="subtitle2" color="text.secondary" mb={1}>
+                    EMAIL
+                  </Typography>
                   <Box
                     component="a"
                     href={emailHref}
-                    title={emailDisplay}
-                    sx={{ textDecoration: 'underline', color: 'inherit', whiteSpace: 'nowrap' }}
+                    sx={{ 
+                      color: 'primary.main', 
+                      textDecoration: 'none',
+                      "&:hover": { textDecoration: 'underline' }
+                    }}
                   >
-                    {emailDisplay}
+                    <Typography variant="body1">{emailDisplay}</Typography>
                   </Box>
-                ),
-              },
-              {
-                icon: <InstagramIcon sx={{ color: 'primary.main', fontSize: 30, mr: 1 }} />,
-                title: 'INSTAGRAM',
-                content: (
+                </Box>
+
+                <Divider sx={{ my: 2, borderColor: 'primary.main' }} />
+
+                <Box>
+                  <Typography variant="subtitle2" color="text.secondary" mb={1}>
+                    INSTAGRAM
+                  </Typography>
                   <Box
                     component="a"
                     href="https://instagram.com/slamm35800"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ textDecoration: 'underline', color: 'inherit' }}
+                    rel="noopener"
+                    sx={{ 
+                      color: 'primary.main', 
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      "&:hover": { textDecoration: 'underline' }
+                    }}
                   >
-                    @slamm35800
+                    <InstagramIcon sx={{ mr: 1, fontSize: 20 }} />
+                    <Typography variant="body1">@slamm35800</Typography>
                   </Box>
-                ),
-              },
-            ].map((item, idx) => (
-              <Card
-                key={idx}
-                sx={{
-                  flex: '1 1 250px',
-                  minWidth: 250,
-                  border: '2px solid',
-                  borderColor: 'primary.main',
-                  borderRadius: 0,
-                  p: 3,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
-                }}
-              >
-                <Box display="flex" alignItems="center" mb={2}>
-                  {item.icon}
-                  <Typography variant="h5" fontWeight="bold">
-                    {item.title}
-                  </Typography>
                 </Box>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    whiteSpace: 'pre-line',
-                    wordBreak: 'break-word',
-                    fontSize: '1rem',
-                  }}
-                >
-                  {item.content}
-                </Typography>
-              </Card>
-            ))}
-          </Box>
-        </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
 
-        {/* CARTE MAP */}
-        <Box component="section" mb={8}>
-          <Typography
-            variant="h2"
-            mb={2}
+        {/* Colonne droite : Localisation */}
+        <Grid item xs={12} md={6}>
+          <Box
             sx={{
-              borderBottom: '2px solid',
+              border: '2px solid',
               borderColor: 'primary.main',
-              display: 'inline-block',
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
             }}
           >
-            Localisation du club
-          </Typography>
+            <Box display="flex" alignItems="center" mb={3}>
+              <LocationOnIcon sx={{ mr: 1, color: 'primary.main', fontSize: 28 }} />
+              <Typography variant="h5" fontWeight="bold">Localisation</Typography>
+            </Box>
+            
+            <Box mb={3}>
+              <Typography variant="body1" sx={{ lineHeight: 1.6, fontSize: '1.1rem' }}>
+                361 Rue de la Saudrais<br />
+                35800 Saint-Lunaire<br />
+                <Typography component="span" color="text.secondary" variant="body2">
+                  Bretagne, France
+                </Typography>
+              </Typography>
+            </Box>
 
-          <Card sx={{ height: 300, border: '4px solid', borderColor: 'primary.main', borderRadius: 0 }}>
-            <CardContent sx={{ p: 0, height: '100%' }}>
-              <MapContainer
-                center={position}
-                zoom={15}
-                scrollWheelZoom={false}
-                touchZoom={false}
-                doubleClickZoom={false}
-                style={{ height: '100%', width: '100%' }}
+            <Box mt="auto" display="flex" gap={2} flexDirection={{ xs: 'column', sm: 'row' }}>
+              <Button
+                variant="outlined"
+                href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                target="_blank"
+                rel="noopener"
+                startIcon={<DirectionsIcon />}
+                sx={{
+                  borderRadius: 0,
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  borderWidth: 2,
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  flex: 1,
+                  "&:hover": {
+                    backgroundColor: '#4285F4',
+                    color: '#ffffff',
+                    borderColor: '#4285F4',
+                  },
+                }}
               >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors & Carto'
-                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                />
-                <Marker position={position}>
-                  <Popup>
-                    <strong>SLAMM MMA</strong><br />
+                Itinéraire
+              </Button>
+              
+              <Button
+                variant="outlined"
+                href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                target="_blank"
+                rel="noopener"
+                startIcon={<EventAvailableIcon />}
+                sx={{
+                  borderRadius: 0,
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  borderWidth: 2,
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  flex: 1,
+                  "&:hover": {
+                    backgroundColor: '#00ff5e',
+                    color: '#0a1414',
+                    borderColor: '#00ff5e',
+                  },
+                }}
+              >
+                Essai gratuit
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+
+      {/* CARTE MAP */}
+      <Box component="section" mt={6} mb={4}>
+        <Typography
+          variant="h2"
+          mb={3}
+          sx={{
+            borderBottom: '2px solid',
+            borderColor: 'primary.main',
+            display: 'inline-block',
+          }}
+        >
+          Plan d'accès
+        </Typography>
+
+        <Box
+          sx={{
+            height: { xs: 250, md: 350 },
+            border: '4px solid',
+            borderColor: 'primary.main',
+            borderRadius: 0,
+            overflow: 'hidden',
+          }}
+        >
+          <MapContainer
+            center={position}
+            zoom={15}
+            scrollWheelZoom={false}
+            touchZoom={false}
+            doubleClickZoom={false}
+            style={{ height: '100%', width: '100%' }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors & Carto'
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            />
+            <Marker position={position}>
+              <Popup>
+                <Box sx={{ textAlign: 'center', p: 1 }}>
+                  <Typography variant="subtitle1" fontWeight="bold" mb={1}>
+                    🥊 SLAMM MMA
+                  </Typography>
+                  <Typography variant="body2" mb={2}>
                     361 Rue de la Saudrais<br />
-                    <a
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      ➤ Itinéraire Google Maps
-                    </a>
-                  </Popup>
-                </Marker>
-              </MapContainer>
-            </CardContent>
-          </Card>
+                    35800 Saint-Lunaire
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                    target="_blank"
+                    rel="noopener"
+                    startIcon={<DirectionsIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      textTransform: 'none',
+                      fontSize: '0.75rem',
+                    }}
+                  >
+                    Itinéraire
+                  </Button>
+                </Box>
+              </Popup>
+            </Marker>
+          </MapContainer>
         </Box>
       </Box>
     </>

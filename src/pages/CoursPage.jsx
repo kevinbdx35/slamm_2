@@ -67,7 +67,7 @@ export default function PageCours() {
       </Box>
 
       <Grid container spacing={4} mt={6}>
-        {/* Colonne gauche : Créneaux + Pack découverte */}
+        {/* Colonne gauche : Créneaux + Pack découverte + Tarifs (mobile) */}
         <Grid item xs={12} md={6}>
           <Grid container spacing={4} direction="column">
             {/* Carte Créneaux */}
@@ -128,22 +128,77 @@ export default function PageCours() {
 
                 <Box mt={2} textAlign="center">
                   <Button
-                    variant="contained"
-                    color="primary"
+                    variant="outlined"
                     href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
                     target="_blank"
                     rel="noopener"
+                    fullWidth
                     size="medium"
                     sx={{
                       borderRadius: 0,
                       fontWeight: "bold",
                       textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
                       "&:hover": {
-                        backgroundColor: "primary.dark",
+                        backgroundColor: '#00ff5e',
+                        color: '#0a1414',
+                        borderColor: '#00ff5e',
                       },
                     }}
                   >
-                    Réserver un cours d’essai
+                    Réserver un cours d'essai
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+
+            {/* Carte Tarifs - visible seulement sur mobile */}
+            <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  p: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box>
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main }} />
+                    <Typography variant="h5" fontWeight="bold">Tarifs 2025–2026</Typography>
+                  </Box>
+                  <Typography variant="body1" sx={{ lineHeight: 1.7 }}>
+                    +25 ans : 210 €<br />
+                    +16 ans : 180 €
+                  </Typography>
+                </Box>
+                <Box mt={2}>
+                  <Button
+                    variant="outlined"
+                    href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
+                    target="_blank"
+                    rel="noopener"
+                    fullWidth
+                    size="medium"
+                    sx={{
+                      borderRadius: 0,
+                      fontWeight: "bold",
+                      textTransform: "none",
+                      borderWidth: 2,
+                      borderColor: 'primary.main',
+                      color: 'primary.main',
+                      "&:hover": {
+                        backgroundColor: '#ff6b35',
+                        color: '#ffffff',
+                        borderColor: '#ff6b35',
+                      },
+                    }}
+                  >
+                    S'inscrire pour la saison
                   </Button>
                 </Box>
               </Box>
@@ -151,8 +206,8 @@ export default function PageCours() {
           </Grid>
         </Grid>
 
-        {/* Colonne droite : Carte Tarifs */}
-        <Grid item xs={12} md={6}>
+        {/* Colonne droite : Carte Tarifs - visible seulement sur desktop */}
+        <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
           <Box
             sx={{
               border: '2px solid',
@@ -177,7 +232,6 @@ export default function PageCours() {
             <Box mt={2}>
               <Button
                 variant="outlined"
-                color="secondary"
                 href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
                 target="_blank"
                 rel="noopener"
@@ -188,12 +242,16 @@ export default function PageCours() {
                   fontWeight: "bold",
                   textTransform: "none",
                   borderWidth: 2,
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
                   "&:hover": {
-                    backgroundColor: "secondary.light",
+                    backgroundColor: '#ff6b35',
+                    color: '#ffffff',
+                    borderColor: '#ff6b35',
                   },
                 }}
               >
-                S’inscrire pour la saison
+                S'inscrire pour la saison
               </Button>
             </Box>
           </Box>
@@ -202,3 +260,4 @@ export default function PageCours() {
     </>
   );
 }
+
