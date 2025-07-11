@@ -111,10 +111,21 @@ export default function Menu({ isDark, toggleTheme }) {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => alert('Réserver ton cours d’essai')}>
+            <ListItemButton 
+              component="a"
+              href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+              target="_blank"
+              rel="noopener"
+              sx={{
+                backgroundColor: 'rgba(0, 255, 94, 0.1)',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 255, 94, 0.2)',
+                }
+              }}
+            >
               <ListItemText
                 primary="Réserve ton essai"
-                sx={{ pl: 2, fontWeight: 'bold' }}
+                sx={{ pl: 2, fontWeight: 'bold', color: 'primary.main' }}
               />
             </ListItemButton>
           </ListItem>
@@ -172,12 +183,20 @@ export default function Menu({ isDark, toggleTheme }) {
           {routes.map((item) => (
             <Button
               key={item.label}
-              color="inherit"
               component={Link}
               to={item.path}
               sx={{
-                fontWeight: 600,
-                borderBottom: location.pathname === item.path ? '2px solid white' : 'none',
+                color: location.pathname === item.path ? '#00ff5e' : theme.palette.mode === 'dark' ? 'white' : theme.palette.text.primary,
+                fontWeight: location.pathname === item.path ? 'bold' : 600,
+                borderBottom: location.pathname === item.path ? '2px solid #00ff5e' : '2px solid transparent',
+                borderRadius: 0,
+                pb: 0.5,
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 255, 94, 0.1)',
+                  color: '#00ff5e',
+                  borderBottomColor: '#00ff5e',
+                },
               }}
             >
               {item.label}
@@ -186,16 +205,24 @@ export default function Menu({ isDark, toggleTheme }) {
           {ThemeToggleButton}
           <Button
             variant="contained"
+            href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+            target="_blank"
+            rel="noopener"
             sx={{
               ml: 2,
-              backgroundColor: '#FF6F00',
-              color: '#fff',
+              backgroundColor: '#ff6b35',
+              color: '#ffffff',
               fontWeight: 'bold',
+              borderRadius: 0,
+              px: 3,
+              boxShadow: '0 2px 8px rgba(255, 107, 53, 0.3)',
               '&:hover': {
-                backgroundColor: '#e65c00',
+                backgroundColor: '#00ff5e',
+                color: '#0a1414',
+                boxShadow: '0 0 20px rgba(0, 255, 94, 0.5)',
+                transform: 'scale(1.05)',
               },
             }}
-            onClick={() => alert('Réserver ton cours d’essai')}
           >
             Réserve ton essai
           </Button>

@@ -248,7 +248,7 @@ export default function ContactPage() {
                   },
                 }}
               >
-                Essai gratuit
+                Réserve ton essai
               </Button>
             </Box>
           </Box>
