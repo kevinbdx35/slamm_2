@@ -66,14 +66,14 @@ export default function EquipePage() {
             L’Équipe SLAMM
           </Typography>
           <Typography variant="body1" mt={1} maxWidth={1000}>
-            SLAMM est née de la vision partagée de trois passionnés de MMA, chacun apportant des compétences complémentaires. 
+            SLAMM est née de la vision partagée de trois passionnés de MMA (Kévin, Malik, Thomas), chacun apportant des compétences complémentaires. 
             Nous encourageons une pratique loisirs bienveillante, respectueuse et adaptée à chacun.
           </Typography>
         </Box>
 
         <Box component="section" mt={6}>
           <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
-            Membres fondateurs
+            Membres du bureau
           </Typography>
 
           <Stack spacing={4} mt={4}>
