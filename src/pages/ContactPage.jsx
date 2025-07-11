@@ -87,12 +87,7 @@ export default function ContactPage() {
                     href="https://wa.me/33782779288?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20club%20de%20MMA."
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{
-                      textDecoration: 'underline',
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      '&:visited': { color: 'primary.main' },
-                    }}
+                    sx={{ textDecoration: 'underline', color: 'inherit' }}
                   >
                     07 82 77 92 88
                   </Box>
@@ -106,12 +101,7 @@ export default function ContactPage() {
                     component="a"
                     href={emailHref}
                     title={emailDisplay}
-                    sx={{
-                      textDecoration: 'underline',
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      whiteSpace: 'nowrap',
-                    }}
+                    sx={{ textDecoration: 'underline', color: 'inherit', whiteSpace: 'nowrap' }}
                   >
                     {emailDisplay}
                   </Box>
@@ -126,12 +116,7 @@ export default function ContactPage() {
                     href="https://instagram.com/slamm35800"
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{
-                      textDecoration: 'underline',
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      '&:visited': { color: 'primary.main' },
-                    }}
+                    sx={{ textDecoration: 'underline', color: 'inherit' }}
                   >
                     @slamm35800
                   </Box>
