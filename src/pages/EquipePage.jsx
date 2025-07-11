@@ -74,8 +74,7 @@ export default function EquipePage() {
             L’Équipe SLAMM
           </Typography>
           <Typography variant="body1" mt={1} maxWidth={1000}>
-            SLAMM est née de la vision partagée de trois passionnés de MMA (Kévin, Malik, Thomas), chacun apportant des compétences complémentaires. 
-            Nous encourageons une pratique loisirs bienveillante, respectueuse et adaptée à chacun.
+          SLAMM association loi 1901 est née de la vision partagée de trois passionnés de MMA (Kévin, Malik, Thomas), chacun apportant des compétences complémentaires. Nous encourageons une pratique loisirs basée sur la bienveillance, le respect et l'écoute mutuelle, afin de permettre à chaque membre de travailler et de progresser dans un environnement adapté à ses envies et à ses capacités physiques.
           </Typography>
         </Box>
 

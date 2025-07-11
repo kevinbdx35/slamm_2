@@ -42,8 +42,7 @@ export default function HomePage() {
           Mixed Martial Arts - MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-          Le MMA (Mixed Martial Arts) est un sport de combat complet combinant plusieurs disciplines : boxe, lutte, luta livre, kickboxing, muay thaï, et bien plus encore. Un combat de MMA comprend trois phases : debout, corps à
-          corps, et au sol.
+        C’est un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol.
         </Typography>
       </Box>
 
@@ -52,8 +51,7 @@ export default function HomePage() {
           Les bénéfices du MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-          Le MMA améliore la condition physique, la confiance en soi et les réflexes. 
-          Il développe aussi l'autodéfense, l’endurance, la coordination et favorise le respect, l'esprit d'équipe et la discipline.
+        Discipline complète qui combine différentes techniques, elle offre de nombreux bénéfices. Elle améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
         </Typography>
 
         <Box my={4} textAlign="center">
