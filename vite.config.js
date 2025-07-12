@@ -16,8 +16,10 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          mui: ['@mui/material', '@mui/icons-material'],
+          'mui-core': ['@mui/material', '@mui/system'],
+          'mui-icons': ['@mui/icons-material'],
           router: ['react-router-dom'],
+          helmet: ['react-helmet'],
         },
       },
     },
