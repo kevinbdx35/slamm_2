@@ -5,7 +5,6 @@
  * - La persistance et synchronisation du thème sombre/clair
  * - Les transitions fluides entre les thèmes avec animations
  * - Le routing HashRouter (optimisé pour GitHub Pages)
- * - Le curseur personnalisé avec tracking de souris
  * - L'application globale des thèmes Material Design 3
  */
 
@@ -14,8 +13,6 @@ import App from '../App.jsx'
 import { ThemeProvider, CssBaseline, Box } from '@mui/material'
 import { lightTheme, darkTheme } from '../theme.js'
 import { HashRouter } from 'react-router-dom'
-import CustomCursor from './CustomCursor.jsx'
-import '../styles/cursor.css'
 
 /**
  * Composant racine avec gestion avancée du thème
@@ -91,7 +88,6 @@ export default function Root() {
         }}
       >
         <HashRouter>
-          <CustomCursor />
           <App isDark={isDark} toggleTheme={toggleTheme} />
         </HashRouter>
       </Box>
