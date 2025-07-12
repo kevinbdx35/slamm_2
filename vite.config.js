@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/slamm_2/', // base pour GitHub Pages sous un sous-dossier
+  base: '/', // base pour domaine personnalisé
   plugins: [react()],
   server: {
     // Pas besoin de historyApiFallback dans Vite
