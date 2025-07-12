@@ -58,11 +58,22 @@ const Footer = () => {
               Contact
             </Typography>
             <Stack spacing={1.5}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <LocationOnIcon sx={{ mr: 1, fontSize: 20, color: 'primary.main' }} />
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  361 Rue de la Saudrais<br />35800 Saint-Lunaire
-                </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
+                <LocationOnIcon sx={{ mr: 1, fontSize: 20, color: 'primary.main', mt: 0.2 }} />
+                <Box>
+                  <Typography variant="body2" sx={{ opacity: 0.9, fontWeight: 'bold' }}>
+                    Entraînements :
+                  </Typography>
+                  <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                    361 Rue de la Saudrais<br />35800 Saint-Lunaire
+                  </Typography>
+                  <Typography variant="body2" sx={{ opacity: 0.9, fontWeight: 'bold', mt: 1 }}>
+                    Siège social :
+                  </Typography>
+                  <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                    Boulevard Flusson (Mairie)<br />35800 Saint-Lunaire
+                  </Typography>
+                </Box>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <PhoneIcon sx={{ mr: 1, fontSize: 20, color: 'primary.main' }} />

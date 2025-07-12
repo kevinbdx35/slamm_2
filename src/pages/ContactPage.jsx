@@ -75,7 +75,7 @@ export default function ContactPage() {
             />
             <Marker position={position}>
               <Popup>
-                <strong>SLAMM MMA</strong><br />
+                <strong>SLAMM MMA - Lieu d'entraînement</strong><br />
                 361 Rue de la Saudrais<br />
                 35800 Saint-Lunaire
               </Popup>

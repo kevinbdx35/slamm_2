@@ -39,7 +39,14 @@ export default function MentionsLegalesPage() {
             </Typography>
             
             <Typography variant="body1" paragraph>
-              <strong>Adresse :</strong><br />
+              <strong>Siège social :</strong><br />
+              Boulevard Flusson (Mairie)<br />
+              35800 Saint-Lunaire<br />
+              France
+            </Typography>
+            
+            <Typography variant="body1" paragraph>
+              <strong>Lieu d'entraînement :</strong><br />
               361 Rue de la Saudrais<br />
               35800 Saint-Lunaire<br />
               France

@@ -23,11 +23,23 @@ export default function SeoHelmet({
     "email": "slamm35800@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "361 Rue de la Saudrais",
+      "streetAddress": "Boulevard Flusson (Mairie)",
       "addressLocality": "Saint-Lunaire",
       "postalCode": "35800",
       "addressRegion": "Bretagne, Ille-et-Vilaine, Côte d'Émeraude",
       "addressCountry": "FR"
+    },
+    "location": {
+      "@type": "Place",
+      "name": "Lieu d'entraînement SLAMM",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "361 Rue de la Saudrais",
+        "addressLocality": "Saint-Lunaire",
+        "postalCode": "35800",
+        "addressRegion": "Bretagne",
+        "addressCountry": "FR"
+      }
     },
     "geo": {
       "@type": "GeoCoordinates",

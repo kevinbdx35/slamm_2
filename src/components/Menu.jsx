@@ -332,63 +332,100 @@ export default function Menu({ isDark, toggleTheme }) {
   );
 
   const desktopMenu = (
-    <AppBar position="static" color="primary" enableColorOnDark>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography
-          variant="h6"
-          sx={{ fontWeight: 'bold', cursor: 'pointer' }}
-          component={Link}
-          to="/"
-          color="inherit"
-        >
-          SLAMM
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-          {routes.map((item) => (
-            <Button
-              key={item.label}
-              component={Link}
-              to={item.path}
-              sx={{
-                color: location.pathname === item.path ? '#00ff5e' : theme.palette.mode === 'dark' ? 'white' : theme.palette.text.primary,
-                fontWeight: location.pathname === item.path ? 'bold' : 600,
-                borderBottom: location.pathname === item.path ? '2px solid #00ff5e' : '2px solid transparent',
-                borderRadius: 0,
-                pb: 0.5,
-                transition: 'all 0.2s ease-in-out',
-                '&:hover': {
-                  backgroundColor: 'rgba(0, 255, 94, 0.1)',
-                  color: '#00ff5e',
-                  borderBottomColor: '#00ff5e',
-                },
-              }}
-            >
-              {item.label}
-            </Button>
-          ))}
+    <AppBar position="static" color="primary" elevation={1}>
+      <Toolbar sx={{ 
+        display: 'grid', 
+        gridTemplateColumns: '1fr auto 1fr', 
+        alignItems: 'center',
+        minHeight: '64px',
+        px: { xs: 2, sm: 3, md: 4 },
+      }}>
+        {/* Section gauche - Logo seul */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography
+            variant="h5"
+            sx={{ 
+              fontWeight: 700,
+              cursor: 'pointer',
+            }}
+            component={Link}
+            to="/"
+            color="inherit"
+          >
+            SLAMM
+          </Typography>
+        </Box>
+
+        {/* Navigation centrale */}
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 1, 
+          alignItems: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '20px',
+          padding: '4px',
+        }}>
+          {routes.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Button
+                key={item.label}
+                component={Link}
+                to={item.path}
+                sx={{
+                  minWidth: 'auto',
+                  px: 3,
+                  py: 1.5,
+                  borderRadius: '16px',
+                  textTransform: 'none',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: isActive 
+                    ? '#0a1414' 
+                    : 'rgba(255, 255, 255, 0.9)',
+                  backgroundColor: isActive 
+                    ? '#00ff5e' 
+                    : 'transparent',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: isActive 
+                      ? '#00ff5e'
+                      : 'rgba(255, 255, 255, 0.15)',
+                    transform: 'scale(1.02)',
+                  },
+                }}
+              >
+                {item.label}
+              </Button>
+            );
+          })}
+        </Box>
+
+        {/* Section droite - Toggle + CTA */}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2 }}>
           {ThemeToggleButton}
           <Button
-            variant="contained"
+            variant="outlined"
             href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
             target="_blank"
             rel="noopener"
             sx={{
-              ml: 2,
-              backgroundColor: '#ff6b35',
-              color: '#ffffff',
-              fontWeight: 'bold',
-              borderRadius: 0,
+              borderRadius: '20px',
               px: 3,
-              boxShadow: '0 2px 8px rgba(255, 107, 53, 0.3)',
+              py: 1.5,
+              textTransform: 'none',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              borderColor: '#00ff5e',
+              color: '#00ff5e',
               '&:hover': {
                 backgroundColor: '#00ff5e',
                 color: '#0a1414',
-                boxShadow: '0 0 20px rgba(0, 255, 94, 0.5)',
                 transform: 'scale(1.05)',
               },
             }}
           >
-            Réserve ton essai
+            Réserver un essai
           </Button>
         </Box>
       </Toolbar>
