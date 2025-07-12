@@ -6,6 +6,7 @@ import EquipePage from './pages/EquipePage.jsx'
 import ActualitesPage from './pages/ActualitesPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
+import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
 import SeoHelmet from './components/SeoHelmet.jsx'
 
 export default function App({ isDark, toggleTheme }) {
@@ -48,6 +49,12 @@ export default function App({ isDark, toggleTheme }) {
       url: "https://mma-saint-lunaire.fr/faq",
       image: "https://mma-saint-lunaire.fr/img/faq_social.jpg",
     },
+    '/mentions-legales': {
+      title: "Mentions légales - SLAMM MMA",
+      description: "Mentions légales du club de MMA SLAMM Saint-Lunaire.",
+      url: "https://mma-saint-lunaire.fr/mentions-legales",
+      image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
+    },
   }
 
   const currentSeo = seoMap[location.pathname] || seoMap['/']
@@ -69,6 +76,7 @@ export default function App({ isDark, toggleTheme }) {
           <Route path="/actualites" element={<ActualitesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
         </Routes>
       </Layout>
     </>
