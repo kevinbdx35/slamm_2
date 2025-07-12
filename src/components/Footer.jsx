@@ -136,6 +136,9 @@ const Footer = () => {
             <Typography variant="caption" sx={{ opacity: 0.7 }}>
               © {new Date().getFullYear()} SLAMM – Tous droits réservés
             </Typography>
+            <Typography variant="caption" sx={{ opacity: 0.5, fontStyle: 'italic' }}>
+              • Site créé par Kevin depuis la Bretagne
+            </Typography>
             <Link
               component={RouterLink}
               to="/mentions-legales"
