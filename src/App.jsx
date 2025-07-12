@@ -10,6 +10,7 @@ import ActualitesPage from './pages/ActualitesPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
+// import PartnershipPage from './pages/PartnershipPage.jsx' // TODO: Activer plus tard
 import SeoHelmet from './components/SeoHelmet.jsx'
 
 /**
@@ -75,6 +76,13 @@ export default function App({ isDark, toggleTheme }) {
       image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
       keywords: "mentions légales MMA Saint-Lunaire, mentions légales arts martiaux mixtes Saint-Lunaire, mentions légales mixed martial arts Saint-Lunaire, association loi 1901 Saint-Lunaire, club sport de combat Saint-Lunaire, SLAMM association Saint-Lunaire, FMMAF Saint-Lunaire",
     },
+    // '/partenariat': {
+    //   title: "Devenez Partenaire - SLAMM MMA",
+    //   description: "Rejoignez notre communauté de partenaires ! Soutenez le développement du MMA à Saint-Lunaire.",
+    //   url: "https://mma-saint-lunaire.fr/partenariat",
+    //   image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
+    //   keywords: "partenariat MMA Saint-Lunaire, sponsor MMA, partenaire club sport, sponsor arts martiaux mixtes",
+    // }, // TODO: Activer plus tard
   }
 
   // Récupération des métadonnées SEO pour la route actuelle
@@ -103,6 +111,7 @@ export default function App({ isDark, toggleTheme }) {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+          {/* <Route path="/partenariat" element={<PartnershipPage />} /> */} {/* TODO: Activer plus tard */}
         </Routes>
       </Layout>
     </>

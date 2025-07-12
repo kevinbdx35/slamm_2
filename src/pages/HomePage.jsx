@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { PARTNER_URLS } from '../config/urls';
 import SeoHelmet from '../components/SeoHelmet';
 
@@ -111,10 +112,17 @@ export default function HomePage() {
           ].map((partner, i) => (
             <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
               <Box
-                component={partner.url ? "a" : "div"}
-                href={partner.url || undefined}
-                target={partner.url ? "_blank" : undefined}
-                rel={partner.url ? "noopener noreferrer" : undefined}
+                component={
+                  partner.url 
+                    ? partner.url.startsWith('http') 
+                      ? "a" 
+                      : Link 
+                    : "div"
+                }
+                href={partner.url && partner.url.startsWith('http') ? partner.url : undefined}
+                to={partner.url && partner.url.startsWith('/') ? partner.url : undefined}
+                target={partner.url && partner.url.startsWith('http') ? "_blank" : undefined}
+                rel={partner.url && partner.url.startsWith('http') ? "noopener noreferrer" : undefined}
                 sx={{
                   width: 150,
                   height: 100,
