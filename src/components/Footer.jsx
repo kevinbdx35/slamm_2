@@ -1,3 +1,15 @@
+/**
+ * Composant Footer - Pied de page informatif de SLAMM
+ * 
+ * Ce composant contient :
+ * - Identité et présentation du club
+ * - Informations de contact complètes (entraînements + siège social)
+ * - Navigation rapide vers toutes les pages
+ * - Liens sociaux (Instagram)
+ * - Copyright et mentions légales
+ * - Design responsive avec Material Design 3
+ */
+
 import { Box, Typography, Link, Stack, Divider, Grid, Container } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -5,6 +17,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
+/**
+ * Composant Footer avec informations complètes du club
+ */
 const Footer = () => {
   return (
     <Box

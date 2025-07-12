@@ -10,7 +10,9 @@ SLAMM est un club de MMA (Mixed Martial Arts) proposant des cours pour tous nive
 
 ## 🌐 Site en ligne
 
-Le site est déployé automatiquement sur GitHub Pages : [https://kevinbdx35.github.io/slamm_2/](https://kevinbdx35.github.io/slamm_2/)
+**Site officiel :** [https://mma-saint-lunaire.fr/](https://mma-saint-lunaire.fr/)
+
+Le site est hébergé sur GitHub Pages avec un domaine personnalisé configuré.
 
 ## 🛠️ Technologies utilisées
 
@@ -33,6 +35,7 @@ Le site est déployé automatiquement sur GitHub Pages : [https://kevinbdx35.git
 - ✅ **Accessibilité** conforme aux standards WCAG
 - ✅ **Curseur personnalisé** avec états interactifs
 - ✅ **Safe Area iOS** - Support des encoches et Dynamic Island
+- ✅ **Favicon personnalisé** - Design MMA avec couleurs du club
 
 ## 🚀 Installation et développement
 
@@ -100,21 +103,29 @@ Le site utilise un système de design basé sur **Material Design 3** avec :
 
 - **Typographie** : IBM Plex Mono (identité monospace moderne)
 - **Couleurs** : 
-  - Mode clair : Vert lisible (#2e7d32)
-  - Mode sombre : Vert néon SLAMM (#00ff5e)
+  - Mode clair : Vert lisible (`#2e7d32`)
+  - Mode sombre : Vert néon SLAMM (`#00ff5e`)
+  - Fond sombre : `#0a1414` (signature SLAMM)
+- **Favicon** : Design vectoriel personnalisé (gant MMA + ceinture)
 - **Espacements** : Système 8px harmonieux
-- **Border radius** : 12px pour les surfaces
+- **Border radius** : Zéro (design sharp/angulaire)
 - **Animations** : Transitions fluides avec cubic-bezier
 
 ## 🌍 Déploiement
 
-Le déploiement se fait automatiquement via GitHub Actions :
+Le site est déployé sur **GitHub Pages** avec un **domaine personnalisé** configuré :
 
-1. **Push sur main** → Déclenche le workflow
-2. **Build Vite** → Génère les fichiers statiques
-3. **Deploy GitHub Pages** → Publie sur gh-pages
+### Configuration domaine personnalisé
+- **Domaine** : `mma-saint-lunaire.fr` (géré via Gandi.net)
+- **DNS** : Enregistrements A pointant vers GitHub Pages
+- **SSL** : Certificat HTTPS automatique via GitHub
 
-Le workflow utilise Node.js 20 pour la compatibilité avec Vite 7.
+### Processus de déploiement
+1. **Build local** : `npm run build`
+2. **Deploy** : `npm run deploy` (utilise gh-pages)
+3. **Publication** : Mise à jour automatique sur la branche gh-pages
+
+Le site utilise Node.js 20 pour la compatibilité avec Vite 7.
 
 ## 📄 Licence
 

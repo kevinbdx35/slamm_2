@@ -1,8 +1,24 @@
+/**
+ * Page d'accueil - Vitrine principale du club SLAMM MMA
+ * 
+ * Cette page présente :
+ * - Introduction au club et à son histoire (fondé en 2023)
+ * - Image héroïque d'entraînement MMA
+ * - Explication des arts martiaux mixtes (MMA/Mixed Martial Arts)
+ * - Bénéfices de la pratique du MMA
+ * - Section partenaires du club (ville, FMMAF, sponsors)
+ * - SEO optimisé pour "MMA Saint-Lunaire" et villes environnantes
+ */
+
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 import SeoHelmet from '../components/SeoHelmet';
 
+/**
+ * Composant HomePage - Page d'accueil du site SLAMM
+ */
 export default function HomePage() {
+  // URL de l'image principale optimisée (WebP responsive)
   const sharedImageUrl = 'https://mma-saint-lunaire.fr/img/mma_blur_vwsa7w_c_scale,w_1400.webp';
 
   return (
@@ -15,6 +31,7 @@ export default function HomePage() {
         keywords="MMA Saint-Lunaire, arts martiaux mixtes Saint-Lunaire, mixed martial arts Saint-Lunaire, sport de combat Saint-Lunaire, grappling Saint-Lunaire, dojo Saint-Lunaire, club sportif Saint-Lunaire, self-défense Saint-Lunaire, SLAMM Saint-Lunaire, FMMAF Saint-Lunaire"
       />
 
+      {/* En-tête principal avec présentation du club */}
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
         <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
           Saint-Lunaire Arts Martiaux Mixtes - Académie de MMA
@@ -25,6 +42,7 @@ export default function HomePage() {
         </Typography>
       </Box>
 
+      {/* Image héroïque d'entraînement MMA */}
       <Box my={4} textAlign="center">
         <Box
           component="img"
@@ -38,6 +56,7 @@ export default function HomePage() {
         />
       </Box>
 
+      {/* Section éducative : Qu'est-ce que le MMA ? */}
       <Box component="section" mt={6}>
         <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Mixed Martial Arts - MMA
@@ -47,6 +66,7 @@ export default function HomePage() {
         </Typography>
       </Box>
 
+      {/* Section bénéfices : Pourquoi pratiquer le MMA ? */}
       <Box component="section" mt={6}>
         <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Les bénéfices du MMA
@@ -55,6 +75,7 @@ export default function HomePage() {
         Les arts martiaux mixtes, discipline complète qui combine différentes techniques comme la luta livre, offrent de nombreux bénéfices. Le MMA améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements de mixed martial arts permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
         </Typography>
 
+        {/* Image illustrative des bénéfices */}
         <Box my={4} textAlign="center">
           <Box
             component="img"
@@ -69,7 +90,7 @@ export default function HomePage() {
         </Box>
       </Box>
 
-      {/* SECTION PARTENAIRES */}
+      {/* Section partenaires : Soutiens du club */}
       <Box component="section" mt={6} mb={8}>
         <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Partenaires 2025–2026
@@ -77,14 +98,15 @@ export default function HomePage() {
         <Typography variant="body2" maxWidth={1000} mb={4}>
           Notre association remercie chaleureusement les institutions, partenaires techniques, sponsors privés et amis du club pour leur soutien dans le développement de notre projet associatif et sportif.
         </Typography>
+        {/* Grille des logos partenaires */}
         <Grid container spacing={4} justifyContent="center">
           {[
-            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg' },
-            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png' },
-            { name: 'Progress', logo: 'img/partenaires/progress.png' },
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' },
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' },
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }
+            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg' }, // Ville de Saint-Lunaire
+            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png' }, // Fédération Française de MMA
+            { name: 'Progress', logo: 'img/partenaires/progress.png' }, // Partenaire technique
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }, // Slots disponibles
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }, // pour futurs
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' } // partenaires
           ].map((partner, i) => (
             <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
               <Box
