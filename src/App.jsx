@@ -29,44 +29,51 @@ export default function App({ isDark, toggleTheme }) {
     '/': {
       title: "Accueil - SLAMM MMA Saint-Lunaire",
       description: "Découvre notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan.",
-      url: "https://mma-saint-lunaire.fr",
-      image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM",
     },
     '/cours': {
       title: "Cours de MMA - SLAMM",
       description: "Découvrez tous nos cours de MMA adaptés à tous les niveaux.",
-      url: "https://mma-saint-lunaire.fr/cours",
-      image: "https://mma-saint-lunaire.fr/img/cours_social.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/cours",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "cours MMA Saint-Lunaire, entraînement arts martiaux mixtes, planning MMA Bretagne, débutant MMA Dinard",
     },
     '/equipe': {
       title: "Équipe SLAMM",
       description: "Rencontrez notre équipe d'entraîneurs et partenaires.",
-      url: "https://mma-saint-lunaire.fr/equipe",
-      image: "https://mma-saint-lunaire.fr/img/equipe_social.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/equipe",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "entraîneurs MMA Saint-Lunaire, équipe SLAMM, professeurs arts martiaux Bretagne, coaches MMA",
     },
     '/actualites': {
       title: "Actualités - SLAMM",
       description: "Suivez toutes les actualités et événements de notre club.",
-      url: "https://mma-saint-lunaire.fr/actualites",
-      image: "https://mma-saint-lunaire.fr/img/actualites_social.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/actualites",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "actualités MMA Saint-Lunaire, événements SLAMM, news arts martiaux Bretagne, compétitions MMA",
     },
     '/contact': {
       title: "Contactez SLAMM",
       description: "Contactez-nous pour toutes questions ou inscriptions.",
-      url: "https://mma-saint-lunaire.fr/contact",
-      image: "https://mma-saint-lunaire.fr/img/contact_social.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/contact",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "contact MMA Saint-Lunaire, inscription SLAMM, téléphone club MMA Bretagne, adresse dojo",
     },
     '/faq': {
       title: "FAQ - SLAMM MMA",
       description: "Questions fréquentes sur notre club et la pratique du MMA.",
-      url: "https://mma-saint-lunaire.fr/faq",
-      image: "https://mma-saint-lunaire.fr/img/faq_social.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/faq",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "FAQ MMA Saint-Lunaire, questions fréquentes arts martiaux, débutant MMA Bretagne, tarifs SLAMM",
     },
     '/mentions-legales': {
       title: "Mentions légales - SLAMM MMA",
       description: "Mentions légales du club de MMA SLAMM Saint-Lunaire.",
-      url: "https://mma-saint-lunaire.fr/mentions-legales",
-      image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
+      url: "https://kevinbdx35.github.io/slamm_2/#/mentions-legales",
+      image: "https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg",
+      keywords: "mentions légales SLAMM, association loi 1901 MMA, club Saint-Lunaire juridique",
     },
   }
 
@@ -82,6 +89,7 @@ export default function App({ isDark, toggleTheme }) {
         description={currentSeo.description}
         url={currentSeo.url}
         image={currentSeo.image}
+        keywords={currentSeo.keywords}
       />
 
       {/* Layout principal englobant toutes les pages */}

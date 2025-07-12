@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kevinbdx35.github.io/slamm_2/sitemap.xml
+
+# Pages importantes à indexer en priorité
+Allow: /
+Allow: /cours
+Allow: /contact
+Allow: /equipe
+Allow: /club
+
+# Pas de restriction pour les bots de recherche
+Allow: /mentions-legales
+Allow: /faq
+
+# Désallow pour les fichiers techniques
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# SEO pour le MMA et Saint-Lunaire
+# Site officiel du club SLAMM MMA à Saint-Lunaire, Bretagne

@@ -70,8 +70,9 @@ export default function PageCours() {
       <SeoHelmet
         title="Cours de MMA - SLAMM Saint-Lunaire"
         description="Découvrez les créneaux, tarifs et modalités d'essai pour rejoindre notre club de MMA à Saint-Lunaire. Ouvert aux débutants comme aux confirmés."
-        url="https://mma-saint-lunaire.fr/cours"
-        image="https://mma-saint-lunaire.fr/img/cours_social.jpg"
+        url="https://kevinbdx35.github.io/slamm_2/#/cours"
+        image="https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg"
+        keywords="cours MMA Saint-Lunaire, entraînement arts martiaux mixtes, planning MMA Bretagne, débutant MMA Dinard"
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>

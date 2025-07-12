@@ -10,8 +10,9 @@ export default function HomePage() {
       <SeoHelmet
         title="Accueil - SLAMM MMA Saint-Lunaire"
         description="Découvrez notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan en Bretagne. Entraînez-vous en arts martiaux mixtes dans une ambiance conviviale et engagée."
-        url="https://mma-saint-lunaire.fr"
-        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
+        url="https://kevinbdx35.github.io/slamm_2/"
+        image="https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg"
+        keywords="MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM"
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
