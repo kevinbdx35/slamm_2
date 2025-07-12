@@ -90,10 +90,10 @@ export default function Menu({ isDark, toggleTheme }) {
       path: '/equipe' 
     },
     { 
-      label: 'Actualités', 
+      label: 'Événements', 
       icon: <ArticleOutlinedIcon />, 
       activeIcon: <ArticleIcon />, 
-      path: '/actualites' 
+      path: '/evenements' 
     },
     { 
       label: 'Contact', 

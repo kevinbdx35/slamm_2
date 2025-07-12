@@ -6,7 +6,7 @@ import Layout from './components/Layout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import CoursPage from './pages/CoursPage.jsx'
 import EquipePage from './pages/EquipePage.jsx'
-import ActualitesPage from './pages/ActualitesPage.jsx'
+import EvenementsPage from './pages/EvenementsPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
@@ -48,12 +48,12 @@ export default function App({ isDark, toggleTheme }) {
       image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
       keywords: "entraîneurs MMA Saint-Lunaire, professeurs arts martiaux mixtes Saint-Lunaire, coaches mixed martial arts Saint-Lunaire, instructeurs sport de combat Saint-Lunaire, professeurs grappling Saint-Lunaire, équipe SLAMM Saint-Lunaire, FMMAF Côte d'Émeraude, instructeurs self-défense Saint-Lunaire",
     },
-    '/actualites': {
-      title: "Actualités - SLAMM",
-      description: "Suivez toutes les actualités et événements de notre club.",
-      url: "https://mma-saint-lunaire.fr/actualites",
+    '/evenements': {
+      title: "Événements SLAMM - Stages et compétitions MMA",
+      description: "Découvrez tous nos événements : stages MMA, compétitions, portes ouvertes. Inscrivez-vous aux prochains événements du club SLAMM à Saint-Lunaire.",
+      url: "https://mma-saint-lunaire.fr/evenements",
       image: "https://mma-saint-lunaire.fr/img/social_share_image.jpg",
-      keywords: "actualités MMA Saint-Lunaire, news arts martiaux mixtes Saint-Lunaire, événements mixed martial arts Saint-Lunaire, compétitions MMA Saint-Lunaire, tournois sport de combat Saint-Lunaire, compétitions grappling Saint-Lunaire, événements FMMAF Bretagne, fight Saint-Lunaire",
+      keywords: "stage MMA Saint-Lunaire, événements MMA Bretagne, compétition MMA, stage arts martiaux mixtes, événements club sportif Saint-Lunaire, compétitions grappling Saint-Lunaire, événements FMMAF Bretagne",
     },
     '/contact': {
       title: "Contactez SLAMM",
@@ -107,7 +107,7 @@ export default function App({ isDark, toggleTheme }) {
           <Route path="/" element={<HomePage />} />
           <Route path="/cours" element={<CoursPage />} />
           <Route path="/equipe" element={<EquipePage />} />
-          <Route path="/actualites" element={<ActualitesPage />} />
+          <Route path="/evenements" element={<EvenementsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
