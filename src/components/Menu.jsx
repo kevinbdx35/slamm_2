@@ -243,7 +243,7 @@ export default function Menu({ isDark, toggleTheme }) {
               }}
             >
               <ListItemText
-                primary="Réserve ton essai"
+                primary="Réserver un essai"
                 sx={{ pl: 2, fontWeight: 'bold', color: 'primary.main' }}
               />
             </ListItemButton>
@@ -456,8 +456,8 @@ export default function Menu({ isDark, toggleTheme }) {
                 <MenuIcon />
               </IconButton>
               <Typography
-                variant="h6"
-                sx={{ fontWeight: 'bold', cursor: 'pointer' }}
+                variant="h5"
+                sx={{ fontWeight: 700, cursor: 'pointer' }}
                 onClick={() => handleMobileNav('/')}
               >
                 SLAMM
