@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://kevinbdx35.github.io/slamm_2/sitemap.xml
+Sitemap: https://mma-saint-lunaire.fr/sitemap.xml
 
 # Pages importantes à indexer en priorité
 Allow: /
