@@ -119,14 +119,6 @@ Le déploiement se fait automatiquement via GitHub Actions :
 
 Le workflow utilise Node.js 20 pour la compatibilité avec Vite 7.
 
-## 📧 Contact
-
-**SLAMM MMA Saint-Lunaire**
-- 📍 361 Rue de la Saudrais, 35800 Saint-Lunaire
-- 📱 07 82 77 92 88
-- 📧 slamm35800@gmail.com
-- 📸 [@slamm35800](https://instagram.com/slamm35800)
-
 ## 📄 Licence
 
 Ce projet est sous licence privée. Tous droits réservés au club SLAMM MMA Saint-Lunaire.
