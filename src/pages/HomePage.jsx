@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
+import { PARTNER_URLS } from '../config/urls';
 import SeoHelmet from '../components/SeoHelmet';
 
 /**
@@ -101,15 +102,19 @@ export default function HomePage() {
         {/* Grille des logos partenaires */}
         <Grid container spacing={4} justifyContent="center">
           {[
-            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg' }, // Ville de Saint-Lunaire
-            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png' }, // Fédération Française de MMA
-            { name: 'Progress', logo: 'img/partenaires/progress.png' }, // Partenaire technique
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }, // Slots disponibles
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' }, // pour futurs
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp' } // partenaires
+            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg', url: PARTNER_URLS.SAINT_LUNAIRE },
+            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png', url: PARTNER_URLS.FMMAF },
+            { name: 'Progress', logo: 'img/partenaires/progress.png', url: PARTNER_URLS.PROGRESS },
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp', url: null },
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp', url: null },
+            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp', url: null }
           ].map((partner, i) => (
             <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
               <Box
+                component={partner.url ? "a" : "div"}
+                href={partner.url || undefined}
+                target={partner.url ? "_blank" : undefined}
+                rel={partner.url ? "noopener noreferrer" : undefined}
                 sx={{
                   width: 150,
                   height: 100,
@@ -121,7 +126,14 @@ export default function HomePage() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   mx: 'auto',
-                  mb: 1
+                  mb: 1,
+                  textDecoration: 'none',
+                  cursor: partner.url ? 'pointer' : 'default',
+                  transition: 'transform 0.2s ease-in-out',
+                  '&:hover': partner.url ? {
+                    transform: 'scale(1.05)',
+                    borderColor: 'secondary.main'
+                  } : {}
                 }}
               >
                 <Box

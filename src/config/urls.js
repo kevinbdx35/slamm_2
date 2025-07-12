@@ -38,6 +38,15 @@ export const MEDIA_URLS = {
 };
 
 /**
+ * URLs des partenaires
+ */
+export const PARTNER_URLS = {
+  SAINT_LUNAIRE: "https://www.saint-lunaire.fr/",
+  FMMAF: "https://www.fmmaf.fr/",
+  PROGRESS: "https://www.progressjj-europe.com/",
+};
+
+/**
  * Informations de contact
  */
 export const CONTACT_INFO = {
@@ -54,5 +63,6 @@ export default {
   ASSOCONNECT_URLS,
   SOCIAL_URLS,
   MEDIA_URLS,
+  PARTNER_URLS,
   CONTACT_INFO,
 };
