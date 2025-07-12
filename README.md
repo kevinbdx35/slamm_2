@@ -76,6 +76,21 @@ npm run lint
 npm run deploy
 ```
 
+## ⚙️ Configuration
+
+### URLs Assoconnect
+
+Les liens vers Assoconnect sont centralisés dans `/src/config/urls.js` pour faciliter les mises à jour :
+
+```javascript
+export const ASSOCONNECT_URLS = {
+  TRIAL_BOOKING: "https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai",
+  ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026",
+};
+```
+
+**Pour modifier les liens :** Éditez uniquement ce fichier, les changements se répercutent automatiquement partout.
+
 ## 📱 Structure du projet
 
 ```

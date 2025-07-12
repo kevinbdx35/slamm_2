@@ -30,6 +30,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import SeoHelmet from "../components/SeoHelmet";
+import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 /**
  * Configuration du processus d'inscription en étapes
@@ -126,7 +127,7 @@ export default function PageCours() {
                 <Box mt={3}>
                   <Button
                     variant="outlined"
-                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    href={ASSOCONNECT_URLS.TRIAL_BOOKING}
                     target="_blank"
                     rel="noopener"
                     fullWidth
@@ -204,7 +205,7 @@ export default function PageCours() {
                 <Box mt={2}>
                   <Button
                     variant="outlined"
-                    href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
+                    href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP}
                     target="_blank"
                     rel="noopener"
                     fullWidth
@@ -274,7 +275,7 @@ export default function PageCours() {
                 <Box mt={3}>
                   <Button
                     variant="outlined"
-                    href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+                    href={ASSOCONNECT_URLS.TRIAL_BOOKING}
                     target="_blank"
                     rel="noopener"
                     fullWidth
@@ -357,7 +358,7 @@ export default function PageCours() {
                     <Box mt={2}>
                       <Button
                         variant="outlined"
-                        href="https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026"
+                        href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP}
                         target="_blank"
                         rel="noopener"
                         fullWidth

@@ -48,6 +48,7 @@ import {
   Menu as MenuIcon,
 } from '@mui/icons-material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 /**
  * Composant de navigation principal
@@ -232,7 +233,7 @@ export default function Menu({ isDark, toggleTheme }) {
           <ListItem disablePadding>
             <ListItemButton 
               component="a"
-              href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+              href={ASSOCONNECT_URLS.TRIAL_BOOKING}
               target="_blank"
               rel="noopener"
               sx={{
@@ -406,7 +407,7 @@ export default function Menu({ isDark, toggleTheme }) {
           {ThemeToggleButton}
           <Button
             variant="outlined"
-            href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+            href={ASSOCONNECT_URLS.TRIAL_BOOKING}
             target="_blank"
             rel="noopener"
             sx={{

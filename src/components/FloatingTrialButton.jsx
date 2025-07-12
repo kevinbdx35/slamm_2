@@ -14,6 +14,7 @@
 
 import { Fab, Zoom, useScrollTrigger, Tooltip } from "@mui/material";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 /**
  * Bouton flottant pour réserver un cours d'essai
@@ -32,7 +33,7 @@ export default function FloatingTrialButton() {
         <Fab
           color="primary"
           aria-label="réserver cours d'essai"
-          href="https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai"
+          href={ASSOCONNECT_URLS.TRIAL_BOOKING}
           target="_blank"
           rel="noopener"
           sx={{
