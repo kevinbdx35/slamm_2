@@ -15,7 +15,7 @@ export default function MentionsLegalesPage() {
       <SeoHelmet
         title="Mentions légales - SLAMM MMA Saint-Lunaire"
         description="Mentions légales du club de MMA SLAMM (Saint-Lunaire Arts Martiaux Mixtes) - Informations juridiques et responsabilités."
-        url="https://kevinbdx35.github.io/slamm_2/mentions-legales"
+        url="https://mma-saint-lunaire.fr/mentions-legales"
       />
 
       <Container maxWidth="md">

@@ -10,8 +10,8 @@ export default function HomePage() {
       <SeoHelmet
         title="Accueil - SLAMM MMA Saint-Lunaire"
         description="Découvrez notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan en Bretagne. Entraînez-vous en arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat dans notre dojo convivial."
-        url="https://kevinbdx35.github.io/slamm_2/"
-        image="https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg"
+        url="https://mma-saint-lunaire.fr/"
+        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
         keywords="MMA Saint-Lunaire, arts martiaux mixtes Saint-Lunaire, mixed martial arts Saint-Lunaire, sport de combat Saint-Lunaire, grappling Saint-Lunaire, dojo Saint-Lunaire, club sportif Saint-Lunaire, self-défense Saint-Lunaire, SLAMM Saint-Lunaire, FMMAF Saint-Lunaire"
       />
 

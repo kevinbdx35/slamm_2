@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 export default function SeoHelmet({
   title = 'SLAMM MMA',
   description = 'Découvre le MMA à Saint-Lunaire avec le club SLAMM. Entraînements, actualités et esprit combatif !',
-  url = 'https://kevinbdx35.github.io/slamm_2/',
-  image = 'https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg',
+  url = 'https://mma-saint-lunaire.fr/',
+  image = 'https://mma-saint-lunaire.fr/img/social_share_image.jpg',
   keywords = 'MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM',
   type = 'website',
   schema = null, // Schema.org personnalisé pour chaque page
@@ -16,8 +16,8 @@ export default function SeoHelmet({
     "@type": "SportsOrganization",
     "name": "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
     "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
-    "url": "https://kevinbdx35.github.io/slamm_2/",
-    "logo": "https://kevinbdx35.github.io/slamm_2/img/logo-slamm.png",
+    "url": "https://mma-saint-lunaire.fr/",
+    "logo": "https://mma-saint-lunaire.fr/img/logo-slamm.png",
     "image": image,
     "telephone": "+33782779288",
     "email": "slamm35800@gmail.com",
