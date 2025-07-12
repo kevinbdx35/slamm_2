@@ -1,5 +1,8 @@
+// Importation des dépendances React Router pour la gestion de la navigation
 import { Routes, Route, useLocation } from 'react-router-dom'
-import Layout from './components/Layout.jsx'  // chemin corrigé
+
+// Importation du layout principal et des composants de pages
+import Layout from './components/Layout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import CoursPage from './pages/CoursPage.jsx'
 import EquipePage from './pages/EquipePage.jsx'
@@ -9,9 +12,19 @@ import FaqPage from './pages/FaqPage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
 import SeoHelmet from './components/SeoHelmet.jsx'
 
+/**
+ * Composant racine de l'application SLAMM MMA
+ * Gère le routage, le SEO et la transmission des props de thème
+ * 
+ * @param {boolean} isDark - État du mode sombre
+ * @param {function} toggleTheme - Fonction pour basculer le thème
+ */
 export default function App({ isDark, toggleTheme }) {
+  // Hook pour récupérer l'URL actuelle
   const location = useLocation()
 
+  // Configuration SEO centralisée pour chaque route
+  // Permet une gestion cohérente des métadonnées OpenGraph et Twitter Cards
   const seoMap = {
     '/': {
       title: "Accueil - SLAMM MMA Saint-Lunaire",
@@ -57,10 +70,13 @@ export default function App({ isDark, toggleTheme }) {
     },
   }
 
+  // Récupération des métadonnées SEO pour la route actuelle
+  // Fallback sur la page d'accueil si la route n'est pas trouvée
   const currentSeo = seoMap[location.pathname] || seoMap['/']
 
   return (
     <>
+      {/* Composant de gestion des métadonnées SEO dynamiques */}
       <SeoHelmet
         title={currentSeo.title}
         description={currentSeo.description}
@@ -68,7 +84,9 @@ export default function App({ isDark, toggleTheme }) {
         image={currentSeo.image}
       />
 
+      {/* Layout principal englobant toutes les pages */}
       <Layout isDark={isDark} toggleTheme={toggleTheme}>
+        {/* Configuration des routes de l'application */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cours" element={<CoursPage />} />

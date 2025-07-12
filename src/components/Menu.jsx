@@ -1,3 +1,14 @@
+/**
+ * Composant Menu - Navigation principale et responsive de SLAMM
+ * 
+ * Ce composant gère la navigation de l'application avec :
+ * - AppBar desktop avec navigation horizontale
+ * - Bottom Navigation mobile avec animations avancées
+ * - Toggle de thème sombre/clair
+ * - Icônes dynamiques (outlined/filled selon l'état actif)
+ * - Support iOS Safe Area pour les encoches et Dynamic Island
+ */
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   AppBar,
@@ -17,6 +28,8 @@ import {
   Tooltip,
   useTheme,
 } from '@mui/material';
+
+// Import des icônes Material Design avec variantes outlined/filled
 import {
   Home as HomeIcon,
   HomeOutlined as HomeOutlinedIcon,
@@ -36,6 +49,12 @@ import {
 } from '@mui/icons-material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+/**
+ * Composant de navigation principal
+ * 
+ * @param {boolean} isDark - État du mode sombre
+ * @param {function} toggleTheme - Fonction de basculement du thème
+ */
 export default function Menu({ isDark, toggleTheme }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));

@@ -1,13 +1,27 @@
-// theme.js
+/**
+ * Configuration du système de design Material Design 3 pour SLAMM MMA
+ * 
+ * Ce fichier centralise la configuration complète du thème Material Design 3
+ * avec les tokens de couleur, la typographie et les composants personnalisés
+ * adaptés à l'identité visuelle du club SLAMM.
+ */
+
 import { createTheme } from '@mui/material/styles';
 
-// Material Design 3 Color Tokens - Adapté pour SLAMM Light Mode
+/**
+ * Tokens de couleur Material Design 3 - Mode Clair
+ * 
+ * Configuration optimisée pour le mode clair avec :
+ * - Vert sombre (#2e7d32) pour la lisibilité
+ * - Palette bleu-vert cohérente avec l'identité SLAMM
+ * - Respect des ratios de contraste WCAG AA
+ */
 const mdTokens = {
-  // Primary colors (Vert plus sombre pour lisibilité en light)
-  primary: '#2e7d32', // Vert sombre lisible
-  onPrimary: '#ffffff',
-  primaryContainer: '#c8e6c9', // Container plus clair
-  onPrimaryContainer: '#1b5e20',
+  // Couleurs primaires - Identité SLAMM en mode clair
+  primary: '#2e7d32', // Vert sombre accessible et lisible
+  onPrimary: '#ffffff', // Texte blanc sur fond vert
+  primaryContainer: '#c8e6c9', // Container d'arrière-plan vert clair
+  onPrimaryContainer: '#1b5e20', // Texte sombre sur container clair
   
   // Secondary colors (Neutral complements)
   secondary: '#4b635b',

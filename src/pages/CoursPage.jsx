@@ -1,3 +1,14 @@
+/**
+ * Page Cours - Présentation des cours, tarifs et processus d'inscription
+ * 
+ * Cette page utilise un layout asymétrique avancé avec :
+ * - Grid responsive séparé mobile/desktop 
+ * - Hero section pour le Pack Découverte (8/12 colonnes)
+ * - Sidebar avec créneaux et tarifs (4/12 colonnes)
+ * - Stepper Material Design pour le processus d'inscription
+ * - Design system cohérent avec les tokens Material Design 3
+ */
+
 import React from "react";
 import {
   Box,
@@ -10,6 +21,8 @@ import {
   Grid,
   useTheme,
 } from "@mui/material";
+
+// Import des icônes Material Design pour les étapes et actions
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
@@ -18,6 +31,10 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import SeoHelmet from "../components/SeoHelmet";
 
+/**
+ * Configuration du processus d'inscription en étapes
+ * Utilise le composant Stepper de Material-UI pour une UX claire
+ */
 const steps = [
   {
     label: "OBSERVE UN COURS",

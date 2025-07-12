@@ -1,3 +1,14 @@
+/**
+ * Composant Root - Point d'entrée principal de l'application SLAMM
+ * 
+ * Ce composant de niveau racine gère :
+ * - La persistance et synchronisation du thème sombre/clair
+ * - Les transitions fluides entre les thèmes avec animations
+ * - Le routing HashRouter (optimisé pour GitHub Pages)
+ * - Le curseur personnalisé avec tracking de souris
+ * - L'application globale des thèmes Material Design 3
+ */
+
 import React, { useState, useEffect } from 'react'
 import App from '../App.jsx'
 import { ThemeProvider, CssBaseline, Box } from '@mui/material'
@@ -6,12 +17,26 @@ import { HashRouter } from 'react-router-dom'
 import CustomCursor from './CustomCursor.jsx'
 import '../styles/cursor.css'
 
+/**
+ * Composant racine avec gestion avancée du thème
+ * 
+ * Fonctionnalités :
+ * - Détection automatique des préférences système
+ * - Persistance dans localStorage
+ * - Transitions animées entre thèmes
+ * - Synchronisation en temps réel avec les changements système
+ */
 export default function Root() {
+  // Détection des préférences de thème du système utilisateur
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  
+  // État du thème avec initialisation depuis localStorage ou préférences système
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('darkMode')
     return saved !== null ? JSON.parse(saved) : prefersDark
   })
+  
+  // État de transition pour les animations de changement de thème
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
