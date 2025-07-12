@@ -1,0 +1,1 @@
+import{r}from"./mui-core-BxLZ_s77.js";import{u as t}from"./router-D0u3v-X1.js";import"./vendor-DJG_os-6.js";function s(){const{pathname:o}=t();return r.useEffect(()=>{window.scrollTo(0,0)},[o]),null}export{s as default};

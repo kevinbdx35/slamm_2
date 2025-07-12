@@ -1,1 +1,0 @@
-import{r}from"./mui-D5kL-ujC.js";import{u as t}from"./router-C4MPy8c5.js";import"./vendor-DJG_os-6.js";function s(){const{pathname:o}=t();return r.useEffect(()=>{window.scrollTo(0,0)},[o]),null}export{s as default};
