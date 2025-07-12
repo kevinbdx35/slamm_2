@@ -72,7 +72,7 @@ export default function PageCours() {
         title="Cours de MMA - SLAMM Saint-Lunaire"
         description="Découvrez les créneaux, tarifs et modalités d'essai pour rejoindre notre club de MMA à Saint-Lunaire. Ouvert aux débutants comme aux confirmés."
         url="https://mma-saint-lunaire.fr/cours"
-        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
+        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
         keywords="cours MMA Saint-Lunaire, cours arts martiaux mixtes Saint-Lunaire, cours mixed martial arts Saint-Lunaire, cours sport de combat Saint-Lunaire, cours grappling Saint-Lunaire, débutant MMA Saint-Lunaire, cours self-défense Saint-Lunaire, formation MMA Saint-Lunaire, entraînement combat Saint-Lunaire"
       />
 

@@ -55,7 +55,7 @@ export default function EquipePage() {
         title="Équipe SLAMM - Club de MMA Saint-Lunaire"
         description="Découvrez les membres fondateurs de SLAMM, passionnés et diplômés en MMA, grappling et sports de combat. Une équipe bienveillante et qualifiée pour vous encadrer."
         url="https://mma-saint-lunaire.fr/equipe"
-        image="https://mma-saint-lunaire.fr/img/equipe_social.jpg"
+        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
       />
 
       <Box

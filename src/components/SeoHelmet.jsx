@@ -27,7 +27,7 @@ export default function SeoHelmet({
   title = 'SLAMM MMA',
   description = 'Découvre le MMA à Saint-Lunaire avec le club SLAMM. Entraînements, actualités et esprit combatif !',
   url = 'https://mma-saint-lunaire.fr/',
-  image = 'https://mma-saint-lunaire.fr/img/social_share_image.jpg',
+  image = 'https://mma-saint-lunaire.fr/img/social/social.jpg',
   keywords = 'MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM',
   type = 'website',
   schema = null, // Schema.org personnalisé pour chaque page

@@ -73,7 +73,7 @@ export default function PartnershipPage() {
         title="Devenez Partenaire - SLAMM MMA Saint-Lunaire"
         description="Rejoignez notre communauté de partenaires ! Soutenez le développement du MMA à Saint-Lunaire et bénéficiez d'une visibilité auprès d'une audience jeune et dynamique."
         url="https://mma-saint-lunaire.fr/partenariat"
-        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
+        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
       />
 
       {/* En-tête principal */}

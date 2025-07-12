@@ -33,9 +33,9 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Le Club - Présentation importante -->
+  <!-- Événements - Stages et compétitions -->
   <url>
-    <loc>https://mma-saint-lunaire.fr/actualites</loc>
+    <loc>https://mma-saint-lunaire.fr/evenements</loc>
     <lastmod>2025-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

@@ -26,7 +26,7 @@ export default function ContactPage() {
         title="Contact SLAMM - Club de MMA à Saint-Lunaire"
         description="Contactez-nous pour plus d'informations sur nos cours de MMA, nos horaires et inscriptions. Situé à Saint-Lunaire, en Bretagne."
         url="https://mma-saint-lunaire.fr/contact"
-        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
+        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
         keywords="contact MMA Saint-Lunaire, contact arts martiaux mixtes Saint-Lunaire, contact mixed martial arts Saint-Lunaire, inscription dojo Saint-Lunaire, club sport de combat Saint-Lunaire, salle de sport Saint-Lunaire, téléphone club MMA Saint-Lunaire, adresse SLAMM Saint-Lunaire"
       />
 

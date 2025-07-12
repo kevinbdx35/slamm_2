@@ -13,7 +13,7 @@ export default function EvenementsPage() {
         title="Événements SLAMM - Club MMA Saint-Lunaire"
         description="Suivez les futurs événements du club SLAMM : stages MMA, compétitions et portes ouvertes à Saint-Lunaire. Restez informés sur Instagram."
         url="https://mma-saint-lunaire.fr/evenements"
-        image="https://mma-saint-lunaire.fr/img/social_share_image.jpg"
+        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
         keywords="événements MMA Saint-Lunaire, stages MMA futurs, club SLAMM actualités, MMA Bretagne événements, arts martiaux mixtes Saint-Lunaire"
       />
 
