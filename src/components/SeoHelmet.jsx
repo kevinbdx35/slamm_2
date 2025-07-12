@@ -15,7 +15,7 @@ export default function SeoHelmet({
     "@context": "https://schema.org",
     "@type": "SportsOrganization",
     "name": "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
-    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes pour tous niveaux depuis 2023.",
+    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
     "url": "https://kevinbdx35.github.io/slamm_2/",
     "logo": "https://kevinbdx35.github.io/slamm_2/img/logo-slamm.png",
     "image": image,
@@ -26,7 +26,7 @@ export default function SeoHelmet({
       "streetAddress": "361 Rue de la Saudrais",
       "addressLocality": "Saint-Lunaire",
       "postalCode": "35800",
-      "addressRegion": "Bretagne",
+      "addressRegion": "Bretagne, Ille-et-Vilaine, Côte d'Émeraude",
       "addressCountry": "FR"
     },
     "geo": {
@@ -37,10 +37,10 @@ export default function SeoHelmet({
     "sameAs": [
       "https://instagram.com/slamm35800"
     ],
-    "sport": "Mixed Martial Arts",
+    "sport": ["MMA", "Arts martiaux mixtes", "Mixed Martial Arts", "Sport de combat", "Grappling", "Self-défense", "Luta livre", "Muay Thai", "Combat libre"],
     "areaServed": {
       "@type": "Place",
-      "name": "Saint-Lunaire, Saint-Malo, Dinard, Cancale, Dinan, Bretagne"
+      "name": "Côte d'Émeraude, Ille-et-Vilaine, Saint-Lunaire, Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac, Bretagne"
     },
     "foundingDate": "2023",
     "memberOf": {
@@ -85,9 +85,15 @@ export default function SeoHelmet({
 
       {/* Données locales pour le SEO géographique */}
       <meta name="geo.region" content="FR-35" />
-      <meta name="geo.placename" content="Saint-Lunaire" />
+      <meta name="geo.placename" content="Saint-Lunaire, Côte d'Émeraude, Ille-et-Vilaine" />
       <meta name="geo.position" content="48.629194657231274;-2.1120771896734203" />
       <meta name="ICBM" content="48.629194657231274, -2.1120771896734203" />
+      
+      {/* Métadonnées locales étendues */}
+      <meta name="locality" content="Saint-Lunaire" />
+      <meta name="region" content="Bretagne" />
+      <meta name="country" content="France" />
+      <meta name="coverage" content="Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac" />
     </Helmet>
   );
 }

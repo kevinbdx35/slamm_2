@@ -72,7 +72,7 @@ export default function PageCours() {
         description="Découvrez les créneaux, tarifs et modalités d'essai pour rejoindre notre club de MMA à Saint-Lunaire. Ouvert aux débutants comme aux confirmés."
         url="https://kevinbdx35.github.io/slamm_2/#/cours"
         image="https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg"
-        keywords="cours MMA Saint-Lunaire, entraînement arts martiaux mixtes, planning MMA Bretagne, débutant MMA Dinard"
+        keywords="cours MMA Saint-Lunaire, cours arts martiaux mixtes Saint-Lunaire, cours mixed martial arts Saint-Lunaire, cours sport de combat Saint-Lunaire, cours grappling Saint-Lunaire, débutant MMA Saint-Lunaire, cours self-défense Saint-Lunaire, formation MMA Saint-Lunaire, entraînement combat Saint-Lunaire"
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>

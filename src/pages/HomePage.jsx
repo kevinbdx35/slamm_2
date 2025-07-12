@@ -9,10 +9,10 @@ export default function HomePage() {
     <>
       <SeoHelmet
         title="Accueil - SLAMM MMA Saint-Lunaire"
-        description="Découvrez notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan en Bretagne. Entraînez-vous en arts martiaux mixtes dans une ambiance conviviale et engagée."
+        description="Découvrez notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan en Bretagne. Entraînez-vous en arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat dans notre dojo convivial."
         url="https://kevinbdx35.github.io/slamm_2/"
         image="https://kevinbdx35.github.io/slamm_2/img/social_share_image.jpg"
-        keywords="MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM"
+        keywords="MMA Saint-Lunaire, arts martiaux mixtes Saint-Lunaire, mixed martial arts Saint-Lunaire, sport de combat Saint-Lunaire, grappling Saint-Lunaire, dojo Saint-Lunaire, club sportif Saint-Lunaire, self-défense Saint-Lunaire, SLAMM Saint-Lunaire, FMMAF Saint-Lunaire"
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
@@ -43,7 +43,7 @@ export default function HomePage() {
           Mixed Martial Arts - MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-        C’est un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol.
+        Les arts martiaux mixtes (mixed martial arts) sont un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol.
         </Typography>
       </Box>
 
@@ -52,7 +52,7 @@ export default function HomePage() {
           Les bénéfices du MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-        Discipline complète qui combine différentes techniques, elle offre de nombreux bénéfices. Elle améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
+        Les arts martiaux mixtes, discipline complète qui combine différentes techniques comme la luta livre, offrent de nombreux bénéfices. Le MMA améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements de mixed martial arts permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
         </Typography>
 
         <Box my={4} textAlign="center">
