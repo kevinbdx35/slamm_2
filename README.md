@@ -7,9 +7,6 @@ Site web officiel du club de MMA SLAMM (Saint-Lunaire Arts Martiaux Mixtes) situ
 SLAMM est un club de MMA (Mixed Martial Arts) proposant des cours pour tous niveaux dans une ambiance conviviale et professionnelle. Notre club offre un enseignement de qualité dans les disciplines suivantes :
 
 - **MMA** (Arts Martiaux Mixtes)
-- **Grappling** 
-- **Boxe**
-- **Lutte**
 
 ## 🌐 Site en ligne
 
