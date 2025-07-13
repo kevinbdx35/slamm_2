@@ -122,7 +122,6 @@ const Footer = () => {
                 { to: '/', label: 'Accueil' },
                 { to: '/cours', label: 'Cours & Tarifs' },
                 { to: '/equipe', label: 'Équipe' },
-                { to: '/club', label: 'Le Club' },
                 { to: '/contact', label: 'Contact' },
               ].map((link) => (
                 <Link
