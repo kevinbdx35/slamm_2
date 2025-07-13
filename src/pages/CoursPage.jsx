@@ -104,7 +104,7 @@ export default function PageCours() {
               >
                 <Box display="flex" alignItems="center" mb={3}>
                   <LocalOfferIcon sx={{ mr: 1.5, color: theme.palette.primary.main, fontSize: 32 }} />
-                  <Typography variant="h4" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
+                  <Typography variant="h2" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
                     Pack Découverte MMA
                   </Typography>
                 </Box>
@@ -170,7 +170,7 @@ export default function PageCours() {
               >
                 <Box display="flex" alignItems="center" mb={2}>
                   <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
-                  <Typography variant="h6" fontWeight="bold">Créneaux 2025–2026</Typography>
+                  <Typography variant="h3" fontWeight="bold">Créneaux 2025–2026</Typography>
                 </Box>
                 <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem', flex: 1 }}>
                   <strong>Lundi</strong> 18h00 → 19h15<br />
@@ -195,7 +195,7 @@ export default function PageCours() {
                 <Box>
                   <Box display="flex" alignItems="center" mb={2}>
                     <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
-                    <Typography variant="h6" fontWeight="bold">Tarifs 2025–2026</Typography>
+                    <Typography variant="h3" fontWeight="bold">Tarifs 2025–2026</Typography>
                   </Box>
                   <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
                     <strong>+25 ans</strong> : 210 €<br />
@@ -252,7 +252,7 @@ export default function PageCours() {
               >
                 <Box display="flex" alignItems="center" mb={3}>
                   <LocalOfferIcon sx={{ mr: 1.5, color: theme.palette.primary.main, fontSize: 32 }} />
-                  <Typography variant="h4" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
+                  <Typography variant="h2" fontWeight="bold" sx={{ letterSpacing: '-0.5px' }}>
                     Pack Découverte MMA
                   </Typography>
                 </Box>
@@ -322,7 +322,7 @@ export default function PageCours() {
                   >
                     <Box display="flex" alignItems="center" mb={2}>
                       <EventAvailableIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
-                      <Typography variant="h6" fontWeight="bold">Créneaux 2025–2026</Typography>
+                      <Typography variant="h3" fontWeight="bold">Créneaux 2025–2026</Typography>
                     </Box>
                     <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem', flex: 1 }}>
                       <strong>Lundi</strong> 18h00 → 19h15<br />
@@ -348,7 +348,7 @@ export default function PageCours() {
                     <Box>
                       <Box display="flex" alignItems="center" mb={2}>
                         <PriceCheckIcon sx={{ mr: 1, color: theme.palette.primary.main, fontSize: 24 }} />
-                        <Typography variant="h6" fontWeight="bold">Tarifs 2025–2026</Typography>
+                        <Typography variant="h3" fontWeight="bold">Tarifs 2025–2026</Typography>
                       </Box>
                       <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
                         <strong>+25 ans</strong> : 210 €<br />

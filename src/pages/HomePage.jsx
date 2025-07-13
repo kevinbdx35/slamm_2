@@ -189,7 +189,7 @@ export default function HomePage() {
 
       {/* Section éducative : Qu'est-ce que le MMA ? */}
       <Box component="section" mt={6}>
-        <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Mixed Martial Arts - MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
@@ -199,7 +199,7 @@ export default function HomePage() {
 
       {/* Section bénéfices : Pourquoi pratiquer le MMA ? */}
       <Box component="section" mt={6}>
-        <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Les bénéfices du MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
@@ -223,7 +223,7 @@ export default function HomePage() {
 
       {/* Section partenaires : Soutiens du club */}
       <Box component="section" mt={6} mb={8}>
-        <Typography variant="h2" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Partenaires 2025–2026
         </Typography>
         <Typography variant="body2" maxWidth={1000} mb={4}>

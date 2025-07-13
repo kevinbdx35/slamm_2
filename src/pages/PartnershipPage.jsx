@@ -90,14 +90,14 @@ export default function PartnershipPage() {
         >
           Devenez Partenaire du SLAMM
         </Typography>
-        <Typography variant="h2" color="text.secondary" fontSize="1.2rem" mb={4}>
+        <Typography variant="body1" color="text.secondary" fontSize="1.2rem" mb={4}>
           Rejoignez notre communauté sportive dynamique et soutenez le développement du MMA en Bretagne
         </Typography>
       </Box>
 
       {/* Pourquoi nous soutenir */}
       <Box component="section" mb={6}>
-        <Typography variant="h3" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Pourquoi soutenir le SLAMM ?
         </Typography>
         <Grid container spacing={3}>
@@ -122,7 +122,7 @@ export default function PartnershipPage() {
 
       {/* Nos chiffres */}
       <Box component="section" mb={6}>
-        <Typography variant="h3" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Notre impact
         </Typography>
         <Grid container spacing={3}>
@@ -145,7 +145,7 @@ export default function PartnershipPage() {
 
       {/* Offres de partenariat */}
       <Box component="section" mb={6}>
-        <Typography variant="h3" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Nos offres de partenariat
         </Typography>
         <Grid container spacing={3}>
@@ -178,7 +178,7 @@ export default function PartnershipPage() {
 
       {/* Nos besoins */}
       <Box component="section" mb={6}>
-        <Typography variant="h3" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Comment nous aider ?
         </Typography>
         <Typography variant="body1" mb={3}>
@@ -206,7 +206,7 @@ export default function PartnershipPage() {
 
       {/* Contact */}
       <Box component="section" mb={6}>
-        <Typography variant="h3" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
           Contactez-nous
         </Typography>
         <Typography variant="body1" mb={3}>
@@ -216,7 +216,7 @@ export default function PartnershipPage() {
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
-                <Typography variant="h5" mb={2}>Contact direct</Typography>
+                <Typography variant="h3" mb={2}>Contact direct</Typography>
                 <Typography variant="body1" mb={1}>
                   <strong>Email :</strong> {CONTACT_INFO.EMAIL}
                 </Typography>
@@ -236,7 +236,7 @@ export default function PartnershipPage() {
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
-                <Typography variant="h5" mb={2}>Rencontrons-nous</Typography>
+                <Typography variant="h3" mb={2}>Rencontrons-nous</Typography>
                 <Typography variant="body1" mb={3}>
                   Venez découvrir notre club et rencontrer notre équipe lors d'un entraînement.
                 </Typography>

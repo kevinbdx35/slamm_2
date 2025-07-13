@@ -30,7 +30,7 @@ export default function MentionsLegalesPage() {
 
         <Card sx={{ mb: 4, border: '2px solid', borderColor: 'primary.main', borderRadius: 2 }}>
           <CardContent sx={{ p: 4 }}>
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               1. Informations sur l'éditeur
             </Typography>
             
@@ -62,7 +62,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               2. Hébergement
             </Typography>
             
@@ -79,7 +79,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               3. Propriété intellectuelle
             </Typography>
             
@@ -93,7 +93,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               4. Protection des données personnelles
             </Typography>
             
@@ -111,7 +111,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               5. Cookies
             </Typography>
             
@@ -121,7 +121,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               6. Responsabilité
             </Typography>
             
@@ -135,7 +135,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               7. Liens hypertextes
             </Typography>
             
@@ -145,7 +145,7 @@ export default function MentionsLegalesPage() {
 
             <Divider sx={{ my: 3, borderColor: 'primary.main' }} />
 
-            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main' }}>
+            <Typography variant="h2" gutterBottom sx={{ color: 'primary.main' }}>
               8. Droit applicable
             </Typography>
             
