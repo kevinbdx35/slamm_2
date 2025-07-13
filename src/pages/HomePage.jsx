@@ -11,7 +11,7 @@
  */
 
 import React from 'react';
-import { Typography, Box, Grid } from '@mui/material';
+import { Typography, Box, Grid, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { PARTNER_URLS } from '../config/urls';
 import SeoHelmet from '../components/SeoHelmet';
@@ -33,9 +33,138 @@ export default function HomePage() {
         keywords="MMA Saint-Lunaire, arts martiaux mixtes Saint-Lunaire, mixed martial arts Saint-Lunaire, sport de combat Saint-Lunaire, grappling Saint-Lunaire, dojo Saint-Lunaire, club sportif Saint-Lunaire, self-défense Saint-Lunaire, SLAMM Saint-Lunaire, FMMAF Saint-Lunaire"
       />
 
+      {/* Hero Section */}
+      <Box 
+        component="section" 
+        sx={{ 
+          position: 'relative',
+          minHeight: '70vh',
+          display: 'flex',
+          alignItems: 'center',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1611077492881-8d15417d0d38?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(46, 125, 50, 0.7)',
+            zIndex: 1
+          },
+          borderBottom: '4px solid',
+          borderColor: 'primary.main'
+        }}
+      >
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+          <Box sx={{ textAlign: 'center', color: 'white' }}>
+            <Typography 
+              variant="h1" 
+              sx={{ 
+                mb: 2,
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.8rem', lg: '3.2rem' }
+              }}
+            >
+              Saint-Lunaire Arts Martiaux Mixtes
+            </Typography>
+            
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                mb: 2,
+                maxWidth: 800,
+                mx: 'auto',
+                color: 'white',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              Découvrez les arts martiaux mixtes avec nos instructeurs certifiés.
+            </Typography>
+            
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                mb: 4,
+                maxWidth: 800,
+                mx: 'auto',
+                color: 'white',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              À partir de 16 ans - Tous niveaux bienvenus.
+            </Typography>
+
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Button
+                component={Link}
+                to="/cours"
+                variant="outlined"
+                size="large"
+                sx={{
+                  borderRadius: 0,
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  borderWidth: 3,
+                  borderColor: 'white',
+                  color: 'white',
+                  py: 1.5,
+                  px: 4,
+                  fontSize: '1.1rem',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(10px)',
+                  "&:hover": {
+                    backgroundColor: '#00ff5e',
+                    color: '#0a1414',
+                    borderColor: '#00ff5e',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
+                  }
+                }}
+              >
+                Découvrir nos cours
+              </Button>
+              
+              <Button
+                component={Link}
+                to="/contact"
+                variant="outlined"
+                size="large"
+                sx={{ 
+                  borderRadius: 0,
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  borderWidth: 2,
+                  borderColor: 'white',
+                  color: 'white',
+                  py: 1.5,
+                  px: 4,
+                  fontSize: '1.1rem',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': {
+                    backgroundColor: '#ff6b35',
+                    color: '#ffffff',
+                    borderColor: '#ff6b35',
+                    transform: 'translateY(-1px)',
+                    boxShadow: '0 4px 8px rgba(255,107,53,0.3)',
+                  }
+                }}
+              >
+                Nous contacter
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
       {/* En-tête principal avec présentation du club */}
-      <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
-        <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+      <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2, mt: 4 }}>
+        <Typography variant="h2" sx={{ letterSpacing: '-1px' }}>
           Saint-Lunaire Arts Martiaux Mixtes - Académie de MMA
         </Typography>
         <Typography variant="body1" mt={1} maxWidth={1000}>
