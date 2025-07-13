@@ -221,9 +221,17 @@ export default function HomePage() {
         <Box my={4} textAlign="center">
           <Box
             component="img"
-            src="https://mma-saint-lunaire.fr/img/photo_mma_ws3yn7_c_scale,w_1400.jpg"
-            alt="Bénéfices de l'entraînement MMA"
-            title="Entraînement et bienfaits du MMA"
+            src="/img/team2/equipe1_scale,w_1400.webp"
+            srcSet={`
+              /img/team2/equipe1_scale,w_200.webp 200w,
+              /img/team2/equipe1_scale,w_637.webp 637w,
+              /img/team2/equipe1_scale,w_955.webp 955w,
+              /img/team2/equipe1_scale,w_1266.webp 1266w,
+              /img/team2/equipe1_scale,w_1400.webp 1400w
+            `}
+            sizes="(max-width: 480px) 200px, (max-width: 768px) 637px, (max-width: 1024px) 955px, (max-width: 1200px) 1266px, 1400px"
+            alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
+            title="Une partie de l'équipe SLAMM de la saison 2024-2025"
             loading="lazy"
             maxWidth={2000}
             width="100%"
