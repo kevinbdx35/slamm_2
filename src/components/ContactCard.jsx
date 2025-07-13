@@ -24,7 +24,7 @@ export default function ContactCard({ icon, title, children, button }) {
           {React.cloneElement(icon, { 
             sx: { mr: 1, color: 'primary.main', fontSize: 28 } 
           })}
-          <Typography variant="h5" fontWeight="bold">{title}</Typography>
+          <Typography component="div" sx={{ fontSize: '1.125rem', fontWeight: 'bold', letterSpacing: '0.02em' }}>{title}</Typography>
         </Box>
         
         {children}

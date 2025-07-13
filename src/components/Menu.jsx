@@ -345,7 +345,12 @@ export default function Menu({ isDark, toggleTheme }) {
         {/* Section gauche - Logo seul */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
-            variant="h5"
+            component="div"
+            sx={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              letterSpacing: '0.02em'
+            }}
             sx={{ 
               fontWeight: 700,
               cursor: 'pointer',
@@ -459,7 +464,12 @@ export default function Menu({ isDark, toggleTheme }) {
                 <MenuIcon />
               </IconButton>
               <Typography
-                variant="h5"
+                component="div"
+            sx={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              letterSpacing: '0.02em'
+            }}
                 sx={{ fontWeight: 700, cursor: 'pointer' }}
                 onClick={() => handleMobileNav('/')}
               >

@@ -24,7 +24,7 @@ export default function ArticleCard({ title, date, excerpt, url }) {
         },
       }}
     >
-      <Typography variant="h5" fontWeight="bold" gutterBottom>
+      <Typography component="div" sx={{ fontSize: '1.125rem', fontWeight: 'bold', letterSpacing: '0.02em' }} gutterBottom>
         {title}
       </Typography>
       <Typography variant="caption" color="text.secondary" display="block" mb={1}>

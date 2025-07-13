@@ -40,7 +40,12 @@ const Footer = () => {
           <Grid item xs={12} md={4}>
             <Box sx={{ mb: 3 }}>
               <Typography 
-                variant="h5" 
+                component="div"
+              sx={{
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                letterSpacing: '0.02em'
+              }} 
                 sx={{ 
                   fontWeight: "bold",
                   color: 'primary.main',
@@ -63,7 +68,12 @@ const Footer = () => {
           {/* Contact */}
           <Grid item xs={12} md={4}>
             <Typography 
-              variant="h6" 
+              component="div"
+            sx={{
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              letterSpacing: '0.02em'
+            }} 
               sx={{ 
                 fontWeight: "bold", 
                 mb: 2,
@@ -108,7 +118,12 @@ const Footer = () => {
           {/* Navigation */}
           <Grid item xs={12} md={4}>
             <Typography 
-              variant="h6" 
+              component="div"
+            sx={{
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              letterSpacing: '0.02em'
+            }} 
               sx={{ 
                 fontWeight: "bold", 
                 mb: 2,

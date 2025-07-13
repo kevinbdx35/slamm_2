@@ -114,7 +114,7 @@ export default function EquipePage() {
                 </Box>
 
                 <Box sx={{ p: 3, flex: 1 }}>
-                  <Typography variant="h6" fontWeight="bold">
+                  <Typography component="div" sx={{ fontSize: '0.875rem', fontWeight: 'bold', letterSpacing: '0.02em' }}>
                     {name}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary" gutterBottom>
