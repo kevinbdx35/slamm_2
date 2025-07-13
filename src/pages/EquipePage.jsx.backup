@@ -117,12 +117,7 @@ export default function EquipePage() {
                   <Typography component="div" sx={{ fontSize: '0.875rem', fontWeight: 'bold', letterSpacing: '0.02em' }}>
                     {name}
                   </Typography>
-                  <Typography 
-                    variant="subtitle1" 
-                    color="primary.main" 
-                    sx={{ fontWeight: 'bold' }}
-                    gutterBottom
-                  >
+                  <Typography variant="subtitle1" color="text.secondary" gutterBottom>
                     {role}
                   </Typography>
                   <Divider sx={{ my: 1 }} />
