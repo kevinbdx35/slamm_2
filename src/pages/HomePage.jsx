@@ -177,9 +177,20 @@ export default function HomePage() {
       <Box my={4} textAlign="center">
         <Box
           component="img"
-          src={sharedImageUrl}
-          alt="Combattants MMA en entraînement"
-          title="Entraînement de MMA chez SLAMM"
+          src="/img/team/photo1_scale,w_1400.webp"
+          srcSet={`
+            /img/team/photo1_scale,w_200.webp 200w,
+            /img/team/photo1_scale,w_400.webp 400w,
+            /img/team/photo1_scale,w_525.webp 525w,
+            /img/team/photo1_scale,w_704.webp 704w,
+            /img/team/photo1_scale,w_914.webp 914w,
+            /img/team/photo1_scale,w_1104.webp 1104w,
+            /img/team/photo1_scale,w_1314.webp 1314w,
+            /img/team/photo1_scale,w_1400.webp 1400w
+          `}
+          sizes="(max-width: 480px) 400px, (max-width: 768px) 704px, (max-width: 1024px) 914px, (max-width: 1200px) 1104px, 1400px"
+          alt="Victoire de Florian pour son premier pas dans une cage"
+          title="Victoire de Florian pour son premier pas dans une cage"
           loading="lazy"
           maxWidth={2000}
           width="100%"
