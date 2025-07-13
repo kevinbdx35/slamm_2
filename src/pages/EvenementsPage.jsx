@@ -58,7 +58,7 @@ export default function EvenementsPage() {
               textAlign: "center",
             }}
           >
-            <Typography variant="h5" fontWeight="bold" mb={2} color="text.secondary">
+            <Typography variant="h3" fontWeight="bold" mb={2} color="text.secondary">
               Aucun événement programmé
             </Typography>
             <Typography variant="body1" color="text.primary" mb={3}>

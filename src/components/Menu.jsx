@@ -121,6 +121,7 @@ export default function Menu({ isDark, toggleTheme }) {
       <IconButton 
         onClick={toggleTheme} 
         color="inherit"
+        aria-label={isDark ? 'Passer au thème clair' : 'Passer au thème sombre'}
         sx={{
           position: 'relative',
           overflow: 'hidden',
@@ -453,6 +454,7 @@ export default function Menu({ isDark, toggleTheme }) {
                 color="inherit"
                 edge="start"
                 onClick={() => setDrawerOpen(true)}
+                aria-label="Ouvrir le menu de navigation"
               >
                 <MenuIcon />
               </IconButton>
