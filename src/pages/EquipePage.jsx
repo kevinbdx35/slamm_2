@@ -22,7 +22,7 @@ const teamMembers = [
     role: 'Vice-Président',
     initials: 'Mi',
     color: '#2e7d32',
-    diplomas: ['PSC1 et PSC2'],
+    diplomas: ['PSE1 et PSE2'],
   },
   {
     name: 'Thomas',
