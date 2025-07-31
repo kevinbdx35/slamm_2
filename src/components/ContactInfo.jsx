@@ -35,13 +35,14 @@ export default function ContactInfo({ label, children, isLink = false, href }) {
             borderRadius: '4px',
             px: 1,
             py: 0.5,
+            fontSize: '1.1rem',
             '&:hover': {
               backgroundColor: 'rgba(0, 255, 94, 0.08)',
               textDecorationColor: 'rgba(0, 255, 94, 1)',
             },
           }}
         >
-          {content}
+          {children}
         </Box>
       ) : (
         content
