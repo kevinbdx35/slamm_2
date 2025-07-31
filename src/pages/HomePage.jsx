@@ -214,7 +214,7 @@ export default function HomePage() {
           Les bénéfices du MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-        Les arts martiaux mixtes, discipline complète qui combine différentes techniques comme la luta livre, offrent de nombreux bénéfices. Le MMA améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements de mixed martial arts permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
+        Les arts martiaux mixtes, discipline complète qui combine différentes techniques, offrent de nombreux bénéfices. Le MMA améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements de mixed martial arts permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
         </Typography>
 
         {/* Image illustrative des bénéfices */}
