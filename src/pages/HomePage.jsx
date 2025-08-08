@@ -169,7 +169,7 @@ export default function HomePage() {
         </Typography>
         <Typography variant="body1" mt={1} maxWidth={1000}>
           Association loi 1901 dédiée à l'enseignement et la pratique des Arts Martiaux Mixtes depuis 2023.
-          Découvre nos cours, notre ambiance, et rejoins-nous pour tester le MMA.
+          Découvre nos cours, notre ambiance, et rejoins-nous pour pratiquer le MMA.
         </Typography>
       </Box>
 
