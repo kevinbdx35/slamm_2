@@ -137,7 +137,10 @@ const Footer = () => {
                 { to: '/', label: 'Accueil' },
                 { to: '/cours', label: 'Cours & Tarifs' },
                 { to: '/equipe', label: 'Équipe' },
+                { to: '/evenements', label: 'Événements' },
                 { to: '/contact', label: 'Contact' },
+                { to: '/faq', label: 'FAQ' },
+                { to: '/hygiene', label: 'Hygiène' },
               ].map((link) => (
                 <Link
                   key={link.to}

@@ -9,6 +9,7 @@ import EquipePage from './pages/EquipePage.jsx'
 import EvenementsPage from './pages/EvenementsPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
+import HygienePage from './pages/HygienePage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
 // import PartnershipPage from './pages/PartnershipPage.jsx' // TODO: Activer plus tard
 import SeoHelmet from './components/SeoHelmet.jsx'
@@ -69,6 +70,13 @@ export default function App({ isDark, toggleTheme }) {
       image: "https://mma-saint-lunaire.fr/img/social/social.jpg",
       keywords: "FAQ MMA Saint-Lunaire, FAQ arts martiaux mixtes Saint-Lunaire, questions mixed martial arts Saint-Lunaire, tarifs MMA Saint-Lunaire, questions sport de combat Saint-Lunaire, débutant adulte MMA Saint-Lunaire, horaires dojo Saint-Lunaire, prix cours MMA Saint-Lunaire",
     },
+    '/hygiene': {
+      title: "Hygiène et Sécurité - SLAMM MMA",
+      description: "Règles d'hygiène et protocoles de sécurité sanitaire pour la pratique du MMA au club SLAMM.",
+      url: "https://mma-saint-lunaire.fr/hygiene",
+      image: "https://mma-saint-lunaire.fr/img/social/social.jpg",
+      keywords: "hygiène MMA Saint-Lunaire, sécurité sanitaire club MMA, prévention infection sport combat, règles hygiène arts martiaux mixtes, protocole sanitaire dojo Saint-Lunaire",
+    },
     '/mentions-legales': {
       title: "Mentions légales - SLAMM MMA",
       description: "Mentions légales du club de MMA SLAMM Saint-Lunaire.",
@@ -110,6 +118,7 @@ export default function App({ isDark, toggleTheme }) {
           <Route path="/evenements" element={<EvenementsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/hygiene" element={<HygienePage />} />
           <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
           {/* <Route path="/partenariat" element={<PartnershipPage />} /> */} {/* TODO: Activer plus tard */}
         </Routes>

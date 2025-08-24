@@ -43,6 +43,8 @@ import {
   ContactMailOutlined as ContactMailOutlinedIcon,
   HelpOutline as HelpOutlineIcon,
   Help as HelpIcon,
+  CleaningServices as CleaningServicesIcon,
+  CleaningServicesOutlined as CleaningServicesOutlinedIcon,
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
   Menu as MenuIcon,
@@ -106,6 +108,12 @@ export default function Menu({ isDark, toggleTheme }) {
       icon: <HelpOutlineIcon />, 
       activeIcon: <HelpIcon />, 
       path: '/faq' 
+    },
+    { 
+      label: 'Hygiène', 
+      icon: <CleaningServicesOutlinedIcon />, 
+      activeIcon: <CleaningServicesIcon />, 
+      path: '/hygiene' 
     },
   ], []);
 

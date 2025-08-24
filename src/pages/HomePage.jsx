@@ -21,7 +21,7 @@ import SeoHelmet from '../components/SeoHelmet';
  */
 export default function HomePage() {
   // URL de l'image principale optimisée (WebP responsive)
-  const sharedImageUrl = 'https://mma-saint-lunaire.fr/img/mma_blur_vwsa7w_c_scale,w_1400.webp';
+  const SHARED_IMAGE_URL = 'https://mma-saint-lunaire.fr/img/mma_blur_vwsa7w_c_scale,w_1400.webp';
 
   return (
     <>
