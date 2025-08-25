@@ -9,13 +9,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Root from './components/Root.jsx'
 
-// Import des polices Roboto Mono pour l'identité SLAMM
+// Import des polices IBM Plex Mono pour l'identité SLAMM
 // Chargées de manière optimale avec @fontsource
-import '@fontsource/roboto-mono/300.css' // Light
-import '@fontsource/roboto-mono/400.css' // Regular
-import '@fontsource/roboto-mono/500.css' // Medium
-import '@fontsource/roboto-mono/600.css' // Semi-Bold
-import '@fontsource/roboto-mono/700.css' // Bold
+import '@fontsource/ibm-plex-mono/300.css' // Light
+import '@fontsource/ibm-plex-mono/400.css' // Regular
+import '@fontsource/ibm-plex-mono/500.css' // Medium
+import '@fontsource/ibm-plex-mono/600.css' // Semi-Bold
+import '@fontsource/ibm-plex-mono/700.css' // Bold
 
 // Police d'accent Cinzel pour les titres spéciaux
 import '@fontsource/cinzel/700.css'
