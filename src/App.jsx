@@ -11,7 +11,6 @@ import ContactPage from './pages/ContactPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import HygienePage from './pages/HygienePage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
-// import PartnershipPage from './pages/PartnershipPage.jsx' // TODO: Activer plus tard
 import SeoHelmet from './components/SeoHelmet.jsx'
 
 /**
