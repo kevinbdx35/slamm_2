@@ -4,7 +4,7 @@
   <!-- Page d'accueil - Priorité maximale -->
   <url>
     <loc>https://mma-saint-lunaire.fr/</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- Cours - Page importante pour les conversions -->
   <url>
     <loc>https://mma-saint-lunaire.fr/cours</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- Contact - Page de conversion critique -->
   <url>
     <loc>https://mma-saint-lunaire.fr/contact</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- Équipe - Important pour la crédibilité -->
   <url>
     <loc>https://mma-saint-lunaire.fr/equipe</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -36,7 +36,7 @@
   <!-- Événements - Stages et compétitions -->
   <url>
     <loc>https://mma-saint-lunaire.fr/evenements</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -44,7 +44,7 @@
   <!-- FAQ - Questions fréquentes -->
   <url>
     <loc>https://mma-saint-lunaire.fr/faq</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -52,7 +52,7 @@
   <!-- Mentions légales - Obligatoire -->
   <url>
     <loc>https://mma-saint-lunaire.fr/mentions-legales</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-01-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

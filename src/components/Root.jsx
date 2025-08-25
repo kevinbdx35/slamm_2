@@ -4,7 +4,7 @@
  * Ce composant de niveau racine gère :
  * - La persistance et synchronisation du thème sombre/clair
  * - Les transitions fluides entre les thèmes avec animations
- * - Le routing HashRouter (optimisé pour GitHub Pages)
+ * - Le routing BrowserRouter (optimisé pour Netlify)
  * - L'application globale des thèmes Material Design 3
  */
 
@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react'
 import App from '../App.jsx'
 import { ThemeProvider, CssBaseline, Box } from '@mui/material'
 import { lightTheme, darkTheme } from '../theme.js'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 /**
  * Composant racine avec gestion avancée du thème
@@ -87,9 +87,9 @@ export default function Root() {
           }
         }}
       >
-        <HashRouter>
+        <BrowserRouter>
           <App isDark={isDark} toggleTheme={toggleTheme} />
-        </HashRouter>
+        </BrowserRouter>
       </Box>
     </ThemeProvider>
   )
