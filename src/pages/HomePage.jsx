@@ -188,7 +188,7 @@ export default function HomePage() {
             /img/team/photo1_scale,w_1314.webp 1314w,
             /img/team/photo1_scale,w_1400.webp 1400w
           `}
-          sizes="(max-width: 480px) 400px, (max-width: 768px) 704px, (max-width: 1024px) 914px, (max-width: 1200px) 1104px, 1400px"
+          sizes="(max-width: 480px) 400px, (max-width: 768px) 525px, (max-width: 1024px) 704px, (max-width: 1200px) 914px, 1104px"
           alt="Victoire de Florian pour son premier pas dans une cage"
           title="Victoire de Florian pour son premier pas dans une cage"
           fetchpriority="high"
@@ -230,7 +230,7 @@ export default function HomePage() {
               /img/team2/equipe1_scale,w_1266.webp 1266w,
               /img/team2/equipe1_scale,w_1400.webp 1400w
             `}
-            sizes="(max-width: 480px) 200px, (max-width: 768px) 637px, (max-width: 1024px) 955px, (max-width: 1200px) 1266px, 1400px"
+            sizes="(max-width: 480px) 200px, (max-width: 768px) 400px, (max-width: 1024px) 637px, (max-width: 1200px) 955px, 1266px"
             alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
             title="Une partie de l'équipe SLAMM de la saison 2024-2025"
             loading="lazy"
