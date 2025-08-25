@@ -41,17 +41,13 @@ const Footer = () => {
             <Box sx={{ mb: 3 }}>
               <Typography 
                 component="div"
-              sx={{
+              sx={{ 
                 fontSize: '1.125rem',
-                fontWeight: 'bold',
-                letterSpacing: '0.02em'
-              }} 
-                sx={{ 
-                  fontWeight: "bold",
-                  color: 'primary.main',
-                  mb: 1,
-                  letterSpacing: '-0.5px'
-                }}
+                fontWeight: "bold",
+                color: 'primary.main',
+                mb: 1,
+                letterSpacing: '-0.5px'
+              }}
               >
                 SLAMM
               </Typography>
@@ -69,16 +65,13 @@ const Footer = () => {
           <Grid item xs={12} md={4}>
             <Typography 
               component="div"
-            sx={{
+            sx={{ 
               fontSize: '0.875rem',
-              fontWeight: '500',
-              letterSpacing: '0.02em'
-            }} 
-              sx={{ 
-                fontWeight: "bold", 
-                mb: 2,
-                color: 'text.primary'
-              }}
+              fontWeight: "bold", 
+              letterSpacing: '0.02em',
+              mb: 2,
+              color: 'text.primary'
+            }}
             >
               Contact
             </Typography>
@@ -119,16 +112,13 @@ const Footer = () => {
           <Grid item xs={12} md={4}>
             <Typography 
               component="div"
-            sx={{
+            sx={{ 
               fontSize: '0.875rem',
-              fontWeight: '500',
-              letterSpacing: '0.02em'
-            }} 
-              sx={{ 
-                fontWeight: "bold", 
-                mb: 2,
-                color: 'text.primary'
-              }}
+              fontWeight: "bold", 
+              letterSpacing: '0.02em',
+              mb: 2,
+              color: 'text.primary'
+            }}
             >
               Navigation
             </Typography>

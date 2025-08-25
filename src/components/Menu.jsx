@@ -353,15 +353,11 @@ export default function Menu({ isDark, toggleTheme }) {
         {/* Section gauche - Logo seul */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
-            component="div"
-            sx={{
-              fontSize: '1.125rem',
-              fontWeight: 'bold',
-              letterSpacing: '0.02em'
-            }}
             sx={{ 
+              fontSize: '1.125rem',
               fontWeight: 700,
-              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              cursor: 'pointer'
             }}
             component={Link}
             to="/"
@@ -474,11 +470,11 @@ export default function Menu({ isDark, toggleTheme }) {
               <Typography
                 component="div"
             sx={{
-              fontSize: '1.125rem',
-              fontWeight: 'bold',
-              letterSpacing: '0.02em'
+              fontSize: '0.875rem',
+              fontWeight: 700,
+              letterSpacing: '0.02em',
+              cursor: 'pointer'
             }}
-                sx={{ fontWeight: 700, cursor: 'pointer' }}
                 onClick={() => handleMobileNav('/')}
               >
                 SLAMM
