@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom/client'
 import Root from './components/Root.jsx'
 
 // Import des polices IBM Plex Mono pour l'identité SLAMM
-// Chargées de manière optimale avec @fontsource
+// Chargées de manière optimale avec @fontsource et font-display: swap
 import '@fontsource/ibm-plex-mono/300.css' // Light
 import '@fontsource/ibm-plex-mono/400.css' // Regular
 import '@fontsource/ibm-plex-mono/500.css' // Medium

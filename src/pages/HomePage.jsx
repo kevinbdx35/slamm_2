@@ -191,7 +191,8 @@ export default function HomePage() {
           sizes="(max-width: 480px) 400px, (max-width: 768px) 704px, (max-width: 1024px) 914px, (max-width: 1200px) 1104px, 1400px"
           alt="Victoire de Florian pour son premier pas dans une cage"
           title="Victoire de Florian pour son premier pas dans une cage"
-          loading="lazy"
+          fetchpriority="high"
+          loading="eager"
           maxWidth={2000}
           width="100%"
           sx={{ border: '4px solid', borderColor: 'primary.main', borderRadius: 0 }}
