@@ -17,8 +17,7 @@ import '@fontsource/ibm-plex-mono/500.css' // Medium
 import '@fontsource/ibm-plex-mono/600.css' // Semi-Bold
 import '@fontsource/ibm-plex-mono/700.css' // Bold
 
-// Police d'accent Cinzel pour les titres spéciaux
-import '@fontsource/cinzel/700.css'
+// IBM Plex Mono uniquement pour cohérence UI parfaite
 
 // Rendu de l'application React dans le DOM
 // StrictMode active les vérifications supplémentaires en développement
