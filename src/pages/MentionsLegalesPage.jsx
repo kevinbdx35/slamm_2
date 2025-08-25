@@ -67,12 +67,12 @@ export default function MentionsLegalesPage() {
             </Typography>
             
             <Typography variant="body1" paragraph>
-              Ce site est hébergé par GitHub Pages :
+              Ce site est hébergé par Netlify :
             </Typography>
             
             <Typography variant="body1" paragraph>
-              <strong>GitHub, Inc.</strong><br />
-              88 Colin P Kelly Jr St<br />
+              <strong>Netlify, Inc.</strong><br />
+              2325 3rd Street, Suite 296<br />
               San Francisco, CA 94107<br />
               États-Unis
             </Typography>

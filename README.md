@@ -12,7 +12,7 @@ SLAMM est un club de MMA (Mixed Martial Arts) proposant des cours pour tous nive
 
 **Site officiel :** [https://mma-saint-lunaire.fr/](https://mma-saint-lunaire.fr/)
 
-Le site est hébergé sur GitHub Pages avec un domaine personnalisé configuré.
+Le site est hébergé sur Netlify avec un domaine personnalisé configuré.
 
 ## 🛠️ Technologies utilisées
 
@@ -72,8 +72,8 @@ npm run preview
 # Lancer le linting
 npm run lint
 
-# Déployer sur GitHub Pages
-npm run deploy
+# Déployer sur Netlify
+npm run build
 ```
 
 ## ⚙️ Configuration
@@ -128,17 +128,17 @@ Le site utilise un système de design basé sur **Material Design 3** avec :
 
 ## 🌍 Déploiement
 
-Le site est déployé sur **GitHub Pages** avec un **domaine personnalisé** configuré :
+Le site est déployé sur **Netlify** avec un **domaine personnalisé** configuré :
 
 ### Configuration domaine personnalisé
 - **Domaine** : `mma-saint-lunaire.fr` (géré via Gandi.net)
-- **DNS** : Enregistrements A pointant vers GitHub Pages
-- **SSL** : Certificat HTTPS automatique via GitHub
+- **DNS** : Enregistrement CNAME pointant vers Netlify
+- **SSL** : Certificat HTTPS automatique via Netlify
 
 ### Processus de déploiement
-1. **Build local** : `npm run build`
-2. **Deploy** : `npm run deploy` (utilise gh-pages)
-3. **Publication** : Mise à jour automatique sur la branche gh-pages
+1. **Build automatique** : Netlify détecte les commits sur `main`
+2. **Deploy** : Build et déploiement automatiques
+3. **Publication** : Mise à jour immédiate du site
 
 Le site utilise Node.js 20 pour la compatibilité avec Vite 7.
 
