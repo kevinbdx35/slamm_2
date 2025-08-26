@@ -37,7 +37,7 @@ export default function SeoHelmet({
   // Optimisé pour le référencement local et la visibilité dans les recherches de clubs de sport
   const defaultSchema = {
     "@context": "https://schema.org",
-    "@type": "SportsOrganization",
+    "@type": "SportsClub",
     "name": "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
     "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
     "url": "https://mma-saint-lunaire.fr/",
