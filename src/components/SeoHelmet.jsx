@@ -33,56 +33,9 @@ export default function SeoHelmet({
   schema = null, // Schema.org personnalisé pour chaque page
 }) {
   
-  // Schema.org par défaut pour l'organisation SLAMM
-  // Optimisé pour le référencement local et la visibilité dans les recherches de clubs de sport
-  const defaultSchema = {
-    "@context": "https://schema.org",
-    "@type": "SportsClub",
-    "name": "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
-    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
-    "url": "https://mma-saint-lunaire.fr/",
-    "logo": "https://mma-saint-lunaire.fr/img/logo-slamm.png",
-    "image": image,
-    "telephone": "+33782779288",
-    "email": "slamm35800@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Boulevard Flusson (Mairie)",
-      "addressLocality": "Saint-Lunaire",
-      "postalCode": "35800",
-      "addressRegion": "Bretagne, Ille-et-Vilaine, Côte d'Émeraude",
-      "addressCountry": "FR"
-    },
-    "location": {
-      "@type": "Place",
-      "name": "Lieu d'entraînement SLAMM",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "361 Rue de la Saudrais",
-        "addressLocality": "Saint-Lunaire",
-        "postalCode": "35800",
-        "addressRegion": "Bretagne",
-        "addressCountry": "FR"
-      }
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "48.629194657231274",
-      "longitude": "-2.1120771896734203"
-    },
-    "sameAs": [
-      "https://instagram.com/slamm35800"
-    ],
-    "areaServed": {
-      "@type": "Place",
-      "name": "Côte d'Émeraude, Ille-et-Vilaine, Saint-Lunaire, Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac, Bretagne"
-    },
-    "foundingDate": "2023",
-    "memberOf": {
-      "@type": "Organization",
-      "name": "Fédération Française de MMA"
-    }
-  };
+  // Note: Les données structurées Schema.org principales sont maintenant dans index.html
+  // pour garantir leur détection par Google Search Console (rendu HTML immédiat)
+  // Ce composant peut toujours recevoir un schema personnalisé pour des pages spécifiques
   return (
     <Helmet>
       {/* Configuration viewport pour mobile optimal */}
@@ -114,11 +67,13 @@ export default function SeoHelmet({
       <meta name="twitter:image" content={image} />
       <meta name="twitter:site" content="@slamm35800" />
 
-      {/* Données structurées Schema.org pour Google Rich Snippets */}
-      {/* Améliore l'affichage dans les résultats de recherche */}
-      <script type="application/ld+json">
-        {JSON.stringify(schema || defaultSchema)}
-      </script>
+      {/* Données structurées Schema.org pour pages spécifiques uniquement */}
+      {/* Les données structurées principales sont dans index.html */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
 
       {/* Métadonnées de géolocalisation pour le référencement local */}
       {/* Optimise la visibilité dans les recherches "MMA près de moi" */}
