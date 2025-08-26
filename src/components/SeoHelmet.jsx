@@ -73,7 +73,6 @@ export default function SeoHelmet({
     "sameAs": [
       "https://instagram.com/slamm35800"
     ],
-    "sport": ["MMA", "Arts martiaux mixtes", "Mixed Martial Arts", "Sport de combat", "Grappling", "Self-défense", "Luta livre", "Muay Thai", "Combat libre"],
     "areaServed": {
       "@type": "Place",
       "name": "Côte d'Émeraude, Ille-et-Vilaine, Saint-Lunaire, Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac, Bretagne"
