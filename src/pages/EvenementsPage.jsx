@@ -1,11 +1,44 @@
 import React from "react";
-import { Typography, Box, Button, Grid } from "@mui/material";
+import { Typography, Box, Button, Grid, Card, CardContent, Chip } from "@mui/material";
 import { CalendarToday, LocationOn, AccessTime, Euro, People } from "@mui/icons-material";
 import SeoHelmet from "../components/SeoHelmet";
-import { ASSOCONNECT_URLS, CONTACT_INFO } from "../config/urls";
+import { SOCIAL_URLS } from "../config/urls";
+import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from "../config/events";
 
 export default function EvenementsPage() {
+  // Récupérer les événements à venir et les trier par date
+  const upcomingEvents = sortEventsByDate(getUpcomingEvents(EVENTS));
 
+  // Récupérer les événements passés (triés du plus récent au plus ancien)
+  const pastEvents = getPastEvents(EVENTS);
+
+  // Fonction pour obtenir la couleur du statut
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "upcoming":
+        return "success";
+      case "full":
+        return "warning";
+      case "cancelled":
+        return "error";
+      default:
+        return "default";
+    }
+  };
+
+  // Fonction pour obtenir le label du statut
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case "upcoming":
+        return "Places disponibles";
+      case "full":
+        return "Complet";
+      case "cancelled":
+        return "Annulé";
+      default:
+        return "";
+    }
+  };
 
   return (
     <>
@@ -47,49 +80,240 @@ export default function EvenementsPage() {
             Prochains événements
           </Typography>
 
-          <Box
-            sx={{
-              border: "2px solid",
-              borderColor: "primary.main",
-              borderRadius: 0,
-              p: 4,
-              mb: 4,
-              backgroundColor: "transparent",
-              textAlign: "center",
-            }}
-          >
-            <Typography variant="h3" fontWeight="bold" mb={2} color="text.secondary">
-              Aucun événement programmé
-            </Typography>
-            <Typography variant="body1" color="text.primary" mb={3}>
-              Nous préparons de nouveaux événements pour vous. Restez connectés sur nos réseaux sociaux pour être informés en priorité !
-            </Typography>
-            <Box display="flex" justifyContent="center">
-              <Button
-                variant="contained"
-                size="large"
-                href="https://instagram.com/slamm35800"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  borderRadius: 0,
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  py: 1.5,
-                  px: 4,
-                  backgroundColor: "primary.main",
-                  "&:hover": {
-                    backgroundColor: "secondary.main",
-                    transform: "translateY(-2px)",
-                  },
-                }}
-              >
-                Suivre sur Instagram
-              </Button>
+          {upcomingEvents.length === 0 ? (
+            // Aucun événement à venir
+            <Box
+              sx={{
+                border: "2px solid",
+                borderColor: "primary.main",
+                borderRadius: 0,
+                p: 4,
+                mb: 4,
+                backgroundColor: "transparent",
+                textAlign: "center",
+              }}
+            >
+              <Typography variant="h3" fontWeight="bold" mb={2} color="text.secondary">
+                Aucun événement programmé
+              </Typography>
+              <Typography variant="body1" color="text.primary" mb={3}>
+                Nous préparons de nouveaux événements pour vous. Restez connectés sur nos réseaux sociaux pour être informés en priorité !
+              </Typography>
+              <Box display="flex" justifyContent="center">
+                <Button
+                  variant="contained"
+                  size="large"
+                  href={SOCIAL_URLS.INSTAGRAM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    borderRadius: 0,
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    py: 1.5,
+                    px: 4,
+                    backgroundColor: "primary.main",
+                    "&:hover": {
+                      backgroundColor: "secondary.main",
+                      transform: "translateY(-2px)",
+                    },
+                  }}
+                >
+                  Suivre sur Instagram
+                </Button>
+              </Box>
             </Box>
-          </Box>
+          ) : (
+            // Affichage des événements
+            <Grid container spacing={4}>
+              {upcomingEvents.map((event) => (
+                <Grid item xs={12} key={event.id}>
+                  <Card
+                    sx={{
+                      border: "2px solid",
+                      borderColor: "primary.main",
+                      borderRadius: 0,
+                      backgroundColor: "background.paper",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                      }}
+                    >
+                      {/* Poster à gauche */}
+                      {event.image && (
+                        <Box
+                          sx={{
+                            p: { xs: 2, md: 3 },
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Box
+                            component="img"
+                            src={event.image}
+                            alt={event.title}
+                            sx={{
+                              width: { xs: "100%", md: 220 },
+                              height: "auto",
+                              objectFit: "cover",
+                              border: "2px solid",
+                              borderColor: "primary.main",
+                            }}
+                          />
+                        </Box>
+                      )}
+
+                      {/* Contenu à droite */}
+                      <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                        <Box display="flex" justifyContent="space-between" alignItems="start" mb={2}>
+                          <Typography variant="h3" component="h3" gutterBottom>
+                            {event.title}
+                          </Typography>
+                          {event.status && (
+                            <Chip
+                              label={getStatusLabel(event.status)}
+                              color={getStatusColor(event.status)}
+                              size="small"
+                              sx={{ ml: 1 }}
+                            />
+                          )}
+                        </Box>
+
+                        <Box display="flex" alignItems="center" mb={1.5}>
+                          <CalendarToday sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                          <Typography variant="body2">
+                            {formatEventDate(event.date)}
+                          </Typography>
+                        </Box>
+
+                        {event.time && (
+                          <Box display="flex" alignItems="center" mb={1.5}>
+                            <AccessTime sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                            <Typography variant="body2">{event.time}</Typography>
+                          </Box>
+                        )}
+
+                        {event.location && (
+                          <Box display="flex" alignItems="center" mb={1.5}>
+                            <LocationOn sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                            <Typography variant="body2">{event.location}</Typography>
+                          </Box>
+                        )}
+
+                        {event.price && (
+                          <Box display="flex" alignItems="center" mb={1.5}>
+                            <Euro sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                            <Typography variant="body2">{event.price}</Typography>
+                          </Box>
+                        )}
+
+                        {event.maxParticipants && (
+                          <Box display="flex" alignItems="center" mb={2}>
+                            <People sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                            <Typography variant="body2">
+                              Limité à {event.maxParticipants} participants
+                            </Typography>
+                          </Box>
+                        )}
+
+                        <Typography variant="body2" color="text.primary" mb={3}>
+                          {event.description}
+                        </Typography>
+
+                        {event.registrationUrl && event.status === "upcoming" && (
+                          <Button
+                            variant="contained"
+                            href={event.registrationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{
+                              borderRadius: 0,
+                              fontWeight: "bold",
+                              textTransform: "none",
+                              py: 1.5,
+                              px: 4,
+                              backgroundColor: "primary.main",
+                              "&:hover": {
+                                backgroundColor: "secondary.main",
+                                transform: "translateY(-2px)",
+                              },
+                            }}
+                          >
+                            S'inscrire
+                          </Button>
+                        )}
+                      </CardContent>
+                    </Box>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          )}
         </Box>
 
+        {/* Événements passés */}
+        {pastEvents.length > 0 && (
+          <Box mb={6}>
+            <Typography
+              variant="h2"
+              mb={3}
+              sx={{ borderBottom: "2px solid", borderColor: "text.secondary", display: "inline-block" }}
+            >
+              Événements passés
+            </Typography>
+
+            <Grid container spacing={4}>
+              {pastEvents.map((event) => (
+                <Grid item xs={12} md={6} key={event.id}>
+                  <Card
+                    sx={{
+                      border: "2px solid",
+                      borderColor: "text.disabled",
+                      borderRadius: 0,
+                      backgroundColor: "background.paper",
+                      opacity: 0.85,
+                    }}
+                  >
+                    <CardContent sx={{ p: 3 }}>
+                      <Typography variant="h4" component="h3" gutterBottom color="text.secondary">
+                        {event.title}
+                      </Typography>
+
+                      <Box display="flex" alignItems="center" mb={1.5}>
+                        <CalendarToday sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                        <Typography variant="body2" color="text.secondary">
+                          {formatEventDate(event.date)}
+                        </Typography>
+                      </Box>
+
+                      {event.time && (
+                        <Box display="flex" alignItems="center" mb={1.5}>
+                          <AccessTime sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                          <Typography variant="body2" color="text.secondary">{event.time}</Typography>
+                        </Box>
+                      )}
+
+                      {event.location && (
+                        <Box display="flex" alignItems="center" mb={1.5}>
+                          <LocationOn sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                          <Typography variant="body2" color="text.secondary">{event.location}</Typography>
+                        </Box>
+                      )}
+
+                      <Typography variant="body2" color="text.secondary" mb={2}>
+                        {event.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
       </Box>
     </>
   );
