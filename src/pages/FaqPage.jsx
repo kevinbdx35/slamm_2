@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SeoHelmet from '../components/SeoHelmet'
+import { generateFAQSchema } from '../utils/schemaGenerator'
 
 const faqs = [
   {
@@ -59,12 +60,16 @@ export default function FaqPage() {
     setExpanded(isExpanded ? panel : false)
   }
 
+  // Générer le schema FAQPage
+  const faqSchema = generateFAQSchema(faqs)
+
   return (
     <>
       <SeoHelmet
         title="FAQ – MMA Saint-Lunaire"
         description="Toutes les réponses à vos questions sur la pratique du MMA au sein de l'association SLAMM à Saint-Lunaire. Inscriptions, équipement, âge, sécurité, etc."
         url="https://mma-saint-lunaire.fr/faq"
+        schema={faqSchema}
       />
 
       <Box
