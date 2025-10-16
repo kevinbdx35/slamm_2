@@ -99,7 +99,6 @@ export function generateSportsClubSchema() {
       "name": "Fédération Française de MMA",
       "url": "https://fmmaf.fr"
     },
-    "sport": "Mixed Martial Arts",
     "priceRange": "€€"
   };
 }
