@@ -183,37 +183,37 @@ export default function EvenementsPage() {
                           )}
                         </Box>
 
-                        <Box display="flex" alignItems="center" mb={1.5}>
-                          <CalendarToday sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                        <Box display="flex" alignItems="flex-start" mb={1.5}>
+                          <CalendarToday sx={{ mr: 1.5, fontSize: 20, mt: 0.2 }} color="primary" />
                           <Typography variant="body2">
                             {formatEventDate(event.date)}
                           </Typography>
                         </Box>
 
                         {event.time && (
-                          <Box display="flex" alignItems="center" mb={1.5}>
-                            <AccessTime sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                          <Box display="flex" alignItems="flex-start" mb={1.5}>
+                            <AccessTime sx={{ mr: 1.5, fontSize: 20, mt: 0.2 }} color="primary" />
                             <Typography variant="body2">{event.time}</Typography>
                           </Box>
                         )}
 
                         {event.location && (
-                          <Box display="flex" alignItems="center" mb={1.5}>
-                            <LocationOn sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                          <Box display="flex" alignItems="flex-start" mb={1.5}>
+                            <LocationOn sx={{ mr: 1.5, fontSize: 20, mt: 0.2 }} color="primary" />
                             <Typography variant="body2">{event.location}</Typography>
                           </Box>
                         )}
 
                         {event.price && (
-                          <Box display="flex" alignItems="center" mb={1.5}>
-                            <Euro sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                          <Box display="flex" alignItems="flex-start" mb={1.5}>
+                            <Euro sx={{ mr: 1.5, fontSize: 20, mt: 0.2 }} color="primary" />
                             <Typography variant="body2">{event.price}</Typography>
                           </Box>
                         )}
 
                         {event.maxParticipants && (
-                          <Box display="flex" alignItems="center" mb={2}>
-                            <People sx={{ mr: 1, fontSize: 20 }} color="primary" />
+                          <Box display="flex" alignItems="flex-start" mb={2}>
+                            <People sx={{ mr: 1.5, fontSize: 20, mt: 0.2 }} color="primary" />
                             <Typography variant="body2">
                               Limité à {event.maxParticipants} participants
                             </Typography>
@@ -283,23 +283,23 @@ export default function EvenementsPage() {
                         {event.title}
                       </Typography>
 
-                      <Box display="flex" alignItems="center" mb={1.5}>
-                        <CalendarToday sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                      <Box display="flex" alignItems="flex-start" mb={1.5}>
+                        <CalendarToday sx={{ mr: 1.5, fontSize: 18, mt: 0.2 }} color="disabled" />
                         <Typography variant="body2" color="text.secondary">
                           {formatEventDate(event.date)}
                         </Typography>
                       </Box>
 
                       {event.time && (
-                        <Box display="flex" alignItems="center" mb={1.5}>
-                          <AccessTime sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                        <Box display="flex" alignItems="flex-start" mb={1.5}>
+                          <AccessTime sx={{ mr: 1.5, fontSize: 18, mt: 0.2 }} color="disabled" />
                           <Typography variant="body2" color="text.secondary">{event.time}</Typography>
                         </Box>
                       )}
 
                       {event.location && (
-                        <Box display="flex" alignItems="center" mb={1.5}>
-                          <LocationOn sx={{ mr: 1, fontSize: 18 }} color="disabled" />
+                        <Box display="flex" alignItems="flex-start" mb={1.5}>
+                          <LocationOn sx={{ mr: 1.5, fontSize: 18, mt: 0.2 }} color="disabled" />
                           <Typography variant="body2" color="text.secondary">{event.location}</Typography>
                         </Box>
                       )}
