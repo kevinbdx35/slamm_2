@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Button, Grid, Card, CardContent, Chip } from "@mui/material";
+import { Typography, Box, Button, Grid, Chip } from "@mui/material";
 import { CalendarToday, LocationOn, AccessTime, Euro, People } from "@mui/icons-material";
 import SeoHelmet from "../components/SeoHelmet";
 import { SOCIAL_URLS } from "../config/urls";
@@ -52,26 +52,25 @@ export default function EvenementsPage() {
 
       <Box
         sx={{
-          py: 4,
-          px: 3,
+          py: 6,
+          mb: 10,
           maxWidth: 1200,
           mx: "auto",
           width: "100%",
+          px: 3,
         }}
       >
-        <Typography
-          variant="h1"
-          sx={{ borderBottom: "4px solid", borderColor: "primary.main", pb: 2, mb: 4 }}
-        >
-          Événements
-        </Typography>
-
-        <Typography variant="body1" maxWidth={1000} mb={6} color="text.primary">
-          Participez à nos stages, compétitions et événements pour progresser et partager votre passion du MMA.
-        </Typography>
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
+          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+            Événements
+          </Typography>
+          <Typography variant="body1" mt={1} maxWidth={1000}>
+            Participez à nos stages, compétitions et événements pour progresser et partager votre passion du MMA.
+          </Typography>
+        </Box>
 
         {/* Prochains événements */}
-        <Box mb={6}>
+        <Box component="section" mt={6} mb={6}>
           <Typography
             variant="h2"
             mb={3}
@@ -84,13 +83,13 @@ export default function EvenementsPage() {
             // Aucun événement à venir
             <Box
               sx={{
-                border: "2px solid",
+                border: "3px solid",
                 borderColor: "primary.main",
                 borderRadius: 0,
                 p: 4,
                 mb: 4,
-                backgroundColor: "transparent",
                 textAlign: "center",
+                background: 'linear-gradient(135deg, rgba(0,255,94,0.03) 0%, rgba(0,255,94,0.01) 100%)',
               }}
             >
               <Typography variant="h3" fontWeight="bold" mb={2} color="text.secondary">
@@ -128,12 +127,13 @@ export default function EvenementsPage() {
             <Grid container spacing={4}>
               {upcomingEvents.map((event) => (
                 <Grid item xs={12} key={event.id}>
-                  <Card
+                  <Box
                     sx={{
-                      border: "2px solid",
+                      border: "3px solid",
                       borderColor: "primary.main",
                       borderRadius: 0,
-                      backgroundColor: "background.paper",
+                      overflow: 'hidden',
+                      background: 'linear-gradient(135deg, rgba(0,255,94,0.03) 0%, rgba(0,255,94,0.01) 100%)',
                     }}
                   >
                     <Box
@@ -168,7 +168,7 @@ export default function EvenementsPage() {
                       )}
 
                       {/* Contenu à droite */}
-                      <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                      <Box sx={{ flexGrow: 1, p: 3 }}>
                         <Box display="flex" justifyContent="space-between" alignItems="start" mb={2}>
                           <Typography variant="h3" component="h3" gutterBottom>
                             {event.title}
@@ -246,9 +246,9 @@ export default function EvenementsPage() {
                             S'inscrire
                           </Button>
                         )}
-                      </CardContent>
+                      </Box>
                     </Box>
-                  </Card>
+                  </Box>
                 </Grid>
               ))}
             </Grid>
@@ -257,11 +257,11 @@ export default function EvenementsPage() {
 
         {/* Événements passés */}
         {pastEvents.length > 0 && (
-          <Box mb={6}>
+          <Box component="section" mb={6}>
             <Typography
               variant="h2"
               mb={3}
-              sx={{ borderBottom: "2px solid", borderColor: "text.secondary", display: "inline-block" }}
+              sx={{ borderBottom: "2px solid", borderColor: "text.secondary", display: "inline-block", opacity: 0.7 }}
             >
               Événements passés
             </Typography>
@@ -269,16 +269,16 @@ export default function EvenementsPage() {
             <Grid container spacing={4}>
               {pastEvents.map((event) => (
                 <Grid item xs={12} md={6} key={event.id}>
-                  <Card
+                  <Box
                     sx={{
                       border: "2px solid",
                       borderColor: "text.disabled",
                       borderRadius: 0,
-                      backgroundColor: "background.paper",
-                      opacity: 0.85,
+                      p: 3,
+                      opacity: 0.7,
+                      overflow: 'hidden',
                     }}
                   >
-                    <CardContent sx={{ p: 3 }}>
                       <Typography variant="h4" component="h3" gutterBottom color="text.secondary">
                         {event.title}
                       </Typography>
@@ -307,8 +307,7 @@ export default function EvenementsPage() {
                       <Typography variant="body2" color="text.secondary" mb={2}>
                         {event.description}
                       </Typography>
-                    </CardContent>
-                  </Card>
+                  </Box>
                 </Grid>
               ))}
             </Grid>

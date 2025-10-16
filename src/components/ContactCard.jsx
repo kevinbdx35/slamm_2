@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 
 /**
  * Composant réutilisable pour les cartes de contact
@@ -11,23 +11,28 @@ import { Card, CardContent, Box, Typography, Button } from '@mui/material';
  */
 export default function ContactCard({ icon, title, children, button }) {
   return (
-    <Card
+    <Box
       sx={{
         border: '2px solid',
         borderColor: 'primary.main',
         borderRadius: 0,
         height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
       }}
     >
-      <CardContent sx={{ p: 3 }}>
+      <Box sx={{ p: 3, flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Box display="flex" alignItems="center" mb={3}>
-          {React.cloneElement(icon, { 
-            sx: { mr: 1, color: 'primary.main', fontSize: 28 } 
+          {React.cloneElement(icon, {
+            sx: { mr: 1, color: 'primary.main', fontSize: 28 }
           })}
           <Typography component="div" sx={{ fontSize: '1.125rem', fontWeight: 'bold', letterSpacing: '0.02em' }}>{title}</Typography>
         </Box>
-        
-        {children}
+
+        <Box sx={{ flex: 1 }}>
+          {children}
+        </Box>
 
         {button && (
           <Button
@@ -38,6 +43,7 @@ export default function ContactCard({ icon, title, children, button }) {
             fullWidth
             size="medium"
             sx={{
+              mt: 2,
               borderRadius: 0,
               fontWeight: "bold",
               textTransform: "none",
@@ -50,7 +56,7 @@ export default function ContactCard({ icon, title, children, button }) {
             {button.text}
           </Button>
         )}
-      </CardContent>
-    </Card>
+      </Box>
+    </Box>
   );
 }

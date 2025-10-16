@@ -30,57 +30,68 @@ export default function ContactPage() {
         keywords="contact MMA Saint-Lunaire, contact arts martiaux mixtes Saint-Lunaire, contact mixed martial arts Saint-Lunaire, inscription dojo Saint-Lunaire, club sport de combat Saint-Lunaire, salle de sport Saint-Lunaire, téléphone club MMA Saint-Lunaire, adresse SLAMM Saint-Lunaire"
       />
 
-      <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
-        <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
-          Nous contacter
-        </Typography>
-        <Typography variant="body1" mt={1} maxWidth={1000}>
-          Pour toute question concernant les cours, les inscriptions ou le club, voici comment nous joindre.
-        </Typography>
-      </Box>
+      <Box
+        sx={{
+          py: 6,
+          mb: 10,
+          maxWidth: 1200,
+          mx: "auto",
+          width: "100%",
+          px: 3,
+        }}
+      >
+        <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
+          <Typography variant="h1" sx={{ letterSpacing: '-1px' }}>
+            Nous contacter
+          </Typography>
+          <Typography variant="body1" mt={1} maxWidth={1000}>
+            Pour toute question concernant les cours, les inscriptions ou le club, voici comment nous joindre.
+          </Typography>
+        </Box>
 
-      {/* Version mobile */}
-      <Box sx={{ display: { xs: 'block', md: 'none' }, mt: 6 }}>
-        <ContactGrid isMobile={true} />
-      </Box>
+        {/* Version mobile */}
+        <Box component="section" sx={{ display: { xs: 'block', md: 'none' }, mt: 6 }}>
+          <ContactGrid isMobile={true} />
+        </Box>
 
-      {/* Version desktop */}
-      <Box sx={{ display: { xs: 'none', md: 'block' }, mt: 6 }}>
-        <ContactGrid isMobile={false} />
-      </Box>
+        {/* Version desktop */}
+        <Box component="section" sx={{ display: { xs: 'none', md: 'block' }, mt: 6 }}>
+          <ContactGrid isMobile={false} />
+        </Box>
 
-      {/* Carte */}
-      <Box mt={6}>
-        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
-          Plan d'accès
-        </Typography>
-        <Box
-          sx={{
-            height: { xs: 300, md: 400 },
-            border: '2px solid',
-            borderColor: 'primary.main',
-            borderRadius: 0,
-            overflow: 'hidden',
-          }}
-        >
-          <MapContainer
-            center={position}
-            zoom={15}
-            style={{ height: '100%', width: '100%' }}
-            scrollWheelZoom={false}
+        {/* Carte */}
+        <Box component="section" mt={6}>
+          <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+            Plan d'accès
+          </Typography>
+          <Box
+            sx={{
+              height: { xs: 300, md: 400 },
+              border: '2px solid',
+              borderColor: 'primary.main',
+              borderRadius: 0,
+              overflow: 'hidden',
+            }}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
-              <Popup>
-                <strong>SLAMM MMA - Lieu d'entraînement</strong><br />
-                361 Rue de la Saudrais<br />
-                35800 Saint-Lunaire
-              </Popup>
-            </Marker>
-          </MapContainer>
+            <MapContainer
+              center={position}
+              zoom={15}
+              style={{ height: '100%', width: '100%' }}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={position}>
+                <Popup>
+                  <strong>SLAMM MMA - Lieu d'entraînement</strong><br />
+                  361 Rue de la Saudrais<br />
+                  35800 Saint-Lunaire
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </Box>
         </Box>
       </Box>
     </>
