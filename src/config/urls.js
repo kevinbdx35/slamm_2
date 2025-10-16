@@ -44,6 +44,7 @@ export const PARTNER_URLS = {
   SAINT_LUNAIRE: "https://www.saint-lunaire.fr/",
   FMMAF: "https://www.fmmaf.fr/",
   PROGRESS: "https://www.progressjj-europe.com/",
+  RDX: "https://rdxsports.fr/",
 };
 
 /**
