@@ -29,6 +29,10 @@ import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import SchoolIcon from "@mui/icons-material/School";
+import SportsMmaIcon from "@mui/icons-material/SportsMma";
+import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SeoHelmet from "../components/SeoHelmet";
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 import { generateCourseSchema } from '../utils/schemaGenerator';
@@ -212,7 +216,7 @@ export default function PageCours() {
                     variant="outlined"
                     href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     fullWidth
                     size="medium"
                     startIcon={<AssignmentIcon />}
@@ -393,6 +397,131 @@ export default function PageCours() {
             </Grid>
           </Grid>
         </Box>
+      </Box>
+
+      {/* Section déroulement d'un cours */}
+      <Box component="section" sx={{ mt: 8 }}>
+        <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+          À quoi ressemble un cours ?
+        </Typography>
+
+        <Typography variant="body1" mb={4} maxWidth={800}>
+          Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois :
+        </Typography>
+
+        <Grid container spacing={3}>
+          {/* Phase 1 : Échauffement */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                p: 3,
+                height: '100%',
+              }}
+            >
+              <Box display="flex" alignItems="center" mb={2}>
+                <FitnessCenterIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <Box>
+                  <Typography variant="h3" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    1. Échauffement
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    15 minutes
+                  </Typography>
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.primary" sx={{ lineHeight: 1.7 }}>
+                Préparation physique progressive : mobilité articulaire, cardio léger et exercices de coordination. On démarre en douceur pour préparer le corps à l'effort.
+              </Typography>
+            </Box>
+          </Grid>
+
+          {/* Phase 2 : Technique */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                p: 3,
+                height: '100%',
+              }}
+            >
+              <Box display="flex" alignItems="center" mb={2}>
+                <SchoolIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <Box>
+                  <Typography variant="h3" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    2. Apprentissage technique
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    45 à 60 minutes
+                  </Typography>
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.primary" sx={{ lineHeight: 1.7 }}>
+                Travail des techniques debout (frappes, déplacements) et au sol (contrôles, soumissions). On pratique par deux avec progressivité et bienveillance.
+              </Typography>
+            </Box>
+          </Grid>
+
+          {/* Phase 3 : Sparring */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                p: 3,
+                height: '100%',
+              }}
+            >
+              <Box display="flex" alignItems="center" mb={2}>
+                <SportsMmaIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <Box>
+                  <Typography variant="h3" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    3. Mise en situation (optionnel)
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    15 à 20 minutes
+                  </Typography>
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.primary" sx={{ lineHeight: 1.7 }}>
+                Sparring léger et contrôlé pour ceux qui le souhaitent. Aucune obligation, tu restes spectateur si tu préfères observer ou si tu débutes. Chacun va à son rythme.
+              </Typography>
+            </Box>
+          </Grid>
+
+          {/* Phase 4 : Retour au calme */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                p: 3,
+                height: '100%',
+              }}
+            >
+              <Box display="flex" alignItems="center" mb={2}>
+                <SelfImprovementIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <Box>
+                  <Typography variant="h3" sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    4. Retour au calme
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    10 minutes
+                  </Typography>
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.primary" sx={{ lineHeight: 1.7 }}>
+                Étirements et récupération active. On termine en douceur pour favoriser la récupération musculaire et prévenir les courbatures.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
