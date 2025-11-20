@@ -15,7 +15,7 @@ const faqs = [
   {
     question: "Faut-il avoir de l'expérience pour commencer le MMA ?",
     answer:
-      "Non, aucune expérience n’est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants vous accompagnent pas à pas, en vous enseignant les bases avec pédagogie, pour vous permettre de progresser à votre rythme. Une expérience préalable peut aider, mais elle n’est en aucun cas obligatoire.",
+      "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme. Une expérience préalable peut aider, mais elle n'est en aucun cas obligatoire.",
   },
   {
     question: "À partir de quel âge peut-on pratiquer le MMA ?",
@@ -24,12 +24,12 @@ const faqs = [
   {
     question: "Quel équipement est nécessaire pour débuter ?",
     answer:
-      "Pour venir essayer, il vous suffit d’une tenue de sport confortable, d’une bouteille d’eau et éventuellement d’une serviette. Par la suite, il sera nécessaire d’acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Nos encadrants vous conseilleront sur le choix du matériel dès vos premiers cours.",
+      "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Nos encadrants te conseilleront sur le choix du matériel dès tes premiers cours.",
   },
   {
     question: "Quelle est la fréquence d'entraînement recommandée ?",
     answer:
-      "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Cela dit, même une séance hebdomadaire peut vous permettre d’évoluer et de bénéficier des bienfaits du MMA. Tout dépend de vos objectifs personnels et de votre disponibilité. L’essentiel reste la régularité et l’engagement lors des entraînements.",
+      "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Cela dit, même une séance hebdomadaire peut te permettre d'évoluer et de bénéficier des bienfaits du MMA. Tout dépend de tes objectifs personnels et de ta disponibilité. L'essentiel reste la régularité et l'engagement lors des entraînements.",
   },
   {
     question: "Le MMA est-il dangereux ?",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Comment s'inscrire aux cours d'essai ?",
     answer:
-      "En septembre et octobre, vous avez la possibilité de participer à 2 cours d’essai gratuits. À partir de novembre, les cours d’essai sont proposés au tarif de 5 € par séance, dans la limite de 2 cours maximum par personne. Ce montant sera déduit de l'adhésion si vous vous inscrivez par la suite. Pour réserver, contactez-nous par téléphone au 07 82 77 92 88 ou par email à slamm35800@gmail.com. Merci de prévoir une arrivée 15 minutes avant le début du cours pour l’accueil et la présentation des installations.",
+      "En septembre et octobre, tu as la possibilité de participer à 2 cours d'essai gratuits. À partir de novembre, les cours d'essai sont proposés au tarif de 5 € par séance, dans la limite de 2 cours maximum par personne. Ce montant sera déduit de l'adhésion si tu t'inscris par la suite. Pour réserver, contacte-nous par téléphone au 07 82 77 92 88 ou par email à slamm35800@gmail.com. Pense à arriver 15 minutes avant le début du cours pour l'accueil et la présentation des installations.",
   },
 ]
 

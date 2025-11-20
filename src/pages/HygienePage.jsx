@@ -266,13 +266,13 @@ export default function HygienePage() {
           </Box>
         </Box>
 
-        <Alert 
-          severity="info" 
+        <Alert
+          severity="info"
           icon={<HealthAndSafetyIcon />}
           sx={{ mt: 6 }}
         >
           <Typography variant="body2">
-            <strong>En cas de doute :</strong> N'hésitez pas à consulter nos encadrants pour toute question concernant l'hygiène ou les protocoles sanitaires. Votre santé et celle de vos partenaires d'entraînement sont notre priorité.
+            <strong>En cas de doute :</strong> N'hésite pas à consulter nos encadrants pour toute question concernant l'hygiène ou les protocoles sanitaires. Ta santé et celle de tes partenaires d'entraînement sont notre priorité.
           </Typography>
         </Alert>
       </Box>

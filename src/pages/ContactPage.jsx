@@ -45,7 +45,7 @@ export default function ContactPage() {
             Nous contacter
           </Typography>
           <Typography variant="body1" mt={1} maxWidth={1000}>
-            Pour toute question concernant les cours, les inscriptions ou le club, voici comment nous joindre.
+            Une question sur les cours, les inscriptions ou le club ? Voici comment nous contacter.
           </Typography>
         </Box>
 

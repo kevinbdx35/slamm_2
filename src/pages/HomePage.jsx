@@ -73,9 +73,9 @@ export default function HomePage() {
               Saint-Lunaire Arts Martiaux Mixtes
             </Typography>
             
-            <Typography 
-              variant="body1" 
-              sx={{ 
+            <Typography
+              variant="body1"
+              sx={{
                 mb: 2,
                 maxWidth: 800,
                 mx: 'auto',
@@ -83,7 +83,7 @@ export default function HomePage() {
                 textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
               }}
             >
-              Découvrez les arts martiaux mixtes avec nos instructeurs certifiés.
+              Découvre les arts martiaux mixtes avec nos instructeurs certifiés.
             </Typography>
             
             <Typography 

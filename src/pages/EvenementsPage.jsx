@@ -4,7 +4,7 @@ import { CalendarToday, LocationOn, AccessTime, Euro, People } from "@mui/icons-
 import SeoHelmet from "../components/SeoHelmet";
 import { SOCIAL_URLS } from "../config/urls";
 import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from "../config/events";
-import { generateEventSchema, generateEventListSchema } from "../utils/schemaGenerator";
+import { generateEventListSchema } from "../utils/schemaGenerator";
 
 export default function EvenementsPage() {
   // Récupérer les événements à venir et les trier par date
@@ -72,7 +72,7 @@ export default function EvenementsPage() {
             Événements
           </Typography>
           <Typography variant="body1" mt={1} maxWidth={1000}>
-            Participez à nos stages, compétitions et événements pour progresser et partager votre passion du MMA.
+            Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
           </Typography>
         </Box>
 
