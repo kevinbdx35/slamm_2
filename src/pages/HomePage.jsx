@@ -244,7 +244,7 @@ export default function HomePage() {
       {/* Section partenaires : Soutiens du club */}
       <Box component="section" mt={6} mb={8}>
         <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
-          Partenaires 2025–2026
+          Nos partenaires
         </Typography>
         <Typography variant="body2" maxWidth={1000} mb={4}>
           Notre association remercie chaleureusement les institutions, partenaires techniques, sponsors privés et amis du club pour leur soutien dans le développement de notre projet associatif et sportif.
