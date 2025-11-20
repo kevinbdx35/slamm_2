@@ -19,12 +19,22 @@ const faqs = [
   },
   {
     question: "À partir de quel âge peut-on pratiquer le MMA ?",
-    answer: "L’âge minimum pour adhérer à notre association est de 16 ans.",
+    answer: "L'âge minimum pour adhérer à notre association est de 16 ans.",
+  },
+  {
+    question: "Y a-t-il des femmes au club ?",
+    answer:
+      "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
   },
   {
     question: "Quel équipement est nécessaire pour débuter ?",
     answer:
       "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Nos encadrants te conseilleront sur le choix du matériel dès tes premiers cours.",
+  },
+  {
+    question: "Faut-il un certificat médical ?",
+    answer:
+      "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement, mais tu devras le fournir si tu décides de t'inscrire au club.",
   },
   {
     question: "Quelle est la fréquence d'entraînement recommandée ?",
@@ -39,7 +49,17 @@ const faqs = [
   {
     question: "Comment se déroule un cours type ?",
     answer:
-      "Un cours typique dure entre 1h30 et 2h. Il débute par un échauffement dynamique, suivi d’exercices techniques propres à la discipline. La séance se poursuit généralement par des mises en application ou du sparring léger, pour ceux qui le souhaitent. Elle se termine par un retour au calme accompagné d’étirements.",
+      "Un cours typique dure entre 1h30 et 2h. Il débute par un échauffement dynamique, suivi d'exercices techniques propres à la discipline. La séance se poursuit généralement par des mises en application ou du sparring léger, pour ceux qui le souhaitent. Elle se termine par un retour au calme accompagné d'étirements.",
+  },
+  {
+    question: "Y a-t-il des douches sur place ?",
+    answer:
+      "Oui, des douches sont disponibles dans les vestiaires (vestiaires homme et femme séparés). Tu peux te doucher avant ou après l'entraînement. Pense à apporter ta serviette et tes affaires de toilette personnelles.",
+  },
+  {
+    question: "Peut-on venir observer un cours sans s'inscrire ?",
+    answer:
+      "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. C'est même recommandé si tu hésites. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
   },
   {
     question: "Est-ce que je dois participer à des compétitions ?",
