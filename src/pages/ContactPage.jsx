@@ -1,8 +1,11 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Grid } from '@mui/material';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import StairsIcon from '@mui/icons-material/Stairs';
+import WcIcon from '@mui/icons-material/Wc';
 import SeoHelmet from '../components/SeoHelmet';
 import ContactGrid from '../components/ContactGrid';
 
@@ -57,6 +60,90 @@ export default function ContactPage() {
         {/* Version desktop */}
         <Box component="section" sx={{ display: { xs: 'none', md: 'block' }, mt: 6 }}>
           <ContactGrid isMobile={false} />
+        </Box>
+
+        {/* Informations pratiques */}
+        <Box component="section" mt={6}>
+          <Typography variant="h2" mb={3} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+            Informations pratiques
+          </Typography>
+
+          <Grid container spacing={3}>
+            {/* Parking */}
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  borderRadius: 0,
+                  p: 3,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <LocalParkingIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                <Typography variant="h3" sx={{ fontSize: '1.2rem', mb: 1, fontWeight: 'bold' }}>
+                  Parking gratuit
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Stationnement gratuit disponible sur place
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Accès */}
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  borderRadius: 0,
+                  p: 3,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <StairsIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                <Typography variant="h3" sx={{ fontSize: '1.2rem', mb: 1, fontWeight: 'bold' }}>
+                  Entraînement à l'étage
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Le dojo se situe au premier étage du bâtiment
+                </Typography>
+              </Box>
+            </Grid>
+
+            {/* Vestiaires */}
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  borderRadius: 0,
+                  p: 3,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <WcIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+                <Typography variant="h3" sx={{ fontSize: '1.2rem', mb: 1, fontWeight: 'bold' }}>
+                  Vestiaires séparés
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Vestiaires homme et femme disponibles
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
 
         {/* Carte */}
