@@ -44,15 +44,15 @@ const steps = [
     description: "Aucune pression, juste pour découvrir.",
   },
   {
-    label: "ESSAYE JUSQU’À 2 SÉANCES D’ESSAI",
+    label: "ESSAYE JUSQU'À 2 SÉANCES D'ESSAI",
     icon: <CheckCircleIcon sx={{ color: "primary.main" }} />,
     description: (
       <>
-        <Typography variant="body2" color="error" sx={{ fontWeight: "bold" }}>
-          En sept-oct : Gratuit!
+        <Typography variant="body2" color="success.main" sx={{ fontWeight: "bold" }}>
+          Gratuit en début de saison (sept-oct)
         </Typography>
         <Typography variant="body2">
-          À partir de novembre : 5 € par séance, déductible de l’adhésion.
+          En cours d'année : 5 € par séance, déductible de l'adhésion.
         </Typography>
       </>
     ),
