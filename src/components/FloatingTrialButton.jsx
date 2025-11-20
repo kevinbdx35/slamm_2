@@ -35,7 +35,7 @@ export default function FloatingTrialButton() {
           aria-label="réserver cours d'essai"
           href={ASSOCONNECT_URLS.TRIAL_BOOKING}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           sx={{
             position: 'fixed',
             bottom: 80,

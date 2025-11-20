@@ -72,7 +72,7 @@ export default function ContactGrid({ isMobile = false }) {
               component="a"
               href="https://instagram.com/slamm35800"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               sx={{ 
                 color: 'primary.main', 
                 textDecoration: 'underline',

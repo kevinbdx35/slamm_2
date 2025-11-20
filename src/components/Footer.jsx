@@ -191,7 +191,7 @@ const Footer = () => {
           <Link
             href="https://instagram.com/slamm35800"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             color="inherit"
             sx={{ 
               display: 'flex', 

@@ -39,7 +39,7 @@ export default function ContactCard({ icon, title, children, button }) {
             variant="outlined"
             href={button.href}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             fullWidth
             size="medium"
             sx={{

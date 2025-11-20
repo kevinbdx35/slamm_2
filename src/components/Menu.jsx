@@ -244,7 +244,7 @@ export default function Menu({ isDark, toggleTheme }) {
               component="a"
               href={ASSOCONNECT_URLS.TRIAL_BOOKING}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               sx={{
                 backgroundColor: 'rgba(0, 255, 94, 0.1)',
                 '&:hover': {
@@ -419,7 +419,7 @@ export default function Menu({ isDark, toggleTheme }) {
             variant="outlined"
             href={ASSOCONNECT_URLS.TRIAL_BOOKING}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             sx={{
               borderRadius: '20px',
               px: 3,

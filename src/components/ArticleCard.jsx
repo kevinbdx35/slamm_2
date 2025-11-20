@@ -8,7 +8,7 @@ export default function ArticleCard({ title, date, excerpt, url }) {
       component={Link}
       href={url}
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       sx={{
         display: "block",
         border: "2px solid",

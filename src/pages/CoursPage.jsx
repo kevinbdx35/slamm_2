@@ -134,7 +134,7 @@ export default function PageCours() {
                     variant="outlined"
                     href={ASSOCONNECT_URLS.TRIAL_BOOKING}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     fullWidth
                     size="large"
                     startIcon={<EventAvailableIcon />}
@@ -282,7 +282,7 @@ export default function PageCours() {
                     variant="outlined"
                     href={ASSOCONNECT_URLS.TRIAL_BOOKING}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     fullWidth
                     size="large"
                     startIcon={<EventAvailableIcon />}
@@ -365,7 +365,7 @@ export default function PageCours() {
                         variant="outlined"
                         href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP}
                         target="_blank"
-                        rel="noopener"
+                        rel="noopener noreferrer"
                         fullWidth
                         size="medium"
                         startIcon={<AssignmentIcon />}
