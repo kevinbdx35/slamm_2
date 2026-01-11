@@ -36,11 +36,24 @@ export const EVENTS = [
     time: "14h30-16h30",
     location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
     price: "10€",
-    description: "Stage No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d’améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles",
+    description: "Stage BJJ No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d’améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/662218-o-stage-avec-jonathan-allouche",
     image: "/img/events/jonathan.jpg",
     status: "upcoming"
+  },
+  {
+    id: 3,
+    title: "GNC TOUR - TOURNOI DE PLOERMEL",
+    date: "2026-02-01", // Format YYYY-MM-DD
+    time: null,
+    location: "Ploërmel",
+    price: null,
+    description: "5 compétiteurs de Saint-Lunaire auront l'honneur de représenter les couleurs de l'association lors du GNC Tour, en compétition de grappling.",
+    maxParticipants: null,
+    registrationUrl: null,
+    image: null,
+    status: null
   },
 ];
 
