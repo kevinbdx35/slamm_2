@@ -57,7 +57,7 @@ export const EVENTS = [
   },
   {
     id: 4,
-    title: "Stage Sol : INSIDE CAMPING",
+    title: "Stage de JJB No-Gi",
     date: "2026-01-21", // Format YYYY-MM-DD
     time: null,
     location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
