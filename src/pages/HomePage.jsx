@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { Typography, Box, Grid, Button, Container } from '@mui/material';
+import { OpenInNew } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { PARTNER_URLS } from '../config/urls';
 import OptimizedImage from '../components/OptimizedImage';
@@ -20,14 +21,84 @@ import OptimizedImage from '../components/OptimizedImage';
  * Composant HomePage - Page d'accueil du site SLAMM
  */
 export default function HomePage() {
+  // Styles réutilisables pour les bordures
+  const imageBorderStyle = {
+    border: '4px solid',
+    borderColor: 'primary.main',
+    borderRadius: 0
+  };
+
+  const sectionBorderStyle = {
+    borderBottom: '4px solid',
+    borderColor: 'primary.main'
+  };
+
+  const headingBorderStyle = {
+    borderBottom: '2px solid',
+    borderColor: 'primary.main',
+    display: 'inline-block'
+  };
+
+  // Données structurées JSON-LD pour le SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "Saint-Lunaire Arts Martiaux Mixtes (SLAMM)",
+    "alternateName": "SLAMM MMA",
+    "description": "Club de MMA et arts martiaux mixtes à Saint-Lunaire. Cours pour adultes à partir de 16 ans, tous niveaux.",
+    "url": "https://mma-saint-lunaire.fr",
+    "logo": "https://mma-saint-lunaire.fr/logo.png",
+    "foundingDate": "2023",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Saint-Lunaire",
+      "addressRegion": "Bretagne",
+      "addressCountry": "FR"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Saint-Lunaire"
+      },
+      {
+        "@type": "City",
+        "name": "Dinard"
+      },
+      {
+        "@type": "City",
+        "name": "Pleurtuit"
+      },
+      {
+        "@type": "City",
+        "name": "La Richardais"
+      }
+    ],
+    "sport": "Mixed Martial Arts",
+    "sameAs": [
+      "https://www.facebook.com/slammclub/",
+      "https://www.instagram.com/slamm_club/"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "name": "Cours de MMA",
+      "description": "Entraînements de MMA et arts martiaux mixtes",
+      "category": "Sports & Recreation"
+    }
+  };
+
   return (
     <>
+      {/* Schema Markup pour le SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero Section */}
-      <Box 
-        component="section" 
-        sx={{ 
+      <Box
+        component="section"
+        sx={{
           position: 'relative',
-          minHeight: '70vh',
+          minHeight: { xs: '50vh', sm: '60vh', md: '70vh' },
           display: 'flex',
           alignItems: 'center',
           backgroundImage: 'url(https://images.unsplash.com/photo-1611077492881-8d15417d0d38?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
@@ -44,8 +115,7 @@ export default function HomePage() {
             backgroundColor: 'rgba(46, 125, 50, 0.7)',
             zIndex: 1
           },
-          borderBottom: '4px solid',
-          borderColor: 'primary.main'
+          ...sectionBorderStyle
         }}
       >
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
@@ -94,6 +164,7 @@ export default function HomePage() {
                 to="/cours"
                 variant="outlined"
                 size="large"
+                aria-label="Découvrir nos cours de MMA et arts martiaux mixtes à Saint-Lunaire"
                 sx={{
                   borderRadius: 0,
                   fontWeight: "bold",
@@ -117,13 +188,14 @@ export default function HomePage() {
               >
                 Découvrir nos cours
               </Button>
-              
+
               <Button
                 component={Link}
                 to="/contact"
                 variant="outlined"
                 size="large"
-                sx={{ 
+                aria-label="Contacter le club SLAMM pour une séance d'essai gratuite"
+                sx={{
                   borderRadius: 0,
                   fontWeight: "bold",
                   textTransform: "none",
@@ -152,12 +224,13 @@ export default function HomePage() {
       </Box>
 
       {/* En-tête principal avec présentation du club */}
-      <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2, mt: 4 }}>
+      <Box component="header" sx={{ ...sectionBorderStyle, pb: 2, mt: 4 }}>
         <Typography variant="h2" sx={{ letterSpacing: '-1px' }}>
           Saint-Lunaire Arts Martiaux Mixtes - Académie de MMA
         </Typography>
         <Typography variant="body1" mt={1} maxWidth={1000}>
           Association loi 1901 dédiée à l'enseignement et la pratique des Arts Martiaux Mixtes depuis 2023.
+          Basé à Saint-Lunaire, notre club accueille les pratiquants de Dinard, Pleurtuit, La Richardais et toute la région.
           Découvre nos cours, notre ambiance, et rejoins-nous pour pratiquer le MMA.
         </Typography>
       </Box>
@@ -173,25 +246,23 @@ export default function HomePage() {
         }}
       >
         {[
-          { src: '/img/team/miguel.webp', alt: 'Victoire de Miguel en NoGi' },
-          { src: '/img/team/team.webp', alt: 'Une partie de l\'équipe 2025-2026' },
-          { src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', srcSet: `/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w` },
-          { src: '/img/team/cage.webp', alt: 'Travail du cage control' },
-        ].map((image, index) => (
-          <Box key={index} sx={{ flex: { xs: '0 0 calc(50% - 8px)', md: '0 0 calc(25% - 12px)' } }}>
+          { id: 'miguel', src: '/img/team/miguel.webp', alt: 'Victoire de Miguel en NoGi' },
+          { id: 'team', src: '/img/team/team.webp', alt: 'Une partie de l\'équipe 2025-2026' },
+          { id: 'florian', src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', srcSet: `/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w` },
+          { id: 'cage', src: '/img/team/cage.webp', alt: 'Travail du cage control' },
+        ].map((image) => (
+          <Box key={image.id} sx={{ flex: { xs: '0 0 calc(50% - 8px)', md: '0 0 calc(25% - 12px)' } }}>
             <OptimizedImage
               src={image.src}
               srcSet={image.srcSet}
               sizes="(max-width: 900px) 50vw, 25vw"
               alt={image.alt}
               title={image.alt}
-              fetchpriority={index === 0 ? "high" : "auto"}
-              loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={image.id === 'miguel' ? "high" : "auto"}
+              loading={image.id === 'miguel' ? "eager" : "lazy"}
               width="100%"
               sx={{
-                border: '4px solid',
-                borderColor: 'primary.main',
-                borderRadius: 0,
+                ...imageBorderStyle,
                 aspectRatio: '1 / 1',
                 objectFit: 'cover'
               }}
@@ -202,17 +273,17 @@ export default function HomePage() {
 
       {/* Section éducative : Qu'est-ce que le MMA ? */}
       <Box component="section" mt={6}>
-        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={headingBorderStyle}>
           Mixed Martial Arts - MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-        Les arts martiaux mixtes (mixed martial arts) sont un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol.
+        Les arts martiaux mixtes (mixed martial arts) sont un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol. Notre académie à Saint-Lunaire propose des cours de MMA accessibles aux habitants de Dinard, Pleurtuit, La Richardais et toute la Côte d'Émeraude.
         </Typography>
       </Box>
 
       {/* Section bénéfices : Pourquoi pratiquer le MMA ? */}
       <Box component="section" mt={6}>
-        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={headingBorderStyle}>
           Les bénéfices du MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
@@ -236,14 +307,14 @@ export default function HomePage() {
             loading="lazy"
             maxWidth={2000}
             width="100%"
-            sx={{ border: '4px solid', borderColor: 'primary.main', borderRadius: 0 }}
+            sx={imageBorderStyle}
           />
         </Box>
       </Box>
 
       {/* Section partenaires : Soutiens du club */}
       <Box component="section" mt={6} mb={8}>
-        <Typography variant="h3" mb={2} sx={{ borderBottom: '2px solid', borderColor: 'primary.main', display: 'inline-block' }}>
+        <Typography variant="h3" mb={2} sx={headingBorderStyle}>
           Nos partenaires
         </Typography>
         <Typography variant="body2" maxWidth={1000} mb={4}>
@@ -256,14 +327,14 @@ export default function HomePage() {
             { name: 'FMMAF', logo: 'img/partenaires/fmmaf.webp', url: PARTNER_URLS.FMMAF },
             { name: 'Progress', logo: 'img/partenaires/progress.webp', url: PARTNER_URLS.PROGRESS },
             { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX },
-          ].map((partner, i) => (
-            <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
+          ].map((partner) => (
+            <Grid item xs={6} sm={4} md={2} key={partner.name} textAlign="center">
               <Box
                 component={
-                  partner.url 
-                    ? partner.url.startsWith('http') 
-                      ? "a" 
-                      : Link 
+                  partner.url
+                    ? partner.url.startsWith('http')
+                      ? "a"
+                      : Link
                     : "div"
                 }
                 href={partner.url && partner.url.startsWith('http') ? partner.url : undefined}
@@ -276,7 +347,7 @@ export default function HomePage() {
                   border: '2px solid',
                   borderColor: 'primary.main',
                   borderRadius: 1,
-                  backgroundColor: '#fff',
+                  backgroundColor: 'common.white',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -291,11 +362,11 @@ export default function HomePage() {
                   } : {}
                 }}
               >
-                <Box
-                  component="img"
+                <OptimizedImage
                   src={partner.logo}
                   alt={`Logo de ${partner.name}`}
                   title={partner.name}
+                  loading="lazy"
                   sx={{
                     maxWidth: '100%',
                     maxHeight: '100%',
@@ -303,7 +374,12 @@ export default function HomePage() {
                   }}
                 />
               </Box>
-              <Typography variant="caption" display="block">{partner.name}</Typography>
+              <Typography variant="caption" display="block" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5 }}>
+                {partner.name}
+                {partner.url && partner.url.startsWith('http') && (
+                  <OpenInNew sx={{ fontSize: '0.75rem' }} />
+                )}
+              </Typography>
             </Grid>
           ))}
         </Grid>
