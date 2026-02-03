@@ -12,6 +12,7 @@ import FaqPage from './pages/FaqPage.jsx'
 import HygienePage from './pages/HygienePage.jsx'
 import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
 import SeoHelmet from './components/SeoHelmet.jsx'
+import { generateBreadcrumbSchema } from './utils/schemaGenerator.js'
 
 /**
  * Composant racine de l'application SLAMM MMA
@@ -96,6 +97,9 @@ export default function App({ isDark, toggleTheme }) {
   // Fallback sur la page d'accueil si la route n'est pas trouvée
   const currentSeo = seoMap[location.pathname] || seoMap['/']
 
+  // Génération du breadcrumb schema pour la navigation
+  const breadcrumbSchema = generateBreadcrumbSchema(location.pathname)
+
   return (
     <>
       {/* Composant de gestion des métadonnées SEO dynamiques */}
@@ -105,6 +109,7 @@ export default function App({ isDark, toggleTheme }) {
         url={currentSeo.url}
         image={currentSeo.image}
         keywords={currentSeo.keywords}
+        schemas={breadcrumbSchema}
       />
 
       {/* Layout principal englobant toutes les pages */}

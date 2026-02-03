@@ -35,7 +35,7 @@ import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SeoHelmet from "../components/SeoHelmet";
 import { ASSOCONNECT_URLS } from '../config/urls.js';
-import { generateCourseSchema } from '../utils/schemaGenerator';
+import { generateCourseSchema, generateBreadcrumbSchema } from '../utils/schemaGenerator';
 
 /**
  * Configuration du processus d'inscription en étapes
@@ -71,8 +71,9 @@ const steps = [
 export default function PageCours() {
   const theme = useTheme();
 
-  // Générer le schema Course
+  // Générer les schemas : Course + Breadcrumb
   const courseSchema = generateCourseSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema('/cours');
 
   return (
     <>
@@ -82,7 +83,7 @@ export default function PageCours() {
         url="https://mma-saint-lunaire.fr/cours"
         image="https://mma-saint-lunaire.fr/img/social/social.jpg"
         keywords="cours MMA Saint-Lunaire, cours arts martiaux mixtes Saint-Lunaire, cours mixed martial arts Saint-Lunaire, cours sport de combat Saint-Lunaire, cours grappling Saint-Lunaire, débutant MMA Saint-Lunaire, cours self-défense Saint-Lunaire, formation MMA Saint-Lunaire, entraînement combat Saint-Lunaire"
-        schema={courseSchema}
+        schemas={[courseSchema, breadcrumbSchema]}
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>

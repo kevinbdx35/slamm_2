@@ -4,16 +4,20 @@ import { CalendarToday, LocationOn, AccessTime, Euro, People } from "@mui/icons-
 import SeoHelmet from "../components/SeoHelmet";
 import { SOCIAL_URLS } from "../config/urls";
 import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from "../config/events";
-import { generateEventListSchema } from "../utils/schemaGenerator";
+import { generateEventListSchema, generateBreadcrumbSchema } from "../utils/schemaGenerator";
 
 export default function EvenementsPage() {
   // Récupérer les événements à venir et les trier par date
   const upcomingEvents = sortEventsByDate(getUpcomingEvents(EVENTS));
 
-  // Générer les schemas pour les événements à venir
+  // Générer les schemas : Events + Breadcrumb
   const eventsSchema = upcomingEvents.length > 0
     ? generateEventListSchema(upcomingEvents)
     : null;
+  const breadcrumbSchema = generateBreadcrumbSchema('/evenements');
+  const allSchemas = eventsSchema
+    ? [eventsSchema, breadcrumbSchema]
+    : [breadcrumbSchema];
 
   // Récupérer les événements passés (triés du plus récent au plus ancien)
   const pastEvents = getPastEvents(EVENTS);
@@ -54,7 +58,7 @@ export default function EvenementsPage() {
         url="https://mma-saint-lunaire.fr/evenements"
         image="https://mma-saint-lunaire.fr/img/social/social.jpg"
         keywords="événements MMA Saint-Lunaire, stages MMA futurs, club SLAMM actualités, MMA Bretagne événements, arts martiaux mixtes Saint-Lunaire"
-        schema={eventsSchema}
+        schemas={allSchemas}
       />
 
       <Box

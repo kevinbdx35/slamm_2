@@ -270,6 +270,52 @@ export function generateEventListSchema(events) {
   };
 }
 
+/**
+ * Mapping des chemins vers leurs titres
+ */
+const PAGE_TITLES = {
+  '/': 'Accueil',
+  '/cours': 'Cours de MMA',
+  '/equipe': 'Équipe',
+  '/evenements': 'Événements',
+  '/contact': 'Contact',
+  '/faq': 'FAQ',
+  '/hygiene': 'Hygiène et Sécurité',
+  '/mentions-legales': 'Mentions légales'
+};
+
+/**
+ * Génère un schema BreadcrumbList basé sur le chemin actuel
+ * @param {string} pathname - Chemin actuel (ex: '/cours')
+ * @returns {Object} Schema.org BreadcrumbList
+ */
+export function generateBreadcrumbSchema(pathname) {
+  const breadcrumbs = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": BASE_URL
+    }
+  ];
+
+  if (pathname !== '/') {
+    const pageName = PAGE_TITLES[pathname] || pathname.substring(1);
+    breadcrumbs.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": pageName,
+      "item": `${BASE_URL}${pathname}`
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs
+  };
+}
+
 // ========== FONCTIONS UTILITAIRES ==========
 
 /**
@@ -343,6 +389,7 @@ export default {
   generateEventListSchema,
   generateFAQSchema,
   generateCourseSchema,
+  generateBreadcrumbSchema,
   CLUB_INFO,
   BASE_URL
 };

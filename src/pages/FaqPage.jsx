@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SeoHelmet from '../components/SeoHelmet'
-import { generateFAQSchema } from '../utils/schemaGenerator'
+import { generateFAQSchema, generateBreadcrumbSchema } from '../utils/schemaGenerator'
 
 const faqs = [
   {
@@ -80,8 +80,9 @@ export default function FaqPage() {
     setExpanded(isExpanded ? panel : false)
   }
 
-  // Générer le schema FAQPage
+  // Générer les schemas : FAQ + Breadcrumb
   const faqSchema = generateFAQSchema(faqs)
+  const breadcrumbSchema = generateBreadcrumbSchema('/faq')
 
   return (
     <>
@@ -89,7 +90,7 @@ export default function FaqPage() {
         title="FAQ – MMA Saint-Lunaire"
         description="Toutes les réponses à vos questions sur la pratique du MMA au sein de l'association SLAMM à Saint-Lunaire. Inscriptions, équipement, âge, sécurité, etc."
         url="https://mma-saint-lunaire.fr/faq"
-        schema={faqSchema}
+        schemas={[faqSchema, breadcrumbSchema]}
       />
 
       <Box
