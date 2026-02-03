@@ -137,7 +137,7 @@ export default function HomePage() {
                   backdropFilter: 'blur(10px)',
                   '&:hover': {
                     backgroundColor: 'brand.orange',
-                    color: '#ffffff',
+                    color: 'common.white',
                     borderColor: 'brand.orange',
                     transform: 'translateY(-1px)',
                     boxShadow: '0 4px 8px rgba(255,107,53,0.3)',
@@ -169,7 +169,7 @@ export default function HomePage() {
           gap: 2,
           my: 4,
           justifyContent: 'center',
-          flexWrap: 'nowrap'
+          flexWrap: { xs: 'wrap', md: 'nowrap' }
         }}
       >
         {[
@@ -178,11 +178,11 @@ export default function HomePage() {
           { src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', srcSet: `/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w` },
           { src: '/img/team/cage.webp', alt: 'Travail du cage control' },
         ].map((image, index) => (
-          <Box key={index} sx={{ flex: '0 0 auto', width: { xs: 'calc(25% - 12px)', sm: 'calc(25% - 12px)' } }}>
+          <Box key={index} sx={{ flex: { xs: '0 0 calc(50% - 8px)', md: '0 0 calc(25% - 12px)' } }}>
             <OptimizedImage
               src={image.src}
               srcSet={image.srcSet}
-              sizes="25vw"
+              sizes="(max-width: 900px) 50vw, 25vw"
               alt={image.alt}
               title={image.alt}
               fetchpriority={index === 0 ? "high" : "auto"}
@@ -252,9 +252,9 @@ export default function HomePage() {
         {/* Grille des logos partenaires */}
         <Grid container spacing={4} justifyContent="center">
           {[
-            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.jpg', url: PARTNER_URLS.SAINT_LUNAIRE },
-            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png', url: PARTNER_URLS.FMMAF },
-            { name: 'Progress', logo: 'img/partenaires/progress.png', url: PARTNER_URLS.PROGRESS },
+            { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.webp', url: PARTNER_URLS.SAINT_LUNAIRE },
+            { name: 'FMMAF', logo: 'img/partenaires/fmmaf.webp', url: PARTNER_URLS.FMMAF },
+            { name: 'Progress', logo: 'img/partenaires/progress.webp', url: PARTNER_URLS.PROGRESS },
             { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX },
           ].map((partner, i) => (
             <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
