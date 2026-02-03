@@ -152,9 +152,9 @@ export default function PageCours() {
                       py: 1.5,
                       fontSize: '1.1rem',
                       "&:hover": {
-                        backgroundColor: '#00ff5e',
-                        color: '#0a1414',
-                        borderColor: '#00ff5e',
+                        backgroundColor: 'brand.neonGreen',
+                        color: 'brand.darkBg',
+                        borderColor: 'brand.neonGreen',
                         transform: 'translateY(-2px)',
                         boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
                       },
@@ -300,9 +300,9 @@ export default function PageCours() {
                       py: 1.5,
                       fontSize: '1.1rem',
                       "&:hover": {
-                        backgroundColor: '#00ff5e',
-                        color: '#0a1414',
-                        borderColor: '#00ff5e',
+                        backgroundColor: 'brand.neonGreen',
+                        color: 'brand.darkBg',
+                        borderColor: 'brand.neonGreen',
                         transform: 'translateY(-2px)',
                         boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
                       },
@@ -381,9 +381,9 @@ export default function PageCours() {
                           borderColor: 'primary.main',
                           color: 'primary.main',
                           "&:hover": {
-                            backgroundColor: '#ff6b35',
+                            backgroundColor: 'brand.orange',
                             color: '#ffffff',
-                            borderColor: '#ff6b35',
+                            borderColor: 'brand.orange',
                             transform: 'translateY(-1px)',
                           },
                         }}

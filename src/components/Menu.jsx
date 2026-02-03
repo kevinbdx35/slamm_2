@@ -391,16 +391,16 @@ export default function Menu({ isDark, toggleTheme }) {
                   textTransform: 'none',
                   fontSize: '0.875rem',
                   fontWeight: 500,
-                  color: isActive 
-                    ? '#0a1414' 
+                  color: isActive
+                    ? 'brand.darkBg'
                     : 'rgba(255, 255, 255, 0.9)',
-                  backgroundColor: isActive 
-                    ? '#00ff5e' 
+                  backgroundColor: isActive
+                    ? 'brand.neonGreen'
                     : 'transparent',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    backgroundColor: isActive 
-                      ? '#00ff5e'
+                    backgroundColor: isActive
+                      ? 'brand.neonGreen'
                       : 'rgba(255, 255, 255, 0.15)',
                     transform: 'scale(1.02)',
                   },
@@ -427,11 +427,11 @@ export default function Menu({ isDark, toggleTheme }) {
               textTransform: 'none',
               fontWeight: 500,
               fontSize: '0.875rem',
-              borderColor: '#00ff5e',
-              color: '#00ff5e',
+              borderColor: 'brand.neonGreen',
+              color: 'brand.neonGreen',
               '&:hover': {
-                backgroundColor: '#00ff5e',
-                color: '#0a1414',
+                backgroundColor: 'brand.neonGreen',
+                color: 'brand.darkBg',
                 transform: 'scale(1.05)',
               },
             }}

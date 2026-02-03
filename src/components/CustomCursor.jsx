@@ -59,25 +59,26 @@ export default function CustomCursor() {
         left: position.x - 10,
         width: 20,
         height: 20,
-        backgroundColor: '#00ff5e',
+        backgroundColor: 'brand.neonGreen',
         borderRadius: '50%',
         pointerEvents: 'none',
         zIndex: 10000,
         transition: 'all 0.15s cubic-bezier(0.23, 1, 0.320, 1)',
         mixBlendMode: 'difference',
         opacity: 0.8,
-        transform: isClicking 
-          ? 'scale(0.8)' 
-          : isHovering 
-            ? 'scale(2)' 
+        transform: isClicking
+          ? 'scale(0.8)'
+          : isHovering
+            ? 'scale(2)'
             : 'scale(1)',
         ...(isHovering && {
           backgroundColor: 'rgba(0, 255, 94, 0.3)',
-          border: '2px solid #00ff5e',
+          border: '2px solid',
+          borderColor: 'brand.neonGreen',
           animation: 'pulse 1s infinite',
         }),
         ...(isClicking && {
-          backgroundColor: '#ff6b35',
+          backgroundColor: 'brand.orange',
           animation: 'click-ripple 0.3s ease',
         }),
         ...(isText && {

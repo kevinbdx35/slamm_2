@@ -271,6 +271,12 @@ export const lightTheme = createTheme({
       main: mdTokens.outline,
       variant: mdTokens.outlineVariant,
     },
+    // Couleurs de marque fixes (identité SLAMM, ne changent pas selon le mode)
+    brand: {
+      neonGreen: '#00ff5e',
+      darkBg: '#0a1414',
+      orange: '#ff6b35',
+    },
   },
   transitions: {
     duration: {
@@ -510,6 +516,12 @@ export const darkTheme = createTheme({
     outline: {
       main: mdTokensDark.outline,
       variant: mdTokensDark.outlineVariant,
+    },
+    // Couleurs de marque fixes (identité SLAMM, ne changent pas selon le mode)
+    brand: {
+      neonGreen: '#00ff5e',
+      darkBg: '#0a1414',
+      orange: '#ff6b35',
     },
   },
   transitions: {

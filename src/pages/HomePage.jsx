@@ -14,25 +14,14 @@ import React from 'react';
 import { Typography, Box, Grid, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { PARTNER_URLS } from '../config/urls';
-import SeoHelmet from '../components/SeoHelmet';
+import OptimizedImage from '../components/OptimizedImage';
 
 /**
  * Composant HomePage - Page d'accueil du site SLAMM
  */
 export default function HomePage() {
-  // URL de l'image principale optimisée (WebP responsive)
-  const SHARED_IMAGE_URL = 'https://mma-saint-lunaire.fr/img/mma_blur_vwsa7w_c_scale,w_1400.webp';
-
   return (
     <>
-      <SeoHelmet
-        title="Accueil - SLAMM MMA Saint-Lunaire"
-        description="Découvrez notre club de MMA à Saint-Lunaire, proche de Saint-Malo, Dinard, Cancale et Dinan en Bretagne. Entraînez-vous en arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat dans notre dojo convivial."
-        url="https://mma-saint-lunaire.fr/"
-        image="https://mma-saint-lunaire.fr/img/social/social.jpg"
-        keywords="MMA Saint-Lunaire, arts martiaux mixtes Saint-Lunaire, mixed martial arts Saint-Lunaire, sport de combat Saint-Lunaire, grappling Saint-Lunaire, dojo Saint-Lunaire, club sportif Saint-Lunaire, self-défense Saint-Lunaire, SLAMM Saint-Lunaire, FMMAF Saint-Lunaire"
-      />
-
       {/* Hero Section */}
       <Box 
         component="section" 
@@ -118,9 +107,9 @@ export default function HomePage() {
                   backgroundColor: 'rgba(255,255,255,0.1)',
                   backdropFilter: 'blur(10px)',
                   "&:hover": {
-                    backgroundColor: '#00ff5e',
-                    color: '#0a1414',
-                    borderColor: '#00ff5e',
+                    backgroundColor: 'brand.neonGreen',
+                    color: 'brand.darkBg',
+                    borderColor: 'brand.neonGreen',
                     transform: 'translateY(-2px)',
                     boxShadow: '0 8px 16px rgba(0,255,94,0.3)',
                   }
@@ -147,9 +136,9 @@ export default function HomePage() {
                   backgroundColor: 'rgba(255,255,255,0.1)',
                   backdropFilter: 'blur(10px)',
                   '&:hover': {
-                    backgroundColor: '#ff6b35',
+                    backgroundColor: 'brand.orange',
                     color: '#ffffff',
-                    borderColor: '#ff6b35',
+                    borderColor: 'brand.orange',
                     transform: 'translateY(-1px)',
                     boxShadow: '0 4px 8px rgba(255,107,53,0.3)',
                   }
@@ -173,30 +162,42 @@ export default function HomePage() {
         </Typography>
       </Box>
 
-      {/* Image héroïque d'entraînement MMA */}
-      <Box my={4} textAlign="center">
-        <Box
-          component="img"
-          src="/img/team/photo1_scale,w_1400.webp"
-          srcSet={`
-            /img/team/photo1_scale,w_200.webp 200w,
-            /img/team/photo1_scale,w_400.webp 400w,
-            /img/team/photo1_scale,w_525.webp 525w,
-            /img/team/photo1_scale,w_704.webp 704w,
-            /img/team/photo1_scale,w_914.webp 914w,
-            /img/team/photo1_scale,w_1104.webp 1104w,
-            /img/team/photo1_scale,w_1314.webp 1314w,
-            /img/team/photo1_scale,w_1400.webp 1400w
-          `}
-          sizes="(max-width: 480px) 400px, (max-width: 768px) 525px, (max-width: 1024px) 704px, (max-width: 1200px) 914px, 1104px"
-          alt="Victoire de Florian pour son premier pas dans une cage"
-          title="Victoire de Florian pour son premier pas dans une cage"
-          fetchpriority="high"
-          loading="eager"
-          maxWidth={2000}
-          width="100%"
-          sx={{ border: '4px solid', borderColor: 'primary.main', borderRadius: 0 }}
-        />
+      {/* Galerie d'images d'entraînement MMA */}
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          my: 4,
+          justifyContent: 'center',
+          flexWrap: 'nowrap'
+        }}
+      >
+        {[
+          { src: '/img/team/miguel.webp', alt: 'Victoire de Miguel en NoGi' },
+          { src: '/img/team/team.webp', alt: 'Une partie de l\'équipe 2025-2026' },
+          { src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', srcSet: `/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w` },
+          { src: '/img/team/cage.webp', alt: 'Travail du cage control' },
+        ].map((image, index) => (
+          <Box key={index} sx={{ flex: '0 0 auto', width: { xs: 'calc(25% - 12px)', sm: 'calc(25% - 12px)' } }}>
+            <OptimizedImage
+              src={image.src}
+              srcSet={image.srcSet}
+              sizes="25vw"
+              alt={image.alt}
+              title={image.alt}
+              fetchpriority={index === 0 ? "high" : "auto"}
+              loading={index === 0 ? "eager" : "lazy"}
+              width="100%"
+              sx={{
+                border: '4px solid',
+                borderColor: 'primary.main',
+                borderRadius: 0,
+                aspectRatio: '1 / 1',
+                objectFit: 'cover'
+              }}
+            />
+          </Box>
+        ))}
       </Box>
 
       {/* Section éducative : Qu'est-ce que le MMA ? */}
@@ -220,8 +221,7 @@ export default function HomePage() {
 
         {/* Image illustrative des bénéfices */}
         <Box my={4} textAlign="center">
-          <Box
-            component="img"
+          <OptimizedImage
             src="/img/team2/equipe1_scale,w_1400.webp"
             srcSet={`
               /img/team2/equipe1_scale,w_200.webp 200w,
