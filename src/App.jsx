@@ -17,6 +17,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
 const FaqPage = lazy(() => import('./pages/FaqPage.jsx'))
 const HygienePage = lazy(() => import('./pages/HygienePage.jsx'))
 const MentionsLegalesPage = lazy(() => import('./pages/MentionsLegalesPage.jsx'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'))
 
 // Composant de chargement pour Suspense
 const PageLoader = () => (
@@ -102,6 +103,13 @@ export default function App({ isDark, toggleTheme }) {
       image: "https://mma-saint-lunaire.fr/img/social/social.jpg",
       keywords: "mentions légales MMA Saint-Lunaire, mentions légales arts martiaux mixtes Saint-Lunaire, mentions légales mixed martial arts Saint-Lunaire, association loi 1901 Saint-Lunaire, club sport de combat Saint-Lunaire, SLAMM association Saint-Lunaire, FMMAF Saint-Lunaire",
     },
+    '/404': {
+      title: "Page non trouvée - SLAMM MMA",
+      description: "Cette page n'existe pas. Retournez à l'accueil du club SLAMM MMA Saint-Lunaire.",
+      url: "https://mma-saint-lunaire.fr/404",
+      image: "https://mma-saint-lunaire.fr/img/social/social.jpg",
+      keywords: "erreur 404, page non trouvée, SLAMM MMA",
+    },
     // '/partenariat': {
     //   title: "Devenez Partenaire - SLAMM MMA",
     //   description: "Rejoignez notre communauté de partenaires ! Soutenez le développement du MMA à Saint-Lunaire.",
@@ -112,8 +120,8 @@ export default function App({ isDark, toggleTheme }) {
   }
 
   // Récupération des métadonnées SEO pour la route actuelle
-  // Fallback sur la page d'accueil si la route n'est pas trouvée
-  const currentSeo = seoMap[location.pathname] || seoMap['/']
+  // Fallback sur la page 404 si la route n'est pas dans seoMap
+  const currentSeo = seoMap[location.pathname] || seoMap['/404']
 
   // Génération du breadcrumb schema pour la navigation
   const breadcrumbSchema = generateBreadcrumbSchema(location.pathname)
@@ -144,6 +152,8 @@ export default function App({ isDark, toggleTheme }) {
             <Route path="/hygiene" element={<HygienePage />} />
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             {/* <Route path="/partenariat" element={<PartnershipPage />} /> */} {/* TODO: Activer plus tard */}
+            {/* Route catch-all pour les pages non trouvées */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </Layout>
