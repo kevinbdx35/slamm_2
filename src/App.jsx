@@ -1,18 +1,36 @@
-// Importation des dépendances React Router pour la gestion de la navigation
+// Importation des dépendances React et React Router
+import { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { Box, CircularProgress } from '@mui/material'
 
-// Importation du layout principal et des composants de pages
+// Importation du layout principal et composants critiques (chargés immédiatement)
 import Layout from './components/Layout.jsx'
-import HomePage from './pages/HomePage.jsx'
-import CoursPage from './pages/CoursPage.jsx'
-import EquipePage from './pages/EquipePage.jsx'
-import EvenementsPage from './pages/EvenementsPage.jsx'
-import ContactPage from './pages/ContactPage.jsx'
-import FaqPage from './pages/FaqPage.jsx'
-import HygienePage from './pages/HygienePage.jsx'
-import MentionsLegalesPage from './pages/MentionsLegalesPage.jsx'
+import HomePage from './pages/HomePage.jsx' // Page d'accueil chargée immédiatement pour le LCP
 import SeoHelmet from './components/SeoHelmet.jsx'
 import { generateBreadcrumbSchema } from './utils/schemaGenerator.js'
+
+// Lazy loading des pages secondaires pour optimiser le bundle initial
+const CoursPage = lazy(() => import('./pages/CoursPage.jsx'))
+const EquipePage = lazy(() => import('./pages/EquipePage.jsx'))
+const EvenementsPage = lazy(() => import('./pages/EvenementsPage.jsx'))
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
+const FaqPage = lazy(() => import('./pages/FaqPage.jsx'))
+const HygienePage = lazy(() => import('./pages/HygienePage.jsx'))
+const MentionsLegalesPage = lazy(() => import('./pages/MentionsLegalesPage.jsx'))
+
+// Composant de chargement pour Suspense
+const PageLoader = () => (
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '50vh',
+    }}
+  >
+    <CircularProgress color="primary" />
+  </Box>
+)
 
 /**
  * Composant racine de l'application SLAMM MMA
@@ -114,18 +132,20 @@ export default function App({ isDark, toggleTheme }) {
 
       {/* Layout principal englobant toutes les pages */}
       <Layout isDark={isDark} toggleTheme={toggleTheme}>
-        {/* Configuration des routes de l'application */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/cours" element={<CoursPage />} />
-          <Route path="/equipe" element={<EquipePage />} />
-          <Route path="/evenements" element={<EvenementsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/hygiene" element={<HygienePage />} />
-          <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
-          {/* <Route path="/partenariat" element={<PartnershipPage />} /> */} {/* TODO: Activer plus tard */}
-        </Routes>
+        {/* Configuration des routes avec Suspense pour le lazy loading */}
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/cours" element={<CoursPage />} />
+            <Route path="/equipe" element={<EquipePage />} />
+            <Route path="/evenements" element={<EvenementsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/hygiene" element={<HygienePage />} />
+            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+            {/* <Route path="/partenariat" element={<PartnershipPage />} /> */} {/* TODO: Activer plus tard */}
+          </Routes>
+        </Suspense>
       </Layout>
     </>
   )
