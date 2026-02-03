@@ -256,8 +256,6 @@ export default function HomePage() {
             { name: 'FMMAF', logo: 'img/partenaires/fmmaf.png', url: PARTNER_URLS.FMMAF },
             { name: 'Progress', logo: 'img/partenaires/progress.png', url: PARTNER_URLS.PROGRESS },
             { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX },
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp', url: null },
-            { name: 'Votre logo ici', logo: 'img/partenaires/logo.webp', url: null }
           ].map((partner, i) => (
             <Grid item xs={6} sm={4} md={2} key={i} textAlign="center">
               <Box
