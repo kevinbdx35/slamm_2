@@ -78,6 +78,9 @@ export default function EvenementsPage() {
           <Typography variant="body1" mt={1} maxWidth={1000}>
             Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
           </Typography>
+          <Typography variant="body2" color="primary.main" mt={2} sx={{ fontWeight: 'medium' }}>
+            Depuis 2023 : 5 stages organisés • 2 participations en compétition
+          </Typography>
         </Box>
 
         {/* Prochains événements */}
