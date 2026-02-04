@@ -338,6 +338,68 @@ export default function HomePage() {
         </Box>
       </Box>
 
+      {/* Section témoignages */}
+      <Box component="section" mt={6}>
+        <Typography variant="h3" mb={2} sx={headingBorderStyle}>
+          Ils témoignent
+        </Typography>
+        <Typography variant="body2" maxWidth={1000} mb={4}>
+          Découvrez ce que nos adhérents pensent de leur expérience au sein du club.
+        </Typography>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                p: 3,
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Typography variant="body1" sx={{ fontStyle: 'italic', flex: 1, mb: 2 }}>
+                "La pratique du MMA m'a apporté discipline, confiance en moi et une condition physique optimale. C'est bien plus qu'un sport, c'est un mode de vie qui m'a renforcé mentalement et physiquement."
+              </Typography>
+              <Box>
+                <Typography variant="subtitle2" color="primary.main" fontWeight="bold">
+                  Miguel
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  Adhérent depuis 2024
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                border: '2px solid',
+                borderColor: 'primary.main',
+                p: 3,
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Typography variant="body1" sx={{ fontStyle: 'italic', flex: 1, mb: 2 }}>
+                "Je pratique le MMA depuis septembre 2024 et ça m'a appris beaucoup de choses sur moi que j'ignorais : le dépassement de soi, la condition physique et le mental. Je me sens bien mieux depuis que j'ai découvert cette pratique qui, depuis mon inscription, m'anime jour et nuit."
+              </Typography>
+              <Box>
+                <Typography variant="subtitle2" color="primary.main" fontWeight="bold">
+                  Florian
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  Adhérent de 2024 à 2026
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
       {/* Section partenaires : Soutiens du club */}
       <Box component="section" mt={6} mb={8}>
         <Typography variant="h3" mb={2} sx={headingBorderStyle}>
