@@ -290,25 +290,51 @@ export default function HomePage() {
         Les arts martiaux mixtes, discipline complète qui combine différentes techniques, offrent de nombreux bénéfices. Le MMA améliore la condition physique, renforce la confiance en soi et développe des compétences en autodéfense. Les entraînements de mixed martial arts permettent de libérer le stress accumulé, favorisent l'esprit de camaraderie et le respect envers les autres pratiquants.
         </Typography>
 
-        {/* Image illustrative des bénéfices */}
-        <Box my={4} textAlign="center">
-          <OptimizedImage
-            src="/img/team2/equipe1_scale,w_1400.webp"
-            srcSet={`
-              /img/team2/equipe1_scale,w_200.webp 200w,
-              /img/team2/equipe1_scale,w_637.webp 637w,
-              /img/team2/equipe1_scale,w_955.webp 955w,
-              /img/team2/equipe1_scale,w_1266.webp 1266w,
-              /img/team2/equipe1_scale,w_1400.webp 1400w
-            `}
-            sizes="(max-width: 480px) 200px, (max-width: 768px) 400px, (max-width: 1024px) 637px, (max-width: 1200px) 955px, 1266px"
-            alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
-            title="Une partie de l'équipe SLAMM de la saison 2024-2025"
-            loading="lazy"
-            maxWidth={2000}
-            width="100%"
-            sx={imageBorderStyle}
-          />
+        {/* Images de l'équipe */}
+        <Box
+          my={4}
+          sx={{
+            display: 'flex',
+            gap: 2,
+            flexDirection: { xs: 'column', md: 'row' }
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <OptimizedImage
+              src="/img/team2/equipe1_scale,w_1400.webp"
+              srcSet={`
+                /img/team2/equipe1_scale,w_200.webp 200w,
+                /img/team2/equipe1_scale,w_637.webp 637w,
+                /img/team2/equipe1_scale,w_955.webp 955w,
+                /img/team2/equipe1_scale,w_1266.webp 1266w,
+                /img/team2/equipe1_scale,w_1400.webp 1400w
+              `}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
+              title="Une partie de l'équipe SLAMM de la saison 2024-2025"
+              loading="lazy"
+              width="100%"
+              sx={imageBorderStyle}
+            />
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <OptimizedImage
+              src="/img/team2/cours_2025-2026_scale,w_1400.webp"
+              srcSet={`
+                /img/team2/cours_2025-2026_scale,w_200.webp 200w,
+                /img/team2/cours_2025-2026_scale,w_637.webp 637w,
+                /img/team2/cours_2025-2026_scale,w_955.webp 955w,
+                /img/team2/cours_2025-2026_scale,w_1266.webp 1266w,
+                /img/team2/cours_2025-2026_scale,w_1400.webp 1400w
+              `}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              alt="Cours saison 2025-2026"
+              title="Cours saison 2025-2026"
+              loading="lazy"
+              width="100%"
+              sx={imageBorderStyle}
+            />
+          </Box>
         </Box>
       </Box>
 

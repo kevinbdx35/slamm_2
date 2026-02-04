@@ -187,6 +187,9 @@ export default function PageCours() {
                   <strong>Mercredi</strong> 19h15 → 21h15<br />
                   <strong>Vendredi</strong> 19h30 → 21h00
                 </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 1, fontStyle: 'italic' }}>
+                  Tous niveaux
+                </Typography>
               </Box>
             </Grid>
 
@@ -210,6 +213,9 @@ export default function PageCours() {
                   <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
                     <strong>+25 ans</strong> : 210 €<br />
                     <strong>+16 ans</strong> : 180 €
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                    Paiement par CB (possibilité en 3 fois)
                   </Typography>
                 </Box>
                 <Box mt={2}>
@@ -339,6 +345,9 @@ export default function PageCours() {
                       <strong>Mercredi</strong> 19h15 → 21h15<br />
                       <strong>Vendredi</strong> 19h30 → 21h00
                     </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1, fontStyle: 'italic' }}>
+                      Tous niveaux
+                    </Typography>
                   </Box>
                 </Grid>
 
@@ -363,6 +372,9 @@ export default function PageCours() {
                       <Typography variant="body1" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
                         <strong>+25 ans</strong> : 210 €<br />
                         <strong>+16 ans</strong> : 180 €
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                        Paiement par CB (possibilité en 3 fois)
                       </Typography>
                     </Box>
                     <Box mt={2}>
