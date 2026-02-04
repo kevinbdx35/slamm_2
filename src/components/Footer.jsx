@@ -1,6 +1,6 @@
 /**
  * Composant Footer - Pied de page informatif de SLAMM
- * 
+ *
  * Ce composant contient :
  * - Identité et présentation du club
  * - Informations de contact complètes (entraînements + siège social)
@@ -39,9 +39,9 @@ const Footer = () => {
           {/* Identité club */}
           <Grid item xs={12} md={4}>
             <Box sx={{ mb: 3 }}>
-              <Typography 
+              <Typography
                 component="div"
-              sx={{ 
+              sx={{
                 fontSize: '1.125rem',
                 fontWeight: "bold",
                 color: 'primary.main',
@@ -55,7 +55,7 @@ const Footer = () => {
                 Saint-Lunaire Arts Martiaux Mixtes
               </Typography>
               <Typography variant="body2" sx={{ opacity: 0.7 }}>
-                Club de MMA fondé en 2023, proposant des cours pour tous niveaux 
+                Club de MMA fondé en 2023, proposant des cours pour tous niveaux
                 dans une ambiance conviviale et sérieuse.
               </Typography>
             </Box>
@@ -63,11 +63,11 @@ const Footer = () => {
 
           {/* Contact */}
           <Grid item xs={12} md={4}>
-            <Typography 
+            <Typography
               component="div"
-            sx={{ 
+            sx={{
               fontSize: '0.875rem',
-              fontWeight: "bold", 
+              fontWeight: "bold",
               letterSpacing: '0.02em',
               mb: 2,
               color: 'text.primary'
@@ -110,11 +110,11 @@ const Footer = () => {
 
           {/* Navigation */}
           <Grid item xs={12} md={4}>
-            <Typography 
+            <Typography
               component="div"
-            sx={{ 
+            sx={{
               fontSize: '0.875rem',
-              fontWeight: "bold", 
+              fontWeight: "bold",
               letterSpacing: '0.02em',
               mb: 2,
               color: 'text.primary'
@@ -193,8 +193,8 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             color="inherit"
-            sx={{ 
-              display: 'flex', 
+            sx={{
+              display: 'flex',
               alignItems: 'center',
               transition: 'all 0.2s ease',
               p: 1,

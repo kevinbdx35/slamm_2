@@ -30,7 +30,7 @@ export default function SeoHelmet({
   url = 'https://mma-saint-lunaire.fr/',
   image = 'https://mma-saint-lunaire.fr/img/social/social.jpg',
   imageAlt = 'Logo du club SLAMM MMA Saint-Lunaire',
-  keywords = 'MMA Saint-Lunaire, arts martiaux mixtes Bretagne, club combat Saint-Malo, entraînement MMA Dinard, SLAMM',
+  keywords = 'MMA Saint-Lunaire, MMA Dinard, MMA Saint-Malo, MMA Pleurtuit, MMA Dinan, MMA Cancale, MMA Saint-Briac, MMA Lancieux, MMA Ploubalay, club MMA Côte d\'Émeraude, arts martiaux mixtes Bretagne',
   type = 'website',
   schemas = null, // Schema.org personnalisé(s) pour chaque page (objet ou tableau)
 }) {
@@ -101,7 +101,7 @@ export default function SeoHelmet({
       <meta name="locality" content="Saint-Lunaire" />
       <meta name="region" content="Bretagne" />
       <meta name="country" content="France" />
-      <meta name="coverage" content="Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac" />
+      <meta name="coverage" content="Saint-Lunaire, Dinard, Saint-Malo, Pleurtuit, La Richardais, Dinan, Cancale, Saint-Briac, Lancieux, Ploubalay, Saint-Coulomb, Paramé, Saint-Servan, Rothéneuf" />
     </Helmet>
   );
 }

@@ -89,10 +89,23 @@ export function generateSportsClubSchema() {
     "sameAs": [
       "https://instagram.com/slamm35800"
     ],
-    "areaServed": {
-      "@type": "Place",
-      "name": "Côte d'Émeraude, Ille-et-Vilaine, Saint-Lunaire, Saint-Malo, Dinard, Cancale, Dinan, Saint-Briac, Bretagne"
-    },
+    "areaServed": [
+      { "@type": "City", "name": "Saint-Lunaire" },
+      { "@type": "City", "name": "Dinard" },
+      { "@type": "City", "name": "Saint-Malo" },
+      { "@type": "City", "name": "Pleurtuit" },
+      { "@type": "City", "name": "La Richardais" },
+      { "@type": "City", "name": "Dinan" },
+      { "@type": "City", "name": "Cancale" },
+      { "@type": "City", "name": "Saint-Briac-sur-Mer" },
+      { "@type": "City", "name": "Lancieux" },
+      { "@type": "City", "name": "Ploubalay" },
+      { "@type": "City", "name": "Saint-Coulomb" },
+      { "@type": "City", "name": "Paramé" },
+      { "@type": "City", "name": "Saint-Servan" },
+      { "@type": "City", "name": "Rothéneuf" },
+      { "@type": "Place", "name": "Côte d'Émeraude, Ille-et-Vilaine, Bretagne" }
+    ],
     "foundingDate": "2023",
     "memberOf": {
       "@type": "Organization",

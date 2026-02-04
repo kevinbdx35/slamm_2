@@ -56,22 +56,20 @@ export default function HomePage() {
       "addressCountry": "FR"
     },
     "areaServed": [
-      {
-        "@type": "City",
-        "name": "Saint-Lunaire"
-      },
-      {
-        "@type": "City",
-        "name": "Dinard"
-      },
-      {
-        "@type": "City",
-        "name": "Pleurtuit"
-      },
-      {
-        "@type": "City",
-        "name": "La Richardais"
-      }
+      { "@type": "City", "name": "Saint-Lunaire" },
+      { "@type": "City", "name": "Dinard" },
+      { "@type": "City", "name": "Saint-Malo" },
+      { "@type": "City", "name": "Pleurtuit" },
+      { "@type": "City", "name": "La Richardais" },
+      { "@type": "City", "name": "Dinan" },
+      { "@type": "City", "name": "Cancale" },
+      { "@type": "City", "name": "Saint-Briac-sur-Mer" },
+      { "@type": "City", "name": "Lancieux" },
+      { "@type": "City", "name": "Ploubalay" },
+      { "@type": "City", "name": "Saint-Coulomb" },
+      { "@type": "City", "name": "Paramé" },
+      { "@type": "City", "name": "Saint-Servan" },
+      { "@type": "City", "name": "Rothéneuf" }
     ],
     "sport": "Mixed Martial Arts",
     "sameAs": [
@@ -230,7 +228,7 @@ export default function HomePage() {
         </Typography>
         <Typography variant="body1" mt={1} maxWidth={1000}>
           Association loi 1901 dédiée à l'enseignement et la pratique des Arts Martiaux Mixtes depuis 2023.
-          Basé à Saint-Lunaire, notre club accueille les pratiquants de Dinard, Pleurtuit, La Richardais et toute la région.
+          Basé à Saint-Lunaire, notre club accueille les pratiquants de Dinard, Saint-Malo, Pleurtuit, La Richardais, Dinan, Cancale, Saint-Briac, Lancieux et toute la Côte d'Émeraude.
           Découvre nos cours, notre ambiance, et rejoins-nous pour pratiquer le MMA.
         </Typography>
       </Box>
@@ -277,7 +275,7 @@ export default function HomePage() {
           Mixed Martial Arts - MMA
         </Typography>
         <Typography variant="body2" maxWidth={1000}>
-        Les arts martiaux mixtes (mixed martial arts) sont un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol. Notre académie à Saint-Lunaire propose des cours de MMA accessibles aux habitants de Dinard, Pleurtuit, La Richardais et toute la Côte d'Émeraude.
+        Les arts martiaux mixtes (mixed martial arts) sont un sport de combat complet qui combine plusieurs disciplines de combat différentes, telles que la boxe, la lutte, la luta livre, le kickboxing, le muay thaï, etc. Il y a généralement trois phases dans un combat de MMA : la phase debout, la phase de corps à corps et la phase au sol. Notre académie à Saint-Lunaire propose des cours de MMA accessibles aux habitants de Dinard, Saint-Malo, Pleurtuit, La Richardais, Dinan, Cancale, Saint-Briac, Lancieux, Ploubalay et toute la Côte d'Émeraude.
         </Typography>
       </Box>
 
