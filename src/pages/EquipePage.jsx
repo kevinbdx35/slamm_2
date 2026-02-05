@@ -15,7 +15,7 @@ const teamMembers = [
     role: 'Président',
     initials: 'M',
     color: '#1976d2',
-    diplomas: ['BF1 et BF2 de MMA - FMMAF', 'Référent musculation', 'PSC1'],
+    diplomas: ['BF1 et BF2 de MMA - FMMAF', 'PSC1'],
   },
   {
     name: 'Miguel',
