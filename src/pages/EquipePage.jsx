@@ -22,7 +22,7 @@ const teamMembers = [
     role: 'Vice-Président',
     initials: 'Mi',
     color: '#2e7d32',
-    diplomas: ['BF1 de MMA - FMMAF','PSE1 et PSE2'],
+    diplomas: ['BF1 et BF2 de MMA - FMMAF','PSE1 et PSE2'],
   },
   {
     name: 'Thomas',
