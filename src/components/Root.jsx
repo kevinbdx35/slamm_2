@@ -13,6 +13,7 @@ import App from '../App.jsx'
 import { ThemeProvider, CssBaseline, Box } from '@mui/material'
 import { lightTheme, darkTheme } from '../theme.js'
 import { BrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 
 /**
  * Composant racine avec gestion avancée du thème
@@ -63,6 +64,7 @@ export default function Root() {
   const theme = isDark ? darkTheme : lightTheme
 
   return (
+    <HelmetProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box
@@ -92,5 +94,6 @@ export default function Root() {
         </BrowserRouter>
       </Box>
     </ThemeProvider>
+    </HelmetProvider>
   )
 }

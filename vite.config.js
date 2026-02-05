@@ -19,7 +19,7 @@ export default defineConfig({
           'mui-core': ['@mui/material', '@mui/system'],
           'mui-icons': ['@mui/icons-material'],
           router: ['react-router-dom'],
-          helmet: ['react-helmet'],
+          helmet: ['react-helmet-async'],
         },
       },
     },

@@ -10,7 +10,7 @@
  * - Support mobile avec viewport optimisé
  */
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 /**
  * Composant de gestion des métadonnées SEO

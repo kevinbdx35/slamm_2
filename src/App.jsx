@@ -6,7 +6,7 @@ import { Box, CircularProgress } from '@mui/material'
 // Importation du layout principal et composants critiques (chargés immédiatement)
 import Layout from './components/Layout.jsx'
 import HomePage from './pages/HomePage.jsx' // Page d'accueil chargée immédiatement pour le LCP
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { generateBreadcrumbSchema } from './utils/schemaGenerator.js'
 
 // Lazy loading des pages secondaires pour optimiser le bundle initial

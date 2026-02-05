@@ -96,6 +96,27 @@ async function prerender() {
     // Attendre que le contenu React soit rendu
     await page.waitForSelector('#root > *', { timeout: 10000 });
 
+    // Extraire les styles Emotion du CSSOM vers le HTML
+    // Emotion utilise insertRule() en production (speedy mode),
+    // ce qui rend les styles invisibles dans page.content().
+    // On les récupère manuellement depuis les styleSheets du navigateur.
+    await page.evaluate(() => {
+      for (const sheet of document.styleSheets) {
+        try {
+          const node = sheet.ownerNode;
+          if (node?.dataset?.emotion !== undefined) {
+            const rules = [];
+            for (const rule of sheet.cssRules) {
+              rules.push(rule.cssText);
+            }
+            node.textContent = rules.join('\n');
+          }
+        } catch {
+          // Ignore cross-origin stylesheets
+        }
+      }
+    });
+
     const html = await page.content();
     await page.close();
 
