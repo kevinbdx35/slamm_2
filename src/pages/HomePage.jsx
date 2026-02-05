@@ -14,6 +14,7 @@ import React from 'react';
 import { Typography, Box, Grid, Button, Container } from '@mui/material';
 import { OpenInNew } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { PARTNER_URLS } from '../config/urls';
 import OptimizedImage from '../components/OptimizedImage';
 
@@ -98,10 +99,11 @@ export default function HomePage() {
   return (
     <>
       {/* Schema Markup pour le SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <Box
         component="section"

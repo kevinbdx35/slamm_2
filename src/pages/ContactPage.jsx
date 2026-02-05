@@ -12,9 +12,9 @@ import ContactGrid from '../components/ContactGrid';
 // Leaflet marker config
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconRetinaUrl: '/img/leaflet/marker-icon-2x.png',
+  iconUrl: '/img/leaflet/marker-icon.png',
+  shadowUrl: '/img/leaflet/marker-shadow.png',
 });
 
 // Coordonnées GPS
