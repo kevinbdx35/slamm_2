@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import SeoHelmet from '../components/SeoHelmet'
-import { generateFAQSchema, generateBreadcrumbSchema } from '../utils/schemaGenerator'
+import { generateFAQSchema } from '../utils/schemaGenerator'
 
 const faqs = [
   {
@@ -82,15 +82,15 @@ export default function FaqPage() {
 
   // Générer les schemas : FAQ + Breadcrumb
   const faqSchema = generateFAQSchema(faqs)
-  const breadcrumbSchema = generateBreadcrumbSchema('/faq')
 
   return (
     <>
       <SeoHelmet
-        title="FAQ – MMA Saint-Lunaire"
-        description="Toutes les réponses à vos questions sur la pratique du MMA au sein de l'association SLAMM à Saint-Lunaire. Inscriptions, équipement, âge, sécurité, etc."
+        title="FAQ MMA | Questions fréquentes - SLAMM Saint-Lunaire"
+        description="Réponses à vos questions sur la pratique du MMA à Saint-Lunaire. Club accessible depuis Dinard, Saint-Malo, Pleurtuit, Dinan et la Côte d'Émeraude."
         url="https://mma-saint-lunaire.fr/faq"
-        schemas={[faqSchema, breadcrumbSchema]}
+        keywords="FAQ MMA Saint-Lunaire, questions MMA Dinard, tarifs MMA Saint-Malo, débuter MMA Côte d'Émeraude, horaires club MMA Bretagne, prix cours MMA Ille-et-Vilaine"
+        schemas={faqSchema}
       />
 
       <Box

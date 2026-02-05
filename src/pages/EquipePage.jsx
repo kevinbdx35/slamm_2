@@ -52,10 +52,11 @@ export default function EquipePage() {
   return (
     <>
       <SeoHelmet
-        title="Équipe SLAMM - Club de MMA Saint-Lunaire"
-        description="Découvrez les membres fondateurs de SLAMM, passionnés et diplômés en MMA, grappling et sports de combat. Une équipe bienveillante et qualifiée pour vous encadrer."
+        title="Équipe SLAMM | Coachs MMA certifiés FMMAF"
+        description="Découvrez nos entraîneurs certifiés FMMAF à Saint-Lunaire. Club accessible depuis Dinard, Saint-Malo, Pleurtuit, Dinan et la Côte d'Émeraude."
         url="https://mma-saint-lunaire.fr/equipe"
         image="https://mma-saint-lunaire.fr/img/social/social.jpg"
+        keywords="entraîneurs MMA Saint-Lunaire, coach MMA Dinard, instructeur MMA Saint-Malo, professeur arts martiaux Côte d'Émeraude, FMMAF Bretagne, équipe SLAMM"
       />
 
       <Box

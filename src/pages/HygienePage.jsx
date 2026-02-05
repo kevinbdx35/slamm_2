@@ -140,10 +140,10 @@ export default function HygienePage() {
   return (
     <>
       <SeoHelmet
-        title="Hygiène et Sécurité – SLAMM MMA Saint-Lunaire"
-        description="Règles d'hygiène et protocoles de sécurité sanitaire au club de MMA SLAMM à Saint-Lunaire. Prévention des infections, équipements obligatoires."
+        title="Hygiène et Sécurité | SLAMM MMA Saint-Lunaire"
+        description="Règles d'hygiène et protocoles de sécurité pour la pratique du MMA au club SLAMM Saint-Lunaire, Côte d'Émeraude."
         url="https://mma-saint-lunaire.fr/hygiene"
-        keywords="hygiène MMA Saint-Lunaire, sécurité sanitaire club MMA, prévention infection sport combat, règles hygiène arts martiaux mixtes, protocole sanitaire dojo"
+        keywords="hygiène MMA Saint-Lunaire, sécurité club MMA Dinard, protocole sanitaire dojo Saint-Malo, règles hygiène arts martiaux Bretagne"
       />
 
       <Box

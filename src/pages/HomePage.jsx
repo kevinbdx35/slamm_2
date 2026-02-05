@@ -40,20 +40,31 @@ export default function HomePage() {
   };
 
   // Données structurées JSON-LD pour le SEO
+  // Aligné avec le SportsClub de index.html (même sameAs, même identité)
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "SportsOrganization",
-    "name": "Saint-Lunaire Arts Martiaux Mixtes (SLAMM)",
+    "@type": "SportsClub",
+    "name": "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
     "alternateName": "SLAMM MMA",
-    "description": "Club de MMA et arts martiaux mixtes à Saint-Lunaire. Cours pour adultes à partir de 16 ans, tous niveaux.",
-    "url": "https://mma-saint-lunaire.fr",
-    "logo": "https://mma-saint-lunaire.fr/logo.png",
+    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
+    "url": "https://mma-saint-lunaire.fr/",
+    "logo": "https://mma-saint-lunaire.fr/img/logo-slamm.png",
+    "image": "https://mma-saint-lunaire.fr/img/social/social.jpg",
+    "telephone": "+33782779288",
+    "email": "slamm35800@gmail.com",
     "foundingDate": "2023",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "361 Rue de la Saudrais",
       "addressLocality": "Saint-Lunaire",
+      "postalCode": "35800",
       "addressRegion": "Bretagne",
       "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.629194657231274",
+      "longitude": "-2.1120771896734203"
     },
     "areaServed": [
       { "@type": "City", "name": "Saint-Lunaire" },
@@ -69,19 +80,19 @@ export default function HomePage() {
       { "@type": "City", "name": "Saint-Coulomb" },
       { "@type": "City", "name": "Paramé" },
       { "@type": "City", "name": "Saint-Servan" },
-      { "@type": "City", "name": "Rothéneuf" }
+      { "@type": "City", "name": "Rothéneuf" },
+      { "@type": "Place", "name": "Côte d'Émeraude, Ille-et-Vilaine, Bretagne" }
     ],
     "sport": "Mixed Martial Arts",
     "sameAs": [
-      "https://www.facebook.com/slammclub/",
-      "https://www.instagram.com/slamm_club/"
+      "https://instagram.com/slamm35800"
     ],
-    "offers": {
-      "@type": "Offer",
-      "name": "Cours de MMA",
-      "description": "Entraînements de MMA et arts martiaux mixtes",
-      "category": "Sports & Recreation"
-    }
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Fédération Française de MMA",
+      "url": "https://fmmaf.fr"
+    },
+    "priceRange": "€€"
   };
 
   return (

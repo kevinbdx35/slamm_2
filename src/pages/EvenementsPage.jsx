@@ -4,20 +4,16 @@ import { CalendarToday, LocationOn, AccessTime, Euro, People } from "@mui/icons-
 import SeoHelmet from "../components/SeoHelmet";
 import { SOCIAL_URLS } from "../config/urls";
 import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from "../config/events";
-import { generateEventListSchema, generateBreadcrumbSchema } from "../utils/schemaGenerator";
+import { generateEventListSchema } from "../utils/schemaGenerator";
 
 export default function EvenementsPage() {
   // Récupérer les événements à venir et les trier par date
   const upcomingEvents = sortEventsByDate(getUpcomingEvents(EVENTS));
 
-  // Générer les schemas : Events + Breadcrumb
+  // Générer le schema Events si des événements à venir existent
   const eventsSchema = upcomingEvents.length > 0
     ? generateEventListSchema(upcomingEvents)
     : null;
-  const breadcrumbSchema = generateBreadcrumbSchema('/evenements');
-  const allSchemas = eventsSchema
-    ? [eventsSchema, breadcrumbSchema]
-    : [breadcrumbSchema];
 
   // Récupérer les événements passés (triés du plus récent au plus ancien)
   const pastEvents = getPastEvents(EVENTS);
@@ -53,12 +49,12 @@ export default function EvenementsPage() {
   return (
     <>
       <SeoHelmet
-        title="Événements SLAMM - Club MMA Saint-Lunaire"
-        description="Suivez les futurs événements du club SLAMM : stages MMA, compétitions et portes ouvertes à Saint-Lunaire. Restez informés sur Instagram."
+        title="Événements MMA | Stages et compétitions Côte d'Émeraude"
+        description="Stages MMA, compétitions et événements à Saint-Lunaire. Ouvert aux pratiquants de Dinard, Saint-Malo, Pleurtuit, Dinan, Cancale et toute la région."
         url="https://mma-saint-lunaire.fr/evenements"
         image="https://mma-saint-lunaire.fr/img/social/social.jpg"
-        keywords="événements MMA Saint-Lunaire, stages MMA futurs, club SLAMM actualités, MMA Bretagne événements, arts martiaux mixtes Saint-Lunaire"
-        schemas={allSchemas}
+        keywords="stage MMA Saint-Lunaire, stage MMA Dinard, compétition MMA Saint-Malo, événements MMA Bretagne, stage grappling Côte d'Émeraude, compétition arts martiaux Dinan"
+        schemas={eventsSchema}
       />
 
       <Box

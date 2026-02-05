@@ -35,7 +35,7 @@ import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SeoHelmet from "../components/SeoHelmet";
 import { ASSOCONNECT_URLS } from '../config/urls.js';
-import { generateCourseSchema, generateBreadcrumbSchema } from '../utils/schemaGenerator';
+import { generateCourseSchema } from '../utils/schemaGenerator';
 
 /**
  * Configuration du processus d'inscription en étapes
@@ -71,19 +71,18 @@ const steps = [
 export default function PageCours() {
   const theme = useTheme();
 
-  // Générer les schemas : Course + Breadcrumb
+  // Générer le schema Course
   const courseSchema = generateCourseSchema();
-  const breadcrumbSchema = generateBreadcrumbSchema('/cours');
 
   return (
     <>
       <SeoHelmet
-        title="Cours de MMA - SLAMM Saint-Lunaire"
-        description="Découvrez les créneaux, tarifs et modalités d'essai pour rejoindre notre club de MMA à Saint-Lunaire. Ouvert aux débutants comme aux confirmés."
+        title="Cours de MMA Saint-Lunaire | Dinard, Saint-Malo, Dinan"
+        description="Cours de MMA pour débutants et confirmés à Saint-Lunaire. Accessible depuis Dinard, Saint-Malo, Pleurtuit, Cancale, Dinan et toute la Côte d'Émeraude."
         url="https://mma-saint-lunaire.fr/cours"
         image="https://mma-saint-lunaire.fr/img/social/social.jpg"
-        keywords="cours MMA Saint-Lunaire, cours arts martiaux mixtes Saint-Lunaire, cours mixed martial arts Saint-Lunaire, cours sport de combat Saint-Lunaire, cours grappling Saint-Lunaire, débutant MMA Saint-Lunaire, cours self-défense Saint-Lunaire, formation MMA Saint-Lunaire, entraînement combat Saint-Lunaire"
-        schemas={[courseSchema, breadcrumbSchema]}
+        keywords="cours MMA Saint-Lunaire, cours MMA Dinard, cours MMA Saint-Malo, cours MMA Pleurtuit, cours MMA Dinan, entraînement MMA Côte d'Émeraude, débutant MMA Bretagne, cours arts martiaux mixtes Ille-et-Vilaine"
+        schemas={courseSchema}
       />
 
       <Box component="header" sx={{ borderBottom: '4px solid', borderColor: 'primary.main', pb: 2 }}>
