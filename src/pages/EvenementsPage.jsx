@@ -78,9 +78,26 @@ export default function EvenementsPage() {
           <Typography variant="body1" mt={1} maxWidth={1000}>
             Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
           </Typography>
-          <Typography variant="body2" color="primary.main" mt={2} sx={{ fontWeight: 'medium' }}>
-            Depuis 2023 : 5 stages organisés • 2 participations en compétition
-          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 2, md: 4 }, mt: 2, alignItems: "baseline" }}>
+            <Typography variant="body2" color="primary.main" sx={{ fontWeight: "medium" }}>
+              Depuis 2023
+            </Typography>
+            {[
+              { value: 5, label: "stages organisés" },
+              { value: 2, label: "participations en compétition" },
+              { value: 3, label: "médailles NoGi" },
+              { value: 1, label: "victoire MMA interclub" },
+            ].map((stat) => (
+              <Box key={stat.label} sx={{ textAlign: "center" }}>
+                <Typography component="span" color="primary.main" sx={{ fontWeight: "bold", fontSize: "1.25rem", mr: 0.5 }}>
+                  {stat.value}
+                </Typography>
+                <Typography component="span" variant="body2" color="text.secondary">
+                  {stat.label}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
         </Box>
 
         {/* Prochains événements */}
@@ -269,7 +286,7 @@ export default function EvenementsPage() {
           )}
         </Box>
 
-        {/* Événements passés */}
+        {/* Derniers événements */}
         {pastEvents.length > 0 && (
           <Box component="section" mb={6}>
             <Typography
@@ -277,7 +294,7 @@ export default function EvenementsPage() {
               mb={3}
               sx={{ borderBottom: "2px solid", borderColor: "text.secondary", display: "inline-block", opacity: 0.7 }}
             >
-              Événements passés
+              Derniers événements
             </Typography>
 
             <Grid container spacing={4}>
@@ -325,6 +342,21 @@ export default function EvenementsPage() {
                 </Grid>
               ))}
             </Grid>
+
+            <Typography variant="body2" color="text.secondary" mt={3} sx={{ display: "block" }}>
+              Suivez-nous sur{" "}
+              <Typography
+                component="a"
+                variant="caption"
+                href={SOCIAL_URLS.INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ color: "primary.main", textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+              >
+                Instagram
+              </Typography>
+              {" "}pour ne rien manquer.
+            </Typography>
           </Box>
         )}
       </Box>
