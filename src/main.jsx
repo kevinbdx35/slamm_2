@@ -20,9 +20,16 @@ import '@fontsource/ibm-plex-mono/700.css' // Bold
 // IBM Plex Mono uniquement pour cohérence UI parfaite
 
 // Rendu de l'application React dans le DOM
-// StrictMode active les vérifications supplémentaires en développement
-ReactDOM.createRoot(document.getElementById('root')).render(
+// Si le HTML est pré-rendu (react-snap), on hydrate au lieu de re-rendre
+const rootElement = document.getElementById('root')
+const app = (
   <React.StrictMode>
     <Root />
   </React.StrictMode>
 )
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootElement, app)
+} else {
+  ReactDOM.createRoot(rootElement).render(app)
+}
