@@ -39,13 +39,6 @@ export default function Navigation() {
     localStorage.setItem('darkMode', JSON.stringify(newDark));
   }, [isDark]);
 
-  const handleNav = useCallback((path) => {
-    setDrawerOpen(false);
-    if (path !== pathname) {
-      window.location.href = path;
-    }
-  }, [pathname]);
-
   useEffect(() => {
     if (drawerOpen) {
       document.body.style.overflow = 'hidden';
@@ -66,9 +59,9 @@ export default function Navigation() {
           <button onClick={() => setDrawerOpen(true)} aria-label="Ouvrir le menu de navigation" className="p-2">
             <MenuIcon size={24} />
           </button>
-          <span className="text-sm font-bold tracking-wide cursor-pointer" onClick={() => handleNav('/')}>
+          <a href="/" className="text-sm font-bold tracking-wide no-underline text-inherit">
             SLAMM
-          </span>
+          </a>
           <button onClick={toggleTheme} aria-label={isDark ? 'Passer au thème clair' : 'Passer au thème sombre'} className="p-2 transition-transform duration-300 hover:scale-110">
             <span className={`inline-flex transition-transform duration-400 ${isDark ? 'rotate-180' : 'rotate-0'}`}>
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -90,18 +83,18 @@ export default function Navigation() {
                 const isActive = pathname === item.path;
                 const Icon = item.icon;
                 return (
-                  <button
+                  <a
                     key={item.label}
-                    onClick={() => handleNav(item.path)}
-                    className={`w-full flex items-center gap-4 px-4 py-3 text-left rounded transition-colors ${
+                    href={item.path}
+                    className={`w-full flex items-center gap-4 px-4 py-3 text-left rounded transition-colors no-underline ${
                       isActive
                         ? 'bg-primary/10 dark:bg-primary-dark/10 text-primary dark:text-primary-dark font-bold'
-                        : 'hover:bg-black/5 dark:hover:bg-white/5'
+                        : 'text-inherit hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
                     <Icon size={20} className={isActive ? 'text-primary dark:text-primary-dark' : ''} />
                     <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item.label}</span>
-                  </button>
+                  </a>
                 );
               })}
               <button
@@ -135,10 +128,10 @@ export default function Navigation() {
             const isActive = pathname === item.path;
             const Icon = item.icon;
             return (
-              <button
+              <a
                 key={item.label}
-                onClick={() => handleNav(item.path)}
-                className="flex-1 flex flex-col items-center justify-center py-1.5 relative"
+                href={item.path}
+                className="flex-1 flex flex-col items-center justify-center py-1.5 relative no-underline text-inherit"
               >
                 {isActive && (
                   <span className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-[3px] rounded-b bg-primary dark:bg-primary-dark" />
@@ -151,7 +144,7 @@ export default function Navigation() {
                 }`}>
                   {item.label}
                 </span>
-              </button>
+              </a>
             );
           })}
       </div>

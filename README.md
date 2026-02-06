@@ -2,159 +2,136 @@
 
 Site web officiel du club de MMA SLAMM (Saint-Lunaire Arts Martiaux Mixtes) situé à Saint-Lunaire, Bretagne.
 
-## À propos
-
-SLAMM est un club de MMA (Mixed Martial Arts) proposant des cours pour tous niveaux dans une ambiance conviviale et professionnelle. Notre club offre un enseignement de qualité dans les disciplines suivantes :
-
-- **MMA** (Arts Martiaux Mixtes)
-
 ## Site en ligne
 
 **Site officiel :** [https://mma-saint-lunaire.fr/](https://mma-saint-lunaire.fr/)
 
-Le site est hébergé sur Netlify avec un domaine personnalisé configuré.
-
-## Technologies utilisées
+## Technologies
 
 - **Astro 5** - Générateur de sites statiques (SSG)
 - **Tailwind CSS v4** - Framework CSS utility-first
 - **React 19** - Composants interactifs (islands)
 - **Lucide React** - Bibliothèque d'icônes
 - **React Leaflet** - Cartes interactives
-- **ESLint** - Linting et qualité du code
 
 ## Fonctionnalités
 
 - **Site statique** - HTML pré-généré, zéro JS par défaut
 - **Islands architecture** - React uniquement pour les éléments interactifs
-- **Responsive** - Optimisé mobile et desktop
+- **Responsive** - Mobile-first, optimisé tous écrans
 - **Mode sombre/clair** - Toggle avec persistance localStorage
-- **Navigation intuitive** - Bottom navigation mobile + drawer
-- **Carte interactive** - Localisation du club avec Leaflet
-- **SEO natif** - Métadonnées Schema.org, sitemap automatique
-- **Performance** - Pas de FOUC, CSS inline
-- **Accessibilité** - Skip-to-content, ARIA labels
-- **Curseur personnalisé** - États interactifs (desktop)
+- **Navigation mobile** - Bottom navigation + drawer latéral
+- **Carte interactive** - Localisation avec Leaflet/OpenStreetMap
+- **SEO complet** - Schema.org (SportsClub, LocalBusiness, FAQ, Event), sitemap
+- **Sécurité renforcée** - CSP, HSTS, headers de protection
+- **Accessibilité** - Skip-to-content, ARIA labels, focus visible
 - **Safe Area iOS** - Support des encoches
 
-## Installation et développement
-
-### Prérequis
-
-- Node.js 20+
-- npm
-
-### Installation
+## Installation
 
 ```bash
 # Cloner le repository
 git clone https://github.com/kevinbdx35/slamm_2.git
-
-# Aller dans le dossier
 cd slamm_2
 
 # Installer les dépendances
 npm install
-```
 
-### Commandes disponibles
-
-```bash
 # Lancer le serveur de développement
 npm run dev
 
 # Builder pour la production
 npm run build
-
-# Prévisualiser le build de production
-npm run preview
-
-# Vérification TypeScript/Astro
-npm run check
-
-# Lancer le linting
-npm run lint
 ```
 
-## Configuration
+## Configuration centralisée
 
-### URLs Assoconnect
-
-Les liens vers Assoconnect sont centralisés dans `/src/config/urls.js` pour faciliter les mises à jour :
+### Horaires et tarifs (`/src/config/schedule.js`)
 
 ```javascript
-export const ASSOCONNECT_URLS = {
-  TRIAL_BOOKING: "https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai",
-  ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026",
+export const SCHEDULE = [
+  { day: 'Lundi', dayEnglish: 'Monday', start: '18:00', end: '19:15' },
+  { day: 'Mercredi', dayEnglish: 'Wednesday', start: '19:15', end: '21:15' },
+  { day: 'Vendredi', dayEnglish: 'Friday', start: '19:30', end: '21:00' },
+];
+
+export const PRICING = {
+  adult: { label: '+25 ans', price: 210 },
+  young: { label: '+16 ans', price: 180 },
 };
 ```
 
-**Pour modifier les liens :** Éditez uniquement ce fichier, les changements se répercutent automatiquement partout.
+### URLs Assoconnect (`/src/config/urls.js`)
+
+```javascript
+export const ASSOCONNECT_URLS = {
+  TRIAL_BOOKING: "https://slamm.assoconnect.com/...",
+  ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/...",
+};
+```
+
+### Événements (`/src/config/events.js`)
+
+Configuration des stages, compétitions et événements du club.
 
 ## Structure du projet
 
 ```
 src/
 ├── layouts/
-│   └── BaseLayout.astro    # Layout principal (head, SEO, footer)
-├── pages/                   # Pages Astro (HTML statique)
-│   ├── index.astro         # Page d'accueil
-│   ├── cours.astro         # Cours et tarifs
-│   ├── equipe.astro        # Équipe d'encadrement
-│   ├── evenements.astro    # Événements
-│   ├── contact.astro       # Contact et localisation
-│   ├── faq.astro           # Questions fréquentes
-│   ├── hygiene.astro       # Règles d'hygiène
-│   ├── mentions-legales.astro
+│   └── BaseLayout.astro      # Layout principal (head, SEO, footer)
+├── pages/                     # Pages Astro (HTML statique)
+│   ├── index.astro           # Accueil
+│   ├── cours.astro           # Cours et tarifs
+│   ├── equipe.astro          # Équipe
+│   ├── evenements.astro      # Événements
+│   ├── contact.astro         # Contact et carte
+│   ├── faq.astro             # FAQ
+│   ├── hygiene.astro         # Règles d'hygiène
+│   ├── mentions-legales.astro # Mentions légales + cookies
 │   └── 404.astro
 ├── components/
-│   ├── Footer.astro        # Footer statique
-│   ├── Menu.jsx            # Navigation (React island)
-│   ├── Accordion.jsx       # FAQ/Hygiene (React island)
-│   ├── FloatingTrialButton.jsx  # FAB (React island)
-│   ├── CustomCursor.jsx    # Curseur (React island)
-│   ├── LeafletMap.jsx      # Carte (React island)
-│   └── AssoconnectForm.jsx # Formulaire (React island)
+│   ├── Footer.astro          # Footer statique
+│   ├── Menu.jsx              # Navigation (React)
+│   ├── Accordion.jsx         # FAQ/Hygiene (React)
+│   ├── FloatingTrialButton.jsx
+│   ├── LeafletMap.jsx        # Carte (React)
+│   └── AssoconnectForm.jsx
 ├── config/
-│   ├── urls.js             # URLs externes centralisées
-│   └── events.js           # Données événements
+│   ├── urls.js               # URLs externes
+│   ├── schedule.js           # Horaires et tarifs
+│   └── events.js             # Événements
 ├── utils/
-│   └── schemaGenerator.js  # Générateurs Schema.org
+│   └── schemaGenerator.js    # Schema.org (SportsClub, LocalBusiness, FAQ, etc.)
 └── styles/
-    └── global.css          # Tailwind v4 (@theme, composants)
+    └── global.css            # Tailwind v4 config
 ```
 
 ## Design System
 
-Le site utilise **Tailwind CSS v4** avec un thème personnalisé :
-
-- **Typographie** : IBM Plex Mono (identité monospace)
+- **Police** : IBM Plex Mono
 - **Couleurs** :
-  - Mode clair : Vert accessible (`#2e7d32`)
-  - Mode sombre : Vert néon SLAMM (`#00ff5e`)
+  - Mode clair : `#2e7d32` (vert accessible)
+  - Mode sombre : `#00ff5e` (vert néon SLAMM)
   - Fond sombre : `#041a1a`
-- **Dark mode** : Class-based (`@custom-variant dark`)
-- **Composants** : heading-border, section-border, card-border, btn
+- **Dark mode** : Class-based via `@custom-variant dark`
+
+## Sécurité
+
+Headers de sécurité configurés dans `netlify.toml` :
+
+- **Content-Security-Policy** - Protection XSS et injection
+- **Strict-Transport-Security** - Force HTTPS
+- **X-Frame-Options** - Protection clickjacking
+- **Permissions-Policy** - Désactive APIs sensibles
 
 ## Déploiement
 
-Le site est déployé sur **Netlify** avec un **domaine personnalisé** :
-
-### Configuration
+- **Hébergement** : Netlify
 - **Domaine** : `mma-saint-lunaire.fr` (Gandi.net)
-- **DNS** : CNAME vers Netlify
 - **SSL** : Certificat HTTPS automatique
-- **Build** : `npm run build` → `dist/`
-
-### Processus
-1. Push sur `main`
-2. Netlify détecte et build automatiquement
-3. Déploiement et mise à jour immédiate
+- **Build** : Auto-deploy sur push `main`
 
 ## Licence
 
-Ce projet est sous licence privée. Tous droits réservés au club SLAMM MMA Saint-Lunaire.
-
----
-
-*Développé pour la communauté MMA de Saint-Lunaire*
+Tous droits réservés - Club SLAMM MMA Saint-Lunaire

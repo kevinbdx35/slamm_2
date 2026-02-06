@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <BaseLayout title="Page non trouvée - SLAMM MMA">
   <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-6">
     <!-- Icon -->
     <div class="mb-8">
-      <svg class="w-20 h-20 md:w-32 md:h-32 text-primary dark:text-primary-dark opacity-80" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M6.19 21.54a1.22 1.22 0 0 1-.86-2.08l3.93-3.93a1.22 1.22 0 0 1 1.72 1.72l-3.93 3.93a1.21 1.21 0 0 1-.86.36zm11.62 0a1.21 1.21 0 0 1-.86-.36l-3.93-3.93a1.22 1.22 0 0 1 1.72-1.72l3.93 3.93a1.22 1.22 0 0 1-.86 2.08zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm0-6a2 2 0 1 0 2 2 2 2 0 0 0-2-2zm6-2a1 1 0 0 1-.71-.29l-1-1a1 1 0 0 1 1.42-1.42l1 1A1 1 0 0 1 18 8zm-12 0a1 1 0 0 1-.71-1.71l1-1a1 1 0 0 1 1.42 1.42l-1 1A1 1 0 0 1 6 8zm6-2a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0v1a1 1 0 0 1-1 1z"/>
-      </svg>
+      <Icon name="mdi:emoticon-confused-outline" class="w-20 h-20 md:w-32 md:h-32 text-primary dark:text-primary-dark opacity-80" />
     </div>
 
     <!-- Error code -->

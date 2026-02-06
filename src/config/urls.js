@@ -33,7 +33,7 @@ export const SOCIAL_URLS = {
  * URLs d'images et médias
  */
 export const MEDIA_URLS = {
-  SOCIAL_SHARE_IMAGE: "https://mma-saint-lunaire.fr/img/social/social.jpg",
+  SOCIAL_SHARE_IMAGE: "https://mma-saint-lunaire.fr/img/social/social.webp",
   LOGO: "https://mma-saint-lunaire.fr/img/logo-slamm.png",
 };
 

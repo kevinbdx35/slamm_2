@@ -23,7 +23,7 @@ const CLUB_INFO = {
   name: "SLAMM - Saint-Lunaire Arts Martiaux Mixtes",
   url: BASE_URL,
   logo: `${BASE_URL}/img/logo-slamm.png`,
-  image: `${BASE_URL}/img/social/social.jpg`,
+  image: `${BASE_URL}/img/social/social.webp`,
   telephone: "+33782779288",
   email: "slamm35800@gmail.com",
   address: {

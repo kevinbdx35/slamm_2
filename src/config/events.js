@@ -39,7 +39,7 @@ export const EVENTS = [
     description: "Stage JJB No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d’améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/662218-o-stage-avec-jonathan-allouche",
-    image: "/img/events/jonathan.jpg",
+    image: "/img/events/jonathan.webp",
     status: "upcoming"
   },
   {

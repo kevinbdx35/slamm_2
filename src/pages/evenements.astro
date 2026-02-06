@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 import { SOCIAL_URLS } from '../config/urls.js';
 import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from '../config/events.js';
 import { generateEventListSchema } from '../utils/schemaGenerator.js';
@@ -109,30 +110,30 @@ const stats = [
                   </div>
 
                   <div class="flex items-start mb-3 gap-3">
-                    <svg class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                    <Icon name="mdi:calendar" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
                     <span class="text-sm">{formatEventDate(event.date)}</span>
                   </div>
                   {event.time && (
                     <div class="flex items-start mb-3 gap-3">
-                      <svg class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                      <Icon name="mdi:clock-outline" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
                       <span class="text-sm">{event.time}</span>
                     </div>
                   )}
                   {event.location && (
                     <div class="flex items-start mb-3 gap-3">
-                      <svg class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                      <Icon name="mdi:map-marker" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
                       <span class="text-sm">{event.location}</span>
                     </div>
                   )}
                   {event.price && (
                     <div class="flex items-start mb-3 gap-3">
-                      <svg class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M15 18.5c-2.51 0-4.68-1.42-5.76-3.5h5.76l1-2h-7.36c-.06-.33-.1-.66-.1-1s.04-.67.1-1h7.36l1-2H9.24A6.492 6.492 0 0 1 15 5.5c1.61 0 3.09.59 4.23 1.57L21 5.3A8.955 8.955 0 0 0 15 3.5c-3.92 0-7.24 2.51-8.48 6H3l-1 2h4.06c-.06.33-.06.66-.06 1s0 .67.06 1H3l-1 2h4.52c1.24 3.49 4.56 6 8.48 6 2.31 0 4.41-.87 6-2.3l-1.78-1.77c-1.13.98-2.6 1.57-4.22 1.57z"/></svg>
+                      <Icon name="mdi:currency-eur" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
                       <span class="text-sm">{event.price}</span>
                     </div>
                   )}
                   {event.maxParticipants && (
                     <div class="flex items-start mb-4 gap-3">
-                      <svg class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                      <Icon name="mdi:account-group" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
                       <span class="text-sm">Limité à {event.maxParticipants} participants</span>
                     </div>
                   )}
@@ -173,18 +174,18 @@ const stats = [
               <h3 class="text-lg font-semibold leading-snug mb-3 pr-16">{event.title}</h3>
               <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary dark:text-text-secondary-dark mb-3">
                 <div class="flex items-center gap-1.5">
-                  <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                  <Icon name="mdi:calendar" class="w-4 h-4 flex-shrink-0" />
                   <span>{formatEventDate(event.date)}</span>
                 </div>
                 {event.time && (
                   <div class="flex items-center gap-1.5">
-                    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                    <Icon name="mdi:clock-outline" class="w-4 h-4 flex-shrink-0" />
                     <span>{event.time}</span>
                   </div>
                 )}
                 {event.location && (
                   <div class="flex items-center gap-1.5">
-                    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                    <Icon name="mdi:map-marker" class="w-4 h-4 flex-shrink-0" />
                     <span>{event.location}</span>
                   </div>
                 )}
