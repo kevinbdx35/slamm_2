@@ -99,7 +99,7 @@ export function getUpcomingEvents(events) {
  * @param {number} limit - Nombre maximum d'événements à retourner (par défaut: 3)
  * @returns {Array} Événements passés uniquement (triés du plus récent au plus ancien, limité aux N derniers)
  */
-export function getPastEvents(events, limit = 3) {
+export function getPastEvents(events, limit = 4) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const pastEvents = events.filter(event => {
