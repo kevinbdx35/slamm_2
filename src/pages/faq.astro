@@ -1,60 +1,82 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Accordion from '../components/Accordion.jsx';
+import { Icon } from 'astro-icon/components';
 import { generateFAQSchema } from '../utils/schemaGenerator.js';
 
-const faqs = [
+// Questions organisées par catégorie
+const faqCategories = [
   {
-    question: "Faut-il avoir de l'expérience pour commencer le MMA ?",
-    answer: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme. Une expérience préalable peut aider, mais elle n'est en aucun cas obligatoire.",
+    title: "Débuter au club",
+    icon: "mdi:account-plus",
+    questions: [
+      {
+        question: "Faut-il avoir de l'expérience pour commencer le MMA ?",
+        answer: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme. Une expérience préalable peut aider, mais elle n'est en aucun cas obligatoire.",
+      },
+      {
+        question: "À partir de quel âge peut-on pratiquer le MMA ?",
+        answer: "L'âge minimum pour adhérer à notre association est de 16 ans.",
+      },
+      {
+        question: "Y a-t-il des femmes au club ?",
+        answer: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
+      },
+      {
+        question: "Quel équipement est nécessaire pour débuter ?",
+        answer: "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Nos encadrants te conseilleront sur le choix du matériel dès tes premiers cours.",
+      },
+      {
+        question: "Peut-on venir observer un cours sans s'inscrire ?",
+        answer: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. C'est même recommandé si tu hésites. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
+      },
+      {
+        question: "Comment s'inscrire aux cours d'essai ?",
+        answer: "Tu peux participer à 2 cours d'essai. En début de saison (septembre-octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite. Pour réserver, contacte-nous par téléphone au 07 82 77 92 88 ou par email à slamm35800@gmail.com. Pense à arriver 15 minutes avant le début du cours pour l'accueil et la présentation des installations.",
+      },
+    ],
   },
   {
-    question: "À partir de quel âge peut-on pratiquer le MMA ?",
-    answer: "L'âge minimum pour adhérer à notre association est de 16 ans.",
+    title: "La pratique",
+    icon: "mdi:arm-flex",
+    questions: [
+      {
+        question: "Faut-il un certificat médical ?",
+        answer: "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement, mais tu devras le fournir si tu décides de t'inscrire au club.",
+      },
+      {
+        question: "Quelle est la fréquence d'entraînement recommandée ?",
+        answer: "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Cela dit, même une séance hebdomadaire peut te permettre d'évoluer et de bénéficier des bienfaits du MMA. Tout dépend de tes objectifs personnels et de ta disponibilité. L'essentiel reste la régularité et l'engagement lors des entraînements.",
+      },
+      {
+        question: "Le MMA est-il dangereux ?",
+        answer: "Comme tout sport de combat, le MMA comporte des risques. Mais encadré par nos coachs diplômés, avec un équipement adapté et des règles de sécurité strictes, la pratique reste maîtrisée. Nos cours sont progressifs, axés sur la technique et le respect du partenaire.",
+      },
+      {
+        question: "Comment se déroule un cours type ?",
+        answer: "Un cours typique dure entre 1h30 et 2h. Il débute par un échauffement dynamique, suivi d'exercices techniques propres à la discipline. La séance se poursuit généralement par des mises en application ou du sparring léger, pour ceux qui le souhaitent. Elle se termine par un retour au calme accompagné d'étirements.",
+      },
+      {
+        question: "Est-ce que je dois participer à des compétitions ?",
+        answer: "Absolument pas. La compétition est entièrement optionnelle et s'adresse uniquement à ceux qui le souhaitent. La majorité de nos membres pratiquent le MMA pour le loisir, la condition physique, l'apprentissage technique ou simplement par plaisir. Nous respectons les objectifs de chacun.",
+      },
+    ],
   },
   {
-    question: "Y a-t-il des femmes au club ?",
-    answer: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
-  },
-  {
-    question: "Quel équipement est nécessaire pour débuter ?",
-    answer: "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Nos encadrants te conseilleront sur le choix du matériel dès tes premiers cours.",
-  },
-  {
-    question: "Faut-il un certificat médical ?",
-    answer: "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement, mais tu devras le fournir si tu décides de t'inscrire au club.",
-  },
-  {
-    question: "Quelle est la fréquence d'entraînement recommandée ?",
-    answer: "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Cela dit, même une séance hebdomadaire peut te permettre d'évoluer et de bénéficier des bienfaits du MMA. Tout dépend de tes objectifs personnels et de ta disponibilité. L'essentiel reste la régularité et l'engagement lors des entraînements.",
-  },
-  {
-    question: "Le MMA est-il dangereux ?",
-    answer: "Comme tout sport de combat, le MMA comporte des risques. Mais encadré par nos coachs diplômés, avec un équipement adapté et des règles de sécurité strictes, la pratique reste maîtrisée. Nos cours sont progressifs, axés sur la technique et le respect du partenaire.",
-  },
-  {
-    question: "Comment se déroule un cours type ?",
-    answer: "Un cours typique dure entre 1h30 et 2h. Il débute par un échauffement dynamique, suivi d'exercices techniques propres à la discipline. La séance se poursuit généralement par des mises en application ou du sparring léger, pour ceux qui le souhaitent. Elle se termine par un retour au calme accompagné d'étirements.",
-  },
-  {
-    question: "Y a-t-il des douches sur place ?",
-    answer: "Oui, des douches sont disponibles dans les vestiaires (vestiaires homme et femme séparés). Tu peux te doucher avant ou après l'entraînement. Pense à apporter ta serviette et tes affaires de toilette personnelles.",
-  },
-  {
-    question: "Peut-on venir observer un cours sans s'inscrire ?",
-    answer: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. C'est même recommandé si tu hésites. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
-  },
-  {
-    question: "Est-ce que je dois participer à des compétitions ?",
-    answer: "Absolument pas. La compétition est entièrement optionnelle et s'adresse uniquement à ceux qui le souhaitent. La majorité de nos membres pratiquent le MMA pour le loisir, la condition physique, l'apprentissage technique ou simplement par plaisir. Nous respectons les objectifs de chacun.",
-  },
-  {
-    question: "Comment s'inscrire aux cours d'essai ?",
-    answer: "Tu peux participer à 2 cours d'essai. En début de saison (septembre-octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite. Pour réserver, contacte-nous par téléphone au 07 82 77 92 88 ou par email à slamm35800@gmail.com. Pense à arriver 15 minutes avant le début du cours pour l'accueil et la présentation des installations.",
+    title: "Sur place",
+    icon: "mdi:map-marker",
+    questions: [
+      {
+        question: "Y a-t-il des douches sur place ?",
+        answer: "Oui, des douches sont disponibles dans les vestiaires (vestiaires homme et femme séparés). Tu peux te doucher avant ou après l'entraînement. Pense à apporter ta serviette et tes affaires de toilette personnelles.",
+      },
+    ],
   },
 ];
 
-const faqSchema = generateFAQSchema(faqs);
+// Flatten pour le schema (Google a besoin de toutes les questions à plat)
+const allFaqs = faqCategories.flatMap(cat => cat.questions);
+const faqSchema = generateFAQSchema(allFaqs);
 ---
 
 <BaseLayout
@@ -67,19 +89,38 @@ const faqSchema = generateFAQSchema(faqs);
   <div class="mt-8 px-6 max-w-[1200px] mx-auto w-full mb-20">
     <header class="section-border pb-4">
       <h1 class="text-[clamp(2.25rem,4vw,3.5rem)] font-normal tracking-tight leading-tight mb-6">
-        FAQ – Questions fréquentes
+        Questions fréquentes
       </h1>
       <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
         Toutes les réponses à vos questions sur la pratique du MMA au sein de notre association.
       </p>
     </header>
 
-    <div class="mt-12">
-      <h2 class="heading-border text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4">
-        Vos questions les plus fréquentes
-      </h2>
+    <!-- FAQ par catégorie -->
+    {faqCategories.map((category) => (
+      <section class="mt-12">
+        <h2 class="flex items-center gap-3 text-[clamp(1.5rem,2.5vw,1.75rem)] font-bold leading-tight mb-6">
+          <Icon name={category.icon} class="w-7 h-7 text-primary dark:text-primary-dark" />
+          {category.title}
+        </h2>
+        <Accordion items={category.questions} client:load />
+      </section>
+    ))}
 
-      <Accordion items={faqs} client:load />
-    </div>
+    <!-- CTA -->
+    <section class="mt-16 mb-8">
+      <div class="card-border p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-variant/30 dark:bg-surface-variant-dark/30">
+        <div class="flex items-center gap-4">
+          <Icon name="mdi:comment-question" class="w-10 h-10 text-primary dark:text-primary-dark flex-shrink-0" />
+          <div>
+            <h3 class="text-lg font-bold">Question non répondue ?</h3>
+            <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Contacte-nous, on te répond sous 24h.</p>
+          </div>
+        </div>
+        <a href="/contact" class="btn-primary py-2 px-6 text-center whitespace-nowrap">
+          Nous contacter
+        </a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
