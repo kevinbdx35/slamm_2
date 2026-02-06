@@ -17,18 +17,17 @@ const routes = [
 
 const bottomNavRoutes = ['/', '/cours', '/equipe', '/contact', '/faq'];
 
-export default function Navigation() {
-  const [pathname, setPathname] = useState('/');
+export default function Navigation({ currentPath = '/' }) {
+  // Normalise le pathname en retirant le slash final (sauf pour la racine)
+  const normalizedPath = currentPath !== '/' && currentPath.endsWith('/')
+    ? currentPath.slice(0, -1)
+    : currentPath;
+
+  const [pathname] = useState(normalizedPath);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Normalise le pathname en retirant le slash final (sauf pour la racine)
-    let path = window.location.pathname;
-    if (path !== '/' && path.endsWith('/')) {
-      path = path.slice(0, -1);
-    }
-    setPathname(path);
     setIsDark(document.documentElement.classList.contains('dark'));
   }, []);
 

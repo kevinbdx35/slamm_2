@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { generatePersonSchema } from '../utils/schemaGenerator.js';
 
 const teamMembers = [
   {
@@ -36,6 +37,8 @@ const teamMembers = [
     ],
   },
 ];
+
+const teamSchemas = teamMembers.map(member => generatePersonSchema(member));
 ---
 
 <BaseLayout
@@ -43,6 +46,7 @@ const teamMembers = [
   description="Rencontrez nos coachs MMA diplômés FMMAF à Saint-Lunaire. Encadrement professionnel pour les pratiquants de Dinard, Saint-Malo et toute la Côte d'Émeraude. BF1, BF2, PSC1."
   url="https://mma-saint-lunaire.fr/equipe"
   keywords="coach MMA Saint-Lunaire, entraîneur MMA Dinard, instructeur MMA Saint-Malo, professeur MMA Côte d'Émeraude, équipe SLAMM, diplômé FMMAF Bretagne"
+  schemas={teamSchemas}
 >
   <div class="py-12 mb-20 max-w-[1200px] mx-auto w-full px-6">
     <header class="section-border pb-4">
