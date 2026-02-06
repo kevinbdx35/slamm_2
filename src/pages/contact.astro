@@ -48,25 +48,22 @@ import { Icon } from 'astro-icon/components';
           </div>
         </div>
 
-        <!-- Other contacts -->
+        <!-- Email -->
         <div class="card-border flex flex-col overflow-hidden">
           <div class="p-6 flex-1 flex flex-col">
             <div class="flex items-center mb-6">
               <Icon name="mdi:email" class="w-7 h-7 mr-2 text-primary dark:text-primary-dark" />
-              <span class="text-lg font-bold tracking-wide">Autres contacts</span>
+              <span class="text-lg font-bold tracking-wide">Email</span>
             </div>
             <div class="flex-1">
               <div class="mb-4">
-                <p class="text-xs font-medium tracking-wide text-text-secondary dark:text-text-secondary-dark mb-2">EMAIL</p>
                 <a href="mailto:slamm35800@gmail.com" class="text-lg text-primary dark:text-primary-dark underline decoration-brand-neonGreen/60 underline-offset-[3px] decoration-[1.5px] hover:bg-brand-neonGreen/[0.08] rounded px-1 py-0.5 transition-all">
                   slamm35800@gmail.com
                 </a>
               </div>
-              <div class="mb-4">
-                <p class="text-xs font-medium tracking-wide text-text-secondary dark:text-text-secondary-dark mb-2">INSTAGRAM</p>
-                <a href="https://instagram.com/slamm35800" target="_blank" rel="noopener noreferrer" class="text-lg text-primary dark:text-primary-dark underline decoration-brand-neonGreen/60 underline-offset-[3px] decoration-[1.5px] hover:bg-brand-neonGreen/[0.08] rounded px-1 py-0.5 transition-all">
-                  @slamm35800
-                </a>
+              <div class="flex items-center gap-2 text-sm text-text-secondary dark:text-text-secondary-dark">
+                <Icon name="mdi:clock-outline" class="w-4 h-4" />
+                <span>Réponse sous 24h</span>
               </div>
             </div>
           </div>
@@ -134,21 +131,26 @@ import { Icon } from 'astro-icon/components';
         Informations pratiques
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <div class="card-border p-6 flex flex-col items-center text-center h-full">
           <Icon name="mdi:parking" class="w-12 h-12 text-primary dark:text-primary-dark mb-4" />
           <h3 class="text-lg font-bold mb-2">Parking gratuit</h3>
-          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Stationnement gratuit disponible sur place</p>
+          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Stationnement disponible sur place</p>
         </div>
         <div class="card-border p-6 flex flex-col items-center text-center h-full">
           <Icon name="mdi:stairs" class="w-12 h-12 text-primary dark:text-primary-dark mb-4" />
-          <h3 class="text-lg font-bold mb-2">Entraînement à l'étage</h3>
-          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Le dojo se situe au premier étage du bâtiment</p>
+          <h3 class="text-lg font-bold mb-2">Dojo à l'étage</h3>
+          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Premier étage du bâtiment</p>
         </div>
         <div class="card-border p-6 flex flex-col items-center text-center h-full">
           <Icon name="mdi:human-male-female" class="w-12 h-12 text-primary dark:text-primary-dark mb-4" />
           <h3 class="text-lg font-bold mb-2">Vestiaires séparés</h3>
-          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Vestiaires homme et femme disponibles</p>
+          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Homme et femme</p>
+        </div>
+        <div class="card-border p-6 flex flex-col items-center text-center h-full">
+          <Icon name="mdi:shower" class="w-12 h-12 text-primary dark:text-primary-dark mb-4" />
+          <h3 class="text-lg font-bold mb-2">Douches</h3>
+          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Disponibles dans les vestiaires</p>
         </div>
       </div>
     </section>
