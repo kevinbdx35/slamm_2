@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Home, Calendar, Users, Newspaper, Mail, HelpCircle, SprayCan,
-  Sun, Moon, Menu as MenuIcon, CalendarCheck
+  Sun, Moon, Menu as MenuIcon, ExternalLink
 } from 'lucide-react';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
@@ -47,8 +47,6 @@ export default function Navigation() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [drawerOpen]);
-
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <div className="overflow-x-hidden">
@@ -110,9 +108,10 @@ export default function Navigation() {
                 href={ASSOCONNECT_URLS.TRIAL_BOOKING}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full px-4 py-3 text-left rounded bg-brand-neonGreen/10 hover:bg-brand-neonGreen/20 transition-colors text-primary dark:text-primary-dark font-bold pl-[52px]"
+                className="flex items-center justify-between w-full px-4 py-3 text-left rounded bg-brand-neonGreen/10 hover:bg-brand-neonGreen/20 transition-colors text-primary dark:text-primary-dark font-bold pl-[52px]"
               >
                 Réserver un essai
+                <ExternalLink size={16} className="opacity-60" />
               </a>
             </div>
           </div>
@@ -196,9 +195,10 @@ export default function Navigation() {
               href={ASSOCONNECT_URLS.TRIAL_BOOKING}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[20px] px-3 py-1.5 text-sm font-medium no-underline border border-brand-neonGreen text-brand-neonGreen hover:bg-brand-neonGreen hover:text-brand-darkBg hover:scale-105 transition-all duration-200"
+              className="inline-flex items-center gap-1.5 rounded-[20px] px-3 py-1.5 text-sm font-medium no-underline border border-brand-neonGreen text-brand-neonGreen hover:bg-brand-neonGreen hover:text-brand-darkBg hover:scale-105 transition-all duration-200"
             >
               Réserver un essai
+              <ExternalLink size={14} className="opacity-70" />
             </a>
           </div>
         </div>
