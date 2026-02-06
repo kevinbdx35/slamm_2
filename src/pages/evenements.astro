@@ -50,16 +50,16 @@ const stats = [
       <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
         Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
       </p>
-      <div class="flex flex-wrap gap-4 md:gap-6 mt-6 items-stretch">
-        <div class="flex items-center gap-2 px-3 py-2 rounded bg-primary/10 dark:bg-primary-dark/10">
-          <Icon name="mdi:calendar-check" class="w-5 h-5 text-primary dark:text-primary-dark" />
-          <span class="text-sm font-medium text-primary dark:text-primary-dark">Depuis 2023</span>
+      <div class="flex gap-3 md:gap-4 mt-6 overflow-x-auto pb-2 -mx-6 px-6">
+        <div class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-primary/10 dark:bg-primary-dark/10 flex-shrink-0">
+          <Icon name="mdi:calendar-check" class="w-4 h-4 text-primary dark:text-primary-dark" />
+          <span class="text-xs font-medium text-primary dark:text-primary-dark whitespace-nowrap">Depuis 2023</span>
         </div>
         {stats.map((stat) => (
-          <div class="flex items-center gap-2 px-3 py-2 rounded bg-surface-variant/50 dark:bg-surface-variant-dark/50">
-            <Icon name={stat.icon} class="w-5 h-5 text-primary dark:text-primary-dark" />
-            <span class="text-primary dark:text-primary-dark font-bold text-lg">{stat.value}</span>
-            <span class="text-sm text-text-secondary dark:text-text-secondary-dark">{stat.label}</span>
+          <div class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-surface-variant/50 dark:bg-surface-variant-dark/50 flex-shrink-0">
+            <Icon name={stat.icon} class="w-4 h-4 text-primary dark:text-primary-dark" />
+            <span class="text-primary dark:text-primary-dark font-bold">{stat.value}</span>
+            <span class="text-xs text-text-secondary dark:text-text-secondary-dark whitespace-nowrap">{stat.label}</span>
           </div>
         ))}
       </div>
