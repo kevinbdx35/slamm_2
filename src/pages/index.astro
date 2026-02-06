@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
-import { PARTNER_URLS } from '../config/urls.js';
+import { PARTNER_URLS, ASSOCONNECT_URLS } from '../config/urls.js';
 import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/schemaGenerator.js';
 
 const schemas = [generateSportsClubSchema(), generateLocalBusinessSchema()];
@@ -23,41 +23,42 @@ const images = [
 
 <BaseLayout
   title="Club MMA Saint-Lunaire, Dinard, Saint-Malo | SLAMM Arts Martiaux Mixtes"
-  description="SLAMM, club de MMA à Saint-Lunaire. Grappling, No-Gi, boxe, kickboxing, lutte et jiu-jitsu. À 5 min de Dinard, 15 min de Saint-Malo. Tous niveaux, coachs FMMAF. Essai gratuit !"
+  description="SLAMM, club de MMA à Saint-Lunaire. Grappling, No-Gi, boxe, kickboxing, lutte et jiu-jitsu. À 5 min de Dinard, 15 min de Saint-Malo. Tous niveaux, coachs FMMAF. Essai 5€ !"
   keywords="club MMA Saint-Lunaire, MMA Dinard, MMA Saint-Malo, MMA Dinan, MMA Pleurtuit, MMA Cancale, grappling Saint-Lunaire, grappling Dinard, grappling Saint-Malo, No-Gi Dinard, No-Gi Saint-Malo, No-Gi Dinan, boxe Saint-Lunaire, boxe Dinard, boxe Saint-Malo, kickboxing Dinard, kickboxing Saint-Malo, kickboxing Dinan, jiu-jitsu Saint-Lunaire, jiu-jitsu Dinard, BJJ Saint-Malo, BJJ Bretagne, lutte Dinard, lutte Saint-Malo, self-défense Saint-Lunaire, self-défense Dinard, arts martiaux Côte d'Émeraude"
   schemas={schemas}
 >
   <!-- Hero Section -->
   <section
     class="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center bg-cover bg-center bg-no-repeat section-border -mx-4 md:-mx-6"
-    style="background-image: url('https://images.unsplash.com/photo-1611077492881-8d15417d0d38?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+    style="background-image: url('/img/team/cage.webp')"
   >
-    <div class="absolute inset-0 bg-[rgba(46,125,50,0.7)] z-[1]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-[1]"></div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-[2] w-full">
       <div class="text-center text-white">
-        <h1 class="text-[1.8rem] sm:text-[2.2rem] md:text-[2.8rem] lg:text-[3.2rem] font-normal tracking-tight leading-tight mb-4 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3)">
-          Saint-Lunaire Arts Martiaux Mixtes
-        </h1>
-        <p class="text-base tracking-wide leading-relaxed mb-4 max-w-[800px] mx-auto text-white" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3)">
-          Découvre les arts martiaux mixtes avec nos instructeurs certifiés.
+        <p class="text-sm sm:text-base font-medium tracking-[0.2em] uppercase mb-4 text-brand-neonGreen">
+          Club MMA · Côte d'Émeraude
         </p>
-        <p class="text-base tracking-wide leading-relaxed mb-8 max-w-[800px] mx-auto text-white" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3)">
-          À partir de 16 ans - Tous niveaux bienvenus.
+        <h1 class="text-[2rem] sm:text-[2.5rem] md:text-[3.2rem] lg:text-[3.8rem] font-bold tracking-tight leading-[1.1] mb-6 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5)">
+          Rejoins l'équipe SLAMM
+        </h1>
+        <p class="text-lg sm:text-xl tracking-wide leading-relaxed mb-8 max-w-[700px] mx-auto text-white/90" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.4)">
+          MMA · Grappling · No-Gi · Boxe · Jiu-jitsu<br class="hidden sm:block" />
+          <span class="text-base opacity-80">À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</span>
         </p>
         <div class="flex gap-4 justify-center flex-wrap">
           <a
-            href="/cours"
-            class="btn border-[3px] border-white text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-brand-neonGreen hover:text-brand-darkBg hover:border-brand-neonGreen hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,255,94,0.3)]"
-            aria-label="Découvrir nos cours de MMA et arts martiaux mixtes à Saint-Lunaire"
+            href={ASSOCONNECT_URLS.TRIAL_BOOKING}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn bg-brand-neonGreen text-brand-darkBg border-[3px] border-brand-neonGreen py-3 px-8 text-lg font-bold hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,255,94,0.4)] transition-all duration-200"
           >
-            Découvrir nos cours
+            Réserver un essai
           </a>
           <a
-            href="/contact"
-            class="btn border-2 border-white text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-brand-orange hover:text-white hover:border-brand-orange hover:-translate-y-0.5 hover:shadow-[0_4px_8px_rgba(255,107,53,0.3)]"
-            aria-label="Contacter le club SLAMM pour une séance d'essai gratuite"
+            href="/cours"
+            class="btn border-2 border-white/80 text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-white hover:text-brand-darkBg hover:-translate-y-0.5 transition-all duration-200"
           >
-            Nous contacter
+            Voir les cours
           </a>
         </div>
       </div>
