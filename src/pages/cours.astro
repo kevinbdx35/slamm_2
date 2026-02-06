@@ -42,6 +42,11 @@ const coursePhases = [
     text: 'Étirements et récupération active. On termine en douceur pour favoriser la récupération musculaire et prévenir les courbatures.',
   },
 ];
+
+// Composants réutilisables (évite la duplication mobile/desktop)
+const scheduleText = SCHEDULE.map((s, i) =>
+  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}`
+).join('<br />');
 ---
 
 <BaseLayout
@@ -60,65 +65,59 @@ const coursePhases = [
     </p>
   </header>
 
-  <div class="mt-12">
-    <!-- Mobile layout -->
-    <div class="lg:hidden flex flex-col gap-6">
-      <!-- Pack Découverte -->
-      <div class="border-[3px] border-primary dark:border-primary-dark p-8 flex flex-col bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
-        <div class="flex items-center mb-6">
-          <Icon name="mdi:label" class="w-8 h-8 mr-3 text-primary dark:text-primary-dark" />
-          <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-bold tracking-tight">Pack Découverte MMA</h2>
-        </div>
-
-        <div class="flex-1 flex flex-col gap-6 mb-6">
-          {steps.map((step, i) => (
-            <div class="flex gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-8 h-8 rounded-full bg-primary/10 dark:bg-primary-dark/10 flex items-center justify-center text-primary dark:text-primary-dark font-bold text-sm">{i + 1}</div>
-                {i < steps.length - 1 && <div class="w-px flex-1 bg-primary/20 dark:bg-primary-dark/20 mt-2" />}
-              </div>
-              <div class="pb-4">
-                <p class="font-bold text-lg mb-1">{step.label}</p>
-                {step.descriptionHtml ? (
-                  <div set:html={step.descriptionHtml} />
-                ) : (
-                  <p class="text-base">{step.description}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <a
-          href={ASSOCONNECT_URLS.TRIAL_BOOKING}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary w-full py-3 text-lg text-center gap-2"
-        >
-          Réserver ton cours d'essai
-          <Icon name="mdi:open-in-new" class="w-5 h-5 opacity-70" />
-        </a>
+  <!-- Layout responsive unifié -->
+  <div class="mt-12 grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+    <!-- Pack Découverte -->
+    <div class="border-[3px] border-primary dark:border-primary-dark p-8 flex flex-col lg:min-h-[400px] bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
+      <div class="flex items-center mb-6">
+        <Icon name="mdi:label" class="w-8 h-8 mr-3 text-primary dark:text-primary-dark" />
+        <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-bold tracking-tight">Pack Découverte MMA</h2>
       </div>
 
+      <div class="flex-1 flex flex-col gap-6 mb-6">
+        {steps.map((step, i) => (
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-primary/10 dark:bg-primary-dark/10 flex items-center justify-center text-primary dark:text-primary-dark font-bold text-sm">{i + 1}</div>
+              {i < steps.length - 1 && <div class="w-px flex-1 bg-primary/20 dark:bg-primary-dark/20 mt-2" />}
+            </div>
+            <div class="pb-4">
+              <p class="font-bold text-lg mb-1">{step.label}</p>
+              {step.descriptionHtml ? (
+                <div set:html={step.descriptionHtml} />
+              ) : (
+                <p class="text-base">{step.description}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href={ASSOCONNECT_URLS.TRIAL_BOOKING}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary w-full py-3 text-lg text-center gap-2"
+      >
+        Réserver ton cours d'essai
+        <Icon name="mdi:open-in-new" class="w-5 h-5 opacity-70" />
+      </a>
+    </div>
+
+    <!-- Sidebar (Créneaux + Tarifs) -->
+    <div class="flex flex-col gap-6">
       <!-- Créneaux -->
-      <div class="card-border p-6 flex flex-col">
+      <div class="card-border p-6 lg:min-h-[180px] flex flex-col">
         <div class="flex items-center mb-4">
           <Icon name="mdi:calendar" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
           <h3 class="text-[1.75rem] font-bold">Créneaux {SEASON}</h3>
         </div>
-        <p class="text-base leading-[1.8] flex-1">
-          {SCHEDULE.map((s, i) => (
-            <Fragment>
-              <strong>{s.day}</strong> {formatTimeDisplay(s.start)} → {formatTimeDisplay(s.end)}
-              {i < SCHEDULE.length - 1 && <br />}
-            </Fragment>
-          ))}
-        </p>
+        <p class="text-base leading-[1.8] flex-1" set:html={scheduleText} />
         <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-2 italic">Tous niveaux</p>
       </div>
 
       <!-- Tarifs -->
-      <div class="card-border p-6 flex flex-col justify-between">
+      <div class="card-border p-6 lg:min-h-[180px] flex flex-col justify-between">
         <div>
           <div class="flex items-center mb-4">
             <Icon name="mdi:currency-eur" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
@@ -139,87 +138,6 @@ const coursePhases = [
           S'inscrire
           <Icon name="mdi:open-in-new" class="w-4 h-4 opacity-70" />
         </a>
-      </div>
-    </div>
-
-    <!-- Desktop layout -->
-    <div class="hidden lg:grid lg:grid-cols-[2fr_1fr] gap-6">
-      <!-- Pack Découverte -->
-      <div class="border-[3px] border-primary dark:border-primary-dark p-8 flex flex-col min-h-[400px] bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
-        <div class="flex items-center mb-6">
-          <Icon name="mdi:label" class="w-8 h-8 mr-3 text-primary dark:text-primary-dark" />
-          <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-bold tracking-tight">Pack Découverte MMA</h2>
-        </div>
-
-        <div class="flex-1 flex flex-col gap-6 mb-6">
-          {steps.map((step, i) => (
-            <div class="flex gap-4">
-              <div class="flex flex-col items-center">
-                <div class="w-8 h-8 rounded-full bg-primary/10 dark:bg-primary-dark/10 flex items-center justify-center text-primary dark:text-primary-dark font-bold text-sm">{i + 1}</div>
-                {i < steps.length - 1 && <div class="w-px flex-1 bg-primary/20 dark:bg-primary-dark/20 mt-2" />}
-              </div>
-              <div class="pb-4">
-                <p class="font-bold text-lg mb-1">{step.label}</p>
-                {step.descriptionHtml ? (
-                  <div set:html={step.descriptionHtml} />
-                ) : (
-                  <p class="text-base">{step.description}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <a
-          href={ASSOCONNECT_URLS.TRIAL_BOOKING}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary w-full py-3 text-lg text-center gap-2"
-        >
-          Réserver ton cours d'essai
-          <Icon name="mdi:open-in-new" class="w-5 h-5 opacity-70" />
-        </a>
-      </div>
-
-      <!-- Sidebar -->
-      <div class="flex flex-col gap-6">
-        <div class="card-border p-6 min-h-[180px] flex flex-col">
-          <div class="flex items-center mb-4">
-            <Icon name="mdi:calendar" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
-            <h3 class="text-[1.75rem] font-bold">Créneaux {SEASON}</h3>
-          </div>
-          <p class="text-base leading-[1.8] flex-1">
-            {SCHEDULE.map((s, i) => (
-              <Fragment>
-                <strong>{s.day}</strong> {formatTimeDisplay(s.start)} → {formatTimeDisplay(s.end)}
-                {i < SCHEDULE.length - 1 && <br />}
-              </Fragment>
-            ))}
-          </p>
-          <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-2 italic">Tous niveaux</p>
-        </div>
-
-        <div class="card-border p-6 min-h-[180px] flex flex-col justify-between">
-          <div>
-            <div class="flex items-center mb-4">
-              <Icon name="mdi:currency-eur" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
-              <h3 class="text-[1.75rem] font-bold">Tarifs {SEASON}</h3>
-            </div>
-            <p class="text-base leading-[1.8]">
-              <strong>{PRICING.adult.label}</strong> : {PRICING.adult.price} €<br />
-              <strong>{PRICING.young.label}</strong> : {PRICING.young.price} €
-            </p>
-            <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-2">Paiement par CB (possibilité en 3 fois)</p>
-          </div>
-          <a
-            href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-secondary w-full py-2 text-center mt-4 gap-2"
-          >
-            S'inscrire
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -246,6 +164,25 @@ const coursePhases = [
           <p class="text-sm leading-relaxed tracking-wide">{phase.text}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Lien FAQ -->
+  <section class="mt-16 mb-8">
+    <div class="card-border p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-variant/30 dark:bg-surface-variant-dark/30">
+      <div class="flex items-center gap-4">
+        <Icon name="mdi:help-circle" class="w-10 h-10 text-primary dark:text-primary-dark flex-shrink-0" />
+        <div>
+          <h3 class="text-lg font-bold">Des questions ?</h3>
+          <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Équipement, certificat médical, âge minimum, déroulement des cours...</p>
+        </div>
+      </div>
+      <a
+        href="/faq"
+        class="btn-primary py-2 px-6 text-center whitespace-nowrap"
+      >
+        Voir la FAQ
+      </a>
     </div>
   </section>
 </BaseLayout>
