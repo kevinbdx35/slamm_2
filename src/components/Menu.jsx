@@ -32,11 +32,13 @@ export default function Navigation({ currentPath = '/' }) {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    const newDark = !isDark;
+    // Lire l'état actuel du DOM, pas le state React (évite les désynchronisations)
+    const currentlyDark = document.documentElement.classList.contains('dark');
+    const newDark = !currentlyDark;
     setIsDark(newDark);
     document.documentElement.classList.toggle('dark', newDark);
     localStorage.setItem('darkMode', JSON.stringify(newDark));
-  }, [isDark]);
+  }, []);
 
   useEffect(() => {
     if (drawerOpen) {
