@@ -7,17 +7,17 @@ import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/
 const schemas = [generateSportsClubSchema(), generateLocalBusinessSchema()];
 
 const partners = [
-  { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.webp', url: PARTNER_URLS.SAINT_LUNAIRE },
-  { name: 'FMMAF', logo: 'img/partenaires/fmmaf.webp', url: PARTNER_URLS.FMMAF },
-  { name: 'Progress', logo: 'img/partenaires/progress.webp', url: PARTNER_URLS.PROGRESS },
-  { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX },
+  { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.webp', url: PARTNER_URLS.SAINT_LUNAIRE, width: 1772, height: 754 },
+  { name: 'FMMAF', logo: 'img/partenaires/fmmaf.webp', url: PARTNER_URLS.FMMAF, width: 785, height: 1200 },
+  { name: 'Progress', logo: 'img/partenaires/progress.webp', url: PARTNER_URLS.PROGRESS, width: 443, height: 320 },
+  { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX, width: 400, height: 400 },
 ];
 
 const images = [
-  { id: 'miguel', src: '/img/team/miguel.webp', alt: "Victoire de Miguel en NoGi" },
-  { id: 'team', src: '/img/team/team.webp', alt: "Une partie de l'équipe 2025-2026" },
-  { id: 'florian', src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', srcset: '/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w' },
-  { id: 'cage', src: '/img/team/cage.webp', alt: 'Travail du cage control' },
+  { id: 'miguel', src: '/img/team/miguel.webp', alt: "Victoire de Miguel en NoGi", width: 862, height: 591 },
+  { id: 'team', src: '/img/team/team.webp', alt: "Une partie de l'équipe 2025-2026", width: 830, height: 459 },
+  { id: 'florian', src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', width: 1400, height: 1400, srcset: '/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w' },
+  { id: 'cage', src: '/img/team/cage.webp', alt: 'Travail du cage control', width: 1170, height: 1560 },
 ];
 ---
 
@@ -84,6 +84,8 @@ const images = [
           src={image.src}
           srcset={image.srcset}
           sizes="(max-width: 900px) 50vw, 25vw"
+          width={image.width}
+          height={image.height}
           alt={image.alt}
           title={image.alt}
           loading={image.id === 'miguel' ? 'eager' : 'lazy'}
@@ -119,6 +121,8 @@ const images = [
           src="/img/team2/equipe1_scale,w_1400.webp"
           srcset="/img/team2/equipe1_scale,w_200.webp 200w, /img/team2/equipe1_scale,w_637.webp 637w, /img/team2/equipe1_scale,w_955.webp 955w, /img/team2/equipe1_scale,w_1266.webp 1266w, /img/team2/equipe1_scale,w_1400.webp 1400w"
           sizes="(max-width: 900px) 100vw, 50vw"
+          width="1400"
+          height="1051"
           alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
           title="Une partie de l'équipe SLAMM de la saison 2024-2025"
           loading="lazy"
@@ -130,6 +134,8 @@ const images = [
           src="/img/team2/cours_2025-2026_scale,w_1400.webp"
           srcset="/img/team2/cours_2025-2026_scale,w_200.webp 200w, /img/team2/cours_2025-2026_scale,w_637.webp 637w, /img/team2/cours_2025-2026_scale,w_955.webp 955w, /img/team2/cours_2025-2026_scale,w_1266.webp 1266w, /img/team2/cours_2025-2026_scale,w_1400.webp 1400w"
           sizes="(max-width: 900px) 100vw, 50vw"
+          width="1400"
+          height="1050"
           alt="Cours saison 2025-2026"
           title="Cours saison 2025-2026"
           loading="lazy"
@@ -190,6 +196,8 @@ const images = [
           >
             <img
               src={partner.logo}
+              width={partner.width}
+              height={partner.height}
               alt={`Logo de ${partner.name}`}
               title={partner.name}
               loading="lazy"

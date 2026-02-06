@@ -27,6 +27,8 @@ export const EVENTS = [
     maxParticipants: null,
     registrationUrl: null,
     image: "/img/events/stage_1.webp",
+    imageWidth: 900,
+    imageHeight: 1600,
     status: "upcoming"
   },
   {
@@ -36,10 +38,12 @@ export const EVENTS = [
     time: "14h30-16h30",
     location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
     price: "10€",
-    description: "Stage JJB No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d’améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
+    description: "Stage JJB No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/662218-o-stage-avec-jonathan-allouche",
     image: "/img/events/jonathan.webp",
+    imageWidth: 923,
+    imageHeight: 1154,
     status: "upcoming"
   },
   {

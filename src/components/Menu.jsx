@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Home, Calendar, Users, Newspaper, Mail, HelpCircle, SprayCan,
-  Sun, Moon, Menu as MenuIcon, ExternalLink
+  Sun, Moon, Menu as MenuIcon, ExternalLink, X
 } from 'lucide-react';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
@@ -77,6 +77,17 @@ export default function Navigation({ currentPath = '/' }) {
         <>
           <div className="fixed inset-0 bg-black/50 z-[1400]" onClick={() => setDrawerOpen(false)} />
           <div className="fixed top-0 left-0 bottom-0 w-full max-w-[320px] z-[1500] bg-surface dark:bg-surface-dark overflow-y-auto">
+            {/* Header avec bouton fermer */}
+            <div className="flex items-center justify-between p-4 border-b border-outline/20 dark:border-outline-dark/20">
+              <span className="text-lg font-bold text-primary dark:text-primary-dark">Menu</span>
+              <button
+                onClick={() => setDrawerOpen(false)}
+                aria-label="Fermer le menu"
+                className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
             <div className="p-2">
               {routes.map((item) => {
                 const isActive = pathname === item.path;

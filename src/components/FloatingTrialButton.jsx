@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CalendarCheck } from 'lucide-react';
+import { CalendarCheck, ExternalLink } from 'lucide-react';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 export default function FloatingTrialButton() {
@@ -19,11 +19,12 @@ export default function FloatingTrialButton() {
         href={ASSOCONNECT_URLS.TRIAL_BOOKING}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Réserver un cours d'essai"
+        aria-label="Réserver un cours d'essai (s'ouvre dans un nouvel onglet)"
         title="Réserver un cours d'essai"
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-primary dark:bg-primary-dark text-white dark:text-brand-darkBg shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200"
+        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-primary dark:bg-primary-dark text-white dark:text-brand-darkBg shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200"
       >
         <CalendarCheck size={24} />
+        <ExternalLink size={10} className="absolute top-2 right-2 opacity-70" />
       </a>
     </div>
   );
