@@ -40,3 +40,9 @@ CLAUDE.md
 # Optional: lock files if you want to ignore them (usually better to keep)
 # package-lock.json
 # yarn.lock
+
+# Local Netlify folder
+.netlify
+
+# Astro generated files
+.astro
