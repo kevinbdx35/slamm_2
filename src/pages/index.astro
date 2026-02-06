@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { PARTNER_URLS } from '../config/urls.js';
-import { generateSportsClubSchema } from '../utils/schemaGenerator.js';
+import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/schemaGenerator.js';
 
-const sportsClubSchema = generateSportsClubSchema();
+const schemas = [generateSportsClubSchema(), generateLocalBusinessSchema()];
 
 const partners = [
   { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.webp', url: PARTNER_URLS.SAINT_LUNAIRE },
@@ -20,7 +20,12 @@ const images = [
 ];
 ---
 
-<BaseLayout schemas={sportsClubSchema}>
+<BaseLayout
+  title="Club MMA Saint-Lunaire, Dinard, Saint-Malo | SLAMM Arts Martiaux Mixtes"
+  description="SLAMM, club de MMA à Saint-Lunaire sur la Côte d'Émeraude. À 5 min de Dinard, 15 min de Saint-Malo. Cours d'arts martiaux mixtes tous niveaux, coachs diplômés FMMAF. Essai gratuit !"
+  keywords="club MMA Saint-Lunaire, MMA Dinard, MMA Saint-Malo, arts martiaux mixtes Côte d'Émeraude, cours MMA Bretagne, SLAMM MMA, club combat Saint-Lunaire, MMA Pleurtuit, MMA Dinan"
+  schemas={schemas}
+>
   <!-- Hero Section -->
   <section
     class="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center bg-cover bg-center bg-no-repeat section-border -mx-4 md:-mx-6"

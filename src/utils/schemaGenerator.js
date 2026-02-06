@@ -394,6 +394,110 @@ function extractTextFromReactElement(element) {
 }
 
 /**
+ * Génère un schema LocalBusiness pour Google Maps et le pack local
+ * @returns {Object} Schema.org LocalBusiness
+ */
+export function generateLocalBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/#localbusiness`,
+    "name": CLUB_INFO.name,
+    "alternateName": ["SLAMM MMA", "Club MMA Saint-Lunaire", "MMA Dinard", "MMA Saint-Malo"],
+    "description": "Club de MMA à Saint-Lunaire, à 5 min de Dinard et 15 min de Saint-Malo. Cours d'arts martiaux mixtes tous niveaux, encadrés par des coachs diplômés FMMAF.",
+    "url": CLUB_INFO.url,
+    "telephone": CLUB_INFO.telephone,
+    "email": CLUB_INFO.email,
+    "image": CLUB_INFO.image,
+    "logo": CLUB_INFO.logo,
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Espèces, Chèques, Virement",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": CLUB_INFO.address.streetAddress,
+      "addressLocality": CLUB_INFO.address.addressLocality,
+      "postalCode": CLUB_INFO.address.postalCode,
+      "addressRegion": CLUB_INFO.address.addressRegion,
+      "addressCountry": CLUB_INFO.address.addressCountry
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": CLUB_INFO.geo.latitude,
+      "longitude": CLUB_INFO.geo.longitude
+    },
+    "hasMap": "https://www.google.com/maps/dir//48.629194657231274,-2.1120771896734203",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "18:00", "closes": "19:15" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "19:15", "closes": "21:15" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "19:30", "closes": "21:00" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Saint-Lunaire", "sameAs": "https://fr.wikipedia.org/wiki/Saint-Lunaire" },
+      { "@type": "City", "name": "Dinard", "sameAs": "https://fr.wikipedia.org/wiki/Dinard" },
+      { "@type": "City", "name": "Saint-Malo", "sameAs": "https://fr.wikipedia.org/wiki/Saint-Malo" },
+      { "@type": "City", "name": "Pleurtuit" },
+      { "@type": "City", "name": "La Richardais" },
+      { "@type": "City", "name": "Dinan" },
+      { "@type": "City", "name": "Cancale" },
+      { "@type": "City", "name": "Saint-Briac-sur-Mer" },
+      { "@type": "City", "name": "Lancieux" },
+      { "@type": "Place", "name": "Côte d'Émeraude, Bretagne" }
+    ],
+    "sameAs": ["https://instagram.com/slamm35800"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "2",
+      "reviewCount": "2"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Miguel" },
+        "datePublished": "2024-09-01",
+        "reviewBody": "La pratique du MMA m'a apporté discipline, confiance en moi et une condition physique optimale. C'est bien plus qu'un sport, c'est un mode de vie qui m'a renforcé mentalement et physiquement.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Florian" },
+        "datePublished": "2024-09-15",
+        "reviewBody": "Je pratique le MMA depuis septembre 2024 et ça m'a appris beaucoup de choses sur moi que j'ignorais : le dépassement de soi, la condition physique et le mental. Je me sens bien mieux depuis que j'ai découvert cette pratique.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    ]
+  };
+}
+
+/**
+ * Génère un schema Person pour un membre de l'équipe
+ * @param {Object} member - Données du membre
+ * @returns {Object} Schema.org Person
+ */
+export function generatePersonSchema(member) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": member.name,
+    "jobTitle": member.role,
+    "worksFor": {
+      "@type": "SportsOrganization",
+      "name": CLUB_INFO.name,
+      "url": CLUB_INFO.url
+    },
+    "knowsAbout": ["MMA", "Arts martiaux mixtes", "Grappling", "Self-défense"],
+    "hasCredential": member.diplomas?.map(diploma => ({
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Diplôme sportif",
+      "name": diploma
+    })) || []
+  };
+}
+
+/**
  * Export par défaut
  */
 export default {
@@ -403,6 +507,8 @@ export default {
   generateFAQSchema,
   generateCourseSchema,
   generateBreadcrumbSchema,
+  generateLocalBusinessSchema,
+  generatePersonSchema,
   CLUB_INFO,
   BASE_URL
 };
