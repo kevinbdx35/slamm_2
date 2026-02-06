@@ -154,17 +154,17 @@ export default function Navigation() {
       <div className="md:hidden" style={{ height: 'calc(56px + env(safe-area-inset-bottom))' }} />
 
       {/* Desktop: App Bar */}
-      <div className="hidden md:block bg-primary dark:bg-primary-dark text-white dark:text-brand-darkBg">
+      <div className="hidden md:block bg-primary dark:bg-surface-dark text-white dark:text-text-dark border-b-2 border-transparent dark:border-primary-dark">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center min-h-[64px] px-4 lg:px-8">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="text-lg font-bold tracking-wide no-underline text-inherit">
+            <a href="/" className="text-lg font-bold tracking-wide no-underline text-inherit hover:text-brand-neonGreen transition-colors">
               SLAMM
             </a>
           </div>
 
           {/* Navigation */}
-          <div className="flex gap-1 items-center bg-white/10 rounded-[20px] p-1">
+          <div className="flex gap-1 items-center bg-white/10 dark:bg-white/5 rounded-[20px] p-1">
             {routes.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -174,7 +174,7 @@ export default function Navigation() {
                   className={`px-3 py-1.5 rounded-2xl text-sm font-medium no-underline transition-all duration-300 ${
                     isActive
                       ? 'bg-brand-neonGreen text-brand-darkBg'
-                      : 'text-white/90 dark:text-brand-darkBg/90 hover:bg-white/15 dark:hover:bg-brand-darkBg/15 hover:scale-[1.02]'
+                      : 'text-white/90 dark:text-text-dark/80 hover:bg-white/15 dark:hover:bg-white/10 hover:scale-[1.02]'
                   }`}
                 >
                   {item.label}
@@ -188,7 +188,7 @@ export default function Navigation() {
             <button
               onClick={toggleTheme}
               aria-label={isDark ? 'Passer au thème clair' : 'Passer au thème sombre'}
-              className="p-2 transition-all duration-300 hover:scale-110 relative overflow-hidden"
+              className="p-2 transition-all duration-300 hover:scale-110 hover:text-brand-neonGreen relative overflow-hidden"
             >
               <span className={`inline-flex transition-transform duration-400 ${isDark ? 'rotate-180' : 'rotate-0'}`}>
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -198,7 +198,7 @@ export default function Navigation() {
               href={ASSOCONNECT_URLS.TRIAL_BOOKING}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[20px] px-3 py-1.5 text-sm font-medium no-underline border border-brand-neonGreen text-brand-neonGreen dark:text-brand-neonGreen dark:border-brand-neonGreen hover:bg-brand-neonGreen hover:text-brand-darkBg hover:scale-105 transition-all duration-200"
+              className="rounded-[20px] px-3 py-1.5 text-sm font-medium no-underline border border-brand-neonGreen text-brand-neonGreen hover:bg-brand-neonGreen hover:text-brand-darkBg hover:scale-105 transition-all duration-200"
             >
               Réserver un essai
             </a>
