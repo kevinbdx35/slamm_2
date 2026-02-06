@@ -48,8 +48,10 @@ export function generateSportsClubSchema() {
     "@context": "https://schema.org",
     "@type": "SportsClub",
     "name": CLUB_INFO.name,
-    "alternateName": "SLAMM MMA",
-    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes, mixed martial arts, grappling, self-défense et sports de combat pour tous niveaux depuis 2023. Dojo affilié FMMAF.",
+    "alternateName": ["SLAMM MMA", "Club MMA Saint-Lunaire", "Club MMA Dinard", "Club MMA Saint-Malo", "Grappling Saint-Lunaire", "Grappling Dinard", "Grappling Saint-Malo", "No-Gi Dinard", "No-Gi Saint-Malo", "Boxe Dinard", "Kickboxing Saint-Malo", "Jiu-jitsu Dinard", "BJJ Saint-Malo", "Lutte Dinard"],
+    "description": "Club de MMA à Saint-Lunaire proposant des cours d'arts martiaux mixtes : grappling, No-Gi, boxe pieds-poings, lutte, jiu-jitsu brésilien, kickboxing et self-défense. Tous niveaux depuis 2023. Dojo affilié FMMAF.",
+    "sport": ["Mixed Martial Arts", "MMA", "Grappling", "No-Gi", "Submission Wrestling", "Boxe", "Kickboxing", "Lutte", "Jiu-jitsu brésilien", "Self-défense"],
+    "keywords": "MMA, arts martiaux mixtes, grappling, No-Gi, boxe pieds-poings, lutte, jiu-jitsu, BJJ, kickboxing, muay thai, self-défense, combat au sol, striking",
     "url": CLUB_INFO.url,
     "logo": CLUB_INFO.logo,
     "image": CLUB_INFO.image,
@@ -182,7 +184,8 @@ export function generateCourseSchema() {
     "@context": "https://schema.org",
     "@type": "Course",
     "name": "Cours de MMA à Saint-Lunaire",
-    "description": "Cours d'arts martiaux mixtes pour tous niveaux, débutants et confirmés. Entraînements encadrés par des coachs diplômés FMMAF.",
+    "description": "Cours d'arts martiaux mixtes pour tous niveaux : grappling, No-Gi, boxe pieds-poings, lutte, jiu-jitsu et kickboxing. Entraînements encadrés par des coachs diplômés FMMAF.",
+    "keywords": "cours MMA, grappling, No-Gi, boxe, kickboxing, lutte, jiu-jitsu, BJJ, self-défense",
     "provider": {
       "@type": "SportsOrganization",
       "name": CLUB_INFO.name,
@@ -213,7 +216,7 @@ export function generateCourseSchema() {
       }
     ],
     "educationalLevel": "Débutant à confirmé",
-    "teaches": "Arts martiaux mixtes, MMA, grappling, striking, self-défense",
+    "teaches": ["Arts martiaux mixtes (MMA)", "Grappling et No-Gi", "Boxe et pieds-poings", "Lutte et clinch", "Jiu-jitsu brésilien (BJJ)", "Kickboxing", "Self-défense", "Combat au sol", "Striking"],
     "availableLanguage": "fr",
     "location": {
       "@type": "Place",
@@ -367,8 +370,9 @@ export function generateLocalBusinessSchema() {
     "@type": "LocalBusiness",
     "@id": `${BASE_URL}/#localbusiness`,
     "name": CLUB_INFO.name,
-    "alternateName": ["SLAMM MMA", "Club MMA Saint-Lunaire", "MMA Dinard", "MMA Saint-Malo"],
-    "description": "Club de MMA à Saint-Lunaire, à 5 min de Dinard et 15 min de Saint-Malo. Cours d'arts martiaux mixtes tous niveaux, encadrés par des coachs diplômés FMMAF.",
+    "alternateName": ["SLAMM MMA", "Club MMA Saint-Lunaire", "Club MMA Dinard", "Club MMA Saint-Malo", "MMA Dinan", "Grappling Saint-Lunaire", "Grappling Dinard", "Grappling Saint-Malo", "No-Gi Dinard", "No-Gi Saint-Malo", "Boxe Dinard", "Boxe Saint-Malo", "Kickboxing Dinard", "Kickboxing Saint-Malo", "Jiu-jitsu Dinard", "BJJ Saint-Malo", "Lutte Dinard", "Self-défense Côte d'Émeraude"],
+    "description": "Club de MMA à Saint-Lunaire, à 5 min de Dinard et 15 min de Saint-Malo. Cours d'arts martiaux mixtes : grappling, No-Gi, boxe, lutte, jiu-jitsu et kickboxing. Coachs diplômés FMMAF.",
+    "keywords": "MMA, grappling, No-Gi, boxe pieds-poings, lutte, jiu-jitsu brésilien, kickboxing, self-défense",
     "url": CLUB_INFO.url,
     "telephone": CLUB_INFO.telephone,
     "email": CLUB_INFO.email,
@@ -448,7 +452,7 @@ export function generatePersonSchema(member) {
       "name": CLUB_INFO.name,
       "url": CLUB_INFO.url
     },
-    "knowsAbout": ["MMA", "Arts martiaux mixtes", "Grappling", "Self-défense"],
+    "knowsAbout": ["MMA", "Arts martiaux mixtes", "Grappling", "No-Gi", "Boxe", "Kickboxing", "Lutte", "Jiu-jitsu brésilien", "Self-défense", "Combat au sol"],
     "hasCredential": member.diplomas?.map(diploma => ({
       "@type": "EducationalOccupationalCredential",
       "credentialCategory": "Diplôme sportif",
