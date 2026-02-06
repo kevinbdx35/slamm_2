@@ -94,9 +94,9 @@ src/
 │   ├── Footer.astro          # Footer statique
 │   ├── Menu.jsx              # Navigation (React)
 │   ├── Accordion.jsx         # FAQ/Hygiene (React)
-│   ├── FloatingTrialButton.jsx
+│   ├── FloatingTrialButton.jsx # Bouton flottant (React)
 │   ├── LeafletMap.jsx        # Carte (React)
-│   └── AssoconnectForm.jsx
+│   └── CustomCursor.jsx      # Curseur interactif (React, desktop)
 ├── config/
 │   ├── urls.js               # URLs externes
 │   ├── schedule.js           # Horaires et tarifs
