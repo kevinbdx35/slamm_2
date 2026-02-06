@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const teamMembers = [
+  {
+    name: 'Malik',
+    role: 'Président',
+    initials: 'M',
+    color: '#1976d2',
+    diplomas: ['BF1 et BF2 de MMA - FMMAF', 'PSC1'],
+  },
+  {
+    name: 'Miguel',
+    role: 'Vice-Président',
+    initials: 'Mi',
+    color: '#2e7d32',
+    diplomas: ['BF1 et BF2 de MMA - FMMAF', 'PSE1 et PSE2'],
+  },
+  {
+    name: 'Thomas',
+    role: 'Trésorier',
+    initials: 'T',
+    color: '#d32f2f',
+    diplomas: ['BF1 et BF2 de MMA - FMMAF', 'Référent pieds / poings', 'PSC1'],
+  },
+  {
+    name: 'Kévin',
+    role: 'Secrétaire',
+    initials: 'K',
+    color: '#512da8',
+    diplomas: [
+      'BF1 et BF2 de MMA - FMMAF',
+      'BF1 de grappling et grappling fight - FFL',
+      'Référent lutte / sol',
+      'PSC1',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Équipe SLAMM | Coachs MMA certifiés FMMAF"
+  description="Découvrez nos entraîneurs certifiés FMMAF à Saint-Lunaire. Club accessible depuis Dinard, Saint-Malo, Pleurtuit, Dinan et la Côte d'Émeraude."
+  url="https://mma-saint-lunaire.fr/equipe"
+  keywords="entraîneurs MMA Saint-Lunaire, coach MMA Dinard, instructeur MMA Saint-Malo, professeur arts martiaux Côte d'Émeraude, FMMAF Bretagne, équipe SLAMM"
+>
+  <div class="py-12 mb-20 max-w-[1200px] mx-auto w-full px-6">
+    <header class="section-border pb-4">
+      <h1 class="text-[clamp(2.25rem,4vw,3.5rem)] font-normal tracking-tight leading-tight mb-6">
+        L'Équipe SLAMM
+      </h1>
+      <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
+        SLAMM association loi 1901 est née de la vision partagée de trois passionnés de MMA (Kévin, Malik, Thomas), chacun apportant des compétences complémentaires. Seule association de MMA de la Côte d'Émeraude, nous rassemblons plus de 30 membres de 16 à 50 ans. Nous encourageons une pratique loisirs basée sur la bienveillance, le respect et l'écoute mutuelle, afin de permettre à chaque membre de travailler et de progresser dans un environnement adapté à ses envies et à ses capacités physiques.
+      </p>
+    </header>
+
+    <section class="mt-12">
+      <h2 class="heading-border text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4">
+        Membres du bureau
+      </h2>
+
+      <div class="flex flex-col gap-8 mt-8">
+        {teamMembers.map(({ name, role, initials, diplomas, color }) => (
+          <div class="flex flex-col sm:flex-row card-border overflow-hidden">
+            <div
+              class="w-full sm:w-[100px] min-h-[60px] sm:min-h-0 flex items-center justify-center text-white font-bold text-2xl p-4"
+              style={`background-color: ${color}`}
+            >
+              {initials}
+            </div>
+            <div class="p-6 flex-1">
+              <div class="text-sm font-bold tracking-wide">{name}</div>
+              <div class="text-sm font-bold text-primary dark:text-primary-dark mb-2">{role}</div>
+              <hr class="border-outline dark:border-outline-dark my-2" />
+              <div class="text-xs font-bold tracking-wide mb-2">Diplômes :</div>
+              <ul class="pl-5 m-0">
+                {diplomas.map((d) => (
+                  <li>
+                    <span class="text-sm leading-relaxed tracking-wide">{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

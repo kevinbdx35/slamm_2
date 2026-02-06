@@ -51,8 +51,8 @@
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=31536000, immutable"
 
-# SPA Fallback
+# 404 fallback (Astro generates /404.html)
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404"
+  status = 404

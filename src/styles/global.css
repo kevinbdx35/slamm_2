@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-mono: 'IBM Plex Mono', 'Roboto Mono', monospace;
+
+  /* Primary */
+  --color-primary: #2e7d32;
+  --color-primary-dark: #00ff5e;
+  --color-primary-container: #c8e6c9;
+  --color-primary-container-dark: #005138;
+
+  /* Surface */
+  --color-surface: #ffffff;
+  --color-surface-dark: #041a1a;
+  --color-surface-variant: #e0f2f1;
+  --color-surface-variant-dark: #1a3030;
+  --color-surface-container: #ebf9f8;
+  --color-surface-container-dark: #0a2424;
+  --color-surface-container-high: #e0f2f1;
+  --color-surface-container-high-dark: #0f2a2a;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-lowest-dark: #021414;
+
+  /* Background */
+  --color-background: #f8fffe;
+  --color-background-dark: #041a1a;
+
+  /* Text */
+  --color-text: #0a1313;
+  --color-text-dark: #e0f2f1;
+  --color-text-secondary: #3e4947;
+  --color-text-secondary-dark: #b0c4c4;
+
+  /* Outline */
+  --color-outline: #6b7877;
+  --color-outline-dark: #5a7070;
+  --color-outline-variant: #b8c9c7;
+  --color-outline-variant-dark: #2a4040;
+
+  /* Brand */
+  --color-brand-neonGreen: #00ff5e;
+  --color-brand-darkBg: #0a1414;
+  --color-brand-orange: #ff6b35;
+
+  /* Semantic */
+  --color-error: #ba1a1a;
+  --color-error-dark: #ffb4ab;
+  --color-warning: #ed6c02;
+  --color-warning-dark: #ffb74d;
+  --color-info: #0288d1;
+  --color-info-dark: #4fc3f7;
+  --color-success: #2e7d32;
+  --color-success-dark: #66bb6a;
+
+  /* Spacing */
+  --spacing-safe-top: env(safe-area-inset-top);
+  --spacing-safe-right: env(safe-area-inset-right);
+  --spacing-safe-bottom: env(safe-area-inset-bottom);
+  --spacing-safe-left: env(safe-area-inset-left);
+
+  /* Border radius */
+  --radius-md3: 12px;
+}
+
+@layer base {
+  :root {
+    --sat: env(safe-area-inset-top);
+    --sar: env(safe-area-inset-right);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+  }
+
+  html {
+    font-family: 'IBM Plex Mono', 'Roboto Mono', monospace;
+    scroll-behavior: smooth;
+  }
+
+  /* Light mode defaults */
+  body {
+    background-color: #f8fffe;
+    color: #0a1313;
+  }
+
+  /* Dark mode */
+  .dark body {
+    background-color: #041a1a;
+    color: #e0f2f1;
+  }
+
+  @font-face {
+    font-family: 'IBM Plex Mono';
+    font-display: swap;
+  }
+}
+
+@layer components {
+  /* Reusable heading border */
+  .heading-border {
+    @apply border-b-2 border-primary dark:border-primary-dark inline-block;
+  }
+
+  /* Section border bottom */
+  .section-border {
+    @apply border-b-4 border-primary dark:border-primary-dark;
+  }
+
+  /* Image border style */
+  .img-border {
+    @apply border-4 border-primary dark:border-primary-dark;
+  }
+
+  /* Card border style */
+  .card-border {
+    @apply border-2 border-primary dark:border-primary-dark;
+  }
+
+  /* Container wrapper */
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 md:px-6;
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200 border-2 md:border-3 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
+           hover:bg-brand-neonGreen hover:text-brand-darkBg hover:border-brand-neonGreen
+           hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200 border-2 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
+           hover:bg-brand-orange hover:text-white hover:border-brand-orange
+           hover:-translate-y-0.5;
+  }
+}
+
+/* Custom cursor styles */
+@media (min-width: 769px) {
+  * {
+    cursor: none !important;
+  }
+
+  body {
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIgZmlsbD0iIzAwZmY1ZSIgZmlsbC1vcGFjaXR5PSIwLjgiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOCIgc3Ryb2tlPSIjMDBmZjVlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1vcGFjaXR5PSIwLjQiLz4KPC9zdmc+') 12 12, auto !important;
+  }
+
+  a, button, [role="button"] {
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNiIgZmlsbD0iIzAwZmY1ZSIgZmlsbC1vcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIHN0cm9rZT0iIzAwZmY1ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC42Ii8+Cjwvc3ZnPg==') 12 12, pointer !important;
+  }
+}
+
+@media (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Keyframes for cursor animations */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
