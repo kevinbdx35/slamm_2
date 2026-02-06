@@ -8,8 +8,8 @@ import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import Menu from '../components/Menu.jsx';
 import FloatingTrialButton from '../components/FloatingTrialButton.jsx';
-import CustomCursor from '../components/CustomCursor.jsx';
 import { generateBreadcrumbSchema } from '../utils/schemaGenerator.js';
+import { getOpeningHoursSchema } from '../config/schedule.js';
 
 interface Props {
   title?: string;
@@ -131,11 +131,7 @@ const schemasArray = schemas
         "addressCountry": "FR"
       },
       "geo": { "@type": "GeoCoordinates", "latitude": "48.629194657231274", "longitude": "-2.1120771896734203" },
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "18:00", "closes": "19:15" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "19:15", "closes": "21:15" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "19:30", "closes": "21:00" }
-      ],
+      "openingHoursSpecification": getOpeningHoursSchema(),
       "sameAs": ["https://instagram.com/slamm35800"],
       "areaServed": [
         { "@type": "City", "name": "Saint-Lunaire" }, { "@type": "City", "name": "Dinard" },
@@ -180,7 +176,6 @@ const schemasArray = schemas
     <Footer />
 
     <FloatingTrialButton client:load />
-    <CustomCursor client:load />
 
     <!-- Dark mode script (runs before paint to avoid flash) -->
     <script is:inline>

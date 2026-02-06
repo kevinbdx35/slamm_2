@@ -12,6 +12,8 @@
  * - LocalBusiness : horaires et coordonnées
  */
 
+import { getOpeningHoursSchema, getCourseScheduleSchema, PRICING } from '../config/schedule.js';
+
 const BASE_URL = 'https://mma-saint-lunaire.fr';
 
 /**
@@ -66,26 +68,7 @@ export function generateSportsClubSchema() {
       "latitude": CLUB_INFO.geo.latitude,
       "longitude": CLUB_INFO.geo.longitude
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Monday",
-        "opens": "18:00",
-        "closes": "19:15"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Wednesday",
-        "opens": "19:15",
-        "closes": "21:15"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "19:30",
-        "closes": "21:00"
-      }
-    ],
+    "openingHoursSpecification": getOpeningHoursSchema(),
     "sameAs": [
       "https://instagram.com/slamm35800"
     ],
@@ -205,45 +188,26 @@ export function generateCourseSchema() {
       "name": CLUB_INFO.name,
       "url": CLUB_INFO.url
     },
-    "courseSchedule": [
-      {
-        "@type": "Schedule",
-        "byDay": "Monday",
-        "startTime": "18:00",
-        "endTime": "19:15"
-      },
-      {
-        "@type": "Schedule",
-        "byDay": "Wednesday",
-        "startTime": "19:15",
-        "endTime": "21:15"
-      },
-      {
-        "@type": "Schedule",
-        "byDay": "Friday",
-        "startTime": "19:30",
-        "endTime": "21:00"
-      }
-    ],
+    "courseSchedule": getCourseScheduleSchema(),
     "offers": [
       {
         "@type": "Offer",
-        "name": "Adhésion annuelle +25 ans",
-        "price": "210",
+        "name": `Adhésion annuelle ${PRICING.adult.label}`,
+        "price": String(PRICING.adult.price),
         "priceCurrency": "EUR",
         "category": "Adulte"
       },
       {
         "@type": "Offer",
-        "name": "Adhésion annuelle 16-24 ans",
-        "price": "180",
+        "name": `Adhésion annuelle ${PRICING.young.label}`,
+        "price": String(PRICING.young.price),
         "priceCurrency": "EUR",
         "category": "Jeune"
       },
       {
         "@type": "Offer",
-        "name": "Cours d'essai (novembre-juin)",
-        "price": "5",
+        "name": PRICING.trial.label,
+        "price": String(PRICING.trial.price),
         "priceCurrency": "EUR",
         "category": "Découverte"
       }
@@ -427,11 +391,7 @@ export function generateLocalBusinessSchema() {
       "longitude": CLUB_INFO.geo.longitude
     },
     "hasMap": "https://www.google.com/maps/dir//48.629194657231274,-2.1120771896734203",
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "18:00", "closes": "19:15" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "19:15", "closes": "21:15" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "19:30", "closes": "21:00" }
-    ],
+    "openingHoursSpecification": getOpeningHoursSchema(),
     "areaServed": [
       { "@type": "City", "name": "Saint-Lunaire", "sameAs": "https://fr.wikipedia.org/wiki/Saint-Lunaire" },
       { "@type": "City", "name": "Dinard", "sameAs": "https://fr.wikipedia.org/wiki/Dinard" },

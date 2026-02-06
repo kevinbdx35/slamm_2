@@ -160,31 +160,36 @@ const stats = [
     <!-- Past events -->
     {pastEvents.length > 0 && (
       <section class="mb-12">
-        <h2 class="border-b-2 border-text-secondary/70 dark:border-text-secondary-dark/70 inline-block text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-6 opacity-70">
-          Derniers événements
+        <h2 class="heading-border text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-6 text-text-secondary dark:text-text-secondary-dark">
+          Événements passés
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {pastEvents.map((event) => (
-            <div class="border-2 border-outline/40 dark:border-outline-dark/40 p-6 opacity-70">
-              <h3 class="text-[1.375rem] font-normal leading-snug mb-2 text-text-secondary dark:text-text-secondary-dark">{event.title}</h3>
-              <div class="flex items-start mb-3 gap-3">
-                <svg class="w-[18px] h-[18px] mt-0.5 opacity-50 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">{formatEventDate(event.date)}</span>
+            <div class="border border-outline dark:border-outline-dark p-5 bg-surface-variant/30 dark:bg-surface-variant-dark/30 relative">
+              <span class="absolute top-3 right-3 text-[0.625rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-text-secondary/10 dark:bg-text-secondary-dark/10 text-text-secondary dark:text-text-secondary-dark">
+                Terminé
+              </span>
+              <h3 class="text-lg font-semibold leading-snug mb-3 pr-16">{event.title}</h3>
+              <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary dark:text-text-secondary-dark mb-3">
+                <div class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                  <span>{formatEventDate(event.date)}</span>
+                </div>
+                {event.time && (
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                    <span>{event.time}</span>
+                  </div>
+                )}
+                {event.location && (
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                    <span>{event.location}</span>
+                  </div>
+                )}
               </div>
-              {event.time && (
-                <div class="flex items-start mb-3 gap-3">
-                  <svg class="w-[18px] h-[18px] mt-0.5 opacity-50 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
-                  <span class="text-sm text-text-secondary dark:text-text-secondary-dark">{event.time}</span>
-                </div>
-              )}
-              {event.location && (
-                <div class="flex items-start mb-3 gap-3">
-                  <svg class="w-[18px] h-[18px] mt-0.5 opacity-50 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-                  <span class="text-sm text-text-secondary dark:text-text-secondary-dark">{event.location}</span>
-                </div>
-              )}
-              <p class="text-sm text-text-secondary dark:text-text-secondary-dark">{event.description}</p>
+              <p class="text-sm text-text-secondary dark:text-text-secondary-dark leading-relaxed">{event.description}</p>
             </div>
           ))}
         </div>

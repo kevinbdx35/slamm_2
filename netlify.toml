@@ -6,12 +6,24 @@
 [[headers]]
   for = "/*"
   [headers.values]
+    # Protection contre le clickjacking
     X-Frame-Options = "DENY"
+    # Empêche le sniffing MIME
     X-Content-Type-Options = "nosniff"
+    # Protection XSS (legacy, remplacé par CSP)
     X-XSS-Protection = "1; mode=block"
+    # Contrôle des informations de référent
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://slamm.assoconnect.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self'; frame-src https://slamm.assoconnect.com; object-src 'none'; base-uri 'self'"
+    # Désactive les APIs sensibles non utilisées
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    # Force HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # Content Security Policy renforcée
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://slamm.assoconnect.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com https://*.tile.openstreetmap.org data:; font-src 'self'; connect-src 'self' https://*.tile.openstreetmap.org; frame-src https://slamm.assoconnect.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://slamm.assoconnect.com; upgrade-insecure-requests"
+    # Protection contre le cross-origin embedding
+    Cross-Origin-Embedder-Policy = "unsafe-none"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
 
 [[headers]]
   for = "/*.js"
