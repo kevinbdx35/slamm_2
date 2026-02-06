@@ -23,7 +23,12 @@ export default function Navigation() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    setPathname(window.location.pathname);
+    // Normalise le pathname en retirant le slash final (sauf pour la racine)
+    let path = window.location.pathname;
+    if (path !== '/' && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+    setPathname(path);
     setIsDark(document.documentElement.classList.contains('dark'));
   }, []);
 
