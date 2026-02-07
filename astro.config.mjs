@@ -8,6 +8,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://mma-saint-lunaire.fr',
   output: 'static',
+  prefetch: true,
   integrations: [
     react(),
     sitemap(),
