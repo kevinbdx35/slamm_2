@@ -1,9 +1,18 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { SOCIAL_URLS } from '../config/urls.js';
 import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from '../config/events.js';
 import { generateEventListSchema } from '../utils/schemaGenerator.js';
+
+import stage1Img from '../assets/img/events/stage_1.webp';
+import jonathanImg from '../assets/img/events/jonathan.webp';
+
+const eventImageMap = {
+  '/img/events/stage_1.webp': stage1Img,
+  '/img/events/jonathan.webp': jonathanImg,
+};
 
 const upcomingEvents = sortEventsByDate(getUpcomingEvents(EVENTS));
 const eventsSchema = upcomingEvents.length > 0 ? generateEventListSchema(upcomingEvents) : null;
@@ -94,7 +103,17 @@ const stats = [
           {upcomingEvents.map((event) => (
             <div class="border-[3px] border-primary dark:border-primary-dark overflow-hidden bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
               <div class="flex flex-col md:flex-row">
-                {event.image && (
+                {event.image && eventImageMap[event.image] && (
+                  <div class="p-4 md:p-6 flex items-center justify-center">
+                    <Image
+                      src={eventImageMap[event.image]}
+                      alt={event.title}
+                      class="w-full md:w-[640px] h-auto object-cover card-border"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                {event.image && !eventImageMap[event.image] && (
                   <div class="p-4 md:p-6 flex items-center justify-center">
                     <img
                       src={event.image}

@@ -1,21 +1,32 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { PARTNER_URLS, ASSOCONNECT_URLS } from '../config/urls.js';
 import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/schemaGenerator.js';
 
+import miguelImg from '../assets/img/team/miguel.webp';
+import teamImg from '../assets/img/team/team.webp';
+import stlunaireImg from '../assets/img/partenaires/stlunaire.webp';
+import fmmafImg from '../assets/img/partenaires/fmmaf.webp';
+import progressImg from '../assets/img/partenaires/progress.webp';
+import rdxImg from '../assets/img/partenaires/rdx.webp';
+
 const schemas = [generateSportsClubSchema(), generateLocalBusinessSchema()];
 
 const partners = [
-  { name: 'Saint-lunaire', logo: 'img/partenaires/stlunaire.webp', url: PARTNER_URLS.SAINT_LUNAIRE, width: 1772, height: 754 },
-  { name: 'FMMAF', logo: 'img/partenaires/fmmaf.webp', url: PARTNER_URLS.FMMAF, width: 785, height: 1200 },
-  { name: 'Progress', logo: 'img/partenaires/progress.webp', url: PARTNER_URLS.PROGRESS, width: 443, height: 320 },
-  { name: 'RDX', logo: 'img/partenaires/rdx.webp', url: PARTNER_URLS.RDX, width: 400, height: 400 },
+  { name: 'Saint-lunaire', logo: stlunaireImg, url: PARTNER_URLS.SAINT_LUNAIRE },
+  { name: 'FMMAF', logo: fmmafImg, url: PARTNER_URLS.FMMAF },
+  { name: 'Progress', logo: progressImg, url: PARTNER_URLS.PROGRESS },
+  { name: 'RDX', logo: rdxImg, url: PARTNER_URLS.RDX },
 ];
 
-const images = [
-  { id: 'miguel', src: '/img/team/miguel.webp', alt: "Victoire de Miguel en NoGi", width: 862, height: 591 },
-  { id: 'team', src: '/img/team/team.webp', alt: "Une partie de l'équipe 2025-2026", width: 830, height: 459 },
+const optimizedImages = [
+  { id: 'miguel', src: miguelImg, alt: "Victoire de Miguel en NoGi" },
+  { id: 'team', src: teamImg, alt: "Une partie de l'équipe 2025-2026" },
+];
+
+const staticImages = [
   { id: 'florian', src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', width: 1400, height: 1400, srcset: '/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w' },
   { id: 'cage', src: '/img/team/cage.webp', alt: 'Travail du cage control', width: 1170, height: 1560 },
 ];
@@ -78,7 +89,20 @@ const images = [
 
   <!-- Image gallery -->
   <div class="flex gap-4 my-8 justify-center flex-wrap md:flex-nowrap">
-    {images.map((image) => (
+    {optimizedImages.map((image) => (
+      <div class="flex-[0_0_calc(50%-8px)] md:flex-[0_0_calc(25%-12px)]">
+        <Image
+          src={image.src}
+          sizes="(max-width: 900px) 50vw, 25vw"
+          alt={image.alt}
+          title={image.alt}
+          loading={image.id === 'miguel' ? 'eager' : 'lazy'}
+          fetchpriority={image.id === 'miguel' ? 'high' : 'auto'}
+          class="img-border w-full aspect-square object-cover"
+        />
+      </div>
+    ))}
+    {staticImages.map((image) => (
       <div class="flex-[0_0_calc(50%-8px)] md:flex-[0_0_calc(25%-12px)]">
         <img
           src={image.src}
@@ -88,8 +112,7 @@ const images = [
           height={image.height}
           alt={image.alt}
           title={image.alt}
-          loading={image.id === 'miguel' ? 'eager' : 'lazy'}
-          fetchpriority={image.id === 'miguel' ? 'high' : 'auto'}
+          loading="lazy"
           class="img-border w-full aspect-square object-cover"
         />
       </div>
@@ -194,10 +217,8 @@ const images = [
             rel="noopener noreferrer"
             class="w-[150px] h-[100px] card-border rounded bg-white flex items-center justify-center mx-auto mb-2 no-underline transition-transform duration-200 hover:scale-105"
           >
-            <img
+            <Image
               src={partner.logo}
-              width={partner.width}
-              height={partner.height}
               alt={`Logo de ${partner.name}`}
               title={partner.name}
               loading="lazy"
