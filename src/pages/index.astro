@@ -7,6 +7,7 @@ import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/
 
 import miguelImg from '../assets/img/team/miguel.webp';
 import teamImg from '../assets/img/team/team.webp';
+import cageImg from '../assets/img/team/cage.webp';
 import stlunaireImg from '../assets/img/partenaires/stlunaire.webp';
 import fmmafImg from '../assets/img/partenaires/fmmaf.webp';
 import progressImg from '../assets/img/partenaires/progress.webp';
@@ -24,11 +25,11 @@ const partners = [
 const optimizedImages = [
   { id: 'miguel', src: miguelImg, alt: "Victoire de Miguel en NoGi" },
   { id: 'team', src: teamImg, alt: "Une partie de l'équipe 2025-2026" },
+  { id: 'cage', src: cageImg, alt: 'Travail du cage control' },
 ];
 
 const staticImages = [
   { id: 'florian', src: '/img/team/photo1_scale,w_1400.webp', alt: 'Victoire de Florian en MMA', width: 1400, height: 1400, srcset: '/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w' },
-  { id: 'cage', src: '/img/team/cage.webp', alt: 'Travail du cage control', width: 1170, height: 1560 },
 ];
 ---
 
@@ -40,10 +41,18 @@ const staticImages = [
 >
   <!-- Hero Section (full width, collé au menu) -->
   <section
-    class="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center bg-cover bg-center bg-no-repeat w-screen -ml-[calc((100vw-100%)/2)] -mt-20 md:-mt-8 border-b-2 border-primary dark:border-primary-dark"
-    style="background-image: url('/img/team/cage.webp')"
+    class="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden w-screen -ml-[calc((100vw-100%)/2)] -mt-20 md:-mt-8 border-b-2 border-primary dark:border-primary-dark"
   >
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-[1]"></div>
+    <Image
+      src={cageImg}
+      alt="Travail du cage control au dojo SLAMM"
+      widths={[400, 800, 1200, 1600]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#041a1a]/75 via-black/50 to-[#041a1a]/85 z-[1]"></div>
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 relative z-[2] w-full">
       <div class="text-center text-white">
         <p class="text-sm sm:text-base font-medium tracking-[0.2em] uppercase mb-4 text-brand-neonGreen">
