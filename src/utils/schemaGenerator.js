@@ -107,12 +107,16 @@ export function generateSportsClubSchema() {
  * @returns {Object} Schema.org Event
  */
 export function generateEventSchema(event) {
+  const startTime = parseTime(event.time);
+  const endTime = parseEndTime(event.time);
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
     "name": event.title,
     "description": event.description,
-    "startDate": `${event.date}T${parseTime(event.time)}`,
+    "startDate": `${event.date}T${startTime}`,
+    "endDate": `${event.date}T${endTime}`,
     "eventStatus": getEventStatus(event.status),
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
@@ -131,6 +135,10 @@ export function generateEventSchema(event) {
       "@type": "SportsOrganization",
       "name": CLUB_INFO.name,
       "url": CLUB_INFO.url
+    },
+    "performer": {
+      "@type": "Person",
+      "name": event.performer || "SLAMM MMA"
     },
     "image": event.image ? `${BASE_URL}${event.image}` : CLUB_INFO.image
   };
@@ -335,6 +343,34 @@ function parseTime(timeString) {
   }
 
   return "00:00";
+}
+
+/**
+ * Extrait l'heure de fin d'un texte type "14h30-16h30"
+ * Si pas d'heure de fin explicite, ajoute 2h à l'heure de début
+ * @param {string} timeString - Texte de l'heure
+ * @returns {string} Heure de fin au format HH:MM
+ */
+function parseEndTime(timeString) {
+  if (!timeString) return "23:59";
+
+  // Cherche un pattern avec plage horaire "14h30-16h30" ou "14:30-16:30"
+  const rangeMatch = timeString.match(/(\d{1,2})[h:](\d{2})\s*[-–]\s*(\d{1,2})[h:](\d{2})/);
+  if (rangeMatch) {
+    const hours = rangeMatch[3].padStart(2, '0');
+    const minutes = rangeMatch[4];
+    return `${hours}:${minutes}`;
+  }
+
+  // Pas de plage : ajouter 2h à l'heure de début par défaut
+  const startMatch = timeString.match(/(\d{1,2})[h:](\d{2})/);
+  if (startMatch) {
+    const endHours = String(Math.min(parseInt(startMatch[1]) + 2, 23)).padStart(2, '0');
+    const minutes = startMatch[2];
+    return `${endHours}:${minutes}`;
+  }
+
+  return "23:59";
 }
 
 /**
