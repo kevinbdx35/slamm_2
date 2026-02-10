@@ -11,10 +11,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
     "@astrojs/netlify": "^6.6.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
     "@fontsource/ibm-plex-mono": "^5.2.6",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "astro-icon": "^1.1.5",

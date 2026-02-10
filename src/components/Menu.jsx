@@ -90,7 +90,7 @@ export default function Navigation({ currentPath = '/' }) {
             </div>
             <div className="p-2">
               {routes.map((item) => {
-                const isActive = pathname === item.path;
+                const isActive = pathname === item.path || (item.path !== '/' && pathname.startsWith(item.path));
                 const Icon = item.icon;
                 return (
                   <a
@@ -136,7 +136,7 @@ export default function Navigation({ currentPath = '/' }) {
         {routes
           .filter((r) => bottomNavRoutes.includes(r.path))
           .map((item) => {
-            const isActive = pathname === item.path;
+            const isActive = pathname === item.path || (item.path !== '/' && pathname.startsWith(item.path));
             const Icon = item.icon;
             return (
               <a
@@ -175,7 +175,7 @@ export default function Navigation({ currentPath = '/' }) {
           {/* Navigation */}
           <div className="flex gap-1 items-center bg-white/10 dark:bg-white/5 rounded-[20px] p-1">
             {routes.map((item) => {
-              const isActive = pathname === item.path;
+              const isActive = pathname === item.path || (item.path !== '/' && pathname.startsWith(item.path));
               return (
                 <a
                   key={item.label}

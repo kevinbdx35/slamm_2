@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://mma-saint-lunaire.fr',
@@ -11,6 +12,7 @@ export default defineConfig({
   prefetch: true,
   integrations: [
     react(),
+    mdx(),
     sitemap(),
     icon(),
   ],
