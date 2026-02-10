@@ -88,29 +88,28 @@ const teamSchemas = teamMembers.map(member => generatePersonSchema(member));
         Membres du bureau
       </h2>
 
-      <div class="flex flex-col gap-8 mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
         {teamMembers.map(({ name, role, initials, diplomas, color }) => (
-          <div class="flex flex-col sm:flex-row card-border overflow-hidden">
+          <div class="card-border rounded-md3 p-6 flex flex-col items-center text-center">
             <div
-              class="w-full sm:w-[100px] min-h-[60px] sm:min-h-0 flex items-center justify-center text-white font-bold text-2xl p-4"
+              class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4"
               style={`background-color: ${color}`}
             >
               {initials}
             </div>
-            <div class="p-6 flex-1">
-              <div class="text-sm font-bold tracking-wide">{name}</div>
-              <div class="text-sm font-bold text-primary dark:text-primary-dark mb-2">{role}</div>
-              <hr class="border-outline dark:border-outline-dark my-2" />
-              <div class="text-xs font-bold tracking-wide mb-2">Diplômes :</div>
-              <ul class="pl-0 m-0 list-none">
-                {diplomas.map((d) => (
-                  <li class="flex items-center gap-2 mb-1">
-                    <Icon name={getDiplomaIcon(d)} class="w-4 h-4 text-primary dark:text-primary-dark flex-shrink-0" />
-                    <span class="text-sm leading-relaxed tracking-wide">{d}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div class="text-base font-bold tracking-wide">{name}</div>
+            <span class="mt-2 inline-block px-4 py-1 text-xs font-bold tracking-wide rounded-full bg-primary dark:bg-primary-dark text-white dark:text-background-dark">
+              {role}
+            </span>
+            <hr class="w-full border-outline dark:border-outline-dark my-4" />
+            <ul class="pl-0 m-0 list-none w-full text-left">
+              {diplomas.map((d) => (
+                <li class="flex items-center gap-2 mb-1">
+                  <Icon name={getDiplomaIcon(d)} class="w-4 h-4 text-primary dark:text-primary-dark flex-shrink-0" />
+                  <span class="text-sm leading-relaxed tracking-wide">{d}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
