@@ -45,7 +45,7 @@ const coursePhases = [
 
 // Composants réutilisables (évite la duplication mobile/desktop)
 const scheduleText = SCHEDULE.map((s, i) =>
-  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}`
+  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}${s.label ? ` <em>(${s.label})</em>` : ''}`
 ).join('<br />');
 ---
 

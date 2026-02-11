@@ -38,7 +38,8 @@ export const SCHEDULE = [
     dayEnglish: 'Friday',
     start: '20:00',
     end: '21:00',
-    level: 'Tous niveaux'
+    level: 'Tous niveaux',
+    label: 'Sparring'
   }
 ];
 
@@ -71,7 +72,7 @@ export function formatTimeDisplay(time) {
  */
 export function getScheduleHTML() {
   return SCHEDULE.map(s =>
-    `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}`
+    `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}${s.label ? ` <em>(${s.label})</em>` : ''}`
   ).join('<br />');
 }
 
