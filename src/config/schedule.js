@@ -29,7 +29,14 @@ export const SCHEDULE = [
   {
     day: 'Vendredi',
     dayEnglish: 'Friday',
-    start: '19:30',
+    start: '19:00',
+    end: '20:00',
+    level: 'Tous niveaux'
+  },
+  {
+    day: 'Vendredi',
+    dayEnglish: 'Friday',
+    start: '20:00',
     end: '21:00',
     level: 'Tous niveaux'
   }
