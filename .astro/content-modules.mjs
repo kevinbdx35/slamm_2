@@ -18,5 +18,6 @@ export default new Map([
 ["src/content/wiki/hygiene/hygiene-personnelle.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fhygiene%2Fhygiene-personnelle.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/faq/questions-pratiques.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffaq%2Fquestions-pratiques.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/faq/questions-techniques.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffaq%2Fquestions-techniques.mdx&astroContentModuleFlag=true")],
-["src/content/wiki/pedagogie/philosophie-sparring.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fpedagogie%2Fphilosophie-sparring.mdx&astroContentModuleFlag=true")]]);
+["src/content/wiki/pedagogie/philosophie-sparring.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fpedagogie%2Fphilosophie-sparring.mdx&astroContentModuleFlag=true")],
+["src/content/wiki/hygiene/sparring.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fhygiene%2Fsparring.mdx&astroContentModuleFlag=true")]]);
 		
