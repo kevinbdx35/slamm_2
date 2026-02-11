@@ -187,5 +187,21 @@
     & ol {
       @apply list-decimal pl-6;
     }
+    /* Tables */
+    & table {
+      @apply w-full border-collapse text-sm my-6;
+    }
+    & thead {
+      @apply bg-primary/10 dark:bg-primary-dark/10;
+    }
+    & th {
+      @apply text-left px-4 py-3 font-bold text-primary dark:text-primary-dark border-b-2 border-primary dark:border-primary-dark text-xs uppercase tracking-wider;
+    }
+    & td {
+      @apply px-4 py-3 border-b border-outline-variant dark:border-outline-variant-dark;
+    }
+    & tbody tr:hover {
+      @apply bg-surface-container dark:bg-surface-container-dark;
+    }
   }
 }
