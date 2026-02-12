@@ -43,9 +43,16 @@ const coursePhases = [
   },
 ];
 
-// Composants réutilisables (évite la duplication mobile/desktop)
-const scheduleText = SCHEDULE.map((s, i) =>
-  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}${s.label ? ` <em>(${s.label})</em>` : ''}`
+// Séparer cours et sparring
+const coursSlots = SCHEDULE.filter(s => !s.label);
+const sparringSlots = SCHEDULE.filter(s => s.label === 'Sparring');
+
+const coursText = coursSlots.map(s =>
+  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}`
+).join('<br />');
+
+const sparringText = sparringSlots.map(s =>
+  `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}`
 ).join('<br />');
 ---
 
@@ -106,14 +113,24 @@ const scheduleText = SCHEDULE.map((s, i) =>
 
     <!-- Sidebar (Créneaux + Tarifs) -->
     <div class="flex flex-col gap-6">
-      <!-- Créneaux -->
-      <div class="card-border p-6 lg:min-h-[180px] flex flex-col">
+      <!-- Cours -->
+      <div class="card-border p-6 flex flex-col">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:calendar" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
-          <h3 class="text-[1.75rem] font-bold">Créneaux {SEASON}</h3>
+          <Icon name="mdi:school" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
+          <h3 class="text-[1.75rem] font-bold">Cours {SEASON}</h3>
         </div>
-        <p class="text-base leading-[1.8] flex-1" set:html={scheduleText} />
+        <p class="text-base leading-[1.8] flex-1" set:html={coursText} />
         <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-2 italic">Tous niveaux</p>
+      </div>
+
+      <!-- Sparring -->
+      <div class="border-[1px] border-amber-500/40 dark:border-amber-400/40 p-6 flex flex-col bg-amber-500/[0.04] dark:bg-amber-400/[0.04]">
+        <div class="flex items-center mb-4">
+          <Icon name="mdi:sword-cross" class="w-6 h-6 mr-2 text-amber-600 dark:text-amber-400" />
+          <h3 class="text-[1.75rem] font-bold">Sparring {SEASON}</h3>
+        </div>
+        <p class="text-base leading-[1.8] flex-1" set:html={sparringText} />
+        <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-2 italic">Optionnel — ouvert à tous</p>
       </div>
 
       <!-- Tarifs -->
