@@ -2,11 +2,9 @@
 export default new Map([
 ["src/content/wiki/administratif/bureau.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fadministratif%2Fbureau.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/administratif/charte-du-club.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fadministratif%2Fcharte-du-club.mdx&astroContentModuleFlag=true")],
-["src/content/wiki/administratif/reglement-interieur.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fadministratif%2Freglement-interieur.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/faq/questions-pratiques.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffaq%2Fquestions-pratiques.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/faq/questions-techniques.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffaq%2Fquestions-techniques.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/fonctionnement/horaires.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffonctionnement%2Fhoraires.mdx&astroContentModuleFlag=true")],
-["src/content/wiki/fonctionnement/materiel.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffonctionnement%2Fmateriel.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/fonctionnement/types-cours.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Ffonctionnement%2Ftypes-cours.mdx&astroContentModuleFlag=true")],
 ["src/content/wiki/hygiene/hygiene-personnelle.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fwiki%2Fhygiene%2Fhygiene-personnelle.mdx&astroContentModuleFlag=true")]]);
 		
