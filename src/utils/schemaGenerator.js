@@ -269,7 +269,6 @@ const PAGE_TITLES = {
   '/contact': 'Contact',
   '/faq': 'FAQ',
   '/hygiene': 'Hygiène et Sécurité',
-  '/wiki': 'Wiki',
   '/mentions-legales': 'Mentions légales'
 };
 
