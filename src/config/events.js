@@ -83,7 +83,7 @@ export const EVENTS = [
     time: "À partir de 14h30",
     location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
     price: "10€",
-    description: "Stage de Luta Livre avec Emilien Bouillard, ceinture noire 2ème dan. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
+    description: "Stage de Luta Livre avec Emilien Bouillard, ceinture noire 2ème dan. Thématique : demi-garde. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
     performer: "Emilien Bouillard",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/676975-o-stage-luta-livre-avec-emilien-bouillart",
