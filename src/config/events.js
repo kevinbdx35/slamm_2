@@ -76,6 +76,22 @@ export const EVENTS = [
     image: null,
     status: null
   },
+  {
+    id: 5,
+    title: "DAYMAT 5 No Gi",
+    date: "2026-03-29", // Format YYYY-MM-DD
+    time: null,
+    location: "Ploërmel",
+    price: null,
+    description: "Compétition de grappling No Gi à Ploërmel. Des compétiteurs de SLAMM Saint-Lunaire représenteront les couleurs de l'association.",
+    performer: null,
+    maxParticipants: null,
+    registrationUrl: "https://smoothcomp.com/fr/event/28618",
+    image: null,
+    imageWidth: null,
+    imageHeight: null,
+    status: "upcoming"
+  },
 ];
 
 /**
