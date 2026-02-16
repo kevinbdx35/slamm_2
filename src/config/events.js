@@ -88,7 +88,7 @@ export const EVENTS = [
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/676975-o-stage-luta-livre-avec-emilien-bouillart",
     image: "/img/events/emilien.webp",
-    imageWidth: 1280,
+    imageWidth: 682,
     imageHeight: 853,
     status: "upcoming"
   },
