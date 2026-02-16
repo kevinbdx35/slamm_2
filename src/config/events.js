@@ -78,6 +78,22 @@ export const EVENTS = [
   },
   {
     id: 5,
+    title: "Stage de Luta Livre avec Emilien Bouillard",
+    date: "2026-04-05", // Format YYYY-MM-DD
+    time: "À partir de 14h30",
+    location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
+    price: "10€",
+    description: "Stage de Luta Livre avec Emilien Bouillard, ceinture noire 2ème dan. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
+    performer: "Emilien Bouillard",
+    maxParticipants: 30,
+    registrationUrl: "https://slamm.assoconnect.com/collect/description/676975-o-stage-luta-livre-avec-emilien-bouillart",
+    image: null,
+    imageWidth: null,
+    imageHeight: null,
+    status: "upcoming"
+  },
+  {
+    id: 6,
     title: "DAYMAT 5 No Gi",
     date: "2026-03-29", // Format YYYY-MM-DD
     time: null,
