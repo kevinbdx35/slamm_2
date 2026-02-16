@@ -83,7 +83,7 @@ export const EVENTS = [
     time: null,
     location: "Ploërmel",
     price: null,
-    description: "Compétition de grappling No Gi à Ploërmel. Des compétiteurs de SLAMM Saint-Lunaire représenteront les couleurs de l'association.",
+    description: "Compétition de grappling No Gi à Ploërmel. Plusieurs compétiteurs de SLAMM représenteront les couleurs de l'association.",
     performer: null,
     maxParticipants: null,
     registrationUrl: "https://smoothcomp.com/fr/event/28618",
