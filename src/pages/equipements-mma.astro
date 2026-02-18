@@ -5,6 +5,9 @@ import { Icon } from 'astro-icon/components';
 const title = 'Équipements MMA';
 const description = "La liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au SLAMM en toute sécurité.";
 
+const badgeObligatoire = `<span class="text-xs font-medium px-2 py-0.5 border rounded text-error dark:text-error-dark border-error dark:border-error-dark">Obligatoire</span>`;
+const badgeOptionnel = `<span class="text-xs font-medium px-2 py-0.5 border rounded text-info dark:text-info-dark border-info dark:border-info-dark">Optionnel</span>`;
+
 const sections = [
   {
     id: 'gants-de-mma',
@@ -23,13 +26,13 @@ const sections = [
     title: 'Protections',
     content: `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
 <div class="p-4 rounded-md3 border border-outline-variant dark:border-outline-variant-dark">
-<p><strong>Obligatoires</strong></p>
+<p class="mb-2">${badgeObligatoire}</p>
 <ul><li>Protège-dents</li>
 <li>Coquille / protection pelvienne</li>
 <li>Protège-tibias-pieds</li></ul>
 </div>
 <div class="p-4 rounded-md3 border border-outline-variant dark:border-outline-variant-dark">
-<p><strong>Optionnels</strong></p>
+<p class="mb-2">${badgeOptionnel}</p>
 <ul><li>Gants de boxe (14oz mini)</li>
 <li>Casque</li>
 <li>Protège-poitrine (femme)</li>
@@ -60,10 +63,10 @@ const sections = [
   {
     id: 'accessoires',
     title: 'Accessoires',
-    content: `<ul><li><strong>Tongs / claquettes</strong> — obligatoires pour se déplacer hors tatami</li>
-<li><strong>Bouteille / gourde d'eau</strong> — obligatoire</li>
-<li><strong>Serviette éponge</strong> — obligatoire</li>
-<li>Calepin et stylo pour prendre des notes (optionnel)</li></ul>`,
+    content: `<ul><li><strong>Tongs / claquettes</strong> ${badgeObligatoire} — pour se déplacer hors tatami</li>
+<li><strong>Bouteille / gourde d'eau</strong> ${badgeObligatoire}</li>
+<li><strong>Serviette éponge</strong> ${badgeObligatoire}</li>
+<li>Calepin et stylo pour prendre des notes ${badgeOptionnel}</li></ul>`,
   },
   {
     id: 'entretien',
