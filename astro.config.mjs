@@ -13,7 +13,9 @@ export default defineConfig({
   integrations: [
     react(),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('mentions-legales'),
+    }),
     icon(),
   ],
   adapter: netlify(),

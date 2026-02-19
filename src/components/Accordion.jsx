@@ -25,6 +25,14 @@ export default function Accordion({ items, variant }) {
   };
 
   const renderDetailsContent = (item) => {
+    if (item.answerHtml) {
+      return (
+        <div
+          className="text-sm leading-relaxed tracking-wide"
+          dangerouslySetInnerHTML={{ __html: item.answerHtml }}
+        />
+      );
+    }
     return (
       <p className="text-sm leading-relaxed tracking-wide">
         {item.answer || item.content}
