@@ -2,10 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
 
-const title = 'Sparring';
-const description = "Chez SLAMM, le sparring est un outil de progression, pas une fin en soi. Découvrez notre approche du sparring.";
+const title = 'Sparring & Règles de sécurité';
+const description = "Philosophie du sparring et règles de sécurité à respecter pendant les entraînements chez SLAMM.";
 
-const sections = [
+const sparningSections = [
   {
     id: 'le-sparring-sert-a-apprendre',
     title: 'Le sparring sert à apprendre',
@@ -32,13 +32,82 @@ const sections = [
     content: `<p>En cherchant à mieux comprendre, mieux exécuter et mieux enchaîner, les résultats viennent naturellement avec le temps.</p>`,
   },
 ];
+
+const securitySections = [
+  {
+    id: 'respect-du-tap',
+    title: 'Respect du tap',
+    content: `<p>Le tap signifie l'arrêt immédiat de l'action, généralement pour prévenir une blessure.</p>
+<ul><li>Le tap peut se faire <strong>sur le corps du partenaire</strong>, <strong>sur le tapis</strong> ou <strong>verbalement</strong> en disant "tap"</li>
+<li>Arrêt immédiat obligatoire, quelle qu'en soit la raison</li></ul>`,
+  },
+  {
+    id: 'conscience-de-lespace',
+    title: "Conscience de l'espace",
+    content: `<ul><li>Attention aux autres groupes et aux limites du tapis</li>
+<li>Adapter la technique ou recommencer si un risque de collision existe</li>
+<li>La sécurité prime toujours sur la finalisation</li></ul>`,
+  },
+  {
+    id: 'striking-controle',
+    title: 'Striking contrôlé',
+    content: `<ul><li>Les frappes sont contrôlées et adaptées au niveau et au thème du cours</li>
+<li>Puissance réduite, <strong>précision prioritaire</strong></li>
+<li>Aucune frappe non maîtrisée ou hors consignes du coach</li></ul>`,
+  },
+  {
+    id: 'clinch-et-travail-contre-la-cage',
+    title: 'Clinch et travail contre la cage',
+    content: `<ul><li>Contrôler le partenaire lors du travail au clinch et contre la cage</li>
+<li>Interdiction de projeter violemment ou d'écraser le partenaire contre la cage</li>
+<li>Attention particulière aux chutes et aux sorties de cage</li></ul>`,
+  },
+  {
+    id: 'projections-et-amenees-au-sol',
+    title: 'Projections et amenées au sol',
+    content: `<ul><li>Il est interdit de soulever et projeter violemment un partenaire au sol</li>
+<li>Les projections et amenées au sol doivent être <strong>contrôlées et accompagnées</strong></li>
+<li>Toujours accompagner la chute du partenaire</li>
+<li>Aucune projection incontrôlée ou dangereuse</li></ul>`,
+  },
+  {
+    id: 'techniques-sautees-interdites',
+    title: 'Techniques sautées interdites',
+    content: `<p>Sont interdits :</p>
+<ul><li>Armbars volants</li>
+<li>Triangles sautés</li>
+<li>Guard pulls sautés</li>
+<li>Toute technique impliquant une perte de contrôle</li></ul>
+<p>Privilégier des entrées stables, maîtrisées et sécurisées depuis la position debout.</p>`,
+  },
+  {
+    id: 'application-des-soumissions',
+    title: 'Application des soumissions',
+    content: `<ul><li>Priorité au <strong>contrôle</strong> plutôt qu'à la vitesse ou à la force</li>
+<li>Les soumissions doivent être appliquées <strong>progressivement</strong></li>
+<li>Vigilance renforcée sur les clés de jambes avec rotation (heel hooks, toe holds)</li></ul>`,
+  },
+  {
+    id: 'frappes-au-sol',
+    title: 'Frappes au sol',
+    content: `<ul><li>Les frappes au sol sont techniques et contrôlées, jamais brutales</li>
+<li>Objectif : placement, posture, timing et défense</li>
+<li>Les frappes au sol doivent être mesurées et stoppées immédiatement au tap ou à la consigne</li></ul>`,
+  },
+  {
+    id: 'protection-des-doigts-et-des-orteils',
+    title: 'Protection des doigts et des orteils',
+    content: `<ul><li>Interdiction de saisir ou de tordre un doigt ou un orteil isolé</li>
+<li>Saisir la <strong>main entière</strong>, le <strong>pied entier</strong>, le <strong>poignet</strong> ou la <strong>cheville</strong></li></ul>`,
+  },
+];
 ---
 
 <BaseLayout
-  title="Sparring | SLAMM MMA Saint-Lunaire"
+  title="Sparring & Règles de sécurité | SLAMM MMA Saint-Lunaire"
   description={description}
   url="https://mma-saint-lunaire.fr/sparring"
-  keywords="sparring MMA, philosophie sparring, SLAMM, Saint-Lunaire"
+  keywords="sparring MMA, philosophie sparring, règles sécurité MMA, sécurité entraînement, SLAMM, Saint-Lunaire"
 >
   <main class="container-page py-12 md:py-16">
     <nav class="flex items-center gap-2 text-sm text-text-secondary dark:text-text-secondary-dark mb-8">
@@ -62,13 +131,25 @@ const sections = [
         </header>
 
         <div class="wiki-prose">
-          {sections.map((s) => (
+          <h2 id="philosophie-du-sparring">Philosophie du sparring</h2>
+          {sparningSections.map((s) => (
             <Fragment>
-              <h2 id={s.id}>{s.title}</h2>
+              <h3 id={s.id}>{s.title}</h3>
               <Fragment set:html={s.content} />
             </Fragment>
           ))}
+
           <blockquote><p>Chez SLAMM, progresser ensemble vaut toujours plus que gagner seul.</p></blockquote>
+
+          <hr />
+
+          <h2 id="regles-de-securite">Règles de sécurité</h2>
+          {securitySections.map((s) => (
+            <Fragment>
+              <h3 id={s.id}>{s.title}</h3>
+              <Fragment set:html={s.content} />
+            </Fragment>
+          ))}
         </div>
       </article>
 
@@ -78,10 +159,30 @@ const sections = [
             Sommaire
           </h2>
           <nav class="flex flex-col gap-2">
-            {sections.map((s) => (
+            <a
+              href="#philosophie-du-sparring"
+              class="text-sm font-bold text-text dark:text-text-dark no-underline pl-3 border-l-2 border-primary dark:border-primary-dark"
+            >
+              Philosophie du sparring
+            </a>
+            {sparningSections.map((s) => (
               <a
                 href={`#${s.id}`}
-                class="text-sm text-text-secondary dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-dark transition-colors no-underline pl-3 border-l-2 border-outline-variant dark:border-outline-variant-dark hover:border-primary dark:hover:border-primary-dark"
+                class="text-sm text-text-secondary dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-dark transition-colors no-underline pl-6 border-l-2 border-outline-variant dark:border-outline-variant-dark hover:border-primary dark:hover:border-primary-dark"
+              >
+                {s.title}
+              </a>
+            ))}
+            <a
+              href="#regles-de-securite"
+              class="text-sm font-bold text-text dark:text-text-dark no-underline pl-3 border-l-2 border-primary dark:border-primary-dark mt-2"
+            >
+              Règles de sécurité
+            </a>
+            {securitySections.map((s) => (
+              <a
+                href={`#${s.id}`}
+                class="text-sm text-text-secondary dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-dark transition-colors no-underline pl-6 border-l-2 border-outline-variant dark:border-outline-variant-dark hover:border-primary dark:hover:border-primary-dark"
               >
                 {s.title}
               </a>

@@ -63,6 +63,12 @@
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Redirection ancienne page fusionnée
+[[redirects]]
+  from = "/regles-de-securite"
+  to = "/sparring"
+  status = 301
+
 # 404 fallback (Astro generates /404.html)
 [[redirects]]
   from = "/*"
