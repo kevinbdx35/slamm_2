@@ -37,8 +37,9 @@ function getStatusLabel(status) {
 }
 
 const stats = [
-  { value: 5, label: 'stages organisés', icon: 'mdi:school' },
-  { value: 2, label: 'participations en compétition', icon: 'mdi:trophy-outline' },
+  { value: 4, label: 'stages organisés', icon: 'mdi:school' },
+  { value: 2, label: 'échanges inter-clubs', icon: 'mdi:account-group' },
+  { value: 2, label: 'compétitions', icon: 'mdi:trophy-outline' },
   { value: 3, label: 'médailles NoGi', icon: 'mdi:medal' },
   { value: 1, label: 'victoire MMA interclub', icon: 'mdi:arm-flex' },
 ];
@@ -59,7 +60,7 @@ const stats = [
       <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
         Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
       </p>
-      <div class="flex gap-3 md:gap-4 mt-6 overflow-x-auto pb-2 -mx-6 px-6">
+      <div class="flex flex-wrap gap-3 md:gap-4 mt-6">
         <div class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-primary/10 dark:bg-primary-dark/10 flex-shrink-0">
           <Icon name="mdi:calendar-check" class="w-4 h-4 text-primary dark:text-primary-dark" />
           <span class="text-xs font-medium text-primary dark:text-primary-dark whitespace-nowrap">Depuis 2023</span>
