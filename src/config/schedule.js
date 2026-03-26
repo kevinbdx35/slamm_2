@@ -40,6 +40,14 @@ export const SCHEDULE = [
     end: '21:00',
     level: 'Tous niveaux',
     label: 'Sparring'
+  },
+  {
+    day: 'Mardi',
+    dayEnglish: 'Tuesday',
+    start: '18:15',
+    end: '19:45',
+    level: 'Membres uniquement',
+    label: 'Luta Livre'
   }
 ];
 
@@ -52,10 +60,33 @@ export const SEASON = '2025–2026';
  * Tarifs d'adhésion
  */
 export const PRICING = {
-  adult: { label: '+25 ans', price: 210 },
-  young: { label: '+16 ans', price: 180 },
-  trial: { label: 'Cours d\'essai (nov-juin)', price: 5 }
+  adult: {
+    label: 'Adulte (+25 ans)',
+    periods: [
+      { label: 'Sept → Déc', months: [9, 10, 11, 12], price: 210 },
+      { label: 'Jan → Mars',  months: [1, 2, 3],       price: 150 },
+      { label: 'Avr → Juin',  months: [4, 5, 6],       price: 89  },
+    ]
+  },
+  young: {
+    label: 'Jeune (+16 ans)',
+    periods: [
+      { label: 'Sept → Déc', months: [9, 10, 11, 12], price: 180 },
+      { label: 'Jan → Mars',  months: [1, 2, 3],       price: 130 },
+      { label: 'Avr → Juin',  months: [4, 5, 6],       price: 79  },
+    ]
+  },
+  trial: { label: "Cours d'essai (nov-juin)", price: 5 }
 };
+
+/**
+ * Retourne l'index (0, 1 ou 2) de la période tarifaire active selon le mois courant.
+ * Retourne -1 en dehors de la saison (juillet–août).
+ */
+export function getActivePeriodIndex() {
+  const month = new Date().getMonth() + 1; // 1–12
+  return PRICING.adult.periods.findIndex(p => p.months.includes(month));
+}
 
 /**
  * Formate l'heure pour l'affichage (18:00 -> 18h00)
@@ -106,6 +137,7 @@ export default {
   SCHEDULE,
   SEASON,
   PRICING,
+  getActivePeriodIndex,
   formatTimeDisplay,
   getScheduleHTML,
   getOpeningHoursSchema,
