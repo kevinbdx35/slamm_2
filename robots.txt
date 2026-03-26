@@ -1,0 +1,7 @@
+# Robots.txt pour SLAMM MMA Saint-Lunaire
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mma-saint-lunaire.fr/sitemap.xml
+
