@@ -82,7 +82,7 @@ const stats = [
       </h2>
 
       {upcomingEvents.length === 0 ? (
-        <div class="border-[3px] border-primary dark:border-primary-dark p-8 text-center bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
+        <div class="border-[3px] border-primary dark:border-primary-dark rounded-md3 p-8 text-center bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
           <h3 class="text-[1.75rem] font-bold mb-4 text-text-secondary dark:text-text-secondary-dark">
             Aucun événement programmé
           </h3>
@@ -102,7 +102,7 @@ const stats = [
       ) : (
         <div class="flex flex-col gap-8">
           {upcomingEvents.map((event) => (
-            <div class="border-[3px] border-primary dark:border-primary-dark overflow-hidden bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
+            <div class="border-[3px] border-primary dark:border-primary-dark rounded-md3 overflow-hidden bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
               <div class="flex flex-col md:flex-row">
                 {event.image && eventImageMap[event.image] && (
                   <div class="p-4 md:p-6 flex items-center justify-center">
@@ -195,7 +195,7 @@ const stats = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {pastEvents.map((event) => (
-            <div class="border border-outline dark:border-outline-dark p-5 bg-surface-variant/30 dark:bg-surface-variant-dark/30 relative">
+            <div class="border border-outline dark:border-outline-dark rounded-md3 p-5 bg-surface-variant/30 dark:bg-surface-variant-dark/30 relative">
               <span class="absolute top-3 right-3 text-[0.625rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-text-secondary/10 dark:bg-text-secondary-dark/10 text-text-secondary dark:text-text-secondary-dark">
                 Terminé
               </span>

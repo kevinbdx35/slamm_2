@@ -135,17 +135,17 @@
 
   /* Button base styles */
   .btn {
-    @apply inline-flex items-center justify-center font-bold transition-all duration-200;
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200 rounded-md3;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center font-bold transition-all duration-200 border-2 md:border-3 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200 rounded-md3 border-2 md:border-3 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
            hover:bg-brand-neonGreen hover:text-brand-darkBg hover:border-brand-neonGreen
            hover:-translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center font-bold transition-all duration-200 border-2 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
+    @apply inline-flex items-center justify-center font-bold transition-all duration-200 rounded-md3 border-2 border-primary dark:border-primary-dark text-primary dark:text-primary-dark
            hover:bg-brand-orange hover:text-white hover:border-brand-orange
            hover:-translate-y-0.5;
   }
