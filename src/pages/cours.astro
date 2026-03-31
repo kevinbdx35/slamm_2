@@ -107,7 +107,7 @@ const lutaLivreText = lutaLivreSlots.map(s =>
         ))}
       </div>
 
-      <div class="flex gap-3 p-4 mb-6 rounded-lg bg-primary/5 dark:bg-primary-dark/5 border border-primary/15 dark:border-primary-dark/15">
+      <div class="flex gap-3 p-4 mb-6 rounded-md3 bg-primary/5 dark:bg-primary-dark/5 border border-primary/15 dark:border-primary-dark/15">
         <Icon name="mdi:lightbulb-outline" class="w-5 h-5 flex-shrink-0 mt-0.5 text-primary dark:text-primary-dark" />
         <div>
           <p class="text-sm font-bold mb-1 text-primary dark:text-primary-dark">Astuce découverte</p>
@@ -129,7 +129,7 @@ const lutaLivreText = lutaLivreSlots.map(s =>
     <!-- Sidebar (Créneaux + Tarifs) -->
     <div class="flex flex-col gap-6">
       <!-- Créneaux -->
-      <div class="card-border p-6 flex flex-col">
+      <div class="card-border rounded-md3 p-6 flex flex-col">
         <div class="flex items-center mb-4">
           <Icon name="mdi:calendar" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
           <h3 class="text-[1.75rem] font-bold">Créneaux {SEASON}</h3>
@@ -164,20 +164,20 @@ const lutaLivreText = lutaLivreSlots.map(s =>
       </div>
 
       <!-- Tarifs -->
-      <div class="card-border p-6 lg:min-h-[180px] flex flex-col justify-between">
+      <div class="card-border rounded-md3 p-6 lg:min-h-[180px] flex flex-col justify-between">
         <div>
           <div class="flex items-center mb-4">
             <Icon name="mdi:currency-eur" class="w-6 h-6 mr-2 text-primary dark:text-primary-dark" />
             <h3 class="text-[1.75rem] font-bold">Tarifs {SEASON}</h3>
           </div>
           <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="rounded-lg px-4 py-3 bg-primary/5 dark:bg-primary-dark/5 border border-primary/10 dark:border-primary-dark/10">
+            <div class="rounded-md3 px-4 py-3 bg-primary/5 dark:bg-primary-dark/5 border border-primary/10 dark:border-primary-dark/10">
               <p class="text-xs uppercase tracking-wide mb-1 text-text-secondary dark:text-text-secondary-dark">{PRICING.adult.label}</p>
               <p class="text-2xl font-bold text-primary dark:text-primary-dark">
                 {activePeriod >= 0 ? PRICING.adult.periods[activePeriod].price : '—'} €
               </p>
             </div>
-            <div class="rounded-lg px-4 py-3 bg-primary/5 dark:bg-primary-dark/5 border border-primary/10 dark:border-primary-dark/10">
+            <div class="rounded-md3 px-4 py-3 bg-primary/5 dark:bg-primary-dark/5 border border-primary/10 dark:border-primary-dark/10">
               <p class="text-xs uppercase tracking-wide mb-1 text-text-secondary dark:text-text-secondary-dark">{PRICING.young.label}</p>
               <p class="text-2xl font-bold text-primary dark:text-primary-dark">
                 {activePeriod >= 0 ? PRICING.young.periods[activePeriod].price : '—'} €
@@ -236,7 +236,7 @@ const lutaLivreText = lutaLivreSlots.map(s =>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {coursePhases.map((phase) => (
-        <div class="card-border p-6 h-full">
+        <div class="card-border rounded-md3 p-6 h-full">
           <div class="flex items-center mb-4">
             <Icon name={phase.icon} class="w-10 h-10 text-primary dark:text-primary-dark mr-4" />
             <div>
@@ -252,7 +252,7 @@ const lutaLivreText = lutaLivreSlots.map(s =>
 
   <!-- Lien FAQ -->
   <section class="mt-16 mb-8">
-    <div class="card-border p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-variant/30 dark:bg-surface-variant-dark/30">
+    <div class="card-border rounded-md3 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-variant/30 dark:bg-surface-variant-dark/30">
       <div class="flex items-center gap-4">
         <Icon name="mdi:help-circle" class="w-10 h-10 text-primary dark:text-primary-dark flex-shrink-0" />
         <div>
