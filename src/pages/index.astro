@@ -70,14 +70,14 @@ const staticImages = [
             href={ASSOCONNECT_URLS.TRIAL_BOOKING}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn bg-brand-neonGreen text-brand-darkBg border-[3px] border-brand-neonGreen py-3 px-8 text-lg font-bold hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,255,94,0.4)] transition-all duration-200 gap-2"
+            class="btn rounded-md3 bg-brand-neonGreen text-brand-darkBg border-[3px] border-brand-neonGreen py-3 px-8 text-lg font-bold hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,255,94,0.4)] transition-all duration-200 gap-2"
           >
             Réserver un essai
             <Icon name="mdi:open-in-new" class="w-5 h-5 opacity-70" />
           </a>
           <a
             href="/cours"
-            class="btn border-2 border-white/80 text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-white hover:text-brand-darkBg hover:-translate-y-0.5 transition-all duration-200"
+            class="btn rounded-md3 border-2 border-white/80 text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-white hover:text-brand-darkBg hover:-translate-y-0.5 transition-all duration-200"
           >
             Voir les cours
           </a>
@@ -114,7 +114,7 @@ const staticImages = [
           title={image.alt}
           loading={image.id === 'miguel' ? 'eager' : 'lazy'}
           fetchpriority={image.id === 'miguel' ? 'high' : 'auto'}
-          class="img-border w-full aspect-square object-cover"
+          class="img-border rounded-md3 w-full aspect-square object-cover"
         />
       </div>
     ))}
@@ -129,7 +129,7 @@ const staticImages = [
           alt={image.alt}
           title={image.alt}
           loading="lazy"
-          class="img-border w-full aspect-square object-cover"
+          class="img-border rounded-md3 w-full aspect-square object-cover"
         />
       </div>
     ))}
@@ -204,7 +204,7 @@ const staticImages = [
         alt="Une partie de l'équipe SLAMM de la saison 2024-2025"
         title="Une partie de l'équipe SLAMM de la saison 2024-2025"
         loading="lazy"
-        class="img-border w-full"
+        class="img-border rounded-md3 w-full"
       />
     </div>
     <div class="flex-1">
@@ -217,7 +217,7 @@ const staticImages = [
         alt="Cours saison 2025-2026"
         title="Cours saison 2025-2026"
         loading="lazy"
-        class="img-border w-full"
+        class="img-border rounded-md3 w-full"
       />
     </div>
   </div>
@@ -237,7 +237,7 @@ const staticImages = [
             href={partner.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-[150px] h-[100px] card-border rounded bg-white flex items-center justify-center mx-auto mb-2 no-underline transition-transform duration-200 hover:scale-105"
+            class="w-[150px] h-[100px] card-border rounded-md3 bg-white flex items-center justify-center mx-auto mb-2 no-underline transition-transform duration-200 hover:scale-105"
           >
             <Image
               src={partner.logo}
