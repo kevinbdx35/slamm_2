@@ -1,0 +1,252 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { PARTNER_URLS, ASSOCONNECT_URLS } from '../config/urls.js';
+import { generateSportsClubSchema, generateLocalBusinessSchema } from '../utils/schemaGenerator.js';
+
+import miguelImg from '../assets/img/team/miguel.webp';
+import teamImg from '../assets/img/team/team.webp';
+import cageImg from '../assets/img/team/cage.webp';
+import stlunaireImg from '../assets/img/partenaires/stlunaire.webp';
+import fmmafImg from '../assets/img/partenaires/fmmaf.webp';
+import progressImg from '../assets/img/partenaires/progress.webp';
+import rdxImg from '../assets/img/partenaires/rdx.webp';
+
+const schemas = [generateSportsClubSchema(), generateLocalBusinessSchema()];
+
+const partners = [
+  { name: 'Saint-lunaire', logo: stlunaireImg, url: PARTNER_URLS.SAINT_LUNAIRE },
+  { name: 'FMMAF', logo: fmmafImg, url: PARTNER_URLS.FMMAF },
+  { name: 'Progress', logo: progressImg, url: PARTNER_URLS.PROGRESS },
+  { name: 'RDX', logo: rdxImg, url: PARTNER_URLS.RDX },
+];
+
+const optimizedImages = [
+  { id: 'miguel', src: miguelImg, alt: "Victoire de Miguel en NoGi" },
+  { id: 'team', src: teamImg, alt: "Une partie de l'équipe 2025-2026" },
+  { id: 'cage', src: cageImg, alt: 'Travail du cage control' },
+];
+---
+
+<BaseLayout
+  title="Club MMA Dinard – 5 min de Dinard | SLAMM Saint-Lunaire"
+  description="Vous cherchez un club de MMA proche de Dinard ? SLAMM est à 5 min à Saint-Lunaire. Grappling, No-Gi, boxe, kickboxing, lutte. Tous niveaux, coachs FMMAF. Essai 5€ !"
+  url="https://mma-saint-lunaire.fr/mma-dinard"
+  keywords="MMA Dinard, club MMA Dinard, cours MMA Dinard, grappling Dinard, No-Gi Dinard, boxe Dinard, kickboxing Dinard, jiu-jitsu Dinard, BJJ Dinard, lutte Dinard, self-défense Dinard, arts martiaux Dinard, sport de combat Dinard, MMA proche Dinard, club MMA Saint-Lunaire Dinard"
+  schemas={schemas}
+>
+  <!-- Hero Section -->
+  <section
+    class="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden w-screen -ml-[calc((100vw-100%)/2)] -mt-20 md:-mt-8 border-b-2 border-primary dark:border-primary-dark"
+  >
+    <Image
+      src={cageImg}
+      alt="Travail du cage control au dojo SLAMM, club MMA près de Dinard"
+      widths={[400, 800, 1200, 1600]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#041a1a]/75 via-black/50 to-[#041a1a]/85 z-[1]"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12 relative z-[2] w-full">
+      <div class="text-center text-white">
+        <p class="text-sm sm:text-base font-medium tracking-[0.2em] uppercase mb-4 text-brand-neonGreen">
+          Club de MMA · À 5 min de Dinard
+        </p>
+        <h1 class="text-[1.8rem] sm:text-[2.2rem] md:text-[2.8rem] lg:text-[3.2rem] font-bold tracking-tight leading-[1.1] mb-6 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5)">
+          MMA à Dinard — le club SLAMM est à 5 min
+        </h1>
+        <p class="text-lg sm:text-xl tracking-wide leading-relaxed mb-8 max-w-[700px] mx-auto text-white/90" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.4)">
+          Pratique le MMA dans un club sérieux et convivial, à Saint-Lunaire<br class="hidden sm:block" />
+          <span class="text-base opacity-80">À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</span>
+        </p>
+        <div class="flex gap-4 justify-center flex-wrap">
+          <a
+            href={ASSOCONNECT_URLS.TRIAL_BOOKING}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn rounded-md3 bg-brand-neonGreen text-brand-darkBg border-[3px] border-brand-neonGreen py-3 px-8 text-lg font-bold hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,255,94,0.4)] transition-all duration-200 gap-2"
+          >
+            Réserver un essai
+            <Icon name="mdi:open-in-new" class="w-5 h-5 opacity-70" />
+          </a>
+          <a
+            href="/cours"
+            class="btn rounded-md3 border-2 border-white/80 text-white py-3 px-8 text-lg bg-white/10 backdrop-blur-[10px] hover:bg-white hover:text-brand-darkBg hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Voir les cours
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Header section -->
+  <header class="section-border pb-4 mt-8">
+    <p class="text-base tracking-wide leading-relaxed max-w-[1000px] mt-2">
+      Tu habites à Dinard, La Richardais, Pleurtuit ou Saint-Briac et tu cherches un club de MMA ? SLAMM est à Saint-Lunaire, à 5 minutes en voiture de Dinard. Le club propose des cours de MMA tous niveaux depuis 2023, encadrés par des coachs diplômés FMMAF.
+    </p>
+  </header>
+
+  <!-- Proximité Dinard -->
+  <section class="mt-12">
+    <h2 class="heading-border text-[1.75rem] font-normal leading-snug mb-4">
+      Le club MMA le plus proche de Dinard
+    </h2>
+    <p class="text-sm tracking-wide leading-relaxed max-w-[1000px]">
+      SLAMM est implanté à Saint-Lunaire (35800), à 5 km de Dinard via la route côtière (D786). Depuis le centre de Dinard, le trajet ne dépasse pas 10 minutes. Le dojo dispose d'un parking gratuit. Si tu viens de La Richardais, Pleurtuit, Saint-Briac-sur-Mer ou Lancieux, tu es encore plus proche.
+    </p>
+  </section>
+
+  <!-- Image gallery -->
+  <div class="flex gap-4 my-8 justify-center flex-wrap md:flex-nowrap">
+    {optimizedImages.map((image) => (
+      <div class="flex-[0_0_calc(50%-8px)] md:flex-[0_0_calc(25%-12px)]">
+        <Image
+          src={image.src}
+          sizes="(max-width: 900px) 50vw, 25vw"
+          alt={image.alt}
+          title={image.alt}
+          loading={image.id === 'miguel' ? 'eager' : 'lazy'}
+          fetchpriority={image.id === 'miguel' ? 'high' : 'auto'}
+          class="img-border rounded-md3 w-full aspect-square object-cover"
+        />
+      </div>
+    ))}
+    <div class="flex-[0_0_calc(50%-8px)] md:flex-[0_0_calc(25%-12px)]">
+      <img
+        src="/img/team/photo1_scale,w_1400.webp"
+        srcset="/img/team/photo1_scale,w_200.webp 200w, /img/team/photo1_scale,w_400.webp 400w, /img/team/photo1_scale,w_525.webp 525w, /img/team/photo1_scale,w_704.webp 704w, /img/team/photo1_scale,w_914.webp 914w, /img/team/photo1_scale,w_1104.webp 1104w, /img/team/photo1_scale,w_1314.webp 1314w, /img/team/photo1_scale,w_1400.webp 1400w"
+        sizes="(max-width: 900px) 50vw, 25vw"
+        width="1400"
+        height="1400"
+        alt="Victoire de Florian en MMA"
+        title="Victoire de Florian en MMA"
+        loading="lazy"
+        class="img-border rounded-md3 w-full aspect-square object-cover"
+      />
+    </div>
+  </div>
+
+  <!-- Disciplines -->
+  <section class="mt-12">
+    <h2 class="heading-border text-[1.75rem] font-normal leading-snug mb-4">
+      Disciplines enseignées à Saint-Lunaire, accessibles depuis Dinard
+    </h2>
+    <p class="text-sm tracking-wide leading-relaxed max-w-[1000px]">
+      Le programme de SLAMM couvre toutes les composantes du MMA : grappling et No-Gi (combat au sol sans kimono), boxe pieds-poings, kickboxing, muay thaï, lutte, jiu-jitsu brésilien et self-défense. Les cours sont adaptés aux débutants comme aux pratiquants confirmés. Pas besoin de bagage martial préalable pour commencer.
+    </p>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="mt-12">
+    <h2 class="heading-border text-[1.75rem] font-normal leading-snug mb-4">
+      Ils viennent de la région de Dinard
+    </h2>
+    <p class="text-sm tracking-wide leading-relaxed max-w-[1000px] mb-8">
+      Membres du club basés à Dinard, La Richardais et alentours.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-surface-container dark:bg-surface-container-dark border-l-4 border-primary dark:border-primary-dark rounded-md3 p-6 flex flex-col h-full">
+        <span class="text-5xl font-bold text-primary dark:text-primary-dark leading-none mb-2">"</span>
+        <p class="text-sm tracking-wide leading-relaxed flex-1 mb-6 text-text-secondary dark:text-text-secondary-dark">
+          La pratique du MMA m'a apporté discipline, confiance en moi et une condition physique optimale. C'est bien plus qu'un sport, c'est un mode de vie qui m'a renforcé mentalement et physiquement.
+        </p>
+        <div class="flex items-center justify-between">
+          <p class="text-xs font-bold tracking-widest uppercase text-primary dark:text-primary-dark">Miguel</p>
+          <span class="text-primary dark:text-primary-dark text-xl tracking-widest">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container dark:bg-surface-container-dark border-l-4 border-primary dark:border-primary-dark rounded-md3 p-6 flex flex-col h-full">
+        <span class="text-5xl font-bold text-primary dark:text-primary-dark leading-none mb-2">"</span>
+        <p class="text-sm tracking-wide leading-relaxed flex-1 mb-6 text-text-secondary dark:text-text-secondary-dark">
+          Ce que j'apprécie particulièrement dans ce club, c'est l'équilibre entre exigence et bienveillance. Les entraînements sont structurés, techniques et progressifs, ce qui permet d'évoluer rapidement tout en restant en sécurité. En tant que femme, je me suis immédiatement sentie respectée et pleinement intégrée.
+        </p>
+        <div class="flex items-center justify-between">
+          <p class="text-xs font-bold tracking-widest uppercase text-primary dark:text-primary-dark">Maëva</p>
+          <span class="text-primary dark:text-primary-dark text-xl tracking-widest">★★★★★</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accès -->
+  <section class="mt-12">
+    <h2 class="heading-border text-[1.75rem] font-normal leading-snug mb-4">
+      Accès depuis Dinard
+    </h2>
+    <p class="text-sm tracking-wide leading-relaxed max-w-[1000px]">
+      Adresse du dojo : <strong>361 Rue de la Saudrais, 35800 Saint-Lunaire</strong>. Depuis Dinard, prends la D786 direction Saint-Lunaire (5 min). Parking gratuit sur place. Pour les horaires des cours, consulte la <a href="/cours" class="text-primary dark:text-primary-dark">page des cours</a> ou <a href="/contact" class="text-primary dark:text-primary-dark">contacte-nous</a>.
+    </p>
+  </section>
+
+  <!-- Images équipe -->
+  <div class="flex gap-4 mt-12 flex-col md:flex-row">
+    <div class="flex-1">
+      <img
+        src="/img/team2/equipe1_scale,w_1400.webp"
+        srcset="/img/team2/equipe1_scale,w_200.webp 200w, /img/team2/equipe1_scale,w_637.webp 637w, /img/team2/equipe1_scale,w_955.webp 955w, /img/team2/equipe1_scale,w_1266.webp 1266w, /img/team2/equipe1_scale,w_1400.webp 1400w"
+        sizes="(max-width: 900px) 100vw, 50vw"
+        width="1400"
+        height="1051"
+        alt="Une partie de l'équipe SLAMM, club MMA proche de Dinard"
+        title="Équipe SLAMM – club MMA à 5 min de Dinard"
+        loading="lazy"
+        class="img-border rounded-md3 w-full"
+      />
+    </div>
+    <div class="flex-1">
+      <img
+        src="/img/team2/cours_2025-2026_scale,w_1400.webp"
+        srcset="/img/team2/cours_2025-2026_scale,w_200.webp 200w, /img/team2/cours_2025-2026_scale,w_637.webp 637w, /img/team2/cours_2025-2026_scale,w_955.webp 955w, /img/team2/cours_2025-2026_scale,w_1266.webp 1266w, /img/team2/cours_2025-2026_scale,w_1400.webp 1400w"
+        sizes="(max-width: 900px) 100vw, 50vw"
+        width="1400"
+        height="1050"
+        alt="Cours MMA saison 2025-2026 au club SLAMM de Saint-Lunaire"
+        title="Cours MMA 2025-2026 – accessible depuis Dinard"
+        loading="lazy"
+        class="img-border rounded-md3 w-full"
+      />
+    </div>
+  </div>
+
+  <!-- Partners -->
+  <section class="mt-12 mb-20">
+    <h2 class="heading-border text-[1.75rem] font-normal leading-snug mb-4">
+      Nos partenaires
+    </h2>
+    <p class="text-sm tracking-wide leading-relaxed max-w-[1000px] mb-8">
+      Notre association remercie chaleureusement les institutions, partenaires techniques, sponsors privés et amis du club pour leur soutien dans le développement de notre projet associatif et sportif.
+    </p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-8 justify-center">
+      {partners.map((partner) => (
+        <div class="text-center">
+          <a
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-[150px] h-[100px] card-border rounded-md3 bg-white flex items-center justify-center mx-auto mb-2 no-underline transition-transform duration-200 hover:scale-105"
+          >
+            <Image
+              src={partner.logo}
+              alt={`Logo de ${partner.name}`}
+              title={partner.name}
+              loading="lazy"
+              class="max-w-full max-h-full object-contain"
+            />
+          </a>
+          <span class="text-[0.6875rem] font-medium tracking-wide flex items-center justify-center gap-1">
+            {partner.name}
+            {partner.url.startsWith('http') && (
+              <Icon name="mdi:open-in-new" class="w-3 h-3" />
+            )}
+          </span>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
