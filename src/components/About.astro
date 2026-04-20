@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+import cagePhoto from '../assets/img/team/cage.webp';
+---
+
+<section class="about" id="about">
+  <div class="container">
+
+    <div class="about-top reveal">
+      <div class="about-text">
+        <p class="section-label">Notre histoire</p>
+        <h2 class="about-title">
+          Nés de la passion,<br/>
+          <span>construits ensemble.</span>
+        </h2>
+        <p class="about-body">
+          Saint-Lunaire Arts Martiaux Mixtes est une association loi 1901 fondée par des
+          passionnés locaux. Notre philosophie : dépasser les codes du MMA traditionnel
+          pour proposer un espace d'entraînement ouvert à tous, où la technique prime
+          sur l'ego et la progression individuelle nourrit le collectif.
+        </p>
+        <p class="about-body">
+          Au bord de la Côte d'Émeraude, nous cultivons une discipline exigeante
+          dans un environnement bienveillant. Ouvert à partir de 16 ans, du débutant
+          au compétiteur confirmé, chacun trouve sa place.
+        </p>
+        <div class="about-tags">
+          <span class="tag">Fédération française FMMAF</span>
+<span class="tag">Tous niveaux</span>
+          <span class="tag">Dès 16 ans</span>
+        </div>
+      </div>
+
+      <div class="about-photo-wrap reveal reveal-delay-2">
+        <Image src={cagePhoto} alt="Salle d'entraînement SLAMM — Saint-Lunaire" class="about-photo" />
+        <div class="about-photo-caption">Notre salle · Saint-Lunaire</div>
+      </div>
+    </div>
+
+    <div class="about-values reveal">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Excellence technique</h3>
+        <p>Des coachs diplômés d'état qui transmettent les fondamentaux avec rigueur et pédagogie.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Inclusion & respect</h3>
+        <p>Un environnement safe où chaque pratiquant est respecté quels que soient son niveau ou son parcours.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Communauté locale</h3>
+        <p>Ancrés dans le territoire de Saint-Lunaire, nous tissons des liens forts entre sportifs, familles et partenaires locaux bretons.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  /* Top: text + photo */
+  .about-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 20px;
+  }
+
+  .about-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .about-title span { color: var(--g400); }
+
+  .about-body {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-3);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--g400);
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.15);
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Photo */
+  .about-photo-wrap {
+    position: relative;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .about-photo {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* Values row */
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .value-card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s, background 0.3s;
+  }
+
+  .value-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+    background: var(--bg2);
+  }
+
+  .value-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(34,197,94,0.1);
+    border-radius: var(--r-sm);
+    display: grid;
+    place-items: center;
+    color: var(--g400);
+    margin-bottom: 20px;
+  }
+
+  .value-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .value-card p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  @media (max-width: 900px) {
+    .about-top { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { height: 300px; }
+    .about-values { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 500px) {
+    .about-values { grid-template-columns: 1fr; }
+  }
+</style>

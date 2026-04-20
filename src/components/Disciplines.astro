@@ -1,0 +1,472 @@
+---
+const disciplines = [
+  {
+    name: 'MMA',
+    full: 'Mixed Martial Arts',
+    desc: 'La discipline reine : debout, clinch, sol. Un sport complet qui synthétise les meilleures techniques de combat du monde.',
+    level: 'Tous niveaux',
+    sessions: 'Lun · Mer · Ven',
+    icon: '⬡',
+  },
+  {
+    name: 'Sparring',
+    full: 'Séance MMA · Mise en pratique',
+    desc: 'La mise en pratique libre. Appliquer ses techniques dans des échanges encadrés, en toute sécurité et dans le respect de l\'adversaire.',
+    level: 'Tous niveaux',
+    sessions: 'Vendredi 20h',
+    icon: '◆',
+  },
+  {
+    name: 'Luta Livre',
+    full: 'Luta Livre · No-Gi',
+    desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires — le grappling dans sa forme la plus pure.',
+    level: 'Tous niveaux',
+    sessions: 'Mardi 18h15',
+    icon: '◎',
+  },
+];
+---
+
+<section class="disciplines" id="disciplines">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Notre programme</p>
+      <h2 class="section-title">
+        Deux disciplines,<br/>
+        <span>une philosophie.</span>
+      </h2>
+      <p class="section-sub">
+        MMA technique, Sparring encadré, Luta Livre No-Gi — un programme cohérent
+        pour progresser à tous les niveaux.
+      </p>
+    </div>
+
+    <div class="disciplines-grid">
+      {disciplines.map((d, i) => (
+        <article class={`disc-card reveal reveal-delay-${(i % 3) + 1}`}>
+          <div class="disc-top">
+            <span class="disc-icon" aria-hidden="true">{d.icon}</span>
+            <div class="disc-meta">
+              {d.level === 'Membres'
+                ? <span class="members-badge">Membres uniquement</span>
+                : <span class="disc-level">{d.level}</span>
+              }
+              <span class="disc-sep" aria-hidden="true">·</span>
+              <span class="disc-sessions">{d.sessions}</span>
+            </div>
+          </div>
+          <div class="disc-body">
+            <h3 class="disc-name">{d.name}</h3>
+            <p class="disc-full">{d.full}</p>
+            <p class="disc-desc">{d.desc}</p>
+          </div>
+          <div class="disc-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="cours-type reveal">
+      <div class="cours-header">
+        <p class="section-label">À quoi ressemble un cours ?</p>
+        <p class="cours-sub">Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois.</p>
+      </div>
+      <div class="cours-steps">
+        <div class="cours-step reveal reveal-delay-1">
+          <div class="cours-num">1</div>
+          <div class="cours-body">
+            <div class="cours-step-header">
+              <p class="cours-step-title">Échauffement</p>
+              <span class="cours-duration">18 – 20 min</span>
+            </div>
+            <p class="cours-step-desc">Debout, clinch, sol — et les transitions entre chaque phase. Des drills spécifiques MMA pour monter le cardio, activer les muscles et préparer le corps à la séance technique.</p>
+          </div>
+        </div>
+        <div class="cours-step reveal reveal-delay-2">
+          <div class="cours-num">2</div>
+          <div class="cours-body">
+            <div class="cours-step-header">
+              <p class="cours-step-title">Apprentissage technique</p>
+              <span class="cours-duration">45 – 60 min</span>
+            </div>
+            <p class="cours-step-desc">Travail des techniques debout (frappes, déplacements) et au sol (contrôles, soumissions). On pratique par deux avec progressivité et bienveillance.</p>
+          </div>
+        </div>
+        <div class="cours-step reveal reveal-delay-3">
+          <div class="cours-num">3</div>
+          <div class="cours-body">
+            <div class="cours-step-header">
+              <p class="cours-step-title">Mise en situation</p>
+              <span class="cours-duration">15 – 20 min</span>
+            </div>
+            <p class="cours-step-desc">Sparring thématique autour de la technique travaillée en séance. On remet en contexte ce qu'on vient d'apprendre, dans un cadre contrôlé et bienveillant.</p>
+          </div>
+        </div>
+        <div class="cours-step reveal reveal-delay-4">
+          <div class="cours-num">4</div>
+          <div class="cours-body">
+            <div class="cours-step-header">
+              <p class="cours-step-title">Retour au calme</p>
+              <span class="cours-duration">10 min</span>
+            </div>
+            <p class="cours-step-desc">Étirements et récupération active. On termine en douceur pour favoriser la récupération musculaire et prévenir les courbatures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cta reveal">
+      <div class="faq-cta-body">
+        <p class="faq-cta-title">Des questions ?</p>
+        <p class="faq-cta-desc">Équipements, certificat médical, âge minimum, déroulement des cours…</p>
+      </div>
+      <a href="/faq" class="faq-cta-btn">
+        Voir la FAQ
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .disciplines {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .disciplines::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+
+  .section-label {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .section-title span { color: var(--g400); }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    font-weight: 400;
+    align-self: end;
+  }
+
+  /* Grid */
+  .disciplines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .disc-card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    cursor: default;
+    transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .disc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 100%, rgba(34,197,94,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .disc-card:hover {
+    border-color: rgba(74,222,128,0.3);
+    background: var(--bg2);
+    transform: translateY(-6px);
+  }
+
+  .disc-card:hover::after {
+    opacity: 1;
+  }
+
+  .disc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .disc-icon {
+    font-size: 24px;
+    color: var(--g400);
+    line-height: 1;
+    font-style: normal;
+  }
+
+  .disc-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .disc-sep { color: var(--text-muted); }
+
+  .members-badge {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--g500);
+    border: 1px solid rgba(34,197,94,0.25);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .disc-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .disc-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .disc-full {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--g500);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .disc-desc {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .disc-arrow {
+    color: var(--text-muted);
+    transition: color 0.3s, transform 0.3s;
+    align-self: flex-end;
+  }
+
+  .disc-card:hover .disc-arrow {
+    color: var(--g400);
+    transform: translateX(4px);
+  }
+
+  /* Cours type */
+  .cours-type {
+    margin-top: 80px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cours-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .cours-sub {
+    font-size: 15px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  .cours-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+  }
+
+  .cours-step {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .cours-step:last-child { border-right: none; }
+
+  .cours-num {
+    width: 36px;
+    height: 36px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--g400);
+    flex-shrink: 0;
+  }
+
+  .cours-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .cours-step-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cours-step-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .cours-optional {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 2px 8px;
+  }
+
+  .cours-duration {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--g500);
+  }
+
+  .cours-step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* FAQ CTA */
+  .faq-cta {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px 36px;
+  }
+
+  .faq-cta-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .faq-cta-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .faq-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--g500);
+    padding: 10px 22px;
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .faq-cta-btn:hover {
+    background: var(--g400);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 600px) {
+    .faq-cta { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 900px) {
+    .section-header { grid-template-columns: 1fr; }
+    .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
+    .cours-header { grid-template-columns: 1fr; }
+    .cours-steps { grid-template-columns: repeat(2, 1fr); }
+    .cours-step:nth-child(2) { border-right: none; }
+    .cours-step:nth-child(3) { border-top: 1px solid var(--border); }
+    .cours-step:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+  }
+
+  @media (max-width: 580px) {
+    .disciplines-grid { grid-template-columns: 1fr; }
+    .cours-steps { grid-template-columns: 1fr; }
+    .cours-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .cours-step:last-child { border-bottom: none; }
+  }
+</style>

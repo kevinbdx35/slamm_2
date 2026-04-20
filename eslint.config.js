@@ -1,27 +1,8 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import eslintPluginAstro from 'eslint-plugin-astro';
 
-export default defineConfig([
-  globalIgnores(['dist', '.astro', 'node_modules', '.vite']),
+export default [
+  ...eslintPluginAstro.configs.recommended,
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-    },
+    ignores: ['dist/', '.astro/'],
   },
-])
+];

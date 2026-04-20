@@ -1,76 +1,8 @@
 [build]
-  publish = "dist"
   command = "npm run build"
+  publish = "dist"
 
-# Headers de sécurité globaux
-[[headers]]
-  for = "/*"
-  [headers.values]
-    # Protection contre le clickjacking
-    X-Frame-Options = "DENY"
-    # Empêche le sniffing MIME
-    X-Content-Type-Options = "nosniff"
-    # Protection XSS (legacy, remplacé par CSP)
-    X-XSS-Protection = "1; mode=block"
-    # Contrôle des informations de référent
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    # Désactive les APIs sensibles non utilisées
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
-    # Force HTTPS
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    # Content Security Policy renforcée
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://slamm.assoconnect.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com https://*.tile.openstreetmap.org data:; font-src 'self'; connect-src 'self' https://*.tile.openstreetmap.org; frame-src https://slamm.assoconnect.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://slamm.assoconnect.com; upgrade-insecure-requests"
-    # Protection contre le cross-origin embedding
-    Cross-Origin-Embedder-Policy = "unsafe-none"
-    Cross-Origin-Opener-Policy = "same-origin"
-    Cross-Origin-Resource-Policy = "same-origin"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.mjs"
-  [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.jsx"
-  [headers.values]
-    Content-Type = "application/javascript; charset=utf-8"
-
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    
-[[headers]]
-  for = "/*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Content-Type = "image/svg+xml"
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Redirection ancienne page fusionnée
-[[redirects]]
-  from = "/regles-de-securite"
-  to = "/sparring"
-  status = 301
-
-# 404 fallback (Astro generates /404.html)
 [[redirects]]
   from = "/*"
-  to = "/404"
+  to = "/404.html"
   status = 404

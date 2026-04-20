@@ -1,116 +1,325 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Accordion from '../components/Accordion.jsx';
-import { Icon } from 'astro-icon/components';
-import { generateFAQSchema } from '../utils/schemaGenerator.js';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-// Questions organisées par catégorie
-const faqCategories = [
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: "Faut-il avoir de l'expérience pour commencer le MMA ?", acceptedAnswer: { '@type': 'Answer', text: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux." } },
+    { '@type': 'Question', name: "À partir de quel âge peut-on pratiquer le MMA ?", acceptedAnswer: { '@type': 'Answer', text: "L'âge minimum pour adhérer à notre association est de 16 ans." } },
+    { '@type': 'Question', name: "Y a-t-il des femmes au club ?", acceptedAnswer: { '@type': 'Answer', text: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux." } },
+    { '@type': 'Question', name: "Quel équipement est nécessaire pour débuter ?", acceptedAnswer: { '@type': 'Answer', text: "Pour venir essayer : une tenue de sport, une bouteille d'eau. Ensuite : gants, protège-tibias, protège-dents et coquille." } },
+    { '@type': 'Question', name: "Peut-on venir observer un cours sans s'inscrire ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, tu peux venir observer un cours gratuitement sans engagement." } },
+    { '@type': 'Question', name: "Comment s'inscrire aux cours d'essai ?", acceptedAnswer: { '@type': 'Answer', text: "2 cours d'essai gratuits en début de saison (septembre–octobre), ou 5€ par séance en cours d'année, déductibles si inscription." } },
+    { '@type': 'Question', name: "Faut-il un certificat médical ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, un certificat médical de non contre-indication à la pratique du MMA datant de moins d'un an est obligatoire à l'inscription." } },
+    { '@type': 'Question', name: "Le MMA est-il dangereux ?", acceptedAnswer: { '@type': 'Answer', text: "Encadré par nos coachs diplômés, avec équipement adapté et règles de sécurité strictes, la pratique reste maîtrisée." } },
+  ],
+};
+
+const categories = [
   {
-    title: "Débuter au club",
-    icon: "mdi:account-plus",
+    title: 'Débuter au club',
     questions: [
       {
-        question: "Faut-il avoir de l'expérience pour commencer le MMA ?",
-        answer: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme. Une expérience préalable peut aider, mais elle n'est en aucun cas obligatoire.",
+        q: "Faut-il avoir de l'expérience pour commencer le MMA ?",
+        a: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme.",
       },
       {
-        question: "À partir de quel âge peut-on pratiquer le MMA ?",
-        answer: "L'âge minimum pour adhérer à notre association est de 16 ans.",
+        q: "À partir de quel âge peut-on pratiquer le MMA ?",
+        a: "L'âge minimum pour adhérer à notre association est de 16 ans.",
       },
       {
-        question: "Y a-t-il des femmes au club ?",
-        answer: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
+        q: "Y a-t-il des femmes au club ?",
+        a: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
       },
       {
-        question: "Quel équipement est nécessaire pour débuter ?",
-        answerHtml: "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir un équipement spécifique : gants, protège-tibias, protège-dents et coquille ou protection pelvienne. Consulte notre <a href='/equipements-mma' style='color:inherit;text-decoration:underline;'>page équipements</a> pour la liste complète et les conseils de choix.",
+        q: "Quel équipement est nécessaire pour débuter ?",
+        a: "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir gants, protège-tibias, protège-dents et coquille.",
       },
       {
-        question: "Peut-on venir observer un cours sans s'inscrire ?",
-        answer: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. C'est même recommandé si tu hésites. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
+        q: "Peut-on venir observer un cours sans s'inscrire ?",
+        a: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
       },
       {
-        question: "Comment s'inscrire aux cours d'essai ?",
-        answerHtml: "Tu peux participer à 2 cours d'essai. En début de saison (septembre-octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite. Réserve directement en ligne depuis la <a href='/cours' style='color:inherit;text-decoration:underline;'>page cours</a>. Pense à arriver 15 minutes avant le début du cours pour l'accueil et la présentation des installations.",
+        q: "Comment s'inscrire aux cours d'essai ?",
+        a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre–octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
       },
     ],
   },
   {
-    title: "La pratique",
-    icon: "mdi:arm-flex",
+    title: 'La pratique',
     questions: [
       {
-        question: "Faut-il un certificat médical ?",
-        answer: "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement, mais tu devras le fournir si tu décides de t'inscrire au club.",
+        q: "Faut-il un certificat médical ?",
+        a: "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement.",
       },
       {
-        question: "Quelle est la fréquence d'entraînement recommandée ?",
-        answer: "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Cela dit, même une séance hebdomadaire peut te permettre d'évoluer et de bénéficier des bienfaits du MMA. Tout dépend de tes objectifs personnels et de ta disponibilité. L'essentiel reste la régularité et l'engagement lors des entraînements.",
+        q: "Quelle est la fréquence d'entraînement recommandée ?",
+        a: "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Même une séance hebdomadaire peut te permettre d'évoluer. L'essentiel reste la régularité et l'engagement lors des entraînements.",
       },
       {
-        question: "Le MMA est-il dangereux ?",
-        answer: "Comme tout sport de combat, le MMA comporte des risques. Mais encadré par nos coachs diplômés, avec un équipement adapté et des règles de sécurité strictes, la pratique reste maîtrisée. Nos cours sont progressifs, axés sur la technique et le respect du partenaire.",
+        q: "Le MMA est-il dangereux ?",
+        a: "Comme tout sport de combat, le MMA comporte des risques. Mais encadré par nos coachs diplômés, avec un équipement adapté et des règles de sécurité strictes, la pratique reste maîtrisée. Nos cours sont progressifs, axés sur la technique et le respect du partenaire.",
       },
       {
-        question: "Comment se déroule un cours type ?",
-        answer: "Un cours typique dure entre 1h30 et 2h. Il débute par un échauffement dynamique, suivi d'exercices techniques propres à la discipline. La séance se poursuit généralement par des mises en application ou du sparring léger, pour ceux qui le souhaitent. Elle se termine par un retour au calme accompagné d'étirements.",
+        q: "Comment se déroule un cours type ?",
+        a: "Un cours dure entre 1h15 et 2h selon le créneau. Il débute par un échauffement spécifique MMA (debout, clinch, sol), suivi d'un travail technique, d'une mise en situation thématique, puis d'un retour au calme avec étirements.",
       },
       {
-        question: "Est-ce que je dois participer à des compétitions ?",
-        answer: "Absolument pas. La compétition est entièrement optionnelle et s'adresse uniquement à ceux qui le souhaitent. La majorité de nos membres pratiquent le MMA pour le loisir, la condition physique, l'apprentissage technique ou simplement par plaisir. Nous respectons les objectifs de chacun.",
+        q: "Est-ce que je dois participer à des compétitions ?",
+        a: "Absolument pas. La compétition est entièrement optionnelle et s'adresse uniquement à ceux qui le souhaitent. La majorité de nos membres pratiquent pour le loisir, la condition physique ou simplement par plaisir.",
       },
     ],
   },
 ];
-
-// Flatten pour le schema (Google a besoin de toutes les questions à plat)
-const allFaqs = faqCategories.flatMap(cat => cat.questions);
-const faqSchema = generateFAQSchema(allFaqs);
 ---
 
-<BaseLayout
-  title="FAQ MMA Saint-Lunaire, Dinard, Saint-Malo | Questions fréquentes SLAMM"
-  description="Toutes vos questions sur le MMA à Saint-Lunaire : âge minimum (16 ans), équipement, tarifs, certificat médical. Club accessible depuis Dinard, Saint-Malo, Côte d'Émeraude."
-  url="https://mma-saint-lunaire.fr/faq"
-  keywords="FAQ MMA Saint-Lunaire, questions MMA Dinard, tarifs MMA Saint-Malo, débuter MMA Bretagne, âge MMA, équipement MMA, certificat médical MMA"
-  schemas={faqSchema}
+<Layout
+  title="FAQ — Saint-Lunaire MMA"
+  description="Toutes vos questions sur le MMA à Saint-Lunaire : âge minimum, équipement, certificat médical, cours d'essai. Club accessible depuis Dinard, Saint-Malo, Côte d'Émeraude."
+  pageSchema={faqSchema}
 >
-  <div class="mt-8 px-6 max-w-[1200px] mx-auto w-full mb-20">
-    <header class="section-border pb-4">
-      <h1 class="text-[clamp(2.25rem,4vw,3.5rem)] font-normal tracking-tight leading-tight mb-6">
-        Questions fréquentes
-      </h1>
-      <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
-        Toutes les réponses à vos questions sur la pratique du MMA au sein de notre association.
-      </p>
-    </header>
+  <Nav />
+  <main>
+    <section class="faq">
+      <div class="container">
 
-    <!-- FAQ par catégorie -->
-    {faqCategories.map((category) => (
-      <section class="mt-12">
-        <h2 class="flex items-center gap-3 text-[clamp(1.5rem,2.5vw,1.75rem)] font-bold leading-tight mb-6">
-          <Icon name={category.icon} class="w-7 h-7 text-primary dark:text-primary-dark" />
-          {category.title}
-        </h2>
-        <Accordion items={category.questions} client:load />
-      </section>
-    ))}
-
-    <!-- CTA -->
-    <section class="mt-16 mb-8">
-      <div class="card-border rounded-md3 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-surface-variant/30 dark:bg-surface-variant-dark/30">
-        <div class="flex items-center gap-4">
-          <Icon name="mdi:comment-question" class="w-10 h-10 text-primary dark:text-primary-dark flex-shrink-0" />
-          <div>
-            <h3 class="text-lg font-bold">Question non répondue ?</h3>
-            <p class="text-sm text-text-secondary dark:text-text-secondary-dark">Contacte-nous, on te répond sous 24h.</p>
-          </div>
+        <div class="faq-header reveal">
+          <p class="section-label">Questions fréquentes</p>
+          <h1 class="faq-title">
+            Toutes les réponses<br/>
+            <span>avant de te lancer.</span>
+          </h1>
+          <p class="faq-sub">Toutes les réponses à vos questions sur la pratique du MMA au sein de notre association.</p>
         </div>
-        <a href="/contact" class="btn-primary py-2 px-6 text-center whitespace-nowrap w-full sm:w-auto">
-          Nous contacter
-        </a>
+
+        <div class="faq-body">
+          {categories.map((cat, ci) => (
+            <div class={`faq-category reveal reveal-delay-${ci + 1}`}>
+              <h2 class="cat-title">{cat.title}</h2>
+              <div class="accordion">
+                {cat.questions.map((item, qi) => (
+                  <details class="accordion-item" name={`cat-${ci}`}>
+                    <summary class="accordion-summary">
+                      <span>{item.q}</span>
+                      <svg class="accordion-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                        <path d="M4 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </summary>
+                    <div class="accordion-body">
+                      <p>{item.a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="faq-cta reveal">
+          <div class="faq-cta-body">
+            <p class="faq-cta-title">Question non répondue ?</p>
+            <p class="faq-cta-desc">Contacte-nous, on te répond sous 24h.</p>
+          </div>
+          <a href="/contact" class="faq-cta-btn">
+            Nous contacter
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
       </div>
     </section>
-  </div>
-</BaseLayout>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .faq {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+
+  .faq::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .faq-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 72px;
+  }
+
+  .section-label {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+  }
+
+  .faq-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .faq-title span { color: var(--g400); }
+
+  .faq-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    align-self: end;
+  }
+
+  .faq-body {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    margin-bottom: 56px;
+  }
+
+  .cat-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Accordion */
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .accordion-item:last-child { border-bottom: none; }
+
+  .accordion-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--bg1);
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+  }
+
+  .accordion-summary::-webkit-details-marker { display: none; }
+
+  .accordion-summary:hover {
+    background: var(--surface);
+    color: var(--g400);
+  }
+
+  .accordion-item[open] .accordion-summary {
+    color: var(--g400);
+    background: var(--surface);
+  }
+
+  .accordion-icon {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .accordion-item[open] .accordion-icon {
+    transform: rotate(180deg);
+    color: var(--g400);
+  }
+
+  .accordion-body {
+    padding: 0 24px 20px;
+    background: var(--surface);
+  }
+
+  .accordion-body p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  /* CTA */
+  .faq-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px 36px;
+  }
+
+  .faq-cta-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .faq-cta-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .faq-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--g500);
+    padding: 10px 22px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .faq-cta-btn:hover {
+    background: var(--g400);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .faq-header { grid-template-columns: 1fr; gap: 20px; }
+    .faq-cta { flex-direction: column; align-items: flex-start; }
+    .accordion-summary { padding: 16px 18px; font-size: 14px; }
+    .accordion-body { padding: 0 18px 16px; }
+  }
+</style>

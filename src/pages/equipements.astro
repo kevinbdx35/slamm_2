@@ -1,0 +1,496 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Équipements MMA — Saint-Lunaire MMA"
+  description="Liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au club SLAMM Saint-Lunaire. Gants, protections, tenue."
+>
+  <Nav />
+  <main>
+    <section class="equipements">
+      <div class="container">
+
+        <div class="equip-header reveal">
+          <p class="section-label">Matériel</p>
+          <h1 class="equip-title">Équipements MMA</h1>
+          <p class="equip-sub">La liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au SLAMM en toute sécurité.</p>
+        </div>
+
+        <div class="equip-layout">
+
+          <article class="equip-body reveal">
+
+            <div class="intro-block">
+              <p>Le matériel de chacun doit toujours être <strong>propre et en bon état</strong>. L'association SLAMM se réserve le droit d'interdire à tout moment tout équipement jugé dangereux ou non adapté à la pratique de nos activités.</p>
+            </div>
+
+            <!-- Gants MMA -->
+            <div class="equip-section" id="gants">
+              <h2>Gants de MMA</h2>
+              <div class="alert-primary">
+                <p>Exclusivement des <strong>mitaines homologuées MMA amateur</strong> :</p>
+                <ul>
+                  <li><strong>Pouce attaché</strong> — solidaire du gant</li>
+                  <li><strong>Paume ouverte</strong> — permet les saisies et le grappling</li>
+                  <li><strong>Rembourrage en mousse préformée "boule", entre 6 et 8 oz</strong> — empêche de tendre les doigts, protège les phalanges</li>
+                  <li>Toujours porter des <strong>bandes ou sous-gants de boxe</strong> en dessous</li>
+                </ul>
+              </div>
+              <div class="alert-warning">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 2L1 14h14L8 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                  <path d="M8 6v4M8 11v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <p>Seuls les gants de MMA Training / Sparring de type "boule" sont autorisés au sein de l'association.</p>
+              </div>
+            </div>
+
+            <!-- Protections -->
+            <div class="equip-section" id="protections">
+              <h2>Protections</h2>
+              <div class="two-col">
+                <div class="col-card">
+                  <span class="badge badge-required">Obligatoire</span>
+                  <ul>
+                    <li>Protège-dents</li>
+                    <li>Coquille / protection pelvienne</li>
+                    <li>Protège-tibias-pieds</li>
+                  </ul>
+                </div>
+                <div class="col-card">
+                  <span class="badge badge-optional">Optionnel</span>
+                  <ul>
+                    <li>Gants de boxe — <strong>16 oz</strong> (moins de 90 kg) ou <strong>18 à 20 oz</strong> (plus de 90 kg)</li>
+                    <li>Casque</li>
+                    <li>Protège-poitrine (femme)</li>
+                    <li>Coudières / genouillères</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tenue -->
+            <div class="equip-section" id="tenue">
+              <h2>Tenue</h2>
+              <div class="alert-warning">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 2L1 14h14L8 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                  <path d="M8 6v4M8 11v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <p>Pas de boutons, fermetures éclair ou objets durs (haut et bas).</p>
+              </div>
+              <div class="two-col">
+                <div class="col-card">
+                  <p class="col-card-title">Hauts</p>
+                  <ul>
+                    <li>Rashguards ou t-shirts techniques (dry-fit)</li>
+                    <li>Torse nu <strong>interdit</strong>, débardeurs déconseillés</li>
+                    <li>Éviter les vêtements amples ou 100 % coton</li>
+                    <li>Femmes : brassière de sport recommandée</li>
+                  </ul>
+                </div>
+                <div class="col-card">
+                  <p class="col-card-title">Bas</p>
+                  <ul>
+                    <li>Minimum <strong>deux couches obligatoires</strong></li>
+                    <li>Shorts de NoGi/MMA ou leggings/spats recommandés</li>
+                    <li>Short de compression recommandé en dessous</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accessoires -->
+            <div class="equip-section" id="accessoires">
+              <h2>Accessoires</h2>
+              <div class="two-col">
+                <div class="col-card">
+                  <span class="badge badge-required">Obligatoire</span>
+                  <ul>
+                    <li>Tongs / claquettes — pour se déplacer hors tatami</li>
+                    <li>Bouteille / gourde d'eau</li>
+                    <li>Serviette éponge</li>
+                  </ul>
+                </div>
+                <div class="col-card">
+                  <span class="badge badge-optional">Optionnel</span>
+                  <ul>
+                    <li>Calepin et stylo pour prendre des notes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Entretien -->
+            <div class="equip-section" id="entretien">
+              <h2>Entretien</h2>
+              <ul class="simple-list">
+                <li>Nettoyage systématique des gants et protections après chaque usage</li>
+                <li>Séchage complet avant rangement</li>
+                <li>Remplacement si usure excessive</li>
+              </ul>
+            </div>
+
+            <!-- Note commande -->
+            <div class="order-note">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M3 3h12l-1.5 9H4.5L3 3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                <circle cx="7" cy="15" r="1" fill="currentColor"/>
+                <circle cx="12" cy="15" r="1" fill="currentColor"/>
+              </svg>
+              <p><strong>Commande groupée à tarif préférentiel</strong> — Via nos partenaires techniques, il nous est possible de passer des commandes groupées. Renseigne-toi auprès d'un coach si tu souhaites en profiter.</p>
+            </div>
+
+            <!-- Blockquote -->
+            <div class="equip-quote">
+              <p>Les règles d'hygiène et de discipline sont détaillées dans le <a href="/reglement">Règlement intérieur</a> et sur la <a href="/hygiene">page Hygiène & Sécurité</a>.</p>
+            </div>
+
+          </article>
+
+          <!-- Sommaire -->
+          <aside class="sommaire">
+            <div class="sommaire-inner">
+              <p class="sommaire-title">Sommaire</p>
+              <nav>
+                <a href="#gants" class="sommaire-link">Gants de MMA</a>
+                <a href="#protections" class="sommaire-link">Protections</a>
+                <a href="#tenue" class="sommaire-link">Tenue</a>
+                <a href="#accessoires" class="sommaire-link">Accessoires</a>
+                <a href="#entretien" class="sommaire-link">Entretien</a>
+              </nav>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .equipements {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+
+  .equipements::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .equip-header { margin-bottom: 56px; }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 16px;
+  }
+
+  .equip-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .equip-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .equip-layout {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .equip-body {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .intro-block p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.8;
+  }
+
+  .intro-block strong { color: var(--text-2); }
+
+  /* Sections */
+  .equip-section {
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .equip-section h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--g400);
+    letter-spacing: -0.02em;
+  }
+
+  /* Alerts */
+  .alert-primary {
+    background: rgba(34,197,94,0.05);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: var(--r-md);
+    padding: 16px 20px;
+  }
+
+  .alert-primary p {
+    font-size: 14px;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+
+  .alert-primary strong { color: var(--text-2); }
+
+  .alert-primary ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .alert-primary ul li {
+    font-size: 13px;
+    color: var(--text-3);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .alert-primary ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--g500);
+    font-weight: 700;
+  }
+
+  .alert-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(245,158,11,0.05);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: var(--r-sm);
+    padding: 12px 16px;
+    color: #f59e0b;
+  }
+
+  .alert-warning svg { flex-shrink: 0; margin-top: 1px; }
+
+  .alert-warning p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f59e0b;
+    line-height: 1.5;
+  }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .col-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .col-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .col-card ul li {
+    font-size: 13px;
+    color: var(--text-3);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .col-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--g600);
+    font-weight: 700;
+  }
+
+  .col-card strong { color: var(--text-2); }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 100px;
+    padding: 2px 10px;
+    width: fit-content;
+  }
+
+  .badge-required { color: #ef4444; border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.05); }
+  .badge-optional { color: #3b82f6; border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.05); }
+
+  /* Simple list */
+  .simple-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .simple-list li {
+    font-size: 14px;
+    color: var(--text-3);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .simple-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--g600);
+  }
+
+  /* Order note */
+  .order-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(34,197,94,0.05);
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: var(--r-md);
+    padding: 16px 20px;
+    color: var(--g400);
+  }
+
+  .order-note svg { flex-shrink: 0; margin-top: 2px; }
+
+  .order-note p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  .order-note strong { color: var(--text-2); }
+
+  /* Quote */
+  .equip-quote {
+    border-left: 2px solid var(--g600);
+    padding: 12px 20px;
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    background: rgba(34,197,94,0.03);
+  }
+
+  .equip-quote p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .equip-quote a {
+    color: var(--g400);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Sommaire */
+  .sommaire-inner {
+    position: sticky;
+    top: 100px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 24px;
+  }
+
+  .sommaire-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .sommaire-inner nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sommaire-link {
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.5;
+    padding: 6px 10px 6px 12px;
+    border-left: 2px solid var(--border);
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .sommaire-link:hover {
+    color: var(--g400);
+    border-color: var(--g500);
+    background: rgba(34,197,94,0.05);
+  }
+
+  @media (max-width: 900px) {
+    .equip-layout { grid-template-columns: 1fr; }
+    .sommaire { display: none; }
+    .equip-body { padding: 32px 24px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>

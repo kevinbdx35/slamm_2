@@ -1,237 +1,45 @@
 ---
-import { Image } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { Icon } from 'astro-icon/components';
-import { SOCIAL_URLS } from '../config/urls.js';
-import { EVENTS, getUpcomingEvents, getPastEvents, sortEventsByDate, formatEventDate } from '../config/events.js';
-import { generateEventListSchema } from '../utils/schemaGenerator.js';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Events from '../components/Events.astro';
+import Footer from '../components/Footer.astro';
+import { EVENTS, getUpcomingEvents } from '../config/events.js';
 
-import stage1Img from '../assets/img/events/stage_1.webp';
-import jonathanImg from '../assets/img/events/jonathan.webp';
-
-const eventImageMap = {
-  '/img/events/stage_1.webp': stage1Img,
-  '/img/events/jonathan.webp': jonathanImg,
+const upcomingEvents = getUpcomingEvents(EVENTS);
+const eventsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: upcomingEvents.map((e, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'SportsEvent',
+      name: e.title,
+      startDate: e.date,
+      location: {
+        '@type': 'Place',
+        name: e.location,
+      },
+      description: e.description,
+      organizer: {
+        '@type': 'SportsClub',
+        name: 'Saint-Lunaire Arts Martiaux Mixtes',
+        url: 'https://mma-saint-lunaire.fr',
+      },
+      ...(e.performer ? { performer: { '@type': 'Person', name: e.performer } } : {}),
+    },
+  })),
 };
-
-const upcomingEvents = sortEventsByDate(getUpcomingEvents(EVENTS));
-const eventsSchema = upcomingEvents.length > 0 ? generateEventListSchema(upcomingEvents) : null;
-const pastEvents = getPastEvents(EVENTS);
-
-function getStatusColor(status) {
-  switch (status) {
-    case 'upcoming': return 'text-success dark:text-success-dark border-success dark:border-success-dark';
-    case 'full': return 'text-warning dark:text-warning-dark border-warning dark:border-warning-dark';
-    case 'cancelled': return 'text-error dark:text-error-dark border-error dark:border-error-dark';
-    default: return 'text-text-secondary dark:text-text-secondary-dark border-text-secondary dark:border-text-secondary-dark';
-  }
-}
-
-function getStatusLabel(status) {
-  switch (status) {
-    case 'upcoming': return 'Places disponibles';
-    case 'full': return 'Complet';
-    case 'cancelled': return 'Annulé';
-    default: return '';
-  }
-}
-
-const stats = [
-  { value: 4, label: 'stages organisés', icon: 'mdi:school' },
-  { value: 2, label: 'échanges inter-clubs', icon: 'mdi:account-group' },
-  { value: 3, label: 'compétitions', icon: 'mdi:trophy-outline' },
-  { value: 3, label: 'médailles NoGi', icon: 'mdi:medal' },
-  { value: 1, label: 'victoire MMA interclub', icon: 'mdi:arm-flex' },
-];
 ---
 
-<BaseLayout
-  title="Stages MMA Saint-Lunaire, Dinard, Saint-Malo | Événements SLAMM 2025-2026"
-  description="Stages et compétitions MMA à Saint-Lunaire. Ouvert aux pratiquants de Dinard, Saint-Malo et Côte d'Émeraude. Grappling, No-Gi, Luta Livre avec champions de France."
-  url="https://mma-saint-lunaire.fr/evenements"
-  keywords="stage MMA Saint-Lunaire, stage MMA Dinard, stage MMA Saint-Malo, stage grappling Dinard, stage grappling Saint-Malo, compétition No-Gi Saint-Lunaire, compétition No-Gi Dinard, compétition No-Gi Saint-Malo, stage jiu-jitsu Bretagne, stage BJJ Dinard, compétition submission wrestling, stage lutte Dinard, stage lutte Saint-Malo, Luta Livre Bretagne, interclub MMA Côte d'Émeraude"
-  schemas={eventsSchema}
+<Layout
+  title="Événements — Saint-Lunaire MMA"
+  description="Retrouvez tous les événements, compétitions et stages du club Saint-Lunaire MMA."
+  pageSchema={eventsSchema}
 >
-  <div class="py-12 mb-20 max-w-[1200px] mx-auto w-full px-6">
-    <header class="section-border pb-4">
-      <h1 class="text-[clamp(2.25rem,4vw,3.5rem)] font-normal tracking-tight leading-tight mb-6">
-        Événements
-      </h1>
-      <p class="text-base tracking-wide leading-relaxed max-w-[1000px]">
-        Participe à nos stages, compétitions et événements pour progresser et partager ta passion du MMA.
-      </p>
-      <div class="flex flex-wrap gap-3 md:gap-4 mt-6">
-        <div class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-primary/10 dark:bg-primary-dark/10 flex-shrink-0">
-          <Icon name="mdi:calendar-check" class="w-4 h-4 text-primary dark:text-primary-dark" />
-          <span class="text-xs font-medium text-primary dark:text-primary-dark whitespace-nowrap">Depuis 2023</span>
-        </div>
-        {stats.map((stat) => (
-          <div class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-surface-variant/50 dark:bg-surface-variant-dark/50 flex-shrink-0">
-            <Icon name={stat.icon} class="w-4 h-4 text-primary dark:text-primary-dark" />
-            <span class="text-primary dark:text-primary-dark font-bold">{stat.value}</span>
-            <span class="text-xs text-text-secondary dark:text-text-secondary-dark whitespace-nowrap">{stat.label}</span>
-          </div>
-        ))}
-      </div>
-    </header>
-
-    <!-- Upcoming events -->
-    <section class="mt-12 mb-12">
-      <h2 class="heading-border text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-6">
-        Prochains événements
-      </h2>
-
-      {upcomingEvents.length === 0 ? (
-        <div class="border-[3px] border-primary dark:border-primary-dark rounded-md3 p-8 text-center bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
-          <h3 class="text-[1.75rem] font-bold mb-4 text-text-secondary dark:text-text-secondary-dark">
-            Aucun événement programmé
-          </h3>
-          <p class="text-base mb-6">
-            Nous préparons de nouveaux événements pour vous. Restez connectés sur nos réseaux sociaux pour être informés en priorité !
-          </p>
-          <a
-            href={SOCIAL_URLS.INSTAGRAM}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary px-8 py-3 gap-2"
-          >
-            Suivre sur Instagram
-            <Icon name="mdi:open-in-new" class="w-4 h-4 opacity-70" />
-          </a>
-        </div>
-      ) : (
-        <div class="flex flex-col gap-8">
-          {upcomingEvents.map((event) => (
-            <div class="border-[3px] border-primary dark:border-primary-dark rounded-md3 overflow-hidden bg-gradient-to-br from-brand-neonGreen/[0.03] to-brand-neonGreen/[0.01]">
-              <div class="flex flex-col md:flex-row">
-                {event.image && eventImageMap[event.image] && (
-                  <div class="p-4 md:p-6 flex items-center justify-center">
-                    <Image
-                      src={eventImageMap[event.image]}
-                      alt={event.title}
-                      class="w-full md:w-[640px] h-auto object-cover card-border rounded-md3"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-                {event.image && !eventImageMap[event.image] && (
-                  <div class="p-4 md:p-6 flex items-center justify-center">
-                    <img
-                      src={event.image}
-                      width={event.imageWidth}
-                      height={event.imageHeight}
-                      alt={event.title}
-                      class="w-full md:w-[640px] h-auto object-cover card-border rounded-md3"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-                <div class="flex-grow p-6">
-                  <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-[1.75rem] font-normal leading-snug">{event.title}</h3>
-                    {event.status && (
-                      <span class={`text-xs font-medium px-2 py-1 border rounded ml-2 ${getStatusColor(event.status)}`}>
-                        {getStatusLabel(event.status)}
-                      </span>
-                    )}
-                  </div>
-
-                  <div class="flex items-start mb-3 gap-3">
-                    <Icon name="mdi:calendar" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
-                    <span class="text-sm">{formatEventDate(event.date)}</span>
-                  </div>
-                  {event.time && (
-                    <div class="flex items-start mb-3 gap-3">
-                      <Icon name="mdi:clock-outline" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
-                      <span class="text-sm">{event.time}</span>
-                    </div>
-                  )}
-                  {event.location && (
-                    <div class="flex items-start mb-3 gap-3">
-                      <Icon name="mdi:map-marker" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
-                      <span class="text-sm">{event.location}</span>
-                    </div>
-                  )}
-                  {event.price && (
-                    <div class="flex items-start mb-3 gap-3">
-                      <Icon name="mdi:currency-eur" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
-                      <span class="text-sm">{event.price}</span>
-                    </div>
-                  )}
-                  {event.maxParticipants && (
-                    <div class="flex items-start mb-4 gap-3">
-                      <Icon name="mdi:account-group" class="w-5 h-5 mt-0.5 text-primary dark:text-primary-dark flex-shrink-0" />
-                      <span class="text-sm">Limité à {event.maxParticipants} participants</span>
-                    </div>
-                  )}
-
-                  <p class="text-sm mb-6">{event.description}</p>
-
-                  {event.registrationUrl && event.status === 'upcoming' && (
-                    <a
-                      href={event.registrationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="btn-primary px-8 py-3 gap-2"
-                    >
-                      S'inscrire
-                      <Icon name="mdi:open-in-new" class="w-4 h-4 opacity-70" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
-
-    <!-- Past events -->
-    {pastEvents.length > 0 && (
-      <section class="mb-12">
-        <h2 class="heading-border text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-6 text-text-secondary dark:text-text-secondary-dark">
-          Événements passés
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {pastEvents.map((event) => (
-            <div class="border border-outline dark:border-outline-dark rounded-md3 p-5 bg-surface-variant/30 dark:bg-surface-variant-dark/30 relative">
-              <span class="absolute top-3 right-3 text-[0.625rem] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-text-secondary/10 dark:bg-text-secondary-dark/10 text-text-secondary dark:text-text-secondary-dark">
-                Terminé
-              </span>
-              <h3 class="text-lg font-semibold leading-snug mb-3 pr-16">{event.title}</h3>
-              <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary dark:text-text-secondary-dark mb-3">
-                <div class="flex items-center gap-1.5">
-                  <Icon name="mdi:calendar" class="w-4 h-4 flex-shrink-0" />
-                  <span>{formatEventDate(event.date)}</span>
-                </div>
-                {event.time && (
-                  <div class="flex items-center gap-1.5">
-                    <Icon name="mdi:clock-outline" class="w-4 h-4 flex-shrink-0" />
-                    <span>{event.time}</span>
-                  </div>
-                )}
-                {event.location && (
-                  <div class="flex items-center gap-1.5">
-                    <Icon name="mdi:map-marker" class="w-4 h-4 flex-shrink-0" />
-                    <span>{event.location}</span>
-                  </div>
-                )}
-              </div>
-              <p class="text-sm text-text-secondary dark:text-text-secondary-dark leading-relaxed">{event.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <p class="text-sm text-text-secondary dark:text-text-secondary-dark mt-6">
-          Suivez-nous sur{' '}
-          <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary dark:text-primary-dark no-underline hover:underline">
-            Instagram
-            <Icon name="mdi:open-in-new" class="w-3 h-3 opacity-70" />
-          </a>
-          {' '}pour ne rien manquer.
-        </p>
-      </section>
-    )}
-  </div>
-</BaseLayout>
+  <Nav />
+  <main>
+    <Events />
+  </main>
+  <Footer />
+</Layout>

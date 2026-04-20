@@ -1,186 +1,296 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
 const today = new Date().toLocaleDateString('fr-FR');
 ---
 
-<BaseLayout
-  title="Mentions légales - SLAMM MMA Saint-Lunaire"
-  description="Mentions légales du club de MMA SLAMM (Saint-Lunaire Arts Martiaux Mixtes) - Informations juridiques et responsabilités."
-  url="https://mma-saint-lunaire.fr/mentions-legales"
+<Layout
+  title="Mentions légales — Saint-Lunaire MMA"
+  description="Mentions légales du club SLAMM (Saint-Lunaire Arts Martiaux Mixtes) — Informations juridiques et responsabilités."
 >
-  <div class="max-w-3xl mx-auto">
-    <header class="section-border pb-4 mb-8">
-      <h1 class="text-[clamp(2.25rem,4vw,3.5rem)] font-normal tracking-tight leading-tight mb-6">
-        Mentions légales
-      </h1>
-      <p class="text-base tracking-wide leading-relaxed">
-        Informations légales concernant le site web du club SLAMM MMA Saint-Lunaire.
-      </p>
-    </header>
+  <Nav />
+  <main>
+    <section class="legal">
+      <div class="container">
 
-    <div class="card-border rounded-md3 p-8 mb-8">
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        1. Informations sur l'éditeur
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Dénomination :</strong> SLAMM (Saint-Lunaire Arts Martiaux Mixtes)
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Siège social :</strong><br />
-        Boulevard Flusson (Mairie)<br />
-        35800 Saint-Lunaire<br />
-        France
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Lieu d'entraînement :</strong><br />
-        361 Rue de la Saudrais<br />
-        35800 Saint-Lunaire<br />
-        France
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Téléphone :</strong> 07 82 77 92 88
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Email :</strong> slamm35800@gmail.com
-      </p>
+        <div class="legal-header reveal">
+          <p class="section-label">Informations légales</p>
+          <h1 class="legal-title">Mentions légales</h1>
+          <p class="legal-sub">Informations légales concernant le site web du club SLAMM MMA Saint-Lunaire.</p>
+        </div>
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+        <div class="legal-body reveal">
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        2. Hébergement
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Ce site est hébergé par Netlify :
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        <strong>Netlify, Inc.</strong><br />
-        2325 3rd Street, Suite 296<br />
-        San Francisco, CA 94107<br />
-        États-Unis
-      </p>
+          <div class="legal-section">
+            <h2>1. Informations sur l'éditeur</h2>
+            <div class="legal-grid">
+              <div class="legal-item"><span>Dénomination</span><p>SLAMM (Saint-Lunaire Arts Martiaux Mixtes)</p></div>
+              <div class="legal-item"><span>Siège social</span><p>Boulevard Flusson (Mairie)<br/>35800 Saint-Lunaire, France</p></div>
+              <div class="legal-item"><span>Lieu d'entraînement</span><p>361 Rue de la Saudrais<br/>35800 Saint-Lunaire, France</p></div>
+              <div class="legal-item"><span>Téléphone</span><p>07 82 77 92 88</p></div>
+              <div class="legal-item"><span>Email</span><p>slamm35800@gmail.com</p></div>
+            </div>
+          </div>
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+          <div class="legal-section">
+            <h2>2. Hébergement</h2>
+            <p>Ce site est hébergé par <strong>Netlify, Inc.</strong><br/>
+            2325 3rd Street, Suite 296 — San Francisco, CA 94107, États-Unis</p>
+          </div>
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        3. Propriété intellectuelle
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite sauf autorisation expresse du club SLAMM.
-      </p>
+          <div class="legal-section">
+            <h2>3. Propriété intellectuelle</h2>
+            <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+            <p>La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite sauf autorisation expresse du club SLAMM.</p>
+          </div>
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+          <div class="legal-section">
+            <h2>4. Protection des données personnelles</h2>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés", vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.</p>
+            <p>Ce site ne collecte aucune donnée personnelle sans votre consentement explicite. Les seules données collectées sont celles que vous fournissez volontairement lors de prises de contact.</p>
+            <p>Pour exercer vos droits : <strong>slamm35800@gmail.com</strong></p>
+          </div>
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        4. Protection des données personnelles
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés", vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Ce site ne collecte aucune donnée personnelle sans votre consentement explicite. Les seules données collectées sont celles que vous fournissez volontairement lors de prises de contact.
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Pour exercer vos droits, contactez-nous à : slamm35800@gmail.com
-      </p>
+          <div class="legal-section">
+            <h2>5. Politique de cookies et stockage local</h2>
+            <p>Conformément à la réglementation européenne (RGPD) et à la directive ePrivacy, nous vous informons de l'utilisation de technologies de stockage sur ce site.</p>
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+            <h3>5.1 Cookies techniques</h3>
+            <p>Ce site n'utilise <strong>aucun cookie de traçage, publicitaire ou analytique</strong>. Aucun service de mesure d'audience (Google Analytics, etc.) n'est utilisé.</p>
+            <p>Les seuls cookies déposés sont ceux strictement nécessaires au fonctionnement du formulaire de contact (Netlify Forms), exemptés de consentement conformément aux recommandations de la CNIL.</p>
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        5. Politique de cookies et stockage local
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Conformément à la réglementation européenne (RGPD) et à la directive ePrivacy, nous vous informons de l'utilisation de technologies de stockage sur ce site.
-      </p>
+            <h3>5.2 Services tiers</h3>
+            <p>Certaines fonctionnalités impliquent des services tiers :</p>
+            <ul>
+              <li><strong>Cartes OpenStreetMap/Leaflet</strong> — La carte interactive sur la page Contact utilise les tuiles CartoDB/OpenStreetMap. Aucun cookie n'est déposé, mais votre adresse IP peut être transmise aux serveurs de tuiles.</li>
+              <li><strong>Netlify Forms</strong> — Le formulaire de contact est traité par Netlify qui dispose de sa propre politique de confidentialité.</li>
+              <li><strong>Assoconnect</strong> — Les formulaires d'inscription redirigent vers Assoconnect qui dispose de sa propre politique de cookies.</li>
+            </ul>
+          </div>
 
-      <h3 class="text-lg font-semibold mb-3 mt-6">5.1. Cookies techniques (exemptés de consentement)</h3>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Ce site utilise exclusivement des cookies techniques nécessaires à son fonctionnement. Ces cookies sont exemptés de consentement conformément aux recommandations de la CNIL.
-      </p>
-      <div class="overflow-x-auto mb-4">
-        <table class="w-full text-sm border border-outline dark:border-outline-dark">
-          <thead class="bg-surface-container dark:bg-surface-container-dark">
-            <tr>
-              <th class="text-left p-3 border-b border-outline dark:border-outline-dark">Nom</th>
-              <th class="text-left p-3 border-b border-outline dark:border-outline-dark">Type</th>
-              <th class="text-left p-3 border-b border-outline dark:border-outline-dark">Finalité</th>
-              <th class="text-left p-3 border-b border-outline dark:border-outline-dark">Durée</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="p-3 border-b border-outline dark:border-outline-dark font-mono text-xs">darkMode</td>
-              <td class="p-3 border-b border-outline dark:border-outline-dark">localStorage</td>
-              <td class="p-3 border-b border-outline dark:border-outline-dark">Mémoriser votre préférence de thème (clair/sombre)</td>
-              <td class="p-3 border-b border-outline dark:border-outline-dark">Permanent</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="legal-section">
+            <h2>6. Responsabilité</h2>
+            <p>Les informations contenues sur ce site sont aussi précises que possible et périodiquement mises à jour. Si vous constatez une erreur ou un dysfonctionnement, merci de le signaler à <strong>slamm35800@gmail.com</strong>.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>7. Liens hypertextes</h2>
+            <p>Les liens en direction d'autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité du club SLAMM.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>8. Droit applicable</h2>
+            <p>Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront les seuls compétents.</p>
+          </div>
+
+          <p class="legal-date">Dernière mise à jour : {today}</p>
+        </div>
+
       </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
 
-      <h3 class="text-lg font-semibold mb-3 mt-6">5.2. Cookies tiers</h3>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Ce site n'utilise <strong>aucun cookie de suivi, publicitaire ou analytique</strong>. Nous ne faisons pas appel à Google Analytics ni à aucun autre service de mesure d'audience.
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Cependant, certaines fonctionnalités peuvent impliquer des services tiers :
-      </p>
-      <ul class="list-disc pl-6 mb-4 text-base leading-relaxed">
-        <li class="mb-2"><strong>Cartes OpenStreetMap/Leaflet :</strong> La carte interactive sur la page Contact utilise les tuiles OpenStreetMap. Aucun cookie n'est déposé, mais votre adresse IP peut être transmise aux serveurs de tuiles.</li>
-        <li class="mb-2"><strong>Assoconnect :</strong> Les formulaires d'inscription redirigent vers la plateforme Assoconnect qui dispose de sa propre politique de cookies.</li>
-      </ul>
+<style>
+  .legal {
+    padding: 120px 0 80px;
+    position: relative;
+  }
 
-      <h3 class="text-lg font-semibold mb-3 mt-6">5.3. Gestion de vos préférences</h3>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Vous pouvez à tout moment supprimer les données stockées localement :
-      </p>
-      <ul class="list-disc pl-6 mb-4 text-base leading-relaxed">
-        <li class="mb-2"><strong>Chrome/Edge :</strong> Paramètres → Confidentialité → Effacer les données de navigation → Cookies et données de site</li>
-        <li class="mb-2"><strong>Firefox :</strong> Paramètres → Vie privée → Cookies et données de sites → Effacer les données</li>
-        <li class="mb-2"><strong>Safari :</strong> Préférences → Confidentialité → Gérer les données de sites web</li>
-      </ul>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        La suppression du stockage local réinitialisera vos préférences de thème au mode par défaut de votre système.
-      </p>
+  .legal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+  .legal-header {
+    margin-bottom: 48px;
+  }
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        6. Responsabilité
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Les informations contenues sur ce site sont aussi précises que possible et le site est périodiquement remis à jour, mais peut toutefois contenir des inexactitudes, des omissions ou des lacunes.
-      </p>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Si vous constatez une lacune, erreur ou ce qui parait être un dysfonctionnement, merci de bien vouloir le signaler par email à l'adresse slamm35800@gmail.com en décrivant le problème de la manière la plus précise possible.
-      </p>
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 16px;
+  }
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+  .legal-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        7. Liens hypertextes
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Les liens hypertextes mis en place dans le cadre du présent site web en direction d'autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité du club SLAMM.
-      </p>
+  .legal-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 600px;
+  }
 
-      <hr class="border-primary dark:border-primary-dark my-6" />
+  .legal-body {
+    max-width: 800px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 56px;
+  }
 
-      <h2 class="text-[clamp(1.75rem,3vw,2rem)] font-normal leading-tight mb-4 text-primary dark:text-primary-dark">
-        8. Droit applicable
-      </h2>
-      <p class="text-base tracking-wide leading-relaxed mb-4">
-        Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront les seuls compétents.
-      </p>
+  .legal-section {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
 
-      <div class="mt-8 p-4 bg-surface-container dark:bg-surface-container-dark rounded-md3">
-        <p class="text-sm italic opacity-80">
-          Dernière mise à jour : {today}
-        </p>
-      </div>
-    </div>
-  </div>
-</BaseLayout>
+  .legal-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 32px;
+    padding-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--g400);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .legal-section h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  .legal-section p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .legal-section p:last-child { margin-bottom: 0; }
+
+  .legal-section strong { color: var(--text-2); font-weight: 600; }
+
+  .legal-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .legal-section ul li {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .legal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--g600);
+  }
+
+  /* Grid infos éditeur */
+  .legal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .legal-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .legal-item span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 2px;
+  }
+
+  .legal-item p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* Table */
+  .legal-table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--border);
+  }
+
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .legal-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legal-table td {
+    padding: 12px 14px;
+    color: var(--text-3);
+    line-height: 1.6;
+  }
+
+  .legal-table code {
+    font-family: monospace;
+    font-size: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: var(--g400);
+  }
+
+  .legal-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .legal-body { padding: 32px 24px; }
+    .legal-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>

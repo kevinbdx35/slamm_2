@@ -1,0 +1,293 @@
+---
+import { Image } from 'astro:assets';
+import teamPhoto from '../assets/img/team/team.webp';
+
+const coaches = [
+  {
+    name: 'Thomas',
+    role: 'Coach MMA & Pieds/Poings',
+    bio: 'Ancien compétiteur national. Diplômé d\'État en sports de combat, 12 ans d\'expérience. Spécialiste striking & clinch.',
+    disciplines: ['MMA', 'Muay Thaï'],
+    initials: 'T',
+    photo: null,
+  },
+  {
+    name: 'Kévin',
+    role: 'Coach MMA & Luta Livre',
+    bio: 'Passionné de grappling et de MMA. Pédagogie bienveillante et technique millimétrée, du débutant au compétiteur.',
+    disciplines: ['MMA', 'Luta Livre'],
+    initials: 'K',
+    photo: null,
+  },
+  {
+    name: 'Malik',
+    role: 'Coach MMA',
+    bio: 'Spécialiste du sol et des soumissions. Expert en Luta Livre No-Gi, il transmet sa passion avec rigueur et bienveillance.',
+    disciplines: ['MMA'],
+    initials: 'M',
+    photo: null,
+  },
+  {
+    name: 'Miguel',
+    role: 'Coach MMA',
+    bio: 'Préparateur physique certifié. Expert en performance fonctionnelle pour les sports de combat.',
+    disciplines: ['MMA'],
+    initials: 'Mi',
+    photo: null,
+  },
+];
+---
+
+<section class="team" id="equipe">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">L'équipe</p>
+      <h2 class="section-title">
+        Vos coachs,<br/>
+        <span>vos guides.</span>
+      </h2>
+      <p class="section-sub">
+        Une équipe de bénévoles certifiés, passionnés par la transmission et le développement du MMA sur la Côte d'Émeraude.
+      </p>
+    </div>
+
+    <div class="team-photo-wrap reveal">
+      <Image src={teamPhoto} alt="L'équipe SLAMM" class="team-photo" />
+      <div class="team-photo-overlay">
+        <span>Saint-Lunaire Arts Martiaux Mixtes</span>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      {coaches.map((coach, i) => (
+        <article class={`coach-card reveal reveal-delay-${i + 1}`}>
+          <div class="coach-avatar">
+            <span class="coach-initials">{coach.initials}</span>
+          </div>
+
+          <div class="coach-info">
+            <h3 class="coach-name">{coach.name}</h3>
+            <p class="coach-role">{coach.role}</p>
+            <p class="coach-bio">{coach.bio}</p>
+            <div class="coach-tags">
+              {coach.disciplines.map(d => (
+                <span class="coach-tag">{d}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .team::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .section-title span { color: var(--g400); }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    font-weight: 400;
+    align-self: end;
+  }
+
+  /* Team photo */
+  .team-photo-wrap {
+    position: relative;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    margin-bottom: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .team-photo {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .team-photo-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 32px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  }
+
+  .team-photo-overlay span {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Cards */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .coach-card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--g600), var(--g400));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .coach-card:hover {
+    border-color: rgba(74,222,128,0.25);
+    background: var(--bg2);
+    transform: translateY(-6px);
+  }
+
+  .coach-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .coach-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(34,197,94,0.2);
+    flex-shrink: 0;
+  }
+
+  .coach-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .coach-initials {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--g700), var(--g900));
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--g400);
+    letter-spacing: -0.03em;
+  }
+
+  .coach-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .coach-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+
+  .coach-role {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 4px;
+  }
+
+  .coach-bio {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .coach-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .coach-tag {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 900px) {
+    .section-header { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .team-photo { height: 280px; }
+  }
+
+  @media (max-width: 560px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .team-photo { height: 220px; }
+  }
+</style>

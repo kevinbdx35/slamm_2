@@ -1,0 +1,186 @@
+---
+const testimonials = [
+  {
+    quote: "La pratique du MMA m'a apporté discipline, confiance en moi et une condition physique optimale. C'est bien plus qu'un sport, c'est un mode de vie qui m'a renforcé mentalement et physiquement.",
+    name: 'Miguel',
+    initials: 'M',
+  },
+  {
+    quote: "Je pratique le MMA depuis septembre 2024 et ça m'a appris beaucoup de choses sur moi que j'ignorais : le dépassement de soi, la condition physique et le mental. Je me sens bien mieux depuis que j'ai découvert cette pratique qui, depuis mon inscription, m'anime jour et nuit.",
+    name: 'Florian',
+    initials: 'F',
+  },
+  {
+    quote: "Ce que j'apprécie particulièrement dans ce club, c'est l'équilibre entre exigence et bienveillance. Les entraînements sont structurés, techniques et progressifs, ce qui permet d'évoluer rapidement tout en restant en sécurité. En tant que femme, je me suis immédiatement sentie respectée et pleinement intégrée. L'ambiance est motivante, chacun pousse l'autre à se dépasser, et on sent une vraie cohésion d'équipe. Ici, on ne vient pas seulement s'entraîner, on vient progresser.",
+    name: 'Maëva',
+    initials: 'Mv',
+  },
+];
+---
+
+<section class="testimonials" id="temoignages">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Témoignages</p>
+      <h2 class="section-title">
+        Ils en parlent<br/>
+        <span>mieux que nous.</span>
+      </h2>
+    </div>
+
+    <div class="testimonials-grid">
+      {testimonials.map((t, i) => (
+        <blockquote class={`testi-card reveal reveal-delay-${i + 1}`}>
+          <div class="stars" aria-label="5 étoiles sur 5">
+            {Array.from({length: 5}).map(() => (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 1l1.8 5.6H15l-4.6 3.3 1.8 5.6L8 12.2l-4.2 3.3 1.8-5.6L1 6.6h5.2z"/>
+              </svg>
+            ))}
+          </div>
+          <p class="quote-text">{t.quote}</p>
+          <footer class="quote-author">
+            <div class="author-avatar">{t.initials}</div>
+            <span class="author-name">{t.name}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .section-title span { color: var(--g400); }
+
+  /* Grid */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .testi-card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testi-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--g700), var(--g500));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .testi-card:hover {
+    border-color: rgba(74,222,128,0.2);
+    background: var(--bg2);
+    transform: translateY(-6px);
+  }
+
+  .testi-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .stars {
+    display: flex;
+    gap: 4px;
+    color: var(--g500);
+    flex-shrink: 0;
+  }
+
+  .quote-text {
+    font-size: 15px;
+    color: var(--text-3);
+    line-height: 1.8;
+    font-weight: 400;
+    font-style: italic;
+    flex: 1;
+  }
+
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--g700), var(--g900));
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--g400);
+    letter-spacing: -0.03em;
+    flex-shrink: 0;
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+
+  .author-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials-grid { grid-template-columns: 1fr; max-width: 600px; }
+  }
+</style>

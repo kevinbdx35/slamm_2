@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Disciplines from '../components/Disciplines.astro';
+import Schedule from '../components/Schedule.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Disciplines & Horaires — Saint-Lunaire MMA" description="Découvrez nos disciplines : MMA, grappling, lutte. Consultez les horaires des entraînements à Saint-Lunaire.">
+  <Nav />
+  <main>
+    <Schedule />
+    <Disciplines />
+  </main>
+  <Footer />
+</Layout>

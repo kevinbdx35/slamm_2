@@ -60,7 +60,7 @@ export const EVENTS = [
     maxParticipants: null,
     registrationUrl: null,
     image: null,
-    status: null
+    status: "past"
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ export const EVENTS = [
     maxParticipants: null,
     registrationUrl: null,
     image: null,
-    status: null
+    status: "past"
   },
   {
     id: 5,

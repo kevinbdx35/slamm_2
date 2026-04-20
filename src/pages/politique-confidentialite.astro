@@ -1,0 +1,281 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const today = new Date().toLocaleDateString('fr-FR');
+---
+
+<Layout
+  title="Politique de confidentialité — Saint-Lunaire MMA"
+  description="Politique de confidentialité du club SLAMM (Saint-Lunaire Arts Martiaux Mixtes) — Traitement des données personnelles, droits des utilisateurs, cookies."
+>
+  <Nav />
+  <main>
+    <section class="legal">
+      <div class="container">
+
+        <div class="legal-header reveal">
+          <p class="section-label">Informations légales</p>
+          <h1 class="legal-title">Politique de confidentialité</h1>
+          <p class="legal-sub">Comment le club SLAMM collecte, utilise et protège vos données personnelles, conformément au RGPD et à la loi "Informatique et Libertés".</p>
+        </div>
+
+        <div class="legal-body reveal">
+
+          <div class="legal-section">
+            <h2>1. Responsable du traitement</h2>
+            <div class="legal-grid">
+              <div class="legal-item"><span>Association</span><p>SLAMM (Saint-Lunaire Arts Martiaux Mixtes)</p></div>
+              <div class="legal-item"><span>Siège social</span><p>Boulevard Flusson (Mairie)<br/>35800 Saint-Lunaire, France</p></div>
+              <div class="legal-item"><span>Contact</span><p>slamm35800@gmail.com</p></div>
+            </div>
+          </div>
+
+          <div class="legal-section">
+            <h2>2. Données collectées et finalités</h2>
+            <p>Le club SLAMM collecte uniquement les données strictement nécessaires à son fonctionnement associatif. Aucune donnée n'est collectée à des fins commerciales ou publicitaires.</p>
+
+            <h3>2.1 Formulaire de contact</h3>
+            <p>Lors d'une prise de contact via le formulaire du site, les données suivantes sont collectées :</p>
+            <ul>
+              <li><strong>Nom</strong> — pour identifier votre demande</li>
+              <li><strong>Adresse e-mail</strong> — pour vous répondre</li>
+              <li><strong>Message</strong> — contenu de votre demande</li>
+            </ul>
+            <p>Ces données sont utilisées exclusivement pour répondre à votre demande. Elles sont traitées par <strong>Netlify Forms</strong> et transmises à l'adresse slamm35800@gmail.com. Elles ne sont ni revendues, ni partagées avec des tiers, ni utilisées à des fins de démarchage.</p>
+
+            <h3>2.2 Inscription et adhésion</h3>
+            <p>Les formulaires d'inscription sont gérés via la plateforme <strong>Assoconnect</strong>. Les données recueillies dans ce cadre (nom, prénom, coordonnées, certificat médical, etc.) sont nécessaires à la gestion de votre adhésion à l'association. Elles sont soumises à la politique de confidentialité d'Assoconnect.</p>
+
+            <h3>2.3 Navigation sur le site</h3>
+            <p>Ce site <strong>ne collecte aucune donnée de navigation</strong> à des fins d'analyse ou de statistiques. Aucun service de mesure d'audience (Google Analytics, etc.) n'est utilisé.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>3. Base légale des traitements</h2>
+            <ul>
+              <li><strong>Formulaire de contact</strong> — intérêt légitime de l'association à répondre aux demandes entrantes (art. 6.1.f du RGPD)</li>
+              <li><strong>Adhésion</strong> — exécution d'un contrat (art. 6.1.b du RGPD)</li>
+              <li><strong>Données de santé (certificat médical)</strong> — obligation légale liée à la pratique sportive encadrée (art. 9.2.b du RGPD)</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>4. Durée de conservation</h2>
+            <ul>
+              <li><strong>Messages de contact</strong> — conservés le temps nécessaire au traitement de la demande, puis supprimés</li>
+              <li><strong>Données d'adhésion</strong> — conservées pendant la durée de l'adhésion et jusqu'à 3 ans après la fin de celle-ci, conformément aux obligations comptables et associatives</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>5. Cookies et stockage local</h2>
+            <p>Ce site n'utilise <strong>aucun cookie de traçage, publicitaire ou analytique</strong>.</p>
+
+            <h3>5.1 Cookies techniques</h3>
+            <p>Les seuls cookies déposés sont ceux strictement nécessaires au fonctionnement du formulaire de contact (Netlify Forms), exemptés de consentement conformément aux recommandations de la CNIL.</p>
+
+            <h3>5.2 Services tiers et données transmises</h3>
+            <ul>
+              <li><strong>Netlify Forms</strong> — traitement du formulaire de contact. Politique de confidentialité disponible sur le site de Netlify.</li>
+              <li><strong>Cartes OpenStreetMap / CartoDB</strong> — la carte interactive sur la page Contact charge des tuiles depuis des serveurs tiers. Aucun cookie n'est déposé, mais votre adresse IP peut être transmise à ces serveurs lors du chargement.</li>
+              <li><strong>Assoconnect</strong> — les formulaires d'inscription redirigent vers la plateforme Assoconnect, soumise à sa propre politique de confidentialité.</li>
+              <li><strong>Instagram</strong> — les liens vers le compte @slamm35800 redirigent vers Instagram (Meta). Aucune intégration directe (iframe, pixel) n'est présente sur ce site.</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h2>6. Vos droits</h2>
+            <p>Conformément au RGPD et à la loi "Informatique et Libertés", vous disposez des droits suivants sur vos données personnelles :</p>
+            <ul>
+              <li><strong>Droit d'accès</strong> — obtenir une copie des données vous concernant</li>
+              <li><strong>Droit de rectification</strong> — corriger des données inexactes ou incomplètes</li>
+              <li><strong>Droit à l'effacement</strong> — demander la suppression de vos données</li>
+              <li><strong>Droit d'opposition</strong> — vous opposer à un traitement basé sur l'intérêt légitime</li>
+              <li><strong>Droit à la limitation</strong> — restreindre temporairement un traitement</li>
+              <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format structuré</li>
+            </ul>
+            <p>Pour exercer ces droits, contactez-nous à : <strong>slamm35800@gmail.com</strong></p>
+            <p>Vous disposez également du droit d'introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) si vous estimez que vos droits ne sont pas respectés.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>7. Sécurité des données</h2>
+            <p>Le site est hébergé par <strong>Netlify, Inc.</strong> (San Francisco, États-Unis), certifié conforme aux exigences du RGPD dans le cadre du Data Privacy Framework UE-États-Unis. Les communications sont chiffrées via HTTPS.</p>
+            <p>L'accès aux données de contact est limité aux responsables de l'association et n'est transmis à aucun tiers non autorisé.</p>
+          </div>
+
+          <div class="legal-section">
+            <h2>8. Modifications</h2>
+            <p>Cette politique de confidentialité peut être mise à jour pour refléter des évolutions légales ou des changements dans le fonctionnement du site. La date de dernière mise à jour est indiquée ci-dessous.</p>
+          </div>
+
+          <p class="legal-date">Dernière mise à jour : {today}</p>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+
+  .legal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .legal-header {
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 16px;
+  }
+
+  .legal-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .legal-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .legal-body {
+    max-width: 800px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 56px;
+  }
+
+  .legal-section {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legal-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 32px;
+    padding-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--g400);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .legal-section h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  .legal-section p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .legal-section p:last-child { margin-bottom: 0; }
+
+  .legal-section strong { color: var(--text-2); font-weight: 600; }
+
+  .legal-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .legal-section ul li {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .legal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--g600);
+  }
+
+  .legal-section ul li strong { color: var(--text-2); font-weight: 600; }
+
+  .legal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .legal-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .legal-item span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 2px;
+  }
+
+  .legal-item p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .legal-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .legal-body { padding: 32px 24px; }
+    .legal-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>

@@ -1,0 +1,208 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  pageSchema?: object | object[];
+}
+const {
+  title = 'Saint-Lunaire Arts Martiaux Mixtes',
+  description = 'Club de MMA à Saint-Lunaire, Bretagne. Association loi 1901. Entraînement, compétition, bien-être.',
+  canonical,
+  ogImage,
+  pageSchema,
+} = Astro.props;
+
+const siteUrl = Astro.site?.origin ?? 'https://saint-lunaire-mma.fr';
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.webp`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsClub',
+  name: 'Saint-Lunaire Arts Martiaux Mixtes',
+  alternateName: 'SLAMM',
+  description: 'Club de MMA à Saint-Lunaire, Bretagne. Association loi 1901.',
+  url: siteUrl,
+  telephone: '+33782779288',
+  email: 'slamm35800@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '361 Rue de la Saudrais',
+    addressLocality: 'Saint-Lunaire',
+    postalCode: '35800',
+    addressCountry: 'FR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 48.629217,
+    longitude: -2.112208,
+  },
+  sport: 'Arts martiaux mixtes (MMA)',
+  sameAs: ['https://www.instagram.com/slamm35800'],
+};
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Saint-Lunaire Arts Martiaux Mixtes" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</html>
+
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --g50:  #f0fdf4;
+    --g100: #dcfce7;
+    --g200: #bbf7d0;
+    --g400: #4ade80;
+    --g500: #22c55e;
+    --g600: #16a34a;
+    --g700: #15803d;
+    --g900: #14532d;
+    --g950: #052e16;
+
+    --bg:   #080f0a;
+    --bg1:  #0d1a10;
+    --bg2:  #111f15;
+    --surface: #152018;
+    --border: rgba(34,197,94,0.12);
+    --border-strong: rgba(34,197,94,0.25);
+
+    --text:    #f0fdf4;
+    --text-2:  #bbf7d0;
+    --text-3:  #93c9a4;
+    --text-muted: #7aaa8a;
+
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'Inter', sans-serif;
+
+    --r-sm: 8px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--g400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--g600);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--g700);
+    border-radius: 2px;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 16px; }
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+</style>

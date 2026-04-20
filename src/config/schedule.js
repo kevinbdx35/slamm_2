@@ -46,7 +46,7 @@ export const SCHEDULE = [
     dayEnglish: 'Tuesday',
     start: '18:15',
     end: '19:45',
-    level: 'Membres uniquement',
+    level: 'Tous niveaux',
     label: 'Luta Livre'
   }
 ];
