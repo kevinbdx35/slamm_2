@@ -3,6 +3,16 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/cours"
+  to = "/disciplines"
+  status = 301
+
+[[redirects]]
+  from = "/cours/"
+  to = "/disciplines"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404

@@ -6,7 +6,16 @@ const coaches = [
   {
     name: 'Thomas',
     role: 'Coach MMA & Pieds/Poings',
-    bio: 'Ancien compétiteur national. Diplômé d\'État en sports de combat, 12 ans d\'expérience. Spécialiste striking & clinch.',
+    fonction: 'Trésorier',
+    bio: 'Biographie à venir…',
+    grades: [
+      'Grade vert MMA (FMMAF)',
+    ],
+    diplomes: [
+      'Brevet Fédéral BF2 MMA',
+      'Brevet Fédéral BF1 MMA',
+      'PSC1',
+    ],
     disciplines: ['MMA', 'Muay Thaï'],
     initials: 'T',
     photo: null,
@@ -14,15 +23,42 @@ const coaches = [
   {
     name: 'Kévin',
     role: 'Coach MMA & Luta Livre',
+    fonction: 'Secrétaire',
     bio: 'Passionné de grappling et de MMA. Pédagogie bienveillante et technique millimétrée, du débutant au compétiteur.',
-    disciplines: ['MMA', 'Luta Livre'],
+    bioFull: [
+      "Kévin pratique le Jiu-Jitsu Brésilien depuis 2009 et fonde en 2010 le premier club de JJB de Saint-Malo. Il en assure la présidence jusqu'en 2015 ; le club existe toujours et compte aujourd'hui plus de 140 adhérents. Durant ces années, il organise plusieurs stages dans la région et fait notamment venir Caio Terra et Samir Chantre à plusieurs reprises.",
+      "Après huit ans de pause, il renoue avec les sports de combat en 2023 en se tournant cette fois vers le MMA et la luta livre, et co-fonde SLAMM la même année. Il poursuit cette démarche au sein du nouveau club, qui a lancé son propre cycle de stages dès la saison 2025-2026.",
+      "Au club, il encadre les phases de lutte et de combat au sol.",
+    ],
+    grades: [
+      'Grade vert MMA (FMMAF)',
+      'Ceinture bleue luta livre',
+      'Ceinture bleue JJB (4 stripes)',
+      'Grade bleu grappling & grappling fight (FFL)',
+    ],
+    diplomes: [
+      'Brevet Fédéral BF2 MMA',
+      'Brevet Fédéral BF1 MMA',
+      'Brevet Fédéral BF1 grappling (FFL)',
+      'PSC1',
+    ],
+    disciplines: ['MMA', 'Luta Livre', 'Grappling', 'JJB'],
     initials: 'K',
     photo: null,
   },
   {
     name: 'Malik',
     role: 'Coach MMA',
-    bio: 'Spécialiste du sol et des soumissions. Expert en Luta Livre No-Gi, il transmet sa passion avec rigueur et bienveillance.',
+    fonction: 'Président',
+    bio: 'Biographie à venir…',
+    grades: [
+      'Grade vert MMA (FMMAF)',
+    ],
+    diplomes: [
+      'Brevet Fédéral BF2 MMA',
+      'Brevet Fédéral BF1 MMA',
+      'PSC1',
+    ],
     disciplines: ['MMA'],
     initials: 'M',
     photo: null,
@@ -30,7 +66,17 @@ const coaches = [
   {
     name: 'Miguel',
     role: 'Coach MMA',
-    bio: 'Préparateur physique certifié. Expert en performance fonctionnelle pour les sports de combat.',
+    fonction: 'Vice-Président',
+    bio: 'Biographie à venir…',
+    grades: [
+      'Grade vert MMA (FMMAF)',
+    ],
+    diplomes: [
+      'Brevet Fédéral BF2 MMA',
+      'Brevet Fédéral BF1 MMA',
+      'PSE1',
+      'PSE2',
+    ],
     disciplines: ['MMA'],
     initials: 'Mi',
     photo: null,
@@ -58,25 +104,76 @@ const coaches = [
       </div>
     </div>
 
-    <div class="team-grid">
-      {coaches.map((coach, i) => (
-        <article class={`coach-card reveal reveal-delay-${i + 1}`}>
-          <div class="coach-avatar">
-            <span class="coach-initials">{coach.initials}</span>
-          </div>
-
-          <div class="coach-info">
-            <h3 class="coach-name">{coach.name}</h3>
-            <p class="coach-role">{coach.role}</p>
-            <p class="coach-bio">{coach.bio}</p>
-            <div class="coach-tags">
-              {coach.disciplines.map(d => (
-                <span class="coach-tag">{d}</span>
-              ))}
+    <div class="carousel-wrap reveal">
+      <div class="carousel">
+        <div class="carousel-track" id="team-carousel">
+        {coaches.map((coach) => {
+          const paragraphs = coach.bioFull ?? [coach.bio];
+          return (
+            <div class="carousel-slide">
+              <div class="coach-profile">
+                <div class="profile-avatar">
+                  <span>{coach.initials}</span>
+                </div>
+                <div class="profile-body">
+                  <div class="profile-head">
+                    <div>
+                      <h3 class="profile-name">{coach.name}</h3>
+                      <p class="profile-role">{coach.role}</p>
+                    </div>
+                    {coach.fonction && <span class="profile-fonction">{coach.fonction}</span>}
+                  </div>
+                  <div class="profile-bio">
+                    {paragraphs.map(p => <p>{p}</p>)}
+                  </div>
+                  {(coach.grades?.length > 0 || coach.diplomes?.length > 0) && (
+                    <div class="profile-columns">
+                      {coach.grades && coach.grades.length > 0 && (
+                        <div class="profile-col">
+                          <p class="profile-col-title">Grades & Ceintures</p>
+                          <ul>
+                            {coach.grades.map(g => <li>{g}</li>)}
+                          </ul>
+                        </div>
+                      )}
+                      {coach.diplomes && coach.diplomes.length > 0 && (
+                        <div class="profile-col">
+                          <p class="profile-col-title">Diplômes Fédéraux</p>
+                          <ul>
+                            {coach.diplomes.map(d => <li>{d}</li>)}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div class="profile-tags">
+                    {coach.disciplines.map(d => <span class="coach-tag">{d}</span>)}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </article>
-      ))}
+          );
+        })}
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Coach précédent">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots">
+          {coaches.map((c, i) => (
+            <button class={`carousel-dot${i === 0 ? ' active' : ''}`} data-index={i} aria-label={`Voir ${c.name}`}></button>
+          ))}
+        </div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Coach suivant">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -162,111 +259,173 @@ const coaches = [
     color: rgba(255,255,255,0.7);
   }
 
-  /* Cards */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  /* Carousel */
+  .carousel-wrap {
+    position: relative;
   }
 
-  .coach-card {
+  .carousel {
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+  }
+
+  /* Coach profile card */
+  .coach-profile {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 48px;
     background: var(--bg1);
     border: 1px solid var(--border);
     border-radius: var(--r-xl);
-    padding: 40px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-out);
     position: relative;
     overflow: hidden;
   }
 
-  .coach-card::before {
+  .coach-profile::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
     background: linear-gradient(90deg, var(--g600), var(--g400));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s var(--ease-out);
   }
 
-  .coach-card:hover {
-    border-color: rgba(74,222,128,0.25);
-    background: var(--bg2);
-    transform: translateY(-6px);
+  .profile-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 8px;
   }
 
-  .coach-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .coach-avatar {
-    width: 72px;
-    height: 72px;
+  .profile-avatar span {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(34,197,94,0.2);
-    flex-shrink: 0;
-  }
-
-  .coach-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-
-  .coach-initials {
-    width: 100%;
-    height: 100%;
+    border: 2px solid var(--border-strong);
     background: linear-gradient(135deg, var(--g700), var(--g900));
     display: grid;
     place-items: center;
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 40px;
     font-weight: 800;
     color: var(--g400);
     letter-spacing: -0.03em;
   }
 
-  .coach-info {
+  .profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .profile-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .profile-role {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-top: 6px;
+  }
+
+  .profile-fonction {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--g400);
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .profile-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .profile-bio p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.8;
+  }
+
+  .profile-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .profile-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .profile-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .coach-name {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-  }
-
-  .coach-role {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 4px;
-  }
-
-  .coach-bio {
+  .profile-col li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 14px;
-    color: var(--text-3);
-    line-height: 1.7;
-    font-weight: 400;
+    color: var(--text-2);
+    line-height: 1.5;
   }
 
-  .coach-tags {
+  .profile-col li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--g500);
+    flex-shrink: 0;
+  }
+
+  .profile-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: 8px;
   }
 
   .coach-tag {
@@ -280,14 +439,85 @@ const coaches = [
     letter-spacing: 0.03em;
   }
 
+  /* Carousel controls */
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg1);
+    color: var(--text-3);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .carousel-btn:hover {
+    border-color: var(--border-strong);
+    color: var(--g400);
+    background: var(--bg2);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    padding: 0;
+  }
+
+  .carousel-dot.active {
+    background: var(--g400);
+    transform: scale(1.3);
+  }
+
   @media (max-width: 900px) {
     .section-header { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
     .team-photo { height: 280px; }
+    .coach-profile { grid-template-columns: 1fr; gap: 32px; padding: 32px; }
+    .profile-avatar { flex-direction: row; gap: 20px; align-items: center; }
+    .profile-columns { grid-template-columns: 1fr; gap: 24px; }
   }
 
   @media (max-width: 560px) {
-    .team-grid { grid-template-columns: 1fr; }
     .team-photo { height: 220px; }
+    .coach-profile { padding: 24px; }
+    .profile-head { flex-direction: column; }
   }
 </style>
+
+<script>
+  const carousel = document.getElementById('team-carousel')!;
+  const dots = document.querySelectorAll<HTMLButtonElement>('.carousel-dot');
+  const total = dots.length;
+  let current = 0;
+
+  function goTo(index: number) {
+    current = (index + total) % total;
+    carousel.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  document.getElementById('carousel-prev')!.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('carousel-next')!.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+</script>

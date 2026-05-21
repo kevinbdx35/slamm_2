@@ -1,0 +1,61 @@
+---
+import { ASSOCONNECT_URLS } from '../config/urls.js';
+---
+
+<a
+  id="fab"
+  href={ASSOCONNECT_URLS.TRIAL_BOOKING}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Réserver un cours d'essai"
+  title="Réserver un cours d'essai"
+>
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+    <rect x="3" y="4" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M7 2v4M15 2v4M3 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M7 13h2M11 13h2M7 16h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</a>
+
+<style>
+  #fab {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--g500);
+    color: var(--bg);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 20px rgba(34,197,94,0.35);
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), background 0.2s;
+  }
+
+  #fab.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+  }
+
+  #fab:hover {
+    background: var(--g400);
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 768px) {
+    #fab { bottom: 20px; right: 16px; }
+  }
+</style>
+
+<script>
+  const fab = document.getElementById('fab');
+  window.addEventListener('scroll', () => {
+    fab?.classList.toggle('visible', window.scrollY > 100);
+  }, { passive: true });
+</script>

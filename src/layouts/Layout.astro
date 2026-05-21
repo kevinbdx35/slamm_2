@@ -1,4 +1,6 @@
 ---
+import FloatingTrialButton from '../components/FloatingTrialButton.astro';
+import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 interface Props {
   title?: string;
   description?: string;
@@ -16,7 +18,33 @@ const {
 
 const siteUrl = Astro.site?.origin ?? 'https://saint-lunaire-mma.fr';
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
-const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.webp`;
+const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.svg`;
+
+const pageNames: Record<string, string> = {
+  '/disciplines': 'Disciplines',
+  '/equipe': 'Équipe',
+  '/evenements': 'Événements',
+  '/tarifs': 'Tarifs',
+  '/contact': 'Contact',
+  '/faq': 'FAQ',
+  '/hygiene': 'Hygiène & Sécurité',
+  '/sparring': 'Sparring & Sécurité',
+  '/equipements': 'Équipements',
+  '/reglement': 'Règlement intérieur',
+  '/mentions-legales': 'Mentions légales',
+  '/politique-confidentialite': 'Politique de confidentialité',
+  '/mma-dinard': 'MMA à Dinard',
+  '/mma-saint-malo': 'MMA à Saint-Malo',
+};
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const breadcrumbSchema = pathname !== '/' && pageNames[pathname] ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: pageNames[pathname], item: `${siteUrl}${pathname}` },
+  ],
+} : null;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -25,8 +53,8 @@ const schema = {
   alternateName: 'SLAMM',
   description: 'Club de MMA à Saint-Lunaire, Bretagne. Association loi 1901.',
   url: siteUrl,
-  telephone: '+33782779288',
-  email: 'slamm35800@gmail.com',
+  telephone: CONTACT_INFO.PHONE,
+  email: CONTACT_INFO.EMAIL,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '361 Rue de la Saudrais',
@@ -40,7 +68,7 @@ const schema = {
     longitude: -2.112208,
   },
   sport: 'Arts martiaux mixtes (MMA)',
-  sameAs: ['https://www.instagram.com/slamm35800'],
+  sameAs: [SOCIAL_URLS.INSTAGRAM],
 };
 ---
 
@@ -72,6 +100,7 @@ const schema = {
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -81,6 +110,7 @@ const schema = {
   </head>
   <body>
     <slot />
+    <FloatingTrialButton />
   </body>
   <script>
     const observer = new IntersectionObserver(
@@ -154,6 +184,7 @@ const schema = {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
 
   :focus-visible {
     outline: 2px solid var(--g400);

@@ -61,19 +61,11 @@ export const SEASON = '2025–2026';
  */
 export const PRICING = {
   adult: {
-    label: 'Adulte (+25 ans)',
+    label: 'Adhésion',
     periods: [
       { label: 'Sept → Déc', months: [9, 10, 11, 12], price: 210 },
       { label: 'Jan → Mars',  months: [1, 2, 3],       price: 150 },
       { label: 'Avr → Juin',  months: [4, 5, 6],       price: 89  },
-    ]
-  },
-  young: {
-    label: 'Jeune (+16 ans)',
-    periods: [
-      { label: 'Sept → Déc', months: [9, 10, 11, 12], price: 180 },
-      { label: 'Jan → Mars',  months: [1, 2, 3],       price: 130 },
-      { label: 'Avr → Juin',  months: [4, 5, 6],       price: 79  },
     ]
   },
   trial: { label: "Cours d'essai (nov-juin)", price: 5 }

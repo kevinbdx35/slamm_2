@@ -69,6 +69,45 @@ const disciplines = [
       ))}
     </div>
 
+    <div class="videos-section reveal">
+      <div class="videos-grid">
+        <div class="video-item">
+          <p class="section-label">MMA en vidéo</p>
+          <p class="video-item-sub">Les premiers grades MMA selon la FMMAF.</p>
+          <div class="video-wrap">
+            <div class="video-facade" data-id="M2v4ckiaHTk">
+              <img
+                src="https://img.youtube.com/vi/M2v4ckiaHTk/maxresdefault.jpg"
+                alt="Premiers grades MMA - FMMAF"
+                class="video-thumb"
+                loading="lazy"
+              />
+              <button class="play-btn" aria-label="Lire la vidéo">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="video-item">
+          <p class="section-label">Luta Livre en vidéo</p>
+          <p class="video-item-sub">Découvre la discipline en action — grappling No-Gi, soumissions et contrôles au sol.</p>
+          <div class="video-wrap">
+            <div class="video-facade" data-id="wC9kvJrO9aw">
+              <img
+                src="https://img.youtube.com/vi/wC9kvJrO9aw/maxresdefault.jpg"
+                alt="Présentation Luta Livre"
+                class="video-thumb"
+                loading="lazy"
+              />
+              <button class="play-btn" aria-label="Lire la vidéo">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="cours-type reveal">
       <div class="cours-header">
         <p class="section-label">À quoi ressemble un cours ?</p>
@@ -302,6 +341,81 @@ const disciplines = [
     transform: translateX(4px);
   }
 
+  /* Videos */
+  .videos-section {
+    margin-top: 64px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .video-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .video-item-sub {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-facade {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  .video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .video-facade:hover .video-thumb {
+    transform: scale(1.03);
+  }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .play-btn:hover {
+    transform: scale(1.1);
+  }
+
   /* Cours type */
   .cours-type {
     margin-top: 80px;
@@ -456,6 +570,7 @@ const disciplines = [
   @media (max-width: 900px) {
     .section-header { grid-template-columns: 1fr; }
     .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
+    .videos-grid { grid-template-columns: 1fr; }
     .cours-header { grid-template-columns: 1fr; }
     .cours-steps { grid-template-columns: repeat(2, 1fr); }
     .cours-step:nth-child(2) { border-right: none; }
@@ -470,3 +585,17 @@ const disciplines = [
     .cours-step:last-child { border-bottom: none; }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.video-facade').forEach(facade => {
+    facade.addEventListener('click', () => {
+      const id = facade.dataset.id;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none';
+      facade.replaceWith(iframe);
+    });
+  });
+</script>

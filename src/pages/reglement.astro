@@ -3,70 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-const sections = [
-  {
-    id: 'article-1',
-    title: 'Article 1 — Le règlement',
-    items: [
-      "Tous les membres de l'association, quel que soit leur niveau ou grade, doivent respecter le présent règlement.",
-      "Afin d'assurer le bon déroulement des activités, le présent règlement intérieur peut être modifié à tout moment par le bureau de l'association.",
-    ],
-  },
-  {
-    id: 'article-2',
-    title: "Article 2 — L'adhésion",
-    items: [
-      "Après les deux séances d'essai, pour participer aux activités, les pratiquants doivent être à jour de leur adhésion, cotisation, certificat médical et dossier d'inscription complet, daté et signé.",
-      "Le bureau peut refuser l'adhésion d'un candidat s'il va à l'encontre des valeurs de l'association ou s'il peut être un danger pour lui-même ou pour les autres membres.",
-      "L'association ne rembourse pas la cotisation de l'adhérent pour cause d'absence.",
-      "En cas d'exclusion d'un adhérent pour non-respect du règlement intérieur, l'association ne procédera à aucun remboursement.",
-    ],
-  },
-  {
-    id: 'article-3',
-    title: 'Article 3 — Hygiène',
-    items: [
-      "Pendant les cours, il est demandé de maintenir une bonne hygiène corporelle.",
-      "Il est obligatoire de se changer dans les vestiaires prévus à cet effet.",
-      "Il est interdit de se déplacer pieds nus entre les vestiaires et la salle de cours, ainsi qu'entre la salle de cours et les toilettes.",
-      "Tous les élèves doivent porter la tenue adaptée à la discipline pratiquée.",
-      "Pour la sécurité de tous, le pratiquant doit avoir les ongles des doigts et des orteils courts et propres.",
-      "Tous les problèmes de types mycoses, verrues, doivent être traités et soignés dans le meilleur délai pour éviter toute contamination.",
-      "Si vous êtes malade, merci de rester chez vous pour éviter toute contamination.",
-      "Toute blessure doit être soignée et recouverte. En cas de blessure ou de problème de santé, il est important de prévenir un responsable avant le cours.",
-      "Les élèves doivent régulièrement laver leur(s) tenue(s) d'entraînement — une tenue sale est un signe de manque de respect.",
-      "Les tenues déchirées, ainsi que les équipements usés, doivent être réparés ou remplacés.",
-      "Les slogans et publicités irrespectueux sont interdits sur le matériel.",
-      "Tous les objets métalliques (bijoux, piercings, colliers, etc.) doivent être enlevés.",
-      "Pas de chaussure, d'aliments ou de boissons sur les tatamis.",
-      "Chaque personne doit se munir d'une bouteille d'eau et d'une serviette de bain.",
-      "Veiller à garder les lieux propres.",
-    ],
-    note: { text: "Les règles d'hygiène détaillées sont disponibles sur la", link: '/hygiene', linkText: 'page Hygiène & Sécurité' },
-  },
-  {
-    id: 'article-4',
-    title: 'Article 4 — Discipline, respect et sécurité',
-    items: [
-      "Le respect des grades et des responsabilités doit être observé dans toutes les situations.",
-      "Pour des raisons de sécurité, si vous êtes en retard, attendez assis à côté des tatamis la permission du Professeur/Instructeur pour entrer. Il peut vous refuser l'accès au cours si vous êtes trop en retard.",
-      "Si vous devez quitter les tatamis ou partir de façon anticipée, vous devez prévenir et demander la permission au Professeur/Instructeur.",
-      "Le calme est demandé pendant les cours et dans les vestiaires.",
-      "Aucun langage grossier, dispute ou comportement déplacé n'est toléré. La politesse, la bienveillance et la courtoisie sont de rigueur.",
-      "Tout comportement violent est à exclure.",
-      "L'attitude des adhérents lors des sorties ou manifestations doit être exemplaire afin de préserver la bonne image de l'association.",
-      "Tous les adhérents sont dans l'obligation de respecter les consignes de sécurité données par le Professeur/Instructeur. Il est la seule autorité pendant l'activité et peut dans les cas graves vous exclure de l'activité.",
-      "Seul le Professeur/Instructeur peut conseiller les élèves lors des sparrings. Aucun coaching de bord de tatamis ne sera toléré.",
-      "Les pratiquants ne laisseront aucune affaire personnelle dans les vestiaires — l'association n'est pas responsable des vols, pertes et dommages sur les effets personnels.",
-      "Éteindre la sonnerie de vos portables durant l'entraînement.",
-      "Tout adhérent représentant l'association en compétition devra accepter de représenter et de communiquer sur les partenaires/sponsors du club.",
-      "La participation à une compétition ne se fait qu'avec l'accord de l'entraîneur et des responsables.",
-      "Filmer et photographier ne se fait que sur autorisation des responsables.",
-      "Aucune publicité n'est autorisée dans la salle sans autorisation des responsables.",
-      "Libérer les lieux rapidement aussitôt après la fin des activités.",
-    ],
-  },
-];
+const pdfPath = '/SLAMM_reglement_interieur.pdf';
 ---
 
 <Layout
@@ -82,52 +19,28 @@ const sections = [
           <p class="section-label">Association SLAMM</p>
           <h1 class="reglement-title">Règlement intérieur</h1>
           <p class="reglement-sub">Le règlement intérieur officiel de l'association Saint-Lunaire Arts Martiaux Mixtes. À lire et accepter par tout adhérent.</p>
+          <a href={pdfPath} download class="btn-download">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Télécharger le PDF
+          </a>
         </div>
 
-        <div class="reglement-layout">
-
-          <!-- Contenu principal -->
-          <article class="reglement-body reveal">
-            <div class="intro-block">
-              <p>Toute inscription ne sera définitive que lorsque vous aurez retourné ce document, accompagné de toutes les pièces à fournir.</p>
-              <ul>
-                <li>La cotisation annuelle et la Licence ne peuvent pas être remboursées.</li>
-                <li>Un certificat médical attestant l'absence de contre-indication à la pratique des arts martiaux mixtes (MMA) est obligatoire, que ce soit en loisir ou en compétition.</li>
-              </ul>
-            </div>
-
-            {sections.map(s => (
-              <div class="article" id={s.id}>
-                <h2>{s.title}</h2>
-                <ol>
-                  {s.items.map(item => <li>{item}</li>)}
-                </ol>
-                {s.note && (
-                  <p class="article-note">
-                    {s.note.text} <a href={s.note.link}>{s.note.linkText}</a>.
-                  </p>
-                )}
-              </div>
-            ))}
-
-            <div class="engagement">
-              <p>En tant qu'adhérent(e) à l'association SAINT-LUNAIRE ARTS MARTIAUX MIXTES, je m'engage à respecter l'ensemble de ces règles. Tout pratiquant ne respectant pas ce règlement risque des sanctions pouvant aller jusqu'à l'exclusion définitive sans remboursement.</p>
-            </div>
-          </article>
-
-          <!-- Sommaire -->
-          <aside class="sommaire">
-            <div class="sommaire-inner">
-              <p class="sommaire-title">Sommaire</p>
-              <nav>
-                {sections.map(s => (
-                  <a href={`#${s.id}`} class="sommaire-link">{s.title}</a>
-                ))}
-              </nav>
-            </div>
-          </aside>
-
+        <div class="pdf-wrapper reveal">
+          <iframe
+            src={pdfPath}
+            title="Règlement intérieur SLAMM"
+            class="pdf-frame"
+            type="application/pdf"
+          >
+            <p class="pdf-fallback">
+              Votre navigateur ne peut pas afficher le PDF.
+              <a href={pdfPath} download>Téléchargez-le ici</a>.
+            </p>
+          </iframe>
         </div>
+
       </div>
     </section>
   </main>
@@ -149,7 +62,21 @@ const sections = [
   }
 
   .reglement-header {
-    margin-bottom: 56px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .reglement-header > * {
+    flex-shrink: 0;
+  }
+
+  .reglement-header .section-label,
+  .reglement-header h1,
+  .reglement-header .reglement-sub {
+    width: 100%;
   }
 
   .section-label {
@@ -176,182 +103,61 @@ const sections = [
     color: var(--text-3);
     line-height: 1.7;
     max-width: 600px;
+    margin-bottom: 8px;
   }
 
-  /* Layout */
-  .reglement-layout {
-    display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: 48px;
-    align-items: start;
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--g600);
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--r-sm);
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
   }
 
-  /* Article body */
-  .reglement-body {
-    background: var(--bg1);
+  .btn-download:hover {
+    background: var(--g400);
+    transform: translateY(-1px);
+  }
+
+  .pdf-wrapper {
+    width: 100%;
     border: 1px solid var(--border);
     border-radius: var(--r-xl);
-    padding: 48px;
+    overflow: hidden;
+    background: var(--bg1);
   }
 
-  .intro-block {
-    padding-bottom: 32px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--border);
+  .pdf-frame {
+    display: block;
+    width: 100%;
+    height: 85vh;
+    min-height: 600px;
+    border: none;
   }
 
-  .intro-block p {
+  .pdf-fallback {
+    padding: 40px;
+    text-align: center;
     font-size: 14px;
     color: var(--text-3);
-    line-height: 1.8;
-    margin-bottom: 16px;
   }
 
-  .intro-block ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .intro-block ul li {
-    font-size: 14px;
-    color: var(--text-3);
-    line-height: 1.7;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .intro-block ul li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--g600);
-  }
-
-  .article {
-    padding-bottom: 36px;
-    margin-bottom: 36px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .article:last-of-type {
-    border-bottom: none;
-    margin-bottom: 32px;
-    padding-bottom: 0;
-  }
-
-  .article h2 {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--g400);
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-  }
-
-  .article ol {
-    list-style: none;
-    counter-reset: article-counter;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .article ol li {
-    counter-increment: article-counter;
-    font-size: 14px;
-    color: var(--text-3);
-    line-height: 1.8;
-    padding-left: 32px;
-    position: relative;
-  }
-
-  .article ol li::before {
-    content: counter(article-counter) '.';
-    position: absolute;
-    left: 0;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--g600);
-    min-width: 20px;
-    padding-top: 2px;
-  }
-
-  .article-note {
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--text-muted);
-    padding: 12px 16px;
-    background: rgba(34,197,94,0.05);
-    border-left: 2px solid var(--g600);
-    border-radius: 0 var(--r-sm) var(--r-sm) 0;
-  }
-
-  .article-note a {
+  .pdf-fallback a {
     color: var(--g400);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .engagement {
-    background: rgba(34,197,94,0.05);
-    border: 1px solid rgba(34,197,94,0.15);
-    border-radius: var(--r-md);
-    padding: 20px 24px;
-  }
-
-  .engagement p {
-    font-size: 14px;
-    color: var(--text-3);
-    line-height: 1.8;
-    font-style: italic;
-  }
-
-  /* Sommaire */
-  .sommaire-inner {
-    position: sticky;
-    top: 100px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 24px;
-  }
-
-  .sommaire-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-  }
-
-  .sommaire-inner nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .sommaire-link {
-    font-size: 13px;
-    color: var(--text-3);
-    line-height: 1.5;
-    padding: 6px 10px 6px 12px;
-    border-left: 2px solid var(--border);
-    border-radius: 0 var(--r-sm) var(--r-sm) 0;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
-  }
-
-  .sommaire-link:hover {
-    color: var(--g400);
-    border-color: var(--g500);
-    background: rgba(34,197,94,0.05);
-  }
-
-  @media (max-width: 900px) {
-    .reglement-layout { grid-template-columns: 1fr; }
-    .sommaire { display: none; }
-    .reglement-body { padding: 32px 24px; }
+  @media (max-width: 768px) {
+    .pdf-frame {
+      height: 75vh;
+      min-height: 480px;
+    }
   }
 </style>

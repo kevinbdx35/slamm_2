@@ -10,13 +10,11 @@ const displayIdx = isOffSeason ? 0 : activeIdx;
 
 const periods = PRICING.adult.periods.map((p: any, i: number) => ({
   label: p.label,
-  adult: `${p.price} €`,
-  young: `${PRICING.young.periods[i].price} €`,
+  price: `${p.price} €`,
   current: i === displayIdx,
 }));
 
 const activeAdultPrice = PRICING.adult.periods[displayIdx].price;
-const activeYoungPrice = PRICING.young.periods[displayIdx].price;
 const activePeriodLabel = PRICING.adult.periods[displayIdx].label;
 
 const monthMap: Record<string, string> = { 'Déc': 'décembre', 'Mars': 'mars', 'Juin': 'juin' };
@@ -64,14 +62,9 @@ const steps = [
       <!-- Tarif cards -->
       <div class="tarif-col reveal">
         <div class="tarif-cards">
-          <div class="tarif-card">
-            <p class="tarif-age">Adulte <span>+25 ans</span></p>
-            <p class="tarif-price">{activeAdultPrice} <em>€</em></p>
-            <p class="tarif-note">{isOffSeason ? 'prochaine saison · sept → déc' : `tarif actuel · ${activePeriodLabel.toLowerCase()}`}</p>
-          </div>
           <div class="tarif-card tarif-card-accent">
-            <p class="tarif-age">Jeune <span>+16 ans</span></p>
-            <p class="tarif-price">{activeYoungPrice} <em>€</em></p>
+            <p class="tarif-age">Adhésion <span>+16 ans</span></p>
+            <p class="tarif-price">{activeAdultPrice} <em>€</em></p>
             <p class="tarif-note">{isOffSeason ? 'prochaine saison · sept → déc' : `tarif actuel · ${activePeriodLabel.toLowerCase()}`}</p>
           </div>
         </div>
@@ -107,12 +100,6 @@ const steps = [
       <div class="degressif reveal reveal-delay-2">
         <p class="degressif-title">Tarif dégressif selon la période</p>
 
-        <div class="periods-header">
-          <span></span>
-          <span class="ph-adult">Adulte</span>
-          <span class="ph-young">Jeune</span>
-        </div>
-
         <div class="periods">
           {periods.map(p => (
             <div class={`period${p.current ? ' period-current' : ''}`}>
@@ -120,8 +107,7 @@ const steps = [
                 {p.label}
                 {p.current && <span class="period-badge">En cours</span>}
               </div>
-              <span class="period-adult">{p.adult}</span>
-              <span class="period-young">{p.young}</span>
+              <span class="period-price">{p.price}</span>
             </div>
           ))}
         </div>
@@ -235,7 +221,7 @@ const steps = [
 
   .tarif-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
@@ -341,28 +327,6 @@ const steps = [
     margin-bottom: 4px;
   }
 
-  /* En-têtes colonnes */
-  .periods-header {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: 0 24px;
-    padding: 0 20px 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .ph-adult,
-  .ph-young {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    min-width: 60px;
-    text-align: right;
-  }
-
-  .ph-adult { color: var(--text-3); }
-  .ph-young { color: var(--g500); }
-
   .periods {
     display: flex;
     flex-direction: column;
@@ -373,7 +337,7 @@ const steps = [
 
   .period {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     gap: 0 24px;
     align-items: center;
     padding: 18px 20px;
@@ -405,9 +369,7 @@ const steps = [
     border-radius: 4px;
   }
 
-  /* Montants — Inter, chiffres tabulaires */
-  .period-adult,
-  .period-young {
+  .period-price {
     font-family: var(--font-body);
     font-size: 20px;
     font-weight: 700;
@@ -415,10 +377,8 @@ const steps = [
     font-variant-numeric: tabular-nums;
     min-width: 60px;
     text-align: right;
+    color: var(--g400);
   }
-
-  .period-adult { color: var(--text); }
-  .period-young { color: var(--g400); }
 
   .validity-note {
     display: flex;

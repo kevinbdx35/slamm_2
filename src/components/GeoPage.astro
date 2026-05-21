@@ -1,0 +1,585 @@
+---
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import Layout from '../layouts/Layout.astro';
+import { ASSOCONNECT_URLS, CONTACT_INFO } from '../config/urls.js';
+import { SCHEDULE, PRICING, SEASON, getActivePeriodIndex, formatTimeDisplay } from '../config/schedule.js';
+import { Image } from 'astro:assets';
+import cageImg from '../assets/img/team/cage.webp';
+import teamImg from '../assets/img/team/team.webp';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  city: string;
+  distance: string;
+  areaServed: string[];
+  schema: object;
+}
+
+const { title, description, canonical, city, distance, areaServed, schema } = Astro.props;
+
+const disciplines = [
+  { name: 'MMA', icon: '⬡', desc: 'La discipline reine : debout, clinch, sol. Un sport complet qui synthétise les meilleures techniques de combat du monde.', sessions: 'Lun · Mer · Ven' },
+  { name: 'Sparring', icon: '◆', desc: 'La mise en pratique libre. Appliquer ses techniques dans des échanges encadrés, en toute sécurité et dans le respect de l\'adversaire.', sessions: 'Vendredi 20h' },
+  { name: 'Luta Livre', icon: '◎', desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires — le grappling dans sa forme la plus pure.', sessions: 'Mardi 18h15' },
+];
+
+const activeIdx = getActivePeriodIndex();
+const displayIdx = activeIdx === -1 ? 0 : activeIdx;
+const adultPrice = PRICING.adult.periods[displayIdx].price;
+const periodLabel = PRICING.adult.periods[displayIdx].label.toLowerCase();
+---
+
+<Layout {title} {description} {canonical} pageSchema={schema}>
+  <Nav />
+  <main>
+
+    <!-- Hero -->
+    <section class="geo-hero">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="orb orb-1" aria-hidden="true"></div>
+      <div class="orb orb-2" aria-hidden="true"></div>
+      <div class="geo-hero-inner">
+        <div class="container">
+          <p class="section-label">Club de MMA · À {distance} de {city}</p>
+          <h1 class="geo-h1">MMA à {city} —<br/><span>le club SLAMM est à {distance}</span></h1>
+          <p class="geo-hero-sub">Pratique le MMA dans un club sérieux et convivial, à Saint-Lunaire.<br/>À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</p>
+          <div class="geo-actions">
+            <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              Réserver un essai
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/disciplines" class="btn-ghost">Voir les disciplines</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="geo-intro-section">
+      <div class="container geo-intro-grid">
+        <div class="geo-intro-text reveal">
+          <p class="section-label">{city} & alentours</p>
+          <h2 class="section-title">
+            Le club MMA<br/>
+            <span>le plus proche de {city}</span>
+          </h2>
+          <p class="geo-body">Vous habitez {areaServed.join(', ')} ? SLAMM est votre club de MMA le plus proche, à Saint-Lunaire, à seulement {distance} en voiture. Grappling, No-Gi, boxe, kickboxing et lutte pour tous les niveaux.</p>
+          <p class="geo-body">Des coachs diplômés FMMAF, une vraie communauté — sans faire des kilomètres.</p>
+          <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary btn-inline">
+            Réserver un essai gratuit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <Image src={teamImg} alt={`L'équipe SLAMM — club MMA proche de ${city}`} class="geo-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Disciplines -->
+    <section class="geo-disc-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Ce qu'on pratique</p>
+          <h2 class="section-title">
+            Les disciplines<br/>
+            <span>accessibles depuis {city}</span>
+          </h2>
+        </div>
+        <div class="geo-disc-grid">
+          {disciplines.map((d, i) => (
+            <article class={`disc-card reveal reveal-delay-${i + 1}`}>
+              <div class="disc-top">
+                <span class="disc-icon" aria-hidden="true">{d.icon}</span>
+                <span class="disc-sessions">{d.sessions}</span>
+              </div>
+              <div class="disc-body">
+                <h3 class="disc-name">{d.name}</h3>
+                <p class="disc-desc">{d.desc}</p>
+              </div>
+              <div class="disc-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Infos pratiques -->
+    <section class="geo-infos-section">
+      <div class="container geo-infos-grid">
+        <div class="info-card reveal">
+          <p class="info-card-title">Accès depuis {city}</p>
+          <ul class="info-list">
+            <li>🚗 {distance} en voiture</li>
+            <li>📍 361 Rue de la Saudrais, 35800 Saint-Lunaire</li>
+            <li>🅿️ Parking gratuit sur place</li>
+          </ul>
+          <div class="schedule-list">
+            {SCHEDULE.map(s => (
+              <div class="schedule-row">
+                <span class="schedule-day">{s.day}</span>
+                <span class="schedule-time">{formatTimeDisplay(s.start)} → {formatTimeDisplay(s.end)}</span>
+                {s.label && <span class="schedule-label">{s.label}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <p class="info-card-title">Tarifs {SEASON}</p>
+          <ul class="info-list">
+            <li>Adhésion (+16 ans) : <strong>{adultPrice} €</strong> <span class="period-note">{periodLabel}</span></li>
+            <li>Licence fédérale + assurance incluses</li>
+            <li>CB en 3 fois possible</li>
+          </ul>
+          <a href="/tarifs" class="info-link">Voir les tarifs détaillés →</a>
+        </div>
+        <div class="info-card reveal reveal-delay-3">
+          <p class="info-card-title">Cours d'essai</p>
+          <ul class="info-list">
+            <li>Gratuit en début de saison (sept–oct)</li>
+            <li>{PRICING.trial.price} € par séance en cours d'année</li>
+            <li>Déductible de l'adhésion si inscription</li>
+            <li>À partir de 16 ans · Aucune expérience requise</li>
+          </ul>
+          <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="info-link">Réserver →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="geo-cta-section">
+      <div class="container geo-cta reveal">
+        <p class="section-label">Prêt à te lancer ?</p>
+        <h2 class="section-title">
+          Rejoins le club MMA<br/>
+          <span>le plus proche de {city}</span>
+        </h2>
+        <p class="geo-cta-sub">Premier cours gratuit en début de saison. Aucune expérience requise.</p>
+        <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Réserver un cours d'essai
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .geo-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(34,197,94,0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+
+  .orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(22,163,74,0.18) 0%, transparent 70%);
+    top: -80px;
+    right: 5%;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(74,222,128,0.10) 0%, transparent 70%);
+    bottom: 0;
+    left: 10%;
+    animation: drift 16s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.05); }
+  }
+
+  .geo-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 140px 0 80px;
+  }
+
+  .geo-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin: 16px 0 20px;
+  }
+
+  .geo-h1 span { color: var(--g400); }
+
+  .geo-hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--text-3);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  .geo-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Boutons (alignés design system) ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--g500);
+    padding: 14px 28px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--g400); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--g400);
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.25);
+    padding: 14px 28px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-ghost:hover { background: rgba(34,197,94,0.14); transform: translateY(-1px); }
+
+  .btn-inline { align-self: flex-start; margin-top: 8px; }
+
+  /* ── Section labels & titres ── */
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--g500);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-top: 12px;
+  }
+
+  .section-title span { color: var(--g400); }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+
+  /* ── Intro ── */
+  .geo-intro-section {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .geo-intro-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .geo-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .geo-intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .geo-body {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  .geo-img {
+    border-radius: var(--r-xl);
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  /* ── Disciplines ── */
+  .geo-disc-section {
+    padding: 120px 0;
+    background: var(--bg1);
+    position: relative;
+  }
+
+  .geo-disc-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .geo-disc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .disc-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .disc-card:hover {
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+
+  .disc-icon {
+    font-size: 24px;
+    color: var(--g500);
+    line-height: 1;
+  }
+
+  .disc-sessions {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .disc-body { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+  .disc-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .disc-desc {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.7;
+  }
+
+  .disc-arrow {
+    color: var(--g500);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .disc-card:hover .disc-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  /* ── Infos pratiques ── */
+  .geo-infos-section {
+    padding: 120px 0;
+    position: relative;
+  }
+
+  .geo-infos-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .geo-infos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .info-card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .info-card-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .info-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--g400);
+    transition: color 0.2s;
+  }
+
+  .info-link:hover { color: var(--g500); }
+
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 4px;
+  }
+
+  .schedule-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .schedule-day {
+    font-weight: 600;
+    color: var(--text);
+    min-width: 70px;
+  }
+
+  .schedule-time { color: var(--text-3); }
+
+  .schedule-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--g500);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .period-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .info-list strong { color: var(--text); }
+
+  /* ── CTA final ── */
+  .geo-cta-section {
+    padding: 120px 0;
+    background: var(--bg1);
+    position: relative;
+  }
+
+  .geo-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .geo-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .geo-cta-sub {
+    font-size: 16px;
+    color: var(--text-3);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .geo-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    .geo-disc-grid { grid-template-columns: repeat(2, 1fr); }
+    .geo-infos-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .geo-hero-inner { padding: 120px 0 60px; }
+    .geo-disc-grid { grid-template-columns: 1fr; }
+    .disc-arrow { opacity: 1; }
+  }
+</style>

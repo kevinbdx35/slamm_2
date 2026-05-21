@@ -1,0 +1,35 @@
+---
+import GeoPage from '../components/GeoPage.astro';
+import { CONTACT_INFO } from '../config/urls.js';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://mma-saint-lunaire.fr/mma-dinard',
+  name: 'Saint-Lunaire Arts Martiaux Mixtes — Club MMA proche de Dinard',
+  description: 'Club de MMA à Saint-Lunaire, à 5 minutes de Dinard. Grappling, No-Gi, boxe, kickboxing, lutte. Tous niveaux, coachs diplômés FMMAF.',
+  url: 'https://mma-saint-lunaire.fr/mma-dinard',
+  telephone: CONTACT_INFO.PHONE,
+  email: CONTACT_INFO.EMAIL,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '361 Rue de la Saudrais',
+    addressLocality: 'Saint-Lunaire',
+    postalCode: '35800',
+    addressCountry: 'FR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 48.629217, longitude: -2.112208 },
+  areaServed: ['Dinard', 'Saint-Lunaire', 'Saint-Briac-sur-Mer', 'Lancieux'],
+  sport: 'Arts martiaux mixtes (MMA)',
+};
+---
+
+<GeoPage
+  title="Club MMA Dinard – À 5 min de Dinard | SLAMM Saint-Lunaire"
+  description="Vous cherchez un club de MMA proche de Dinard ? SLAMM est à 5 min à Saint-Lunaire. Grappling, No-Gi, boxe, kickboxing, lutte. Tous niveaux, coachs FMMAF."
+  canonical="/mma-dinard"
+  city="Dinard"
+  distance="5 min"
+  areaServed={["Dinard", "Saint-Briac-sur-Mer", "Lancieux"]}
+  {schema}
+/>

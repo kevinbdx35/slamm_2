@@ -30,14 +30,6 @@ export const SOCIAL_URLS = {
 };
 
 /**
- * URLs d'images et médias
- */
-export const MEDIA_URLS = {
-  SOCIAL_SHARE_IMAGE: "https://mma-saint-lunaire.fr/img/social/social.webp",
-  LOGO: "https://mma-saint-lunaire.fr/img/logo-slamm.png",
-};
-
-/**
  * URLs des partenaires
  */
 export const PARTNER_URLS = {
@@ -63,7 +55,6 @@ export const CONTACT_INFO = {
 export default {
   ASSOCONNECT_URLS,
   SOCIAL_URLS,
-  MEDIA_URLS,
   PARTNER_URLS,
   CONTACT_INFO,
 };

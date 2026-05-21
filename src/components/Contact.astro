@@ -1,4 +1,5 @@
 ---
+import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 ---
 
 <section class="contact" id="contact">
@@ -33,7 +34,7 @@
             </div>
             <div>
               <p class="contact-detail-label">Adresse</p>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=Saint-Lunaire+Arts+Martiaux+Mixtes" target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">361 Rue de la Saudrais<br/>35800 Saint-Lunaire</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Saint-Lunaire+Arts+Martiaux+Mixtes" target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">{CONTACT_INFO.TRAINING_ADDRESS}</a>
               <p class="contact-detail-note">Obtenir l'itinéraire</p>
             </div>
           </div>
@@ -60,7 +61,7 @@
             </div>
             <div>
               <p class="contact-detail-label">WhatsApp</p>
-              <a href="https://api.whatsapp.com/send/?phone=33782779288&text=Bonjour%2C+je+souhaite+des+informations+sur+le+club+de+MMA.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">07 82 77 92 88</a>
+              <a href={`https://api.whatsapp.com/send/?phone=${CONTACT_INFO.PHONE.replace(/[\s+]/g, '')}&text=Bonjour%2C+je+souhaite+des+informations+sur+le+club+de+MMA.&type=phone_number&app_absent=0`} target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">{CONTACT_INFO.PHONE}</a>
               <p class="contact-detail-note">Écrire sur WhatsApp</p>
             </div>
           </div>
@@ -75,7 +76,7 @@
             </div>
             <div>
               <p class="contact-detail-label">Instagram</p>
-              <a href="https://www.instagram.com/slamm35800" target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">@slamm35800</a>
+              <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">@slamm35800</a>
             </div>
           </div>
         </div>
