@@ -17,7 +17,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
       <p class="contact-body">
         Les essais sont gratuits durant le premier mois suivant la date de reprise.
         En dehors de cette période, un essai est possible pour 5€.
-        Contactez-nous et nous vous accueillerons lors de la prochaine session.
+        Contacte-nous et nous t'accueillerons lors de la prochaine session.
       </p>
     </div>
 
@@ -91,17 +91,17 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           <div class="form-row">
             <div class="field">
               <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name" required />
+              <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" autocomplete="given-name" required />
             </div>
             <div class="field">
               <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" placeholder="Votre nom" autocomplete="family-name" required />
+              <input type="text" id="nom" name="nom" placeholder="Ton nom" autocomplete="family-name" required />
             </div>
           </div>
 
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.fr" autocomplete="email" required />
+            <input type="email" id="email" name="email" placeholder="ton@email.fr" autocomplete="email" required />
           </div>
 
           <div class="field">
@@ -554,7 +554,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
       if (!res.ok) throw new Error(String(res.status));
       btnText.textContent = 'Message envoyé !';
       status.className = 'form-status success';
-      status.textContent = 'Merci, votre demande a bien été envoyée. Nous vous répondrons sous 24h.';
+      status.textContent = 'Merci, ta demande a bien été envoyée. On te répond sous 24h.';
     } catch {
       btnText.textContent = 'Envoyer ma demande';
       submitBtn.disabled = false;

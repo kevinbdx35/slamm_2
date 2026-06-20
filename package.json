@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/syne": "^5.2.7",
     "astro": "^6.1.8",
     "leaflet": "^1.9.4"
   },

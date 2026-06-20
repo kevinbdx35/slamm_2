@@ -30,7 +30,7 @@ export const EVENTS = [
     image: "/img/events/stage_1.webp",
     imageWidth: 900,
     imageHeight: 1600,
-    status: "upcoming"
+    status: "past"
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ export const EVENTS = [
     image: "/img/events/jonathan.webp",
     imageWidth: 923,
     imageHeight: 1154,
-    status: "upcoming"
+    status: "past"
   },
   {
     id: 3,
@@ -106,7 +106,7 @@ export const EVENTS = [
     image: null,
     imageWidth: null,
     imageHeight: null,
-    status: "upcoming"
+    status: "past"
   },
 ];
 

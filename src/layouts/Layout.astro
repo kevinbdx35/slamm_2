@@ -1,6 +1,14 @@
 ---
 import FloatingTrialButton from '../components/FloatingTrialButton.astro';
 import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
+
+// Polices auto-hébergées (perf + RGPD/CSP, plus de dépendance à Google Fonts)
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/syne/700.css';
+import '@fontsource/syne/800.css';
 interface Props {
   title?: string;
   description?: string;
@@ -16,7 +24,7 @@ const {
   pageSchema,
 } = Astro.props;
 
-const siteUrl = Astro.site?.origin ?? 'https://saint-lunaire-mma.fr';
+const siteUrl = Astro.site?.origin ?? 'https://mma-saint-lunaire.fr';
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.png`;
 
@@ -107,9 +115,6 @@ const schema = {
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
