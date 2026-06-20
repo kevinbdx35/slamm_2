@@ -551,33 +551,28 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   });
 </script>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script is:inline>
-  (function () {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-    script.onload = function () {
-      const lat = 48.629217, lng = -2.112208, zoom = 16;
-      const map = L.map('leaflet-map', { zoomControl: true, scrollWheelZoom: false }).setView([lat, lng], zoom);
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19,
-      }).addTo(map);
+  const lat = 48.629217, lng = -2.112208, zoom = 16;
+  const map = L.map('leaflet-map', { zoomControl: true, scrollWheelZoom: false }).setView([lat, lng], zoom);
 
-      const icon = L.divIcon({
-        className: '',
-        html: '<div style="width:14px;height:14px;background:#22c55e;border:2px solid #f0fdf4;border-radius:50%;box-shadow:0 0 0 4px rgba(34,197,94,0.3)"></div>',
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
-      });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
 
-      L.marker([48.629217, -2.112208], { icon })
-        .addTo(map)
-        .bindPopup('<strong style="color:#080f0a">Saint-Lunaire MMA</strong><br><span style="color:#555;font-size:12px">361 Rue de la Saudrais</span>')
-        .openPopup();
-    };
-    document.head.appendChild(script);
-  })();
+  const icon = L.divIcon({
+    className: '',
+    html: '<div style="width:14px;height:14px;background:#22c55e;border:2px solid #f0fdf4;border-radius:50%;box-shadow:0 0 0 4px rgba(34,197,94,0.3)"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+  });
+
+  L.marker([48.629217, -2.112208], { icon })
+    .addTo(map)
+    .bindPopup('<strong style="color:#080f0a">Saint-Lunaire MMA</strong><br><span style="color:#555;font-size:12px">361 Rue de la Saudrais</span>')
+    .openPopup();
 </script>
