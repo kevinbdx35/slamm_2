@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+const pdfPath = '/SLAMM_poster_regles_sparring.pdf';
+
 const sparringSections = [
   {
     id: 'le-sparring-sert-a-apprendre',
@@ -31,92 +33,6 @@ const sparringSections = [
   },
 ];
 
-const securitySections = [
-  {
-    id: 'respect-du-tap',
-    title: 'Respect du tap',
-    intro: 'Le tap signifie l\'arrêt immédiat de l\'action, généralement pour prévenir une blessure.',
-    items: [
-      'Le tap peut se faire <strong>sur le corps du partenaire</strong>, <strong>sur le tapis</strong> ou <strong>verbalement</strong> en disant "tap"',
-      'Arrêt immédiat obligatoire, quelle qu\'en soit la raison',
-    ],
-  },
-  {
-    id: 'conscience-de-lespace',
-    title: "Conscience de l'espace",
-    items: [
-      'Attention aux autres groupes et aux limites du tapis',
-      'Adapter la technique ou recommencer si un risque de collision existe',
-      'La sécurité prime toujours sur la finalisation',
-    ],
-  },
-  {
-    id: 'striking-controle',
-    title: 'Striking contrôlé',
-    items: [
-      'Les frappes sont contrôlées et adaptées au niveau et au thème du cours',
-      'Puissance réduite, <strong>précision prioritaire</strong>',
-      'Aucune frappe non maîtrisée ou hors consignes du coach',
-    ],
-  },
-  {
-    id: 'clinch-et-travail-contre-la-cage',
-    title: 'Clinch et travail contre la cage',
-    items: [
-      'Contrôler le partenaire lors du travail au clinch et contre la cage',
-      'Interdiction de projeter violemment ou d\'écraser le partenaire contre la cage',
-      'Attention particulière aux chutes et aux sorties de cage',
-    ],
-  },
-  {
-    id: 'projections-et-amenees-au-sol',
-    title: 'Projections et amenées au sol',
-    items: [
-      'Il est interdit de soulever et projeter violemment un partenaire au sol',
-      'Les projections et amenées au sol doivent être <strong>contrôlées et accompagnées</strong>',
-      'Toujours accompagner la chute du partenaire',
-      'Aucune projection incontrôlée ou dangereuse',
-    ],
-  },
-  {
-    id: 'techniques-sautees-interdites',
-    title: 'Techniques sautées interdites',
-    intro: 'Sont interdits :',
-    items: [
-      'Armbars volants',
-      'Triangles sautés',
-      'Guard pulls sautés',
-      'Toute technique impliquant une perte de contrôle',
-    ],
-    outro: 'Privilégier des entrées stables, maîtrisées et sécurisées depuis la position debout.',
-  },
-  {
-    id: 'application-des-soumissions',
-    title: 'Application des soumissions',
-    items: [
-      'Priorité au <strong>contrôle</strong> plutôt qu\'à la vitesse ou à la force',
-      'Les soumissions doivent être appliquées <strong>progressivement</strong>',
-      'Vigilance renforcée sur les clés de jambes avec rotation (heel hooks, toe holds)',
-    ],
-  },
-  {
-    id: 'frappes-au-sol',
-    title: 'Frappes au sol',
-    items: [
-      'Les frappes au sol sont techniques et contrôlées, jamais brutales',
-      'Objectif : placement, posture, timing et défense',
-      'Les frappes au sol doivent être mesurées et stoppées immédiatement au tap ou à la consigne',
-    ],
-  },
-  {
-    id: 'protection-des-doigts-et-des-orteils',
-    title: 'Protection des doigts et des orteils',
-    items: [
-      'Interdiction de saisir ou de tordre un doigt ou un orteil isolé',
-      'Saisir la <strong>main entière</strong>, le <strong>pied entier</strong>, le <strong>poignet</strong> ou la <strong>cheville</strong>',
-    ],
-  },
-];
 ---
 
 <Layout
@@ -153,23 +69,6 @@ const securitySections = [
               </blockquote>
             </div>
 
-            <div class="divider"></div>
-
-            <div class="chapter">
-              <h2 id="regles-de-securite" class="chapter-title">Règles de sécurité</h2>
-
-              {securitySections.map(s => (
-                <div class="section-block">
-                  <h3 id={s.id}>{s.title}</h3>
-                  {s.intro && <p>{s.intro}</p>}
-                  <ul>
-                    {s.items.map(item => <li set:html={item} />)}
-                  </ul>
-                  {s.outro && <p class="outro">{s.outro}</p>}
-                </div>
-              ))}
-            </div>
-
           </article>
 
           <aside class="sommaire">
@@ -181,14 +80,37 @@ const securitySections = [
                   <a href={`#${s.id}`} class="sommaire-link sommaire-link--child">{s.title}</a>
                 ))}
                 <a href="#regles-de-securite" class="sommaire-link sommaire-link--parent" style="margin-top: 8px;">Règles de sécurité</a>
-                {securitySections.map(s => (
-                  <a href={`#${s.id}`} class="sommaire-link sommaire-link--child">{s.title}</a>
-                ))}
               </nav>
             </div>
           </aside>
 
         </div>
+
+        <div class="pdf-section reveal">
+          <div class="pdf-section-header">
+            <h2 id="regles-de-securite" class="chapter-title">Règles de sécurité</h2>
+            <a href={pdfPath} download class="btn-download">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Télécharger le PDF
+            </a>
+          </div>
+          <div class="pdf-wrapper">
+            <iframe
+              src={pdfPath}
+              title="Règles de sécurité SLAMM"
+              class="pdf-frame"
+              type="application/pdf"
+            >
+              <p class="pdf-fallback">
+                Votre navigateur ne peut pas afficher le PDF.
+                <a href={pdfPath} download>Téléchargez-le ici</a>.
+              </p>
+            </iframe>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -403,9 +325,79 @@ const securitySections = [
     background: rgba(34,197,94,0.05);
   }
 
+  /* PDF section */
+  .pdf-section {
+    margin-top: 56px;
+  }
+
+  .pdf-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .pdf-section-header .chapter-title {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--g600);
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--r-sm);
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .btn-download:hover {
+    background: var(--g400);
+    transform: translateY(-1px);
+  }
+
+  .pdf-wrapper {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    background: var(--bg1);
+  }
+
+  .pdf-frame {
+    display: block;
+    width: 100%;
+    height: 85vh;
+    min-height: 600px;
+    border: none;
+  }
+
+  .pdf-fallback {
+    padding: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+
+  .pdf-fallback a {
+    color: var(--g400);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   @media (max-width: 900px) {
     .sparring-layout { grid-template-columns: 1fr; }
     .sommaire { display: none; }
     .sparring-body { padding: 32px 24px; }
+    .pdf-frame { height: 75vh; min-height: 480px; }
   }
 </style>

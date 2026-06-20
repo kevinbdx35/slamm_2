@@ -15,7 +15,8 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
         </h2>
       </div>
       <p class="contact-body">
-        Un essai gratuit vous est offert pour toutes les disciplines.
+        Les essais sont gratuits durant le premier mois suivant la date de reprise.
+        En dehors de cette période, un essai est possible pour 5€.
         Contactez-nous et nous vous accueillerons lors de la prochaine session.
       </p>
     </div>
@@ -101,22 +102,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           <div class="field">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="votre@email.fr" autocomplete="email" required />
-          </div>
-
-          <div class="field">
-            <label for="discipline">Discipline souhaitée</label>
-            <div class="select-wrap">
-              <select id="discipline" name="discipline">
-                <option value="">Choisir une discipline…</option>
-                <option>MMA</option>
-                <option>Luta Livre No-Gi</option>
-                <option>Sparring MMA</option>
-                <option>Je ne sais pas encore</option>
-              </select>
-              <svg class="select-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
           </div>
 
           <div class="field">
@@ -267,7 +252,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
-    align-items: start;
+    align-items: stretch;
     margin-bottom: 48px;
   }
 
