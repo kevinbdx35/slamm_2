@@ -117,6 +117,8 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
               </svg>
             </span>
           </button>
+
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -375,40 +377,12 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     background: var(--surface);
   }
 
-  .select-wrap { position: relative; }
-
-  .select-wrap select {
-    appearance: none;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-sm);
-    padding: 12px 40px 12px 16px;
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    cursor: pointer;
-    width: 100%;
-    transition: border-color 0.2s;
-  }
-
-  .select-wrap select:focus { border-color: rgba(34,197,94,0.4); }
-
-  .select-chevron {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-  }
-
   .form-submit {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background: var(--g600);
+    background: var(--g500);
     border: none;
     border-radius: var(--r-md);
     padding: 16px 24px;
@@ -418,30 +392,44 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   }
 
   .form-submit:hover {
-    background: var(--g500);
+    background: var(--g400);
     transform: translateY(-2px);
+  }
+
+  .form-submit:disabled {
+    cursor: default;
+    transform: none;
   }
 
   .submit-text {
     font-family: var(--font-body);
     font-size: 15px;
     font-weight: 600;
-    color: white;
+    color: var(--bg);
     letter-spacing: 0.01em;
   }
 
   .submit-icon {
     width: 32px;
     height: 32px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(8,15,10,0.18);
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: white;
+    color: var(--bg);
     transition: transform 0.2s;
   }
 
-  .form-submit:hover .submit-icon { transform: translateX(3px); }
+  .form-submit:hover:not(:disabled) .submit-icon { transform: translateX(3px); }
+
+  .form-status {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    min-height: 1.2em;
+  }
+  .form-status.success { color: var(--g400); }
+  .form-status.error { color: #f87171; }
 
   /* Infos pratiques */
   .practical-info {
@@ -543,6 +531,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   }
 
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status') as HTMLElement;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
@@ -553,6 +542,8 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     const btnText = form.querySelector('.submit-text') as HTMLElement;
     submitBtn.disabled = true;
     btnText.textContent = 'Envoi…';
+    status.className = 'form-status';
+    status.textContent = '';
     try {
       const body = new URLSearchParams(new FormData(form) as any).toString();
       const res = await fetch('/', {
@@ -562,9 +553,13 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
       });
       if (!res.ok) throw new Error(String(res.status));
       btnText.textContent = 'Message envoyé !';
+      status.className = 'form-status success';
+      status.textContent = 'Merci, votre demande a bien été envoyée. Nous vous répondrons sous 24h.';
     } catch {
-      btnText.textContent = 'Erreur — réessayez';
+      btnText.textContent = 'Envoyer ma demande';
       submitBtn.disabled = false;
+      status.className = 'form-status error';
+      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous écrire directement.';
     }
   });
 </script>

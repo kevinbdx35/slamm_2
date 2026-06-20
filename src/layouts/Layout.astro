@@ -18,7 +18,7 @@ const {
 
 const siteUrl = Astro.site?.origin ?? 'https://saint-lunaire-mma.fr';
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
-const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.svg`;
+const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-image.png`;
 
 const pageNames: Record<string, string> = {
   '/disciplines': 'Disciplines',
@@ -76,6 +76,7 @@ const schema = {
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
 
@@ -89,6 +90,9 @@ const schema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="fr_FR" />
 
     <!-- Twitter Card -->
@@ -109,6 +113,7 @@ const schema = {
     <title>{title}</title>
   </head>
   <body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
     <div class="site-bg" aria-hidden="true">
       <div class="site-bg-grid"></div>
       <div class="site-bg-orb site-bg-orb-1"></div>
@@ -242,20 +247,50 @@ const schema = {
     border-radius: 4px;
   }
 
+  /* Lien d'évitement — visible uniquement au focus clavier */
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1000;
+    padding: 10px 18px;
+    background: var(--g500);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: var(--r-sm);
+    transform: translateY(-150%);
+    transition: transform 0.2s var(--ease-out);
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
   ::selection {
     background: var(--g600);
     color: white;
   }
 
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 12px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--g700);
-    border-radius: 2px;
+    border-radius: 6px;
+    border: 3px solid var(--bg);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--g600);
+    background-clip: padding-box;
+    border: 3px solid var(--bg);
+  }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--g700) var(--bg);
   }
 
   img { display: block; max-width: 100%; }
@@ -272,13 +307,14 @@ const schema = {
     .container { padding: 0 16px; }
   }
 
-  /* Reveal animation */
-  .reveal {
+  /* Reveal animation — appliquée uniquement si le JS est actif (sinon le
+     contenu reste visible : pas de page blanche si l'observer ne tourne pas) */
+  .js .reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
   }
-  .reveal.visible {
+  .js .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -286,4 +322,19 @@ const schema = {
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Respect des préférences de mouvement réduit */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
