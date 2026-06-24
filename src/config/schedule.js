@@ -54,7 +54,7 @@ export const SCHEDULE = [
 /**
  * Saison en cours
  */
-export const SEASON = '2025–2026';
+export const SEASON = '2026–2027';
 
 /**
  * Tarifs d'adhésion
