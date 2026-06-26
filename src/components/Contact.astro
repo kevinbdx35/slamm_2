@@ -118,6 +118,12 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
             </span>
           </button>
 
+          <p class="form-consent">
+            En envoyant ce formulaire, tu acceptes que tes données soient utilisées
+            uniquement pour répondre à ta demande. Consulte notre
+            <a href="/politique-confidentialite">politique de confidentialité</a>.
+          </p>
+
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -430,6 +436,17 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   }
   .form-status.success { color: var(--g400); }
   .form-status.error { color: #f87171; }
+
+  .form-consent {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .form-consent a {
+    color: var(--g400);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 
   /* Infos pratiques */
   .practical-info {

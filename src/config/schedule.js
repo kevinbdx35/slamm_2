@@ -57,6 +57,12 @@ export const SCHEDULE = [
 export const SEASON = '2026–2027';
 
 /**
+ * Inscriptions pas encore ouvertes pour la saison à venir.
+ * Passer à `false` dès l'ouverture (affiche/masque la bannière « bientôt ouvertes »).
+ */
+export const REGISTRATION_OPENING_SOON = true;
+
+/**
  * Tarifs d'adhésion
  */
 export const PRICING = {
@@ -128,6 +134,7 @@ export function getCourseScheduleSchema() {
 export default {
   SCHEDULE,
   SEASON,
+  REGISTRATION_OPENING_SOON,
   PRICING,
   getActivePeriodIndex,
   formatTimeDisplay,

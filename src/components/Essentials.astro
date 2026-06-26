@@ -1,5 +1,5 @@
 ---
-import { PRICING, SEASON, SCHEDULE, formatTimeDisplay } from '../config/schedule.js';
+import { PRICING, SEASON, REGISTRATION_OPENING_SOON, SCHEDULE, formatTimeDisplay } from '../config/schedule.js';
 import { getFaqByIds } from '../config/faq.js';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
@@ -30,6 +30,12 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   <div class="container">
 
     <div class="section-header reveal">
+      {REGISTRATION_OPENING_SOON && (
+        <p class="notice">
+          <span class="notice-dot" aria-hidden="true"></span>
+          Inscriptions saison {SEASON} <strong>ouvertes très bientôt</strong> — tu peux déjà réserver ton cours d'essai.
+        </p>
+      )}
       <p class="section-label">L'essentiel</p>
       <h2 class="section-title">
         Tout ce qu'il faut savoir,<br/>
@@ -151,6 +157,40 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     flex-direction: column;
     gap: 12px;
     margin-bottom: 48px;
+  }
+
+  .notice {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-2);
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 100px;
+    padding: 9px 18px;
+  }
+
+  .notice strong { color: var(--g400); font-weight: 700; }
+
+  .notice-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--g500);
+    flex-shrink: 0;
+    animation: notice-pulse 2s ease-out infinite;
+  }
+
+  @keyframes notice-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .notice-dot { animation: none; }
   }
 
   .section-label {
