@@ -31,7 +31,7 @@ const testimonials = [
     <div class="testimonials-grid">
       {testimonials.map((t, i) => (
         <blockquote class={`testi-card reveal reveal-delay-${i + 1}`}>
-          <div class="stars" aria-label="5 étoiles sur 5">
+          <div class="stars" role="img" aria-label="5 étoiles sur 5">
             {Array.from({length: 5}).map(() => (
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path d="M8 1l1.8 5.6H15l-4.6 3.3 1.8 5.6L8 12.2l-4.2 3.3 1.8-5.6L1 6.6h5.2z"/>
