@@ -4,108 +4,86 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-### Essential Commands
-- `npm run dev` - Start Astro development server with hot reload
-- `npm run build` - Build for production (outputs to `dist/`)
-- `npm run preview` - Preview production build locally
-- `npm run check` - Run Astro type checking
-- `npm run lint` - Run ESLint to check code quality
+Only three scripts are defined in `package.json`:
 
-### Deployment
-The site uses Netlify with a custom domain (`mma-saint-lunaire.fr`). Deployment is handled automatically by Netlify on push to main branch. The build outputs to `dist/` directory and is configured via `netlify.toml`.
+- `npm run dev` — Start the Astro dev server (hot reload)
+- `npm run build` — Build for production (outputs to `dist/`)
+- `npm run preview` — Preview the production build locally
+
+There is **no `check` or `lint` script**. ESLint (`eslint-plugin-astro`) is installed as a dev dependency but is not wired to a script and has no config file — the project's real validation is `npm run build` (it fails on template/type errors).
+
+## Deployment
+
+Static site deployed on **Netlify** with the custom domain `mma-saint-lunaire.fr`. Auto-deploys on push to `main`. Config in `netlify.toml`:
+- `build.command = "npm run build"`, `publish = "dist"`
+- 301 redirects (e.g. `/cours` → `/disciplines`) and a `/*` → `/404.html` fallback
 
 ## Architecture Overview
 
-This is a static site for SLAMM MMA Saint-Lunaire club, built with Astro + Tailwind CSS v4 and React islands for interactive components.
+Static marketing site for the SLAMM MMA Saint-Lunaire club, built with **Astro 6**. Zero client framework: every component is a `.astro` file producing static HTML. The only client-side JS is small inline scripts (nav burger, `.reveal` IntersectionObserver in the layout, and the Leaflet map).
 
 ### Tech Stack
-- **Astro 5** - Static Site Generator (SSG) with zero JS by default
-- **Tailwind CSS v4** - Utility-first CSS via `@tailwindcss/vite` plugin
-- **React 19** - Used only for interactive "island" components (`client:load` / `client:only`)
-- **Lucide React** - Lightweight icon library (replaces MUI icons)
-- **React Leaflet** - Interactive map on contact page
-- **@fontsource/ibm-plex-mono** - Brand typography
+- **Astro 6** (`^6.1.8`) — Static Site Generator, default `output: 'static'` (no adapter configured)
+- **Plain CSS** — design tokens as CSS custom properties + component-scoped `<style>` blocks. **No Tailwind, no CSS framework.**
+- **@astrojs/sitemap** — sitemap auto-generation
+- **Leaflet** (`leaflet`, vanilla JS) — interactive map in `Contact.astro`
+- **@fontsource/inter** + **@fontsource/syne** — typography (Inter = body, Syne = display)
 
 ### Project Structure
 
 ```
 src/
 ├── layouts/
-│   └── BaseLayout.astro    # Main layout (head, body, footer, SEO)
-├── pages/                  # Astro pages (9 + 404)
-│   ├── index.astro         # HomePage
-│   ├── cours.astro         # CoursPage
-│   ├── equipe.astro        # EquipePage
-│   ├── evenements.astro    # EvenementsPage
-│   ├── contact.astro       # ContactPage (Leaflet map island)
-│   ├── faq.astro           # FaqPage (Accordion island)
-│   ├── hygiene.astro       # HygienePage (Accordion island)
-│   ├── mentions-legales.astro
+│   └── Layout.astro        # Single layout: <head>/SEO, global CSS tokens, site background,
+│                           # skip-link, .reveal observer, FloatingTrialButton, Footer slot
+├── pages/                  # One .astro file per route (clean URLs via /page/index.html)
+│   ├── index.astro         # Accueil : Hero · About · Essentials · Testimonials · Partners
+│   ├── disciplines.astro   # Disciplines + <Schedule /> (ancre #horaires)
+│   ├── tarifs.astro        # <Pricing /> (détail complet des tarifs)
+│   ├── faq.astro           # FAQ complète (accordéon <details>)
+│   ├── equipe.astro · evenements.astro · contact.astro · equipements.astro
+│   ├── hygiene.astro · reglement.astro · mentions-legales.astro
+│   ├── politique-confidentialite.astro
+│   ├── mma-dinard.astro · mma-saint-malo.astro   # pages SEO local (<GeoPage />)
+│   ├── sparring.astro
 │   └── 404.astro
-├── components/
-│   ├── Footer.astro        # Static footer
-│   ├── Menu.jsx            # React island (navigation, drawer, theme toggle)
-│   ├── FloatingTrialButton.jsx  # React island (FAB with scroll trigger)
-│   ├── CustomCursor.jsx    # React island (interactive cursor)
-│   ├── Accordion.jsx       # React island (FAQ/Hygiene expandable sections)
-│   └── LeafletMap.jsx      # React island (contact map, client:only="react")
-├── config/
-│   ├── urls.js             # Centralized external URLs
-│   └── events.js           # Events data + utility functions
-├── utils/
-│   └── schemaGenerator.js  # Schema.org JSON-LD generators
-└── styles/
-    └── global.css          # Tailwind v4 config (@theme), base styles, components
+├── components/             # Sections .astro réutilisables
+│   ├── Nav.astro · Footer.astro · Hero.astro · About.astro
+│   ├── Essentials.astro    # Home : aperçu Tarifs + Horaires + mini-FAQ + CTA
+│   ├── Pricing.astro       # Section tarifs complète (utilisée par /tarifs)
+│   ├── Schedule.astro      # Grille des créneaux (utilisée par /disciplines)
+│   ├── Disciplines.astro · Team.astro · Events.astro · Testimonials.astro
+│   ├── Partners.astro · Contact.astro · GeoPage.astro
+│   └── FloatingTrialButton.astro
+└── config/                 # Sources de données centralisées (JS)
+    ├── schedule.js         # SCHEDULE, PRICING, SEASON + helpers (horaires/tarifs + Schema.org)
+    ├── faq.js              # FAQ_CATEGORIES + getFaqByIds() (source unique FAQ)
+    ├── urls.js             # ASSOCONNECT_URLS, SOCIAL_URLS, PARTNER_URLS, CONTACT_INFO
+    └── events.js           # Données + utilitaires événements
 ```
 
-### Key Architecture Patterns
+There is no `src/utils/` and no separate schema generator: Schema.org JSON-LD is built **inline** in each page's frontmatter and passed to `Layout` via the `pageSchema` prop.
 
-**Astro Islands Architecture:**
-- Pages are `.astro` files generating static HTML with zero JS
-- Interactive components use React with hydration directives:
-  - `client:load` - Hydrate immediately (Menu, FloatingTrialButton, Accordion)
-  - `client:only="react"` - Client-only rendering (LeafletMap)
-- Static components (Footer) are `.astro` files
+### Key Patterns
 
-**Tailwind CSS v4 Configuration:**
-- Config is done via `@theme` block in `src/styles/global.css` (no tailwind.config file)
-- Dark mode uses `@custom-variant dark (&:where(.dark, .dark *))` for class-based toggle
-- Reusable component classes defined in `@layer components` (heading-border, section-border, card-border, btn, etc.)
+**Data lives in `src/config/`, never duplicated in templates.** Pricing/horaires come from `schedule.js`; FAQ from `faq.js`; external links from `urls.js`. When a piece of info is needed in two places (e.g. FAQ on `/faq` and the home mini-FAQ), import it from the config rather than copy-pasting. `getFaqByIds([...])` selects specific questions by stable `id` for the home.
 
-**Theme System:**
-- MD3-inspired color tokens defined in `@theme` CSS block
-- Light mode: accessible green (#2e7d32) / Dark mode: neon green (#00ff5e)
-- IBM Plex Mono typography for brand identity
-- Dark mode toggle via `localStorage` + class on `<html>`
+**Styling conventions (no utility framework):**
+- Design tokens (colors `--g500`, fonts `--font-display`/`--font-body`, radii `--r-sm`…`--r-xl`, easings) are defined once in the `:root` of `Layout.astro`'s `<style is:global>`.
+- Globally available classes: `.container` (max-width wrapper) and the reveal-on-scroll system `.reveal` / `.reveal-delay-1..4` (driven by an IntersectionObserver in the layout).
+- Everything else (`.section-label`, `.section-title`, buttons, cards…) is **scoped per component** — these class names are re-declared inside each component's `<style>` block following the same pattern. When adding a section, copy the established `section-header` / `section-label` / `section-title` structure.
+- Single dark theme: accessible green on near-black. Prices use Inter + `tabular-nums` for legibility (see `Pricing.astro` / `Essentials.astro`).
 
-**SEO:**
-- Each page passes title, description, keywords, url props to BaseLayout
-- Schema.org JSON-LD injected in `<head>` (WebSite, SportsClub, Breadcrumb, page-specific)
-- Sitemap auto-generated by `@astrojs/sitemap`
+**Astro template gotchas:**
+- `.astro` files use `class` (not `className`), even inside expressions.
+- Use `set:html` for raw HTML injection (e.g. SVG strings from data).
+- Heading order: one `<h1>` in `Hero`, `<h2>` per section, `<h3>` for cards/sub-blocks.
 
-**URL Management:**
-- External URLs centralized in `src/config/urls.js`
-- Assoconnect booking links, social media, partner URLs
+**SEO:** each page passes `title`, `description` (and optional `pageSchema`) to `<Layout>`. The home FAQ does **not** emit FAQPage JSON-LD — that schema lives only on `/faq` to avoid duplication.
 
-### Configuration Files
+## Development Notes
 
-**Astro (`astro.config.mjs`):**
-- Static output with React + Tailwind + Sitemap integrations
-- Netlify adapter for deployment
-
-**ESLint (`eslint.config.js`):**
-- Modern ESLint flat config
-- React hooks plugin
-- Ignores dist and .astro directories
-
-### Development Notes
-
-**No Testing Framework:** This project doesn't have tests configured.
-
-**Mobile-First Design:** Bottom navigation optimized for mobile, responsive layouts throughout.
-
-**Custom Cursor:** Interactive cursor component with hover states (desktop only, >=769px).
-
-**Adding New Pages:** Create a new `.astro` file in `src/pages/`. Pass SEO props to `<BaseLayout>`. Add Schema.org data if relevant.
-
-**Font Loading:** Fonts are loaded via @fontsource imports in BaseLayout.astro.
+- **No testing framework** configured.
+- **Mobile-first / responsive** throughout; a floating "cours d'essai" button (`FloatingTrialButton.astro`) is present site-wide.
+- **Adding a page:** create `src/pages/<name>.astro`, render `<Nav />` … `<Footer />` inside `<Layout>`, pass SEO props, add inline Schema.org if relevant.
+- **Updating prices/horaires/FAQ/links:** edit the relevant file in `src/config/` — changes propagate everywhere.
