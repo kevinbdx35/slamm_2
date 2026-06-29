@@ -19,7 +19,7 @@ export const ASSOCONNECT_URLS = {
   TRIAL_BOOKING: "https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai",
   
   // Lien pour l'adhésion annuelle complète
-  ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/collect/description/540662-u-adhesion-annuelle-saison-2025-2026",
+  ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/collect/description/692330-u-adhesion-annuelle-saison-2026-2027",
 };
 
 /**

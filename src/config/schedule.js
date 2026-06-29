@@ -60,7 +60,7 @@ export const SEASON = '2026–2027';
  * Inscriptions pas encore ouvertes pour la saison à venir.
  * Passer à `false` dès l'ouverture (affiche/masque la bannière « bientôt ouvertes »).
  */
-export const REGISTRATION_OPENING_SOON = true;
+export const REGISTRATION_OPENING_SOON = false;
 
 /**
  * Tarifs d'adhésion
