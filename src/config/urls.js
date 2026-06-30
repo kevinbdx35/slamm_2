@@ -16,7 +16,7 @@
  */
 export const ASSOCONNECT_URLS = {
   // Lien pour réserver un cours d'essai (gratuit sept-oct, 5€ après)
-  TRIAL_BOOKING: "https://slamm.assoconnect.com/collect/description/586837-g-cours-d-essai",
+  TRIAL_BOOKING: "https://slamm.assoconnect.com/collect/description/728548-g-cours-d-essai-saison-2026-2027",
   
   // Lien pour l'adhésion annuelle complète
   ANNUAL_MEMBERSHIP: "https://slamm.assoconnect.com/collect/description/692330-u-adhesion-annuelle-saison-2026-2027",
