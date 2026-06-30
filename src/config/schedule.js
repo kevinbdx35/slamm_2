@@ -10,6 +10,7 @@
  * @property {string} start - Heure de début (format HH:MM)
  * @property {string} end - Heure de fin (format HH:MM)
  * @property {string} level - Niveau des participants
+ * @property {boolean} [inactive] - Créneau affiché mais pas encore actif (ex. début de saison)
  */
 export const SCHEDULE = [
   {
@@ -17,7 +18,8 @@ export const SCHEDULE = [
     dayEnglish: 'Monday',
     start: '18:00',
     end: '19:15',
-    level: 'Tous niveaux'
+    level: 'Tous niveaux',
+    inactive: true // pas encore actif en début de saison 2026–2027
   },
   {
     day: 'Mercredi',
@@ -100,7 +102,7 @@ export function formatTimeDisplay(time) {
  * @returns {string} HTML avec les horaires
  */
 export function getScheduleHTML() {
-  return SCHEDULE.map(s =>
+  return SCHEDULE.filter(s => !s.inactive).map(s =>
     `<strong>${s.day}</strong> ${formatTimeDisplay(s.start)} → ${formatTimeDisplay(s.end)}${s.label ? ` <em>(${s.label})</em>` : ''}`
   ).join('<br />');
 }
@@ -110,7 +112,7 @@ export function getScheduleHTML() {
  * @returns {Array} Array d'objets OpeningHoursSpecification
  */
 export function getOpeningHoursSchema() {
-  return SCHEDULE.map(s => ({
+  return SCHEDULE.filter(s => !s.inactive).map(s => ({
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": s.dayEnglish,
     "opens": s.start,
@@ -123,7 +125,7 @@ export function getOpeningHoursSchema() {
  * @returns {Array} Array d'objets Schedule
  */
 export function getCourseScheduleSchema() {
-  return SCHEDULE.map(s => ({
+  return SCHEDULE.filter(s => !s.inactive).map(s => ({
     "@type": "Schedule",
     "byDay": s.dayEnglish,
     "startTime": s.start,

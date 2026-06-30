@@ -13,7 +13,7 @@ const dayShort: Record<string, string> = {
   Lundi: 'Lun', Mardi: 'Mar', Mercredi: 'Mer',
   Jeudi: 'Jeu', Vendredi: 'Ven', Samedi: 'Sam',
 };
-const slots = [...SCHEDULE]
+const slots = SCHEDULE.filter((s: any) => !s.inactive)
   .sort((a: any, b: any) =>
     dayOrder.indexOf(a.day) - dayOrder.indexOf(b.day) || a.start.localeCompare(b.start))
   .map((s: any) => ({

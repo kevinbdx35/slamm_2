@@ -123,7 +123,7 @@ const periodLabel = PRICING.adult.periods[displayIdx].label.toLowerCase();
             <li>🅿️ Parking gratuit sur place</li>
           </ul>
           <div class="schedule-list">
-            {SCHEDULE.map(s => (
+            {SCHEDULE.filter(s => !s.inactive).map(s => (
               <div class="schedule-row">
                 <span class="schedule-day">{s.day}</span>
                 <span class="schedule-time">{formatTimeDisplay(s.start)} → {formatTimeDisplay(s.end)}</span>
