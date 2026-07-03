@@ -65,6 +65,15 @@ export const SEASON = '2026–2027';
 export const REGISTRATION_OPENING_SOON = false;
 
 /**
+ * Fermeture estivale : bandeau « club fermé, reprise en septembre ».
+ * Passer `active` à `false` à la reprise des cours pour masquer le bandeau.
+ */
+export const SUMMER_BREAK = {
+  active: true,
+  message: 'Club fermé pour l\'été — reprise des cours en septembre 2026. Inscriptions déjà ouvertes.'
+};
+
+/**
  * Tarifs d'adhésion
  */
 export const PRICING = {

@@ -1,6 +1,8 @@
 ---
 import FloatingTrialButton from '../components/FloatingTrialButton.astro';
+import SummerBreakBanner from '../components/SummerBreakBanner.astro';
 import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
+import { SUMMER_BREAK } from '../config/schedule.js';
 
 // Polices auto-hébergées (perf + RGPD/CSP, plus de dépendance à Google Fonts)
 import '@fontsource/inter/300.css';
@@ -117,8 +119,9 @@ const schema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class:list={[{ 'has-banner': SUMMER_BREAK.active }]}>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
+    <SummerBreakBanner />
     <div class="site-bg" aria-hidden="true">
       <div class="site-bg-grid"></div>
       <div class="site-bg-orb site-bg-orb-1"></div>
@@ -128,6 +131,16 @@ const schema = {
     <FloatingTrialButton />
   </body>
   <script>
+    // Bandeau de fermeture (fixe) : reporte sa hauteur réelle sur --banner-h
+    // pour décaler la nav et le contenu (le message peut passer sur 2 lignes).
+    const banner = document.querySelector<HTMLElement>('.summer-break');
+    if (banner) {
+      const setBannerHeight = () =>
+        document.documentElement.style.setProperty('--banner-h', `${banner.offsetHeight}px`);
+      setBannerHeight();
+      window.addEventListener('resize', setBannerHeight);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -188,6 +201,19 @@ const schema = {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+  }
+
+  /* Bandeau de fermeture estivale (fixe en haut) : réserve la place sous le
+     bandeau et décale la nav. --banner-h est affiné en JS selon la hauteur réelle. */
+  body.has-banner {
+    --banner-h: 42px;
+    padding-top: var(--banner-h);
+  }
+  body.has-banner #nav {
+    top: var(--banner-h);
+  }
+  html:has(body.has-banner) {
+    scroll-padding-top: calc(80px + 42px);
   }
 
   body {

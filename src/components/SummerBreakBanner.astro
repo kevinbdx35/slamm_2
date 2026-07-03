@@ -1,0 +1,57 @@
+---
+import { SUMMER_BREAK } from '../config/schedule.js';
+---
+
+{SUMMER_BREAK.active && (
+  <div class="summer-break" role="status">
+    <div class="container summer-break-inner">
+      <span class="summer-break-dot" aria-hidden="true"></span>
+      <p class="summer-break-text">{SUMMER_BREAK.message}</p>
+    </div>
+  </div>
+)}
+
+<style>
+  .summer-break {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    background: rgba(13,26,16,0.92);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .summer-break-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 9px 24px;
+    text-align: center;
+  }
+
+  .summer-break-dot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    background: var(--g500);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--g500);
+  }
+
+  .summer-break-text {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    color: var(--text-2);
+  }
+
+  @media (max-width: 600px) {
+    .summer-break-inner { padding: 8px 16px; }
+    .summer-break-text { font-size: 13px; }
+  }
+</style>
