@@ -15,6 +15,11 @@
   to = "/disciplines"
   status = 301
 
+# Catch-all 404. ATTENTION : ne JAMAIS ajouter `force = true` sur cette règle.
+# Sans `force`, Netlify sert d'abord les fichiers réels de `dist/` et n'applique
+# cette règle qu'en dernier recours. Avec `force = true`, elle masquerait tous les
+# fichiers servis en direct, dont `public/google40382428cf17f542.html` qui conditionne
+# la validation Google Search Console (voir README § Google Search Console).
 [[redirects]]
   from = "/*"
   to = "/404.html"
