@@ -89,6 +89,27 @@ export const PRICING = {
 };
 
 /**
+ * Aides financières acceptées pour le paiement de l'adhésion.
+ * Le Chèque jeunesse est un dispositif municipal reconduit chaque année
+ * scolaire : revérifier montant et tranche d'âge auprès de la mairie de
+ * Saint-Lunaire à chaque reconduction.
+ */
+export const FINANCIAL_AID = {
+  /** Ligne courte pour les cartes tarifs */
+  short: "Pass'Sport & Chèque jeunesse acceptés",
+  schemes: [
+    {
+      name: "Pass'Sport",
+      detail: "aide de l'État, sous conditions d'éligibilité"
+    },
+    {
+      name: 'Chèque jeunesse',
+      detail: 'aide de 60 € de la mairie de Saint-Lunaire, de 3 à 18 ans'
+    }
+  ]
+};
+
+/**
  * Retourne l'index (0, 1 ou 2) de la période tarifaire active selon le mois courant.
  * Retourne -1 en dehors de la saison (juillet–août).
  */
@@ -147,6 +168,7 @@ export default {
   SEASON,
   REGISTRATION_OPENING_SOON,
   PRICING,
+  FINANCIAL_AID,
   getActivePeriodIndex,
   formatTimeDisplay,
   getScheduleHTML,

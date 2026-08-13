@@ -1,5 +1,5 @@
 ---
-import { PRICING, SEASON, REGISTRATION_OPENING_SOON, SCHEDULE, formatTimeDisplay } from '../config/schedule.js';
+import { PRICING, SEASON, REGISTRATION_OPENING_SOON, SCHEDULE, FINANCIAL_AID, formatTimeDisplay } from '../config/schedule.js';
 import { getFaqByIds } from '../config/faq.js';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
@@ -57,6 +57,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
           <li>Licence fédérale &amp; assurance incluses</li>
           <li>Accès à tous les cours</li>
           <li>Paiement en 3 fois par CB possible</li>
+          <li>{FINANCIAL_AID.short}</li>
         </ul>
         <a href="/tarifs" class="info-link">
           Voir tous les tarifs

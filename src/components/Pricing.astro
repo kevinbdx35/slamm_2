@@ -1,5 +1,5 @@
 ---
-import { PRICING, SEASON, getActivePeriodIndex } from '../config/schedule.js';
+import { PRICING, SEASON, FINANCIAL_AID, getActivePeriodIndex } from '../config/schedule.js';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 const activeIdx = getActivePeriodIndex();
@@ -87,6 +87,21 @@ const steps = [
           </svg>
           CB en 3 fois possible
         </p>
+
+        <div class="aides">
+          <p class="aides-title">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 12.5S1.5 9.3 1.5 5.4A2.9 2.9 0 0 1 7 4a2.9 2.9 0 0 1 5.5 1.4c0 3.9-5.5 7.1-5.5 7.1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            {FINANCIAL_AID.short}
+          </p>
+          <ul class="aides-list">
+            {FINANCIAL_AID.schemes.map(s => (
+              <li><strong>{s.name}</strong> — {s.detail}</li>
+            ))}
+          </ul>
+          <p class="aides-note">Signale-le nous avant de finaliser ton inscription : le montant est déduit de l'adhésion.</p>
+        </div>
 
         <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="btn-inscription">
           S'inscrire maintenant
@@ -308,6 +323,44 @@ const steps = [
   }
 
   .cb3x svg { flex-shrink: 0; }
+
+  /* ── Aides financières ── */
+  .aides {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .aides-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+  }
+
+  .aides-title svg { color: var(--g500); flex-shrink: 0; }
+
+  .aides-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .aides-list strong { color: var(--text-3); font-weight: 600; }
+
+  .aides-note {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
 
   /* ── Tableau dégressif ── */
   .degressif {

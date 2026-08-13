@@ -43,6 +43,11 @@ export const FAQ_CATEGORIES = [
         q: "Comment s'inscrire aux cours d'essai ?",
         a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre–octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
       },
+      {
+        id: 'aides',
+        q: "Acceptez-vous le Pass'Sport et le Chèque jeunesse ?",
+        a: "Oui, les deux. Le Pass'Sport est une aide de l'État accordée sous conditions d'éligibilité. Le Chèque jeunesse est une aide de 60 € de la mairie de Saint-Lunaire, destinée aux jeunes de 3 à 18 ans pour financer une inscription annuelle en association sportive ou culturelle — chez nous, elle concerne donc les 16-18 ans, puisque l'âge minimum d'adhésion est de 16 ans. Dans les deux cas, le montant est déduit de ton adhésion : préviens-nous avant de finaliser ton inscription pour qu'on t'indique les justificatifs à fournir.",
+      },
     ],
   },
   {
