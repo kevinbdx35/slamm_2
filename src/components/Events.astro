@@ -1,8 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import { EVENTS, getUpcomingEvents, getPastEvents, formatEventDate } from '../config/events.js';
 
 const upcoming = getUpcomingEvents(EVENTS);
 const past = getPastEvents(EVENTS, 4);
+
+// Les affiches vivent dans src/assets/img/events/ ; events.js n'en stocke que le chemin.
+const eventImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/img/events/*.{webp,jpg,jpeg,png}',
+  { eager: true }
+);
+
+function getEventImage(path: string | null): ImageMetadata | null {
+  if (!path) return null;
+  const file = path.split('/').pop();
+  const match = Object.entries(eventImages).find(([key]) => key.endsWith(`/${file}`));
+  return match ? match[1].default : null;
+}
 
 function getEventType(event: any): string {
   const t = event.title.toLowerCase();
@@ -51,9 +65,24 @@ const stats = [
       <h3 class="upcoming-title">Prochains événements</h3>
       {upcoming.length > 0 ? (
         <div class="upcoming-list">
-          {upcoming.map((e) => (
-            <div class="upcoming-card">
-              <div class="upcoming-date">{formatEventDate(e.date)}</div>
+          {upcoming.map((e) => {
+            const img = getEventImage(e.image);
+            return (
+            <div class={`upcoming-card${img ? ' has-thumb' : ''}`}>
+              {img && (
+                <Image
+                  src={img}
+                  alt={e.imageAlt ?? `Affiche — ${e.title}`}
+                  widths={[160, 320]}
+                  sizes="80px"
+                  class="upcoming-thumb"
+                  loading="lazy"
+                />
+              )}
+              <div class="upcoming-date">
+                <span class="upcoming-day">{formatEventDate(e.date)}</span>
+                {e.time && <span class="upcoming-time">{e.time}</span>}
+              </div>
               <div class="upcoming-body">
                 <span class="upcoming-type">{getEventType(e)}</span>
                 <p class="upcoming-name">{e.title}</p>
@@ -66,7 +95,8 @@ const stats = [
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div class="upcoming-empty">
@@ -238,11 +268,33 @@ const stats = [
     background: var(--surface);
   }
 
+  .upcoming-card.has-thumb {
+    grid-template-columns: 80px 140px 1fr auto;
+  }
+
+  .upcoming-thumb {
+    width: 80px;
+    height: 106px;
+    object-fit: cover;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--border);
+    display: block;
+  }
+
   .upcoming-date {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     font-size: 14px;
     font-weight: 600;
     color: var(--g400);
     white-space: nowrap;
+  }
+
+  .upcoming-time {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-3);
   }
 
   .upcoming-type {
@@ -356,11 +408,17 @@ const stats = [
   }
 
   @media (max-width: 640px) {
-    .upcoming-card, .past-card {
+    .upcoming-card, .past-card,
+    .upcoming-card.has-thumb {
       grid-template-columns: 1fr;
       gap: 12px;
     }
     .upcoming-lieu { text-align: left; }
+    .upcoming-date { flex-direction: row; align-items: baseline; gap: 10px; }
+    .upcoming-thumb {
+      width: 120px;
+      height: 160px;
+    }
   }
 
   @media (max-width: 1024px) {

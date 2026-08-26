@@ -119,9 +119,10 @@ export const EVENTS = [
     performer: "Emilien Bouillart",
     maxParticipants: 30,
     registrationUrl: null, // TODO : lien AssoConnect à venir
-    image: null,
-    imageWidth: null,
-    imageHeight: null,
+    image: "/img/events/emilien.webp",
+    imageAlt: "Emilien Bouillart, intervenant du stage de Luta Livre",
+    imageWidth: 900,
+    imageHeight: 1200,
     status: "upcoming"
   },
 ];
