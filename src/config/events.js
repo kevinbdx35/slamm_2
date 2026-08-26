@@ -108,6 +108,22 @@ export const EVENTS = [
     imageHeight: null,
     status: "past"
   },
+  {
+    id: 7,
+    title: "Stage de Luta Livre avec Emilien Bouillart",
+    date: "2026-10-11", // Format YYYY-MM-DD — dimanche
+    time: "À partir de 14h30",
+    location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
+    price: "10€",
+    description: "Stage de Luta Livre avec Emilien Bouillart, ceinture noire 2ème dan. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
+    performer: "Emilien Bouillart",
+    maxParticipants: 30,
+    registrationUrl: null, // TODO : lien AssoConnect à venir
+    image: null,
+    imageWidth: null,
+    imageHeight: null,
+    status: "upcoming"
+  },
 ];
 
 /**
