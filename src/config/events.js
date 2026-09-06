@@ -118,7 +118,7 @@ export const EVENTS = [
     description: "Stage de Luta Livre avec Emilien Bouillart, ceinture noire 2ème dan. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
     performer: "Emilien Bouillart",
     maxParticipants: 30,
-    registrationUrl: null, // TODO : lien AssoConnect à venir
+    registrationUrl: "https://slamm.assoconnect.com/collect/description/749884-i-stage-de-luta-livre-avec-emilien-bouillart",
     image: "/img/events/emilien.webp",
     imageAlt: "Emilien Bouillart, intervenant du stage de Luta Livre",
     imageWidth: 900,
