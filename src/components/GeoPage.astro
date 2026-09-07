@@ -29,7 +29,6 @@ const disciplines = [
 const activeIdx = getActivePeriodIndex();
 const displayIdx = activeIdx === -1 ? 0 : activeIdx;
 const adultPrice = PRICING.adult.periods[displayIdx].price;
-const periodLabel = PRICING.adult.periods[displayIdx].label.toLowerCase();
 ---
 
 <Layout {title} {description} {canonical} pageSchema={schema}>
@@ -135,7 +134,8 @@ const periodLabel = PRICING.adult.periods[displayIdx].label.toLowerCase();
         <div class="info-card reveal reveal-delay-2">
           <p class="info-card-title">Tarifs {SEASON}</p>
           <ul class="info-list">
-            <li>Adhésion (+16 ans) : <strong>{adultPrice} €</strong> <span class="period-note">{periodLabel}</span></li>
+            <li>Adhésion (+16 ans) : <strong>{adultPrice} €</strong> <span class="period-note">pour la saison, jusqu'à fin juin</span></li>
+            <li>Tu rejoins en cours d'année ? Tu ne paies que les mois restants</li>
             <li>Licence fédérale + assurance incluses</li>
             <li>CB en 3 fois possible</li>
           </ul>

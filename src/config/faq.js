@@ -9,6 +9,15 @@
  * ciblée depuis la home sans dupliquer le contenu.
  */
 
+import { PRICING } from './schedule.js';
+
+/** Plein tarif (saison complète) et paliers réduits, construits depuis PRICING */
+const fullPrice = PRICING.adult.periods[0].price;
+const reducedPrices = PRICING.adult.periods
+  .slice(1)
+  .map(p => `${p.price} € ${p.fromLabel.toLowerCase()}`)
+  .join(', ');
+
 export const FAQ_CATEGORIES = [
   {
     title: 'Débuter au club',
@@ -42,6 +51,11 @@ export const FAQ_CATEGORIES = [
         id: 'essai',
         q: "Comment s'inscrire aux cours d'essai ?",
         a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre–octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
+      },
+      {
+        id: 'duree-adhesion',
+        q: "L'adhésion couvre quelle période ?",
+        a: `Il n'y a qu'une seule adhésion : elle démarre le jour de ton inscription et se termine fin juin, en même temps que la saison. Le plein tarif est de ${fullPrice} € pour la saison complète. Si tu nous rejoins en cours d'année, tu ne paies que les mois restants : ${reducedPrices}. Autrement dit, ${fullPrice} € ne couvre pas seulement septembre à décembre — c'est le prix de la saison entière quand on s'inscrit dès la rentrée.`,
       },
       {
         id: 'aides',

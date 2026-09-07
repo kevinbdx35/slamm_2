@@ -79,13 +79,32 @@ export const SUMMER_BREAK = {
 export const PRICING = {
   adult: {
     label: 'Adhésion',
+    /**
+     * Tarif dégressif. ATTENTION : `label`/`months` désignent la période
+     * D'INSCRIPTION, pas la durée de couverture. Quelle que soit la date
+     * d'adhésion, celle-ci court jusqu'à la fin de la saison (juin).
+     *
+     * Le premier palier est le PLEIN TARIF (saison complète) ; les suivants
+     * sont présentés comme une réduction « tu ne paies que les mois restants ».
+     * - `joinLabel` : phrase complète (carte tarif, FAQ, pages géo)
+     * - `fromLabel` : libellé court du tableau dégressif
+     */
     periods: [
-      { label: 'Sept → Déc', months: [9, 10, 11, 12], price: 210 },
-      { label: 'Jan → Mars',  months: [1, 2, 3],       price: 150 },
-      { label: 'Avr → Juin',  months: [4, 5, 6],       price: 89  },
+      { label: 'Sept → Déc', joinLabel: 'Inscription de septembre à décembre', fromLabel: 'Dès la rentrée (sept → déc)', months: [9, 10, 11, 12], price: 210 },
+      { label: 'Jan → Mars',  joinLabel: 'Inscription de janvier à mars',       fromLabel: 'À partir de janvier',          months: [1, 2, 3],       price: 150 },
+      { label: 'Avr → Juin',  joinLabel: "Inscription d'avril à juin",          fromLabel: "À partir d'avril",             months: [4, 5, 6],       price: 89  },
     ]
   },
   trial: { label: "Cours d'essai (nov-juin)", price: 5 }
+};
+
+/**
+ * Fin de saison : l'adhésion est valable jusque-là, quel que soit le tarif payé.
+ * Dérivé de SEASON ('2026–2027' -> '2027').
+ */
+export const SEASON_END = {
+  month: 'juin',
+  year: SEASON.split('–')[1] ?? SEASON.split('-')[1] ?? ''
 };
 
 /**
@@ -168,6 +187,7 @@ export default {
   SEASON,
   REGISTRATION_OPENING_SOON,
   PRICING,
+  SEASON_END,
   FINANCIAL_AID,
   getActivePeriodIndex,
   formatTimeDisplay,

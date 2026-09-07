@@ -1,5 +1,5 @@
 ---
-import { PRICING, SEASON, FINANCIAL_AID, getActivePeriodIndex } from '../config/schedule.js';
+import { PRICING, SEASON, SEASON_END, FINANCIAL_AID, getActivePeriodIndex } from '../config/schedule.js';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
 
 const activeIdx = getActivePeriodIndex();
@@ -9,7 +9,7 @@ const isOffSeason = activeIdx === -1;
 const displayIdx = isOffSeason ? 0 : activeIdx;
 
 const periods = PRICING.adult.periods.map((p: any, i: number) => ({
-  label: p.label,
+  label: p.fromLabel,
   price: `${p.price} €`,
   current: i === displayIdx,
 }));
@@ -17,9 +17,16 @@ const periods = PRICING.adult.periods.map((p: any, i: number) => ({
 const activeAdultPrice = PRICING.adult.periods[displayIdx].price;
 const activePeriodLabel = PRICING.adult.periods[displayIdx].label;
 
+// Plein tarif = 1er palier ; au-delà, on n'affiche que les mois restants.
+const fullPrice = PRICING.adult.periods[0].price;
+const isReduced = displayIdx > 0;
+
+// Fin de la période tarifaire en cours (≠ fin de l'adhésion, qui court jusqu'en juin)
 const monthMap: Record<string, string> = { 'Déc': 'décembre', 'Mars': 'mars', 'Juin': 'juin' };
 const endAbbr = activePeriodLabel.split('→')[1]?.trim() ?? '';
-const validUntil = monthMap[endAbbr] ?? endAbbr;
+const tarifValidUntil = monthMap[endAbbr] ?? endAbbr;
+
+const seasonEnd = `${SEASON_END.month} ${SEASON_END.year}`;
 
 const features = [
   'Licence fédérale incluse',
@@ -63,9 +70,12 @@ const steps = [
       <div class="tarif-col reveal">
         <div class="tarif-cards">
           <div class="tarif-card tarif-card-accent">
-            <p class="tarif-age">Adhésion <span>+16 ans</span></p>
+            <p class="tarif-age">Adhésion saison {SEASON} <span>+16 ans</span></p>
             <p class="tarif-price">{activeAdultPrice} <em>€</em></p>
-            <p class="tarif-note">{isOffSeason ? 'prochaine saison · sept → déc' : `tarif actuel · ${activePeriodLabel.toLowerCase()}`}</p>
+            <p class="tarif-season">De la rentrée à fin {seasonEnd}.</p>
+            {isReduced && (
+              <p class="tarif-note">Tarif réduit : tu ne paies que les mois restants (plein tarif {fullPrice} € en début de saison).</p>
+            )}
           </div>
         </div>
 
@@ -113,7 +123,16 @@ const steps = [
 
       <!-- Période dégressive -->
       <div class="degressif reveal reveal-delay-2">
-        <p class="degressif-title">Tarif dégressif selon la période</p>
+        <p class="degressif-title">Tu nous rejoins en cours de saison ?</p>
+        <p class="degressif-sub">
+          Tu ne paies que les mois restants. La fin de l'adhésion, elle, est la même
+          pour tout le monde : fin {seasonEnd}.
+        </p>
+
+        <div class="periods-legend" aria-hidden="true">
+          <span>Tu commences…</span>
+          <span>Tu paies</span>
+        </div>
 
         <div class="periods">
           {periods.map(p => (
@@ -132,7 +151,7 @@ const steps = [
             <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
             <path d="M7 4.5V7l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
           </svg>
-          {isOffSeason ? 'Inscriptions ouvertes pour la prochaine saison — reprise en septembre' : `Valable jusqu'à fin ${validUntil} · CB en 3 fois possible`}
+          {isOffSeason ? 'Inscriptions ouvertes pour la prochaine saison — reprise en septembre' : `Tarif en vigueur jusqu'à fin ${tarifValidUntil} · CB en 3 fois possible`}
         </p>
       </div>
     </div>
@@ -294,6 +313,14 @@ const steps = [
     color: var(--text-muted);
   }
 
+  .tarif-season {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
   /* Features */
   .features {
     list-style: none;
@@ -378,6 +405,31 @@ const steps = [
     font-weight: 600;
     color: var(--text-3);
     margin-bottom: 4px;
+  }
+
+  .degressif-sub {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: -8px 0 4px;
+  }
+
+  .periods-legend {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 24px;
+    align-items: baseline;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .periods-legend span:last-child {
+    min-width: 60px;
+    text-align: right;
   }
 
   .periods {
