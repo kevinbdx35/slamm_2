@@ -73,8 +73,8 @@ const stats = [
                 <Image
                   src={img}
                   alt={e.imageAlt ?? `Affiche — ${e.title}`}
-                  widths={[160, 320]}
-                  sizes="80px"
+                  widths={[280, 420]}
+                  sizes="(max-width: 640px) 170px, 140px"
                   class="upcoming-thumb"
                   loading="lazy"
                 />
@@ -90,6 +90,7 @@ const stats = [
               </div>
               <div class="upcoming-right">
                 <div class="upcoming-lieu">{getCity(e.location)}</div>
+                {e.price && <div class="upcoming-price">{e.price}</div>}
                 {e.registrationUrl && (
                   <a href={e.registrationUrl} target="_blank" rel="noopener noreferrer" class="upcoming-cta">S'inscrire</a>
                 )}
@@ -269,12 +270,12 @@ const stats = [
   }
 
   .upcoming-card.has-thumb {
-    grid-template-columns: 80px 140px 1fr auto;
+    grid-template-columns: 140px 140px 1fr auto;
   }
 
   .upcoming-thumb {
-    width: 80px;
-    height: 106px;
+    width: 140px;
+    height: 210px;
     object-fit: cover;
     border-radius: var(--r-sm);
     border: 1px solid var(--border);
@@ -336,6 +337,15 @@ const stats = [
     font-size: 13px;
     color: var(--text-3);
     white-space: nowrap;
+    text-align: right;
+  }
+
+  .upcoming-price {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--g400);
     text-align: right;
   }
 
@@ -413,11 +423,11 @@ const stats = [
       grid-template-columns: 1fr;
       gap: 12px;
     }
-    .upcoming-lieu { text-align: left; }
+    .upcoming-lieu, .upcoming-price { text-align: left; }
     .upcoming-date { flex-direction: row; align-items: baseline; gap: 10px; }
     .upcoming-thumb {
-      width: 120px;
-      height: 160px;
+      width: 170px;
+      height: 255px;
     }
   }
 

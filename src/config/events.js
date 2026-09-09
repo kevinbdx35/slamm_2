@@ -119,10 +119,10 @@ export const EVENTS = [
     performer: "Emilien Bouillart",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/749884-i-stage-de-luta-livre-avec-emilien-bouillart",
-    image: "/img/events/emilien.webp",
-    imageAlt: "Emilien Bouillart, intervenant du stage de Luta Livre",
-    imageWidth: 900,
-    imageHeight: 1200,
+    image: "/img/events/stage_11-10-26.webp",
+    imageAlt: "Affiche du stage de Luta Livre avec Emilien Bouillart, le 11 octobre à 14h30 au dojo SLAMM de Saint-Lunaire, 10 €",
+    imageWidth: 1024,
+    imageHeight: 1536,
     status: "upcoming"
   },
 ];
