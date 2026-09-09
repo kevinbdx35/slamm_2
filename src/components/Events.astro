@@ -73,8 +73,8 @@ const stats = [
                 <Image
                   src={img}
                   alt={e.imageAlt ?? `Affiche — ${e.title}`}
-                  widths={[280, 420]}
-                  sizes="(max-width: 640px) 170px, 140px"
+                  widths={[400, 600]}
+                  sizes="(max-width: 640px) 220px, 200px"
                   class="upcoming-thumb"
                   loading="lazy"
                 />
@@ -270,12 +270,12 @@ const stats = [
   }
 
   .upcoming-card.has-thumb {
-    grid-template-columns: 140px 140px 1fr auto;
+    grid-template-columns: 200px 140px 1fr auto;
   }
 
   .upcoming-thumb {
-    width: 140px;
-    height: 210px;
+    width: 200px;
+    height: 300px;
     object-fit: cover;
     border-radius: var(--r-sm);
     border: 1px solid var(--border);
@@ -426,8 +426,8 @@ const stats = [
     .upcoming-lieu, .upcoming-price { text-align: left; }
     .upcoming-date { flex-direction: row; align-items: baseline; gap: 10px; }
     .upcoming-thumb {
-      width: 170px;
-      height: 255px;
+      width: 220px;
+      height: 330px;
     }
   }
 
