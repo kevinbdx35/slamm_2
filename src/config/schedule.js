@@ -69,7 +69,7 @@ export const REGISTRATION_OPENING_SOON = false;
  * Passer `active` à `false` à la reprise des cours pour masquer le bandeau.
  */
 export const SUMMER_BREAK = {
-  active: true,
+  active: false,
   message: 'Club fermé pour l\'été — reprise des cours le mercredi 16 septembre 2026. Inscriptions déjà ouvertes.'
 };
 
