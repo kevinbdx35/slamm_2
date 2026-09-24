@@ -6,6 +6,20 @@ import cagePhoto from '../assets/img/team/cage.webp';
 ---
 
 <section class="hero" id="accueil">
+  <!-- Photo en fond : pleine hauteur à droite (desktop), plein écran (mobile), fondue dans le noir -->
+  <div class="hero-media">
+    <Image
+      src={cagePhoto}
+      alt="Entraînement de MMA dans la cage de la salle SLAMM à Saint-Lunaire"
+      class="hero-photo"
+      widths={[480, 750, 1000, 1170]}
+      sizes="(max-width: 900px) 100vw, 60vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero-scrim" aria-hidden="true"></div>
+  </div>
+
   <div class="container hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow">Saint-Lunaire, Bretagne · Association loi 1901</p>
@@ -42,17 +56,6 @@ import cagePhoto from '../assets/img/team/cage.webp';
       </dl>
     </div>
 
-    <div class="hero-media">
-      <Image
-        src={cagePhoto}
-        alt="Entraînement de MMA dans la cage de la salle SLAMM à Saint-Lunaire"
-        class="hero-photo"
-        widths={[480, 720, 1000]}
-        sizes="(max-width: 900px) 100vw, 480px"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
   </div>
 </section>
 
@@ -62,15 +65,20 @@ import cagePhoto from '../assets/img/team/cage.webp';
     min-height: 100svh;
     display: flex;
     align-items: center;
+    isolation: isolate;
+    overflow: hidden;
   }
 
+  /* Le texte passe au-dessus de la photo et empiète sur sa zone fondue */
   .hero-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    align-items: center;
-    gap: 64px;
-    padding-top: 96px;
+    position: relative;
+    z-index: 1;
+    padding-top: 112px;
     padding-bottom: 72px;
+  }
+
+  .hero-content {
+    max-width: 640px;
   }
 
   /* Eyebrow (texte simple, sans pastille) */
@@ -222,24 +230,37 @@ import cagePhoto from '../assets/img/team/cage.webp';
     color: var(--text-3);
   }
 
-  /* Photo : pleine hauteur de colonne, collée au bord droit de l'écran */
+  /* Photo : pleine hauteur du hero, collée en haut, à droite et en bas, sans cadre */
   .hero-media {
-    position: relative;
-    align-self: stretch;
-    margin-right: calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px));
-    min-height: min(64svh, 560px);
-    animation: heroPhotoIn 700ms var(--ease-out) 120ms both;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60%;
+    z-index: 0;
+    animation: heroPhotoFade 700ms var(--ease-out) 120ms both;
+    /* Fondu réel (transparence) vers la gauche et vers le bas : aucune arête
+       visible, quel que soit le fond (halo vert du site compris) */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%), linear-gradient(0deg, transparent 0%, #000 30%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 45%), linear-gradient(0deg, transparent 0%, #000 30%);
+    mask-composite: intersect;
   }
 
-  /* Positionnée en absolu : c'est la colonne de texte qui fixe la hauteur, pas le ratio de l'image */
   .hero-photo {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 58%;
-    border-radius: var(--r-lg) 0 0 var(--r-lg);
+    object-position: 50% 45%;
+  }
+
+  /* Assombrissement léger : côté texte et sous la nav (lisibilité des liens) */
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(8,15,10,0.55) 0%, rgba(8,15,10,0) 60%),
+      linear-gradient(180deg, rgba(8,15,10,0.85) 0%, rgba(8,15,10,0.4) 12%, rgba(8,15,10,0) 26%);
   }
 
   @keyframes fadeUp {
@@ -247,32 +268,26 @@ import cagePhoto from '../assets/img/team/cage.webp';
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Photo : léger zoom arrière + fondu (jamais depuis scale(0)) */
-  @keyframes heroPhotoIn {
-    from { opacity: 0; transform: scale(0.97); }
-    to   { opacity: 1; transform: scale(1); }
+  /* Photo pleine page : simple fondu (un zoom ferait apparaître les bords) — à revoir en phase 2 */
+  @keyframes heroPhotoFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
+  /* Mobile / tablette : photo en plein écran, texte par-dessus en bas (effet story) */
   @media (max-width: 900px) {
-    .hero { min-height: auto; }
-    .hero-inner {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 40px;
-      padding-top: 104px;
-      padding-bottom: 48px;
+    .hero { align-items: flex-end; }
+    .hero-inner { padding-top: 30svh; padding-bottom: 40px; }
+    .hero-media {
+      width: 100%;
+      -webkit-mask-image: none;
+      mask-image: none;
     }
-    /* Photo de bord à bord, sous les chiffres */
-    .hero-media { margin-inline: -24px; min-height: 0; }
-    .hero-photo {
-      position: static;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      border-radius: 0;
+    .hero-photo { object-position: 50% 22%; }
+    .hero-scrim {
+      background:
+        linear-gradient(0deg, var(--bg) 0%, var(--bg) 22%, rgba(8,15,10,0.86) 58%, rgba(8,15,10,0.45) 84%, rgba(8,15,10,0.6) 100%);
     }
-  }
-
-  @media (max-width: 768px) {
-    .hero-media { margin-inline: -16px; }
   }
 
   @media (max-width: 600px) {
