@@ -41,9 +41,12 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
     <section class="geo-hero">
       <div class="container geo-hero-grid">
         <div class="geo-hero-text">
-          <h1 class="geo-h1">MMA à {city},<br/><span>le club SLAMM est {nbspDistance}</span></h1>
-          <p class="geo-hero-sub">Pratique le MMA dans un club sérieux et convivial, à Saint-Lunaire.<br/>À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</p>
-          <div class="geo-actions">
+          <h1 class="geo-h1">
+            <span class="title-slot"><span class="title-slot-text">MMA à {city},</span></span>{' '}
+            <span class="title-slot title-accent"><span class="title-slot-text">le club SLAMM est {nbspDistance}</span></span>
+          </h1>
+          <p class="geo-hero-sub reveal reveal-delay-2">Pratique le MMA dans un club sérieux et convivial, à Saint-Lunaire.<br/>À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</p>
+          <div class="geo-actions reveal reveal-delay-3">
             <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary">
               Réserver un cours d'essai
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -119,7 +122,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
             ))}
           </div>
         </div>
-        <div class="info-col reveal reveal-delay-2">
+        <div class="info-col reveal reveal-delay-1">
           <h2 class="info-card-title">Tarifs {SEASON}</h2>
           <ul class="info-list">
             <li>Adhésion (+16 ans) : <strong>{adultPrice} €</strong> <span class="period-note">pour la saison, jusqu'à fin juin</span></li>
@@ -129,7 +132,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
           </ul>
           <a href="/tarifs" class="info-link">Voir les tarifs détaillés →</a>
         </div>
-        <div class="info-col reveal reveal-delay-3">
+        <div class="info-col reveal reveal-delay-2">
           <h2 class="info-card-title">Cours d'essai</h2>
           <ul class="info-list">
             <li>Gratuit en début de saison (sept-oct)</li>
@@ -179,7 +182,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
     margin-bottom: 24px;
   }
 
-  .geo-h1 span { color: var(--g400); }
+  .geo-h1 .title-accent { color: var(--g400); }
 
   .geo-hero-sub {
     font-size: clamp(16px, 1.5vw, 18px);
@@ -195,13 +198,26 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
     flex-wrap: wrap;
   }
 
+  /* Photo visible dès la 1re image (élément LCP probable : pas de rideau),
+     zoom lent qui se pose comme dans le hero de l'accueil ; l'overflow du
+     cadre contient le zoom */
+  .geo-hero-media {
+    overflow: hidden;
+    border-radius: var(--r-lg);
+  }
+
   .geo-img {
     width: 100%;
     height: auto;
     aspect-ratio: 830 / 459;
     object-fit: cover;
     object-position: 50% 70%;
-    border-radius: var(--r-lg);
+    animation: geoPhotoSettle 1200ms var(--ease-out) both;
+  }
+
+  @keyframes geoPhotoSettle {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
   }
 
   /* ── Boutons (mêmes que le hero de l'accueil) ── */
@@ -220,7 +236,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
   }
 
   .btn-primary:active { transform: scale(0.97); }
-  .btn-primary:hover { background: var(--g400); }
+  .btn-primary svg { transition: transform 200ms var(--ease-out); }
 
   .btn-ghost {
     display: inline-flex;
@@ -236,7 +252,13 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
   }
 
   .btn-ghost:active { transform: scale(0.97); }
-  .btn-ghost:hover { background: rgba(34,197,94,0.06); border-color: rgba(74,222,128,0.7); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover { background: var(--g400); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-ghost:hover { background: rgba(34,197,94,0.06); border-color: rgba(74,222,128,0.7); }
+    .info-link:hover { color: var(--text); }
+  }
 
   .btn-inline { align-self: flex-start; margin-top: 8px; }
 
@@ -375,10 +397,8 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
     font-size: 14px;
     font-weight: 600;
     color: var(--g400);
-    transition: color 0.2s;
+    transition: color 200ms ease;
   }
-
-  .info-link:hover { color: var(--text); }
 
   .schedule-list {
     display: flex;
@@ -426,8 +446,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
   @media (max-width: 960px) {
     .geo-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 112px; padding-bottom: 64px; }
     /* Photo de bord à bord, au ratio d'origine */
-    .geo-hero-media { margin-inline: -24px; }
-    .geo-img { border-radius: 0; }
+    .geo-hero-media { margin-inline: -24px; border-radius: 0; }
     .geo-infos-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .disc-row { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 26px 0; }
     .disc-sessions { justify-self: start; }
@@ -443,5 +462,11 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
   @media (max-width: 600px) {
     .geo-actions { flex-direction: column; align-items: stretch; }
     .btn-inline { align-self: stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .geo-img { animation: none !important; }
+    .btn-primary svg { transition: none; }
+    .btn-primary:hover svg { transform: none; }
   }
 </style>
