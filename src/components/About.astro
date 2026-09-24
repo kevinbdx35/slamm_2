@@ -59,9 +59,9 @@ const values = [
     </div>
 
     <!-- 3. Valeurs : trois colonnes de texte sous un filet, sans cartes -->
-    <ul class="about-values reveal">
+    <ul class="about-values reveal rule-cascade">
       {values.map(v => (
-        <li class="value">
+        <li class="value rule-item">
           <h3>{v.title}</h3>
           <p>{v.text}</p>
         </li>
@@ -164,20 +164,9 @@ const values = [
     gap: 48px;
   }
 
-  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
+  /* Filet dessiné : utilitaire global .rule-item (Layout.astro) */
   .value {
-    --rule: var(--border-strong);
-    position: relative;
     padding-top: 24px;
-  }
-
-  .value::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--rule);
-    transform-origin: left;
   }
 
   .value h3 {
@@ -228,34 +217,11 @@ const values = [
   /* Texte : part pendant la fin du dévoilement de la photo */
   :global(.js) .about-text.reveal { transition-delay: 150ms; }
 
-  /* Valeurs : filets dessinés depuis la gauche, puis texte, en cascade */
-  :global(.js) .about-values.reveal { opacity: 1; transform: none; transition: none; }
-  .value:nth-child(2) { --stagger: 60ms; }
-  .value:nth-child(3) { --stagger: 120ms; }
-  :global(.js) .value::before {
-    transform: scaleX(0);
-    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
-  }
-  :global(.js) .value > * {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
-      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
-  }
-  :global(.js) .about-values.visible .value::before { transform: scaleX(1); }
-  :global(.js) .about-values.visible .value > * { opacity: 1; transform: none; }
-
-  /* Mouvement réduit : fondus seuls, ni fente, ni rideau, ni zoom, filets déjà tracés */
+  /* Valeurs : cascade des filets via l'utilitaire global .rule-cascade */
+  /* Mouvement réduit : fondus seuls, sans fente (photo et filets : utilitaires globaux) */
   @media (prefers-reduced-motion: reduce) {
     :global(.js) .about-title.reveal { opacity: 0; transition: opacity 300ms ease; }
     :global(.js) .about-title.reveal.visible { opacity: 1; }
     :global(.js) .about-title-text { transform: none; transition: none; }
-
-    :global(.js) .value::before { transform: none; transition: none; }
-    :global(.js) .value > * {
-      transform: none;
-      transition: opacity 300ms ease calc(var(--stagger, 0ms) + 0ms);
-    }
   }
 </style>

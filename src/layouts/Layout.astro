@@ -382,6 +382,41 @@ const schema = {
     transform: scale(1);
   }
 
+  /* Colonnes sous un filet (About, cours type, infos pratiques, étapes Tarifs) :
+     les filets se dessinent depuis la gauche, puis le texte apparaît, en
+     cascade de 60ms. Usage : <ul class="reveal rule-cascade"><li class="rule-item">…
+     La couleur du filet se règle par composant via --rule. */
+  .rule-item {
+    --rule: var(--border-strong);
+    position: relative;
+  }
+  .rule-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--rule);
+    transform-origin: left;
+  }
+  .rule-cascade > :nth-child(2) { --stagger: 60ms; }
+  .rule-cascade > :nth-child(3) { --stagger: 120ms; }
+  .rule-cascade > :nth-child(4) { --stagger: 180ms; }
+  .rule-cascade > :nth-child(5) { --stagger: 240ms; }
+  .js .rule-cascade.reveal { opacity: 1; transform: none; transition: none; }
+  .js .rule-item::before {
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
+  }
+  .js .rule-item > * {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
+      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
+  }
+  .js .rule-cascade.visible .rule-item::before { transform: scaleX(1); }
+  .js .rule-cascade.visible .rule-item > * { opacity: 1; transform: none; }
+
   .reveal-delay-1 { transition-delay: 60ms; }
   .reveal-delay-2 { transition-delay: 120ms; }
   .reveal-delay-3 { transition-delay: 180ms; }
@@ -454,6 +489,12 @@ const schema = {
     }
     .accordion-item::details-content,
     .accordion-item[open]::details-content { transition: none; }
+    .js .rule-item::before,
+    .js .rule-cascade.visible .rule-item::before { transform: none; transition: none; }
+    .js .rule-item > * {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
     .js .reveal-photo.reveal { opacity: 0; transition: opacity 300ms ease; }
     .js .reveal-photo.reveal.visible { opacity: 1; }
     .js .reveal-photo img,

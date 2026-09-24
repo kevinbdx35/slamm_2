@@ -106,28 +106,28 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     </div>
 
     <!-- Infos pratiques -->
-    <div class="practical-info reveal">
-      <h2 class="practical-title">Informations pratiques</h2>
-      <div class="practical-grid">
-        <div class="practical-item">
+    <div class="practical-info">
+      <h2 class="practical-title reveal">Informations pratiques</h2>
+      <div class="practical-grid reveal rule-cascade">
+        <div class="practical-item rule-item">
           <div>
             <p class="practical-label">Parking gratuit</p>
             <p class="practical-val">Stationnement disponible sur place</p>
           </div>
         </div>
-        <div class="practical-item">
+        <div class="practical-item rule-item">
           <div>
             <p class="practical-label">Dojo à l'étage</p>
             <p class="practical-val">Premier étage du bâtiment</p>
           </div>
         </div>
-        <div class="practical-item">
+        <div class="practical-item rule-item">
           <div>
             <p class="practical-label">Vestiaires séparés</p>
             <p class="practical-val">Homme et femme</p>
           </div>
         </div>
-        <div class="practical-item">
+        <div class="practical-item rule-item">
           <div>
             <p class="practical-label">Douches</p>
             <p class="practical-val">Disponibles dans les vestiaires</p>
@@ -409,40 +409,10 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     gap: 32px;
   }
 
-  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
+  /* Filet dessiné en cascade : utilitaires globaux .rule-cascade / .rule-item */
   .practical-item {
-    --rule: var(--border-strong);
-    position: relative;
     padding-top: 20px;
   }
-
-  .practical-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--rule);
-    transform-origin: left;
-  }
-
-  .practical-item:nth-child(2) { --stagger: 60ms; }
-  .practical-item:nth-child(3) { --stagger: 120ms; }
-  .practical-item:nth-child(4) { --stagger: 180ms; }
-
-  /* Même geste que les valeurs d'About : filets dessinés, puis texte, en cascade */
-  :global(.js) .practical-item::before {
-    transform: scaleX(0);
-    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
-  }
-  :global(.js) .practical-item > * {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
-      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
-  }
-  :global(.js) .practical-info.visible .practical-item::before { transform: scaleX(1); }
-  :global(.js) .practical-info.visible .practical-item > * { opacity: 1; transform: none; }
 
   .practical-label {
     font-size: 16px;
@@ -509,11 +479,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     .contact-link, .submit-icon, .submit-icon svg { transition: opacity 200ms ease, color 200ms ease; }
     .contact-link:active, .form-submit:hover .submit-icon { transform: none; }
     .icon-check, .form-submit.is-sent .icon-arrow { transform: none; }
-    :global(.js) .practical-item::before { transform: none; transition: none; }
-    :global(.js) .practical-item > * {
-      transform: none;
-      transition: opacity 300ms ease var(--stagger, 0ms);
-    }
   }
 </style>
 

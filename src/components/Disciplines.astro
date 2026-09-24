@@ -109,9 +109,9 @@ const videos = [
           <h2 class="cours-title">À quoi ressemble un cours ?</h2>
           <p class="cours-sub">Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois.</p>
         </div>
-        <ol class="cours-steps reveal">
-          {steps.map((st, i) => (
-            <li class="cours-step" style={`--stagger: ${i * 60}ms`}>
+        <ol class="cours-steps reveal rule-cascade">
+          {steps.map((st) => (
+            <li class="cours-step rule-item">
               <span class="cours-duration">{st.duration}</span>
               <h3 class="cours-step-title">{st.title}</h3>
               <p class="cours-step-desc">{st.desc}</p>
@@ -356,39 +356,13 @@ const videos = [
     gap: 32px;
   }
 
-  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
+  /* Filet dessiné en cascade : utilitaires globaux .rule-cascade / .rule-item */
   .cours-step {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-top: 24px;
   }
-  .cours-step::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--border-strong);
-    transform-origin: left;
-  }
-
-  /* Même geste que les valeurs d'About : filets dessinés, puis texte, en cascade */
-  :global(.js) .cours-steps.reveal { opacity: 1; transform: none; transition: none; }
-  :global(.js) .cours-step::before {
-    transform: scaleX(0);
-    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
-  }
-  :global(.js) .cours-step > * {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
-      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
-  }
-  :global(.js) .cours-steps.visible .cours-step::before { transform: scaleX(1); }
-  :global(.js) .cours-steps.visible .cours-step > * { opacity: 1; transform: none; }
-
   .cours-duration {
     font-family: var(--font-display);
     font-size: 26px;
@@ -434,13 +408,8 @@ const videos = [
   }
   .faq-link a:active { transform: scale(0.97); }
 
-  /* Mouvement réduit : fondus seuls, filets déjà tracés, pas d'appui */
+  /* Mouvement réduit : pas d'appui (titre et filets : utilitaires globaux) */
   @media (prefers-reduced-motion: reduce) {
-    :global(.js) .cours-step::before { transform: none; transition: none; }
-    :global(.js) .cours-step > * {
-      transform: none;
-      transition: opacity 300ms ease var(--stagger, 0ms);
-    }
     .play-btn, .faq-link a, .faq-link svg { transition: none; }
     .play-btn:active, .faq-link a:active, .faq-link a:hover svg { transform: none; }
   }

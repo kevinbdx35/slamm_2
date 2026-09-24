@@ -56,10 +56,10 @@ const steps = [
 <section class="pricing" id="tarifs">
   <div class="container">
 
-    <div class="section-header reveal">
+    <div class="section-header">
       <h1 class="section-title">
-        Transparent,<br/>
-        <span>sans surprise.</span>
+        <span class="title-slot"><span class="title-slot-text">Transparent,</span></span>{' '}
+        <span class="title-slot title-accent"><span class="title-slot-text">sans surprise.</span></span>
       </h1>
     </div>
 
@@ -121,7 +121,7 @@ const steps = [
       </div>
 
       <!-- Période dégressive -->
-      <div class="degressif reveal reveal-delay-2">
+      <div class="degressif reveal reveal-delay-1">
         <p class="degressif-title">Tu nous rejoins en cours de saison ?</p>
         <p class="degressif-sub">
           Tu ne paies que les mois restants. La fin de l'adhésion, elle, est la même
@@ -133,9 +133,9 @@ const steps = [
           <span>Tu paies</span>
         </div>
 
-        <div class="periods">
-          {periods.map(p => (
-            <div class={`period${p.current ? ' period-current' : ''}`}>
+        <div class="periods reveal">
+          {periods.map((p, i) => (
+            <div class={`period${p.current ? ' period-current' : ''}`} style={`--stagger: ${i * 40}ms`}>
               <div class="period-label">
                 {p.label}
                 {p.current && <span class="period-badge">En cours</span>}
@@ -162,9 +162,9 @@ const steps = [
         <p class="discovery-sub">Comment ça se passe avant de s'inscrire</p>
       </div>
 
-      <div class="steps">
+      <div class="steps reveal rule-cascade">
         {steps.map(s => (
-          <div class="step">
+          <div class="step rule-item">
             <div class="step-body">
               <p class="step-title">{s.title}</p>
               <p class="step-desc">{s.desc}</p>
@@ -215,7 +215,7 @@ const steps = [
     color: var(--text);
   }
 
-  .section-title span { color: var(--g400); }
+  .section-title .title-accent { color: var(--g400); }
 
   /* ── Grid ── */
   .pricing-grid {
@@ -431,6 +431,25 @@ const steps = [
     color: var(--text);
   }
 
+  /* Lignes du tableau en cascade (40ms), puis le badge « En cours » se pose */
+  :global(.js) .periods.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .period {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 400ms var(--ease-out) var(--stagger, 0ms),
+      transform 400ms var(--ease-out) var(--stagger, 0ms);
+  }
+  :global(.js) .period .period-badge {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 200ms var(--ease-out) calc(var(--stagger, 0ms) + 400ms),
+      transform 200ms var(--ease-out) calc(var(--stagger, 0ms) + 400ms);
+  }
+  :global(.js) .periods.visible .period,
+  :global(.js) .periods.visible .period-badge { opacity: 1; transform: none; }
+
   .period-badge {
     font-size: 12px;
     font-weight: 600;
@@ -496,9 +515,9 @@ const steps = [
     gap: 40px;
   }
 
+  /* Filet dessiné en cascade : utilitaires globaux .rule-cascade / .rule-item */
   .step {
     padding-top: 24px;
-    border-top: 1px solid var(--border-strong);
   }
 
   .step-body {
@@ -543,13 +562,8 @@ const steps = [
     width: 100%;
     text-align: center;
   }
-
   .btn-inscription:active {
     transform: scale(0.97);
-  }
-
-  .btn-inscription:hover {
-    background: var(--g400);
   }
 
   .btn-essai {
@@ -566,13 +580,32 @@ const steps = [
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     align-self: flex-start;
   }
-
   .btn-essai:active {
     transform: scale(0.97);
   }
 
-  .btn-essai:hover {
-    background: var(--g400);
+  /* Flèche qui glisse au survol, survols réservés aux pointeurs fins */
+  .btn-inscription svg,
+  .btn-essai svg { transition: transform 200ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-inscription:hover,
+    .btn-essai:hover { background: var(--g400); }
+    .btn-inscription:hover svg,
+    .btn-essai:hover svg { transform: translateX(3px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .period {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
+    :global(.js) .period .period-badge {
+      transform: none;
+      transition: opacity 200ms ease calc(var(--stagger, 0ms) + 300ms);
+    }
+    .btn-inscription svg, .btn-essai svg { transition: none; }
+    .btn-inscription:hover svg, .btn-essai:hover svg,
+    .btn-inscription:active, .btn-essai:active { transform: none; }
   }
 
   .astuce svg { flex-shrink: 0; margin-top: 2px; }
