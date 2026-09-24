@@ -29,7 +29,7 @@ const values = [
 
     <!-- 2. Photo large (7/12) + texte étroit (5/12) -->
     <div class="about-split">
-      <div class="about-photo-wrap reveal">
+      <div class="about-photo-wrap reveal reveal-photo">
         <Image
           src={teamPhoto}
           alt="Les licenciés et coachs du club SLAMM réunis sur le tatami à Saint-Lunaire"
@@ -70,19 +70,6 @@ const values = [
 
   </div>
 </section>
-
-<script>
-  // Le rideau ne s'ouvre qu'une fois l'image chargée, sinon il se déroulerait
-  // sur un cadre vide (connexion lente). L'image est en eager + priorité basse :
-  // en lazy, Chrome ne la chargerait jamais tant que le clip-path la masque.
-  const photo = document.querySelector<HTMLImageElement>('.about-photo');
-  if (photo && !photo.complete) {
-    photo.classList.add('is-loading');
-    const ready = () => photo.classList.remove('is-loading');
-    photo.addEventListener('load', ready, { once: true });
-    photo.addEventListener('error', ready, { once: true });
-  }
-</script>
 
 <style>
   .about {
@@ -237,23 +224,7 @@ const values = [
   :global(.js) .about-title-accent .about-title-text { transition-delay: 60ms; }
   :global(.js) .about-title.visible .about-title-text { transform: translateY(0); }
 
-  /* Photo : dévoilée de haut en bas, zoom qui se pose. Le rideau est sur
-     l'image, pas sur le wrapper observé : un clip-path total sur la cible
-     empêcherait l'IntersectionObserver de la voir. Les coins arrondis
-     restent gérés par l'overflow du wrapper. */
-  :global(.js) .about-photo-wrap.reveal { opacity: 1; transform: none; transition: none; }
-  :global(.js) .about-photo-wrap .about-photo {
-    clip-path: inset(0 0 100% 0);
-    transform: scale(1.04);
-    transition:
-      clip-path 700ms var(--ease-out),
-      transform 1000ms var(--ease-out);
-  }
-  :global(.js) .about-photo-wrap.visible .about-photo:not(.is-loading) {
-    clip-path: inset(0 0 0 0);
-    transform: scale(1);
-  }
-
+  /* Photo : dévoilement global .reveal-photo (Layout.astro) */
   /* Texte : part pendant la fin du dévoilement de la photo */
   :global(.js) .about-text.reveal { transition-delay: 150ms; }
 
@@ -280,10 +251,6 @@ const values = [
     :global(.js) .about-title.reveal { opacity: 0; transition: opacity 300ms ease; }
     :global(.js) .about-title.reveal.visible { opacity: 1; }
     :global(.js) .about-title-text { transform: none; transition: none; }
-
-    :global(.js) .about-photo-wrap.reveal { opacity: 0; transition: opacity 300ms ease; }
-    :global(.js) .about-photo-wrap.reveal.visible { opacity: 1; }
-    :global(.js) .about-photo-wrap .about-photo { clip-path: none; transform: none; transition: none; }
 
     :global(.js) .value::before { transform: none; transition: none; }
     :global(.js) .value > * {

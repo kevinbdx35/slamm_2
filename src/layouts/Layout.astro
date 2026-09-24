@@ -144,6 +144,16 @@ const schema = {
       { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // .reveal-photo : le rideau ne s'ouvre qu'une fois l'image chargée, sinon
+    // il se déroulerait sur un cadre vide (connexion lente)
+    document.querySelectorAll<HTMLImageElement>('.reveal-photo img').forEach((img) => {
+      if (img.complete) return;
+      img.classList.add('is-loading');
+      const ready = () => img.classList.remove('is-loading');
+      img.addEventListener('load', ready, { once: true });
+      img.addEventListener('error', ready, { once: true });
+    });
   </script>
 </html>
 
@@ -353,6 +363,25 @@ const schema = {
     to   { opacity: 1; }
   }
 
+  /* Photo dévoilée de haut en bas, zoom qui se pose (About, Équipe).
+     Usage : <div class="reveal reveal-photo"><img loading="eager" fetchpriority="low" …></div>
+     Le rideau est sur l'image, pas sur le wrapper observé : un clip-path
+     total sur la cible empêcherait l'IntersectionObserver de la voir, et
+     Chrome ne chargerait jamais une image lazy entièrement masquée (d'où
+     eager + priorité basse). Coins arrondis : overflow du wrapper. */
+  .js .reveal-photo.reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal-photo img {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.04);
+    transition:
+      clip-path 700ms var(--ease-out),
+      transform 1000ms var(--ease-out);
+  }
+  .js .reveal-photo.visible img:not(.is-loading) {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+
   .reveal-delay-1 { transition-delay: 60ms; }
   .reveal-delay-2 { transition-delay: 120ms; }
   .reveal-delay-3 { transition-delay: 180ms; }
@@ -425,6 +454,10 @@ const schema = {
     }
     .accordion-item::details-content,
     .accordion-item[open]::details-content { transition: none; }
+    .js .reveal-photo.reveal { opacity: 0; transition: opacity 300ms ease; }
+    .js .reveal-photo.reveal.visible { opacity: 1; }
+    .js .reveal-photo img,
+    .js .reveal-photo.visible img:not(.is-loading) { clip-path: none; transform: none; transition: none; }
     /* Plus spécifique que la règle (*), qui sinon supprimerait le fondu */
     .title-slot .title-slot-text { animation: titleSlotFade 300ms ease both !important; }
     .accordion-item .accordion-icon { transition: color 200ms ease; }

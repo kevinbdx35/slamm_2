@@ -82,18 +82,24 @@ const coaches = [
 
 <section class="team" id="equipe">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="section-header">
       <h1 class="section-title">
-        L'équipe<br/>
-        <span>encadrante.</span>
+        <span class="title-slot"><span class="title-slot-text">L'équipe</span></span>{' '}
+        <span class="title-slot title-accent"><span class="title-slot-text">encadrante.</span></span>
       </h1>
-      <p class="section-sub">
+      <p class="section-sub reveal reveal-delay-2">
         Une équipe de bénévoles diplômés FMMAF, passionnés par la transmission et le développement du MMA sur la Côte d'Émeraude.
       </p>
     </div>
 
-    <div class="team-photo-wrap reveal">
-      <Image src={teamPhoto} alt="L'équipe SLAMM réunie sur le tatami" class="team-photo" />
+    <div class="team-photo-wrap reveal reveal-photo">
+      <Image
+        src={teamPhoto}
+        alt="L'équipe SLAMM réunie sur le tatami"
+        class="team-photo"
+        loading="eager"
+        fetchpriority="low"
+      />
     </div>
 
     <!-- Les 4 coachs visibles : une section par coach, filet entre chaque -->
@@ -101,15 +107,15 @@ const coaches = [
       {coaches.map((coach) => {
         const paragraphs = coach.bioFull ?? [coach.bio];
         return (
-          <article class="coach reveal">
-            <div class="coach-head">
+          <article class="coach">
+            <div class="coach-head reveal">
               <h2 class="coach-name">{coach.name}</h2>
               <p class="coach-role">{coach.role}</p>
               <div class="coach-tags">
                 {coach.disciplines.map(d => <span class="coach-tag">{d}</span>)}
               </div>
             </div>
-            <div class="coach-body">
+            <div class="coach-body reveal reveal-delay-1">
               <div class="coach-bio">
                 {paragraphs.map(p => <p>{p}</p>)}
               </div>
@@ -166,7 +172,7 @@ const coaches = [
     color: var(--text);
   }
 
-  .section-title span { color: var(--g400); }
+  .section-title .title-accent { color: var(--g400); }
 
   .section-sub {
     font-size: 17px;
