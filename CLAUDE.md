@@ -71,6 +71,13 @@ There is no `src/utils/` and no separate schema generator: Schema.org JSON-LD is
 **Styling conventions (no utility framework):**
 - Design tokens (colors `--g500`, fonts `--font-display`/`--font-body`, radii `--r-sm`…`--r-xl`, easings) are defined once in the `:root` of `Layout.astro`'s `<style is:global>`.
 - Globally available classes: `.container` (max-width wrapper) and the reveal-on-scroll system `.reveal` / `.reveal-delay-1..4` (driven by an IntersectionObserver in the layout).
+- Global motion utilities (also in `Layout.astro`) — reuse them instead of re-coding the effect in a component:
+  - `.title-slot` > `.title-slot-text`: page `<h1>` lines revealed from a slot on load (one `.title-slot` per line; colour the accent line with a scoped `.title-accent` class, never a bare `span` selector).
+  - `.reveal .reveal-photo` on an image wrapper: photo unveiled top-to-bottom with a settling zoom. The `<img>` must be `loading="eager" fetchpriority="low"` (Chrome never loads a fully clipped lazy image). Don't use it on an above-the-fold LCP image.
+  - `.reveal .rule-cascade` on a list, `.rule-item` on each child: top rules drawn from the left, then text, 60ms stagger. Rule colour via `--rule`; don't add a `border-top` on the items.
+  - Accordions (`details.accordion-item` > `.accordion-summary` / `.accordion-icon` / `.accordion-body`): open/close timing, answer fade, press and hover behaviour are global; only the look is scoped.
+  - Table-of-contents links (`.sommaire-link[href^="#"]`) get `aria-current="location"` for the section being read; style that state in the page.
+- Motion conventions: hovers go inside `@media (hover: hover) and (pointer: fine)` (only the `:hover` rules — base styles must stay outside); pressables get `:active { transform: scale(0.97) }`; transitions list explicit properties; every animation has a `prefers-reduced-motion` fallback (fades only). Don't put `.reveal` directly on a button — its transition overrides the button's own; put it on a wrapper.
 - Everything else (`.section-label`, `.section-title`, buttons, cards…) is **scoped per component** — these class names are re-declared inside each component's `<style>` block following the same pattern. When adding a section, copy the established `section-header` / `section-label` / `section-title` structure.
 - Single dark theme: accessible green on near-black. Prices use Inter + `tabular-nums` for legibility (see `Pricing.astro` / `Essentials.astro`).
 
