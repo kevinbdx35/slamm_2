@@ -6,12 +6,12 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   <div class="container">
 
     <!-- Header -->
-    <div class="contact-header reveal">
+    <div class="contact-header">
       <h1 class="contact-title">
-        Prêt à franchir<br/>
-        <span>le premier pas ?</span>
+        <span class="title-slot"><span class="title-slot-text">Prêt à franchir</span></span>{' '}
+        <span class="title-slot title-accent"><span class="title-slot-text">le premier pas&nbsp;?</span></span>
       </h1>
-      <p class="contact-body">
+      <p class="contact-body reveal reveal-delay-2">
         Les essais sont gratuits durant le premier mois suivant la date de reprise.
         En dehors de cette période, un essai est possible pour 5€.
         Contacte-nous et nous t'accueillerons lors de la prochaine session.
@@ -85,8 +85,11 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           <button type="submit" class="form-submit">
             <span class="submit-text">Envoyer ma demande</span>
             <span class="submit-icon">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg class="icon-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8.5l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </button>
@@ -173,7 +176,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     color: var(--text);
   }
 
-  .contact-title span { color: var(--g400); }
+  .contact-title .title-accent { color: var(--g400); }
 
   .contact-body {
     font-size: 17px;
@@ -225,8 +228,17 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     margin-top: 4px;
   }
 
-  .contact-link { transition: color 0.2s; }
-  .contact-link:hover { color: var(--g400); }
+  .contact-link {
+    display: inline-block;
+    transform-origin: left center;
+    transition: color 200ms ease, transform 160ms var(--ease-out);
+  }
+
+  .contact-link:active { transform: scale(0.97); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .contact-link:hover { color: var(--g400); }
+  }
 
   /* Form */
   .contact-form-wrap {
@@ -302,21 +314,25 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     padding: 16px 24px;
     cursor: pointer;
     margin-top: 4px;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      opacity 200ms ease,
+      transform 160ms var(--ease-out);
   }
 
   .form-submit:active {
     transform: scale(0.97);
   }
 
-  .form-submit:hover {
-    background: var(--g400);
-  }
-
   .form-submit:disabled {
     cursor: default;
     transform: none;
   }
+
+  /* Envoi en cours */
+  .form-submit[aria-busy="true"] { opacity: 0.7; }
 
   .submit-text {
     font-family: var(--font-body);
@@ -334,18 +350,29 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     display: grid;
     place-items: center;
     color: var(--bg);
-    transition: transform 0.2s;
+    transition: transform 200ms var(--ease-out);
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .form-submit:hover:not(:disabled) .submit-icon { transform: translateX(3px); }
+  /* Flèche et coche superposées : la coche remplace la flèche une fois envoyé */
+  .submit-icon svg {
+    grid-area: 1 / 1;
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .icon-check { opacity: 0; transform: scale(0.8); }
+  .form-submit.is-sent .icon-arrow { opacity: 0; transform: scale(0.8); }
+  .form-submit.is-sent .icon-check { opacity: 1; transform: none; }
 
-    .form-status {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.5;
-      min-height: 1.2em;
-    }
+  @media (hover: hover) and (pointer: fine) {
+    .form-submit:hover:not(:disabled) { background: var(--g400); }
+    .form-submit:hover:not(:disabled) .submit-icon { transform: translateX(3px); }
+  }
+
+  /* Hors du bloc « souris » : la hauteur réservée vaut pour tous les appareils */
+  .form-status {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    min-height: 1.2em;
   }
   .form-status.success { color: var(--g400); }
   .form-status.error { color: #f87171; }
@@ -382,10 +409,40 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     gap: 32px;
   }
 
+  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
   .practical-item {
+    --rule: var(--border-strong);
+    position: relative;
     padding-top: 20px;
-    border-top: 1px solid var(--border-strong);
   }
+
+  .practical-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--rule);
+    transform-origin: left;
+  }
+
+  .practical-item:nth-child(2) { --stagger: 60ms; }
+  .practical-item:nth-child(3) { --stagger: 120ms; }
+  .practical-item:nth-child(4) { --stagger: 180ms; }
+
+  /* Même geste que les valeurs d'About : filets dessinés, puis texte, en cascade */
+  :global(.js) .practical-item::before {
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
+  }
+  :global(.js) .practical-item > * {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
+      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
+  }
+  :global(.js) .practical-info.visible .practical-item::before { transform: scaleX(1); }
+  :global(.js) .practical-info.visible .practical-item > * { opacity: 1; transform: none; }
 
   .practical-label {
     font-size: 16px;
@@ -442,10 +499,21 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   @media (max-width: 500px) {
     .form-row { grid-template-columns: 1fr; }
     .practical-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .practical-item { padding: 16px 0; border-top-color: var(--border); }
-    .practical-item:first-child { border-top-color: var(--border-strong); }
+    .practical-item { padding: 16px 0; --rule: var(--border); }
+    .practical-item:first-child { --rule: var(--border-strong); }
     .contact-form-wrap { padding: 28px 20px; }
     .map { height: 320px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link, .submit-icon, .submit-icon svg { transition: opacity 200ms ease, color 200ms ease; }
+    .contact-link:active, .form-submit:hover .submit-icon { transform: none; }
+    .icon-check, .form-submit.is-sent .icon-arrow { transform: none; }
+    :global(.js) .practical-item::before { transform: none; transition: none; }
+    :global(.js) .practical-item > * {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
   }
 </style>
 
@@ -459,6 +527,30 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const status = document.getElementById('form-status') as HTMLElement;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Changement de libellé en fondu enchaîné, avec un léger flou qui fond
+  // l'ancien texte dans le nouveau (sans flou en mouvement réduit)
+  const setLabel = async (el: HTMLElement, text: string) => {
+    const hidden = reduceMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(2px)' };
+    const shown = reduceMotion ? { opacity: 1 } : { opacity: 1, filter: 'blur(0)' };
+    await el.animate([shown, hidden], { duration: 75, easing: 'ease-out', fill: 'forwards' }).finished;
+    el.textContent = text;
+    el.animate([hidden, shown], { duration: 150, easing: 'ease-out', fill: 'forwards' });
+  };
+
+  // Message de statut : se pose en fondu, comme les réponses de la FAQ
+  const setStatus = (kind: '' | 'success' | 'error', text: string) => {
+    status.className = kind ? `form-status ${kind}` : 'form-status';
+    status.textContent = text;
+    if (!text) return;
+    status.animate(
+      reduceMotion
+        ? { opacity: [0, 1] }
+        : { opacity: [0, 1], transform: ['translateY(-4px)', 'none'] },
+      { duration: 200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
+    );
+  };
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
@@ -468,9 +560,9 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     const submitBtn = form.querySelector('.form-submit') as HTMLButtonElement;
     const btnText = form.querySelector('.submit-text') as HTMLElement;
     submitBtn.disabled = true;
-    btnText.textContent = 'Envoi…';
-    status.className = 'form-status';
-    status.textContent = '';
+    submitBtn.setAttribute('aria-busy', 'true');
+    setLabel(btnText, 'Envoi…');
+    setStatus('', '');
     try {
       const body = new URLSearchParams(new FormData(form) as any).toString();
       const res = await fetch('/', {
@@ -479,14 +571,15 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
         body,
       });
       if (!res.ok) throw new Error(String(res.status));
-      btnText.textContent = 'Message envoyé !';
-      status.className = 'form-status success';
-      status.textContent = 'Merci, ta demande a bien été envoyée. On te répond sous 24h.';
+      submitBtn.removeAttribute('aria-busy');
+      submitBtn.classList.add('is-sent');
+      setLabel(btnText, 'Message envoyé !');
+      setStatus('success', 'Merci, ta demande a bien été envoyée. On te répond sous 24h.');
     } catch {
-      btnText.textContent = 'Envoyer ma demande';
+      submitBtn.removeAttribute('aria-busy');
       submitBtn.disabled = false;
-      status.className = 'form-status error';
-      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous écrire directement.';
+      setLabel(btnText, 'Envoyer ma demande');
+      setStatus('error', 'Une erreur est survenue. Merci de réessayer ou de nous écrire directement.');
     }
   });
 </script>
@@ -496,7 +589,15 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   import 'leaflet/dist/leaflet.css';
 
   const lat = 48.629217, lng = -2.112208, zoom = 16;
-  const map = L.map('leaflet-map', { zoomControl: true, scrollWheelZoom: false }).setView([lat, lng], zoom);
+  // Leaflet ignore prefers-reduced-motion : on coupe ses zooms et fondus animés
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const map = L.map('leaflet-map', {
+    zoomControl: true,
+    scrollWheelZoom: false,
+    zoomAnimation: !reduce,
+    fadeAnimation: !reduce,
+    markerZoomAnimation: !reduce,
+  }).setView([lat, lng], zoom);
 
   // Tuiles OpenStreetMap (CARTO exige désormais une clé API) ; domaine déjà
   // autorisé par la CSP de public/_headers (*.tile.openstreetmap.org)

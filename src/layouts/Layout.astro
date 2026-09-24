@@ -327,6 +327,32 @@ const schema = {
     opacity: 1;
     transform: translateY(0);
   }
+  /* Titres de page (h1 des pages intérieures) : chaque ligne est une fente
+     d'où le texte sort par le bas au chargement, comme le titre du hero.
+     Usage : <h1><span class="title-slot"><span class="title-slot-text">…</span></span>…</h1>
+     Marge de 0.08em (compensée) pour ne pas rogner accents et jambages. */
+  .title-slot {
+    display: block;
+    overflow: clip;
+    padding-block: 0.08em;
+    margin-block: -0.08em;
+  }
+  .title-slot-text {
+    display: block;
+    animation: titleSlotReveal 600ms var(--ease-out) both;
+  }
+  .title-slot:nth-child(1) .title-slot-text { animation-delay: 60ms; }
+  .title-slot:nth-child(2) .title-slot-text { animation-delay: 120ms; }
+  .title-slot:nth-child(3) .title-slot-text { animation-delay: 180ms; }
+  @keyframes titleSlotReveal {
+    from { transform: translateY(120%); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes titleSlotFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
   .reveal-delay-1 { transition-delay: 60ms; }
   .reveal-delay-2 { transition-delay: 120ms; }
   .reveal-delay-3 { transition-delay: 180ms; }
@@ -399,6 +425,8 @@ const schema = {
     }
     .accordion-item::details-content,
     .accordion-item[open]::details-content { transition: none; }
+    /* Plus spécifique que la règle (*), qui sinon supprimerait le fondu */
+    .title-slot .title-slot-text { animation: titleSlotFade 300ms ease both !important; }
     .accordion-item .accordion-icon { transition: color 200ms ease; }
     .accordion-item[open] .accordion-icon { transform: none; }
     .accordion-item .accordion-summary:active .accordion-icon { translate: none; }

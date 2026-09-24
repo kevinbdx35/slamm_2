@@ -49,8 +49,8 @@ const videos = [
     <div class="container">
       <div class="section-header">
         <h1 class="section-title">
-          <span class="title-line"><span class="title-text">Deux disciplines,</span></span>{' '}
-          <span class="title-line title-accent"><span class="title-text">une philosophie.</span></span>
+          <span class="title-slot"><span class="title-slot-text">Deux disciplines,</span></span>{' '}
+          <span class="title-slot title-accent"><span class="title-slot-text">une philosophie.</span></span>
         </h1>
         <p class="section-sub reveal reveal-delay-2">
           MMA technique, Sparring encadré, Luta Livre No-Gi : un programme cohérent
@@ -175,30 +175,8 @@ const videos = [
     text-wrap: initial;
   }
 
-  /* Chaque ligne est une fente, comme le titre du hero : le texte en sort
-     par le bas au chargement. Marge de 0.08em (compensée) pour les accents. */
-  .title-line {
-    display: block;
-    overflow: clip;
-    padding-block: 0.08em;
-    margin-block: -0.08em;
-  }
-  .title-text {
-    display: block;
-    animation: discLineReveal 600ms var(--ease-out) both;
-  }
-  .title-line:first-child .title-text { animation-delay: 60ms; }
-  .title-accent .title-text { animation-delay: 120ms; }
+  /* Lignes en fentes : utilitaire global .title-slot (Layout.astro) */
   .title-accent { color: var(--g400); }
-
-  @keyframes discLineReveal {
-    from { transform: translateY(120%); }
-    to   { transform: translateY(0); }
-  }
-  @keyframes discFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
 
   .section-sub {
     font-size: 17px;
@@ -456,10 +434,8 @@ const videos = [
   }
   .faq-link a:active { transform: scale(0.97); }
 
-  /* Mouvement réduit : fondus seuls, filets déjà tracés, pas d'appui.
-     Plus spécifique que la règle globale (*), qui sinon coupe le fondu du titre. */
+  /* Mouvement réduit : fondus seuls, filets déjà tracés, pas d'appui */
   @media (prefers-reduced-motion: reduce) {
-    .title-text { animation: discFade 300ms ease both !important; }
     :global(.js) .cours-step::before { transform: none; transition: none; }
     :global(.js) .cours-step > * {
       transform: none;

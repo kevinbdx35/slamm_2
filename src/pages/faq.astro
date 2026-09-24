@@ -32,10 +32,10 @@ import TrialCta from '../components/TrialCta.astro';
     <section class="faq">
       <div class="container">
 
-        <div class="faq-header reveal">
+        <div class="faq-header">
           <h1 class="faq-title">
-            Toutes les réponses<br/>
-            <span>avant de te lancer.</span>
+            <span class="title-slot"><span class="title-slot-text">Toutes les réponses</span></span>{' '}
+            <span class="title-slot title-accent"><span class="title-slot-text">avant de te lancer.</span></span>
           </h1>
         </div>
 
@@ -105,7 +105,7 @@ import TrialCta from '../components/TrialCta.astro';
     color: var(--text);
   }
 
-  .faq-title span { color: var(--g400); }
+  .faq-title .title-accent { color: var(--g400); }
 
 
   .faq-body {
