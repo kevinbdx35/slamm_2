@@ -38,30 +38,39 @@ const isActive = (href: string) => {
 </header>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  {links.map(l => (
-    <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+  {links.map((l, i) => (
+    <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} style={`--i: ${i}`} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
   ))}
-  <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta">Réserver un cours d'essai</a>
+  <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai</a>
 </div>
 
 <style>
+  /* Hauteur fixe : seul le fond apparaît au scroll (opacité, pas de padding animé) */
   #nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 20px 0;
-    transition: padding 0.4s var(--ease-out), background 0.4s var(--ease-out), border-color 0.4s;
-    border-bottom: 1px solid transparent;
+    padding: 14px 0;
+    isolation: isolate;
   }
 
-  #nav.scrolled {
-    padding: 12px 0;
+  #nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: rgba(8,15,10,0.85);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-color: var(--border);
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  #nav.scrolled::before {
+    opacity: 1;
   }
 
   .nav-inner {
@@ -142,13 +151,16 @@ const isActive = (href: string) => {
     background: var(--g500);
     padding: 8px 18px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     letter-spacing: 0.02em;
+  }
+
+  .nav-cta:active {
+    transform: scale(0.97);
   }
 
   .nav-cta:hover {
     background: var(--g400);
-    transform: translateY(-1px);
   }
 
   .burger {
@@ -171,7 +183,7 @@ const isActive = (href: string) => {
     height: 2px;
     background: var(--text);
     border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 200ms var(--ease-out);
   }
 
   .burger.open span:first-child {
@@ -194,13 +206,38 @@ const isActive = (href: string) => {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s, visibility 0.3s;
+    /* Fermeture rapide (150ms), ouverture un peu plus posée */
+    transition: opacity 150ms ease, visibility 0s linear 150ms;
   }
 
   .mobile-menu.open {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
+    transition: opacity 200ms var(--ease-out), visibility 0s;
+  }
+
+  /* Liens : montée de 8px en cascade (40ms) à l'ouverture, sortie groupée */
+  .mobile-link,
+  .mobile-cta {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 120ms ease, transform 120ms ease, color 200ms ease, background-color 200ms ease;
+  }
+
+  .mobile-menu.open .mobile-link,
+  .mobile-menu.open .mobile-cta {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 250ms var(--ease-out) calc(var(--i, 0) * 40ms + 60ms),
+      transform 250ms var(--ease-out) calc(var(--i, 0) * 40ms + 60ms),
+      color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-link, .mobile-cta { transform: none; }
   }
 
   .mobile-link {
@@ -208,7 +245,6 @@ const isActive = (href: string) => {
     font-size: clamp(28px, 8vw, 44px);
     font-weight: 800;
     color: var(--text-3);
-    transition: color 0.2s;
   }
 
   .mobile-link:hover,
@@ -224,6 +260,11 @@ const isActive = (href: string) => {
     border-radius: 100px;
   }
 
+  .mobile-menu.open .mobile-cta:active {
+    transform: scale(0.97);
+    transition: transform 120ms var(--ease-out);
+  }
+
   @media (max-width: 1100px) {
     .nav-links, .nav-cta { display: none; }
     .burger { display: flex; }
@@ -236,9 +277,14 @@ const isActive = (href: string) => {
   const burger = document.getElementById('burger')!;
   const menu   = document.getElementById('mobile-menu')!;
 
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  // Fond de la nav dès 40px de scroll : sentinelle observée (pas d'écouteur scroll)
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:40px;pointer-events:none;visibility:hidden';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([entry]) => {
+    nav.classList.toggle('scrolled', !entry.isIntersecting);
+  }).observe(sentinel);
 
   const setMenu = (open: boolean) => {
     burger.classList.toggle('open', open);

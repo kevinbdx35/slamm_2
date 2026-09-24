@@ -591,14 +591,17 @@ const steps = [
     background: var(--g500);
     padding: 12px 24px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     width: 100%;
     text-align: center;
   }
 
+  .btn-inscription:active {
+    transform: scale(0.97);
+  }
+
   .btn-inscription:hover {
     background: var(--g400);
-    transform: translateY(-1px);
   }
 
   .btn-essai {
@@ -613,13 +616,16 @@ const steps = [
     border: 1px solid rgba(34,197,94,0.25);
     padding: 12px 24px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     align-self: flex-start;
+  }
+
+  .btn-essai:active {
+    transform: scale(0.97);
   }
 
   .btn-essai:hover {
     background: rgba(34,197,94,0.14);
-    transform: translateY(-1px);
   }
 
   .astuce svg { flex-shrink: 0; margin-top: 2px; }

@@ -230,7 +230,11 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
     background: var(--g500);
     padding: 14px 28px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.97);
   }
 
   .btn-primary:hover { background: var(--g400); transform: translateY(-1px); }
@@ -245,7 +249,11 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
     border: 1px solid rgba(34,197,94,0.25);
     padding: 14px 28px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+  }
+
+  .btn-ghost:active {
+    transform: scale(0.97);
   }
 
   .btn-ghost:hover { background: rgba(34,197,94,0.14); transform: translateY(-1px); }
@@ -395,9 +403,11 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
     transition: opacity 0.2s, transform 0.2s;
   }
 
-  .disc-card:hover .disc-arrow {
-    opacity: 1;
-    transform: translateX(4px);
+  @media (hover: hover) and (pointer: fine) {
+    .disc-card:hover .disc-arrow {
+      opacity: 1;
+      transform: translateX(4px);
+    }
   }
 
   /* ── Infos pratiques ── */

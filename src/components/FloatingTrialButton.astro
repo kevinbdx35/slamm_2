@@ -32,20 +32,32 @@ import { ASSOCONNECT_URLS } from '../config/urls.js';
     place-items: center;
     box-shadow: 0 4px 20px rgba(34,197,94,0.35);
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.9);
     pointer-events: none;
-    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), background 0.2s;
+    /* Sortie rapide */
+    transition: opacity 150ms ease, transform 150ms ease, background-color 200ms ease;
   }
 
   #fab.visible {
     opacity: 1;
     transform: scale(1);
     pointer-events: all;
+    transition: opacity 250ms var(--ease-out), transform 250ms var(--ease-out), background-color 200ms ease;
   }
 
   #fab:hover {
     background: var(--g400);
-    transform: scale(1.08);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #fab.visible:hover {
+      transform: scale(1.04);
+    }
+  }
+
+  #fab.visible:active {
+    transform: scale(0.94);
+    transition-duration: 120ms;
   }
 
   @media (max-width: 768px) {
@@ -54,8 +66,15 @@ import { ASSOCONNECT_URLS } from '../config/urls.js';
 </style>
 
 <script>
+  // Visible après 100px de scroll : sentinelle observée (pas d'écouteur scroll)
   const fab = document.getElementById('fab');
-  window.addEventListener('scroll', () => {
-    fab?.classList.toggle('visible', window.scrollY > 100);
-  }, { passive: true });
+  if (fab) {
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100px;pointer-events:none;visibility:hidden';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(([entry]) => {
+      fab.classList.toggle('visible', !entry.isIntersecting);
+    }).observe(sentinel);
+  }
 </script>

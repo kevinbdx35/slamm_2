@@ -198,9 +198,11 @@ const byDay = days.map(day => {
     transition: background 0.2s, border-color 0.2s, transform 0.2s;
   }
 
-  .slot:hover {
-    background: var(--bg2);
-    transform: translateX(2px);
+  @media (hover: hover) and (pointer: fine) {
+    .slot:hover {
+      background: var(--bg2);
+      transform: translateX(2px);
+    }
   }
 
   .slot-time {

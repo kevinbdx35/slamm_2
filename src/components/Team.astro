@@ -244,7 +244,11 @@ const coaches = [
 
   .carousel-track {
     display: flex;
-    transition: transform 0.5s var(--ease-out);
+    transition: transform 400ms var(--ease-in-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track { transition: none; }
   }
 
   .carousel-slide {

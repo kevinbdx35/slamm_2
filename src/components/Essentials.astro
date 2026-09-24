@@ -426,7 +426,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   .accordion-icon {
     flex-shrink: 0;
     color: var(--text-muted);
-    transition: transform 0.3s var(--ease-out);
+    transition: transform 250ms var(--ease-out), color 200ms ease;
   }
 
   .accordion-item[open] .accordion-icon {
@@ -485,12 +485,15 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     border-radius: 100px;
     white-space: nowrap;
     flex-shrink: 0;
-    transition: background 0.2s, transform 0.2s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+  }
+
+  .cta-btn:active {
+    transform: scale(0.97);
   }
 
   .cta-btn:hover {
     background: var(--g400);
-    transform: translateY(-1px);
   }
 
   .cta-btn svg { flex-shrink: 0; }

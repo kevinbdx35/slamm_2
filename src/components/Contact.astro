@@ -394,12 +394,15 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     padding: 16px 24px;
     cursor: pointer;
     margin-top: 4px;
-    transition: background 0.25s, transform 0.25s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+  }
+
+  .form-submit:active {
+    transform: scale(0.97);
   }
 
   .form-submit:hover {
     background: var(--g400);
-    transform: translateY(-2px);
   }
 
   .form-submit:disabled {
@@ -426,13 +429,15 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     transition: transform 0.2s;
   }
 
-  .form-submit:hover:not(:disabled) .submit-icon { transform: translateX(3px); }
+  @media (hover: hover) and (pointer: fine) {
+    .form-submit:hover:not(:disabled) .submit-icon { transform: translateX(3px); }
 
-  .form-status {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.5;
-    min-height: 1.2em;
+    .form-status {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      min-height: 1.2em;
+    }
   }
   .form-status.success { color: var(--g400); }
   .form-status.error { color: #f87171; }

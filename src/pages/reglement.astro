@@ -116,13 +116,16 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
     font-size: 14px;
     font-weight: 700;
     border-radius: var(--r-sm);
-    transition: background 0.2s, transform 0.15s;
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     text-decoration: none;
+  }
+
+  .btn-download:active {
+    transform: scale(0.97);
   }
 
   .btn-download:hover {
     background: var(--g400);
-    transform: translateY(-1px);
   }
 
   .pdf-wrapper {
