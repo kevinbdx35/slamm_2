@@ -50,7 +50,7 @@ const isActive = (href: string) => {
   <div class="mobile-actions">
     <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai</a>
     <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="mobile-cta mobile-cta--ghost" style={`--i: ${links.length + 1}`}>S'inscrire au club</a>
-    <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="mobile-social" aria-label="Instagram @slamm35800">
+    <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="mobile-social" style={`--i: ${links.length + 2}`} aria-label="Instagram @slamm35800">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
         <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
@@ -154,20 +154,13 @@ const isActive = (href: string) => {
     color: var(--text-3);
     padding: 6px 14px;
     border-radius: 100px;
-    transition: color 0.2s, background 0.2s;
+    transition: color 200ms ease, transform 160ms var(--ease-out);
     letter-spacing: 0.01em;
   }
 
-  .nav-link:hover {
-    color: var(--text);
-    background: var(--surface);
-  }
-
-  /* Page courante : trait de 2px sous le libellé (le fond reste réservé au survol) */
-  .nav-link.active {
-    color: var(--text);
-  }
-  .nav-link.active::after {
+  /* Un seul langage : le trait sous le libellé. Plein sur la page courante,
+     il se dessine depuis la gauche au survol (transform seul, 200ms ease-out) */
+  .nav-link::after {
     content: '';
     position: absolute;
     left: 14px;
@@ -176,6 +169,20 @@ const isActive = (href: string) => {
     height: 2px;
     border-radius: 2px;
     background: var(--g400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms var(--ease-out);
+  }
+
+  .nav-link.active {
+    color: var(--text);
+  }
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link:active {
+    transform: scale(0.97);
   }
 
   .nav-actions {
@@ -194,12 +201,11 @@ const isActive = (href: string) => {
     border: 1px solid var(--border-strong);
     border-radius: 100px;
     letter-spacing: 0.02em;
-    transition: color 200ms ease, border-color 200ms ease;
+    transition: color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
   }
 
-  .nav-join:hover {
-    color: var(--text);
-    border-color: rgba(74,222,128,0.5);
+  .nav-join:active {
+    transform: scale(0.97);
   }
 
   .nav-cta {
@@ -210,7 +216,7 @@ const isActive = (href: string) => {
     background: var(--g500);
     padding: 8px 18px;
     border-radius: 100px;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+    transition: background-color 200ms ease, transform 160ms var(--ease-out);
     letter-spacing: 0.02em;
   }
 
@@ -218,8 +224,21 @@ const isActive = (href: string) => {
     transform: scale(0.97);
   }
 
-  .nav-cta:hover {
-    background: var(--g400);
+  /* Survols réservés aux pointeurs fins : pas d'état collé après un tap (iPad paysage) */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover { color: var(--text); }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-join:hover {
+      color: var(--text);
+      border-color: rgba(74,222,128,0.5);
+    }
+    .nav-cta:hover { background: var(--g400); }
+    .mobile-link:hover { color: var(--g400); }
+  }
+
+  /* Le press state remplace le flash gris du tap (iOS/Android) */
+  .logo, .nav-link, .nav-join, .nav-cta, .burger, .mobile-link, .mobile-cta, .mobile-social {
+    -webkit-tap-highlight-color: transparent;
   }
 
   .burger {
@@ -234,6 +253,11 @@ const isActive = (href: string) => {
     width: 44px;
     height: 44px;
     margin-left: auto;
+    transition: transform 160ms var(--ease-out);
+  }
+
+  .burger:active {
+    transform: scale(0.97);
   }
 
   .burger span {
@@ -267,8 +291,8 @@ const isActive = (href: string) => {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    /* Fermeture rapide (150ms), ouverture un peu plus posée */
-    transition: opacity 150ms ease, visibility 0s linear 150ms;
+    /* Fermeture rapide (150ms), ouverture un peu plus posée (200ms) */
+    transition: opacity 150ms var(--ease-out), visibility 0s linear 150ms;
   }
 
   .mobile-menu.open {
@@ -278,27 +302,38 @@ const isActive = (href: string) => {
     transition: opacity 200ms var(--ease-out), visibility 0s;
   }
 
-  /* Liens : montée de 8px en cascade (40ms) à l'ouverture, sortie groupée */
+  /* Liens, boutons et Instagram : montée de 8px en cascade (30ms) à l'ouverture, sortie groupée */
   .mobile-link,
-  .mobile-cta {
+  .mobile-cta,
+  .mobile-social {
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 120ms ease, transform 120ms ease, color 200ms ease, background-color 200ms ease;
   }
 
   .mobile-menu.open .mobile-link,
-  .mobile-menu.open .mobile-cta {
+  .mobile-menu.open .mobile-cta,
+  .mobile-menu.open .mobile-social {
     opacity: 1;
     transform: none;
     transition:
-      opacity 250ms var(--ease-out) calc(var(--i, 0) * 40ms + 60ms),
-      transform 250ms var(--ease-out) calc(var(--i, 0) * 40ms + 60ms),
+      opacity 250ms var(--ease-out) calc(var(--i, 0) * 30ms + 40ms),
+      transform 250ms var(--ease-out) calc(var(--i, 0) * 30ms + 40ms),
       color 200ms ease,
       background-color 200ms ease;
   }
 
+  /* Pression : 2 % suffisent sur un texte de 32px */
+  .mobile-menu.open .mobile-link:active {
+    transform: scale(0.98);
+    transition: transform 160ms var(--ease-out), color 200ms ease;
+  }
+
+  /* Mouvement réduit : pas de déplacement ni de rotation, on garde les fondus */
   @media (prefers-reduced-motion: reduce) {
-    .mobile-link, .mobile-cta { transform: none; }
+    .mobile-link, .mobile-cta, .mobile-social { transform: none; }
+    .burger span { transition: none; }
+    .nav-link::after { transition: none; }
   }
 
   .mobile-links {
@@ -318,7 +353,6 @@ const isActive = (href: string) => {
     border-bottom: 1px solid var(--border);
   }
 
-  .mobile-link:hover,
   .mobile-link.active { color: var(--g400); }
 
   .mobile-actions {
@@ -358,7 +392,7 @@ const isActive = (href: string) => {
 
   .mobile-menu.open .mobile-cta:active {
     transform: scale(0.97);
-    transition: transform 120ms var(--ease-out);
+    transition: transform 160ms var(--ease-out);
   }
 
   @media (max-width: 1100px) {

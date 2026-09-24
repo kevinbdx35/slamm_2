@@ -25,8 +25,8 @@ import cagePhoto from '../assets/img/team/cage.webp';
       <p class="hero-eyebrow">Saint-Lunaire, Bretagne · Association loi 1901</p>
 
       <h1 class="hero-title">
-        <span class="title-line title-line-1">Saint-Lunaire</span>
-        <span class="title-line title-line-2">Arts Martiaux Mixtes</span>
+        <span class="title-line title-line-1"><span class="title-text">Saint-Lunaire</span></span>
+        <span class="title-line title-line-2"><span class="title-text">Arts Martiaux Mixtes</span></span>
       </h1>
 
       <p class="hero-desc">
@@ -47,12 +47,20 @@ import cagePhoto from '../assets/img/team/cage.webp';
       </div>
 
       <dl class="hero-stats">
-        {CLUB_STATS.map(s => (
-          <div class="stat">
-            <dt class="stat-label">{s.label}</dt>
-            <dd class="stat-num">{s.num}</dd>
-          </div>
-        ))}
+        {CLUB_STATS.map(s => {
+          // « 35+ » → compteur animé sur 35, suffixe « + » fixe
+          const to = parseInt(s.num, 10);
+          const suffix = s.num.slice(String(to).length);
+          return (
+            <div class="stat">
+              <dt class="stat-label">{s.label}</dt>
+              <dd class="stat-num">
+                <span class="sr-only">{s.num}</span>
+                <span aria-hidden="true"><span class="count" data-to={to} style={`min-width: ${String(to).length}ch`}>{to}</span>{suffix}</span>
+              </dd>
+            </div>
+          );
+        })}
       </dl>
     </div>
 
@@ -102,27 +110,30 @@ import cagePhoto from '../assets/img/team/cage.webp';
     line-height: 0.98;
     letter-spacing: -0.03em;
     margin-bottom: 28px;
-    overflow: hidden;
     text-wrap: initial;
   }
 
+  /* Chaque ligne est sa propre fente : le texte en sort par le bas, sans fondu.
+     Marge de 0.08em (compensée) pour ne pas rogner accents et jambages. */
   .title-line {
     display: block;
-    animation: slideIn 600ms var(--ease-out) both;
+    overflow: clip;
+    padding-block: 0.08em;
+    margin-block: -0.08em;
+  }
+  .title-text {
+    display: block;
+    animation: lineReveal 600ms var(--ease-out) both;
   }
   /* Deux lignes, deux couleurs : le lieu en blanc, la discipline en vert */
-  .title-line-1 {
-    color: var(--text);
-    animation-delay: 60ms;
-  }
-  .title-line-2 {
-    color: var(--g400);
-    animation-delay: 120ms;
-  }
+  .title-line-1 { color: var(--text); }
+  .title-line-2 { color: var(--g400); }
+  .title-line-1 .title-text { animation-delay: 60ms; }
+  .title-line-2 .title-text { animation-delay: 120ms; }
 
-  @keyframes slideIn {
-    from { transform: translateY(100%); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
+  @keyframes lineReveal {
+    from { transform: translateY(120%); }
+    to   { transform: translateY(0); }
   }
 
   /* Desc */
@@ -155,23 +166,25 @@ import cagePhoto from '../assets/img/team/cage.webp';
     padding: 14px 28px;
     border-radius: 100px;
     white-space: nowrap;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 200ms ease, transform 160ms var(--ease-out);
   }
 
   .btn-primary:active {
     transform: scale(0.97);
   }
 
-  .btn-primary:hover {
-    background: var(--g400);
-  }
-
   .btn-primary svg {
     transition: transform 200ms var(--ease-out);
   }
+
+  /* Survols réservés aux pointeurs fins : pas d'état collé après un tap */
   @media (hover: hover) and (pointer: fine) {
-    .btn-primary:hover svg {
-      transform: translateX(3px);
+    .btn-primary:hover { background: var(--g400); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-ghost:hover {
+      border-color: rgba(74,222,128,0.7);
+      background: rgba(34,197,94,0.06);
     }
   }
 
@@ -184,17 +197,12 @@ import cagePhoto from '../assets/img/team/cage.webp';
     border-radius: 100px;
     border: 1px solid rgba(74,222,128,0.45);
     white-space: nowrap;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
   }
 
   .btn-ghost:active {
     transform: scale(0.97);
-  }
-
-  .btn-ghost:hover {
-    color: var(--text);
-    border-color: rgba(74,222,128,0.7);
-    background: rgba(34,197,94,0.06);
   }
 
   /* Chiffres clés : bloc de preuve sous les CTA, séparé par un filet */
@@ -212,6 +220,19 @@ import cagePhoto from '../assets/img/team/cage.webp';
     display: flex;
     flex-direction: column-reverse;
     gap: 6px;
+  }
+
+  /* Compteur : largeur réservée (chiffres tabulaires) pour que le « + » ne bouge pas */
+  .count {
+    display: inline-block;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .stat-num {
@@ -238,7 +259,6 @@ import cagePhoto from '../assets/img/team/cage.webp';
     bottom: 0;
     width: 60%;
     z-index: 0;
-    animation: heroPhotoFade 700ms var(--ease-out) 120ms both;
     /* Fondu réel (transparence) vers la gauche et vers le bas : aucune arête
        visible, quel que soit le fond (halo vert du site compris) */
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%), linear-gradient(0deg, transparent 0%, #000 30%);
@@ -252,6 +272,8 @@ import cagePhoto from '../assets/img/team/cage.webp';
     height: 100%;
     object-fit: cover;
     object-position: 50% 45%;
+    /* Visible dès la 1re frame (LCP) : zoom lent qui se pose, jamais de bord visible */
+    animation: heroPhotoSettle 1200ms var(--ease-out) both;
   }
 
   /* Assombrissement léger : côté texte et sous la nav (lisibilité des liens) */
@@ -268,10 +290,23 @@ import cagePhoto from '../assets/img/team/cage.webp';
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Photo pleine page : simple fondu (un zoom ferait apparaître les bords) — à revoir en phase 2 */
-  @keyframes heroPhotoFade {
+  @keyframes heroPhotoSettle {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
+  }
+
+  @keyframes heroFade {
     from { opacity: 0; }
     to   { opacity: 1; }
+  }
+
+  /* Mouvement réduit : simple fondu de 300ms pour le texte, photo fixe (compteurs coupés en JS).
+     Plus spécifique que la règle globale (*), qui sinon supprime tout. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-eyebrow, .title-text, .hero-desc, .hero-actions, .hero-stats {
+      animation: heroFade 300ms ease both !important;
+    }
+    .hero-photo { animation: none !important; }
   }
 
   /* Mobile / tablette : photo en plein écran, texte par-dessus en bas (effet story) */
@@ -300,3 +335,25 @@ import cagePhoto from '../assets/img/team/cage.webp';
     .btn-primary, .btn-ghost { justify-content: center; text-align: center; }
   }
 </style>
+
+<script>
+  // Compteurs des chiffres clés : de 0 à la valeur, 900ms, ease-out exponentielle,
+  // décalés de 80ms, lancés quand le bloc a fini d'apparaître (~400ms).
+  // Mouvement réduit : rien à faire, la valeur finale est déjà dans le HTML.
+  const counters = document.querySelectorAll<HTMLElement>('.hero-stats .count');
+  if (counters.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const easeOutExpo = (t: number) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+    const DURATION = 900, START = 400, STAGGER = 80;
+    counters.forEach((el, i) => {
+      const to = Number(el.dataset.to) || 0;
+      el.textContent = '0';
+      const begin = performance.now() + START + i * STAGGER;
+      const tick = (now: number) => {
+        const t = Math.max(0, (now - begin) / DURATION);
+        el.textContent = String(Math.round(to * easeOutExpo(t)));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+</script>
