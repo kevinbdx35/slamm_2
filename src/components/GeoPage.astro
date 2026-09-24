@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import { ASSOCONNECT_URLS, CONTACT_INFO } from '../config/urls.js';
 import { SCHEDULE, PRICING, SEASON, getActivePeriodIndex, formatTimeDisplay } from '../config/schedule.js';
 import { Image } from 'astro:assets';
-import teamImg from '../assets/img/team/team.webp';
+import teamImg from '../assets/img/team/equipe2026.webp';
 import TrialCta from './TrialCta.astro';
 
 interface Props {
@@ -200,6 +200,7 @@ const nbspDistance = `à\u00a0${distance.replace(/ /g, '\u00a0')}`;
     height: auto;
     aspect-ratio: 830 / 459;
     object-fit: cover;
+    object-position: 50% 70%;
     border-radius: var(--r-lg);
   }
 

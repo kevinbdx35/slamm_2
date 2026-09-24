@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import teamPhoto from '../assets/img/team/team.webp';
+import teamPhoto from '../assets/img/team/equipe2026.webp';
 
 const values = [
   {
@@ -116,6 +116,8 @@ const values = [
     height: auto;
     aspect-ratio: 830 / 459;
     object-fit: cover;
+    /* Photo 4:3 avec beaucoup de mur en haut : on cadre sur le groupe */
+    object-position: 50% 70%;
   }
 
   .about-body {

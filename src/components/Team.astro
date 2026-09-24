@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import teamPhoto from '../assets/img/team/team.webp';
+import teamPhoto from '../assets/img/team/equipe2026.webp';
 import TrialCta from './TrialCta.astro';
 
 const coaches = [
@@ -186,7 +186,7 @@ const coaches = [
     height: auto;
     aspect-ratio: 830 / 340;
     object-fit: cover;
-    object-position: 50% 40%;
+    object-position: 50% 62%;
   }
 
   /* Coach : identité (4/12) + contenu (8/12) */
@@ -283,7 +283,7 @@ const coaches = [
   @media (max-width: 900px) {
     .team { padding: 128px 0 80px; }
     .team-photo-wrap { margin: 0 -24px 64px; border-radius: 0; }
-    .team-photo { aspect-ratio: 830 / 459; }
+    .team-photo { aspect-ratio: 830 / 459; object-position: 50% 70%; }
     .coach { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 40px 0; }
     .coach-list { margin-bottom: 64px; }
   }
