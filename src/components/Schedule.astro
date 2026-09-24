@@ -50,7 +50,7 @@ const byDay = days.map(day => {
 
     <div class="schedule-grid">
       {byDay.map((col, i) => (
-        <div class:list={['day-col', 'reveal', `reveal-delay-${(i % 3) + 1}`, { 'day-rest': col.slots.length === 0 }]}>
+        <div class:list={['day-col', 'reveal', { 'day-rest': col.slots.length === 0 }]} style={`--i: ${i}`}>
           <div class="day-header">
             <span class="day-name">{col.day}</span>
           </div>
@@ -165,6 +165,12 @@ const byDay = days.map(day => {
   }
 
 
+  /* Semaine complète sur une ligne : cascade du lundi au samedi (30ms par jour).
+     En dessous, les jours s'empilent et le défilement fait la cascade. */
+  @media (min-width: 1101px) {
+    :global(.js) .day-col.reveal { transition-delay: calc(var(--i) * 30ms); }
+  }
+
   .day-slots {
     display: flex;
     flex-direction: column;
@@ -184,7 +190,6 @@ const byDay = days.map(day => {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
   }
 
 

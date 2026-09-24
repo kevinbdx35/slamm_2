@@ -159,15 +159,10 @@ import TrialCta from '../components/TrialCta.astro';
     font-size: 16px;
     font-weight: 500;
     color: var(--text);
-    transition: background 0.2s, color 0.2s;
     user-select: none;
   }
 
   .accordion-summary::-webkit-details-marker { display: none; }
-
-  .accordion-summary:hover {
-    color: var(--g400);
-  }
 
   .accordion-item[open] .accordion-summary {
     color: var(--g400);
@@ -176,13 +171,10 @@ import TrialCta from '../components/TrialCta.astro';
   .accordion-icon {
     flex-shrink: 0;
     color: var(--text-muted);
-    transition: transform 250ms var(--ease-out), color 200ms ease;
   }
 
-  .accordion-item[open] .accordion-icon {
-    transform: rotate(180deg);
-    color: var(--g400);
-  }
+  /* Rotation, survol, appui et fondu de la réponse : dans Layout.astro */
+  .accordion-item[open] .accordion-icon { color: var(--g400); }
 
   .accordion-body {
     padding: 0 40px 22px 0;
@@ -210,6 +202,19 @@ import TrialCta from '../components/TrialCta.astro';
     font-weight: 600;
     color: var(--g400);
     white-space: nowrap;
+    transition: transform 160ms var(--ease-out);
+  }
+
+  /* Même geste que les liens « Voir tous les tarifs » de l'accueil */
+  .faq-contact svg { transition: transform 200ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .faq-contact a:hover svg { transform: translateX(3px); }
+  }
+  .faq-contact a:active { transform: scale(0.97); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-contact a, .faq-contact svg { transition: none; }
+    .faq-contact a:hover svg, .faq-contact a:active { transform: none; }
   }
 
   @media (max-width: 900px) {

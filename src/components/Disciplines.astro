@@ -47,12 +47,12 @@ const videos = [
 {part === 'intro' && (
   <section class="disciplines disciplines-intro" id="disciplines">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header">
         <h1 class="section-title">
-          <span class="title-line">Deux disciplines,</span>{' '}
-          <span class="title-line title-accent">une philosophie.</span>
+          <span class="title-line"><span class="title-text">Deux disciplines,</span></span>{' '}
+          <span class="title-line title-accent"><span class="title-text">une philosophie.</span></span>
         </h1>
-        <p class="section-sub">
+        <p class="section-sub reveal reveal-delay-2">
           MMA technique, Sparring encadré, Luta Livre No-Gi : un programme cohérent
           pour progresser à tous les niveaux.
         </p>
@@ -109,9 +109,9 @@ const videos = [
           <h2 class="cours-title">À quoi ressemble un cours ?</h2>
           <p class="cours-sub">Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois.</p>
         </div>
-        <ol class="cours-steps">
+        <ol class="cours-steps reveal">
           {steps.map((st, i) => (
-            <li class={`cours-step reveal reveal-delay-${i + 1}`}>
+            <li class="cours-step" style={`--stagger: ${i * 60}ms`}>
               <span class="cours-duration">{st.duration}</span>
               <h3 class="cours-step-title">{st.title}</h3>
               <p class="cours-step-desc">{st.desc}</p>
@@ -175,8 +175,30 @@ const videos = [
     text-wrap: initial;
   }
 
-  .title-line { display: block; }
+  /* Chaque ligne est une fente, comme le titre du hero : le texte en sort
+     par le bas au chargement. Marge de 0.08em (compensée) pour les accents. */
+  .title-line {
+    display: block;
+    overflow: clip;
+    padding-block: 0.08em;
+    margin-block: -0.08em;
+  }
+  .title-text {
+    display: block;
+    animation: discLineReveal 600ms var(--ease-out) both;
+  }
+  .title-line:first-child .title-text { animation-delay: 60ms; }
+  .title-accent .title-text { animation-delay: 120ms; }
   .title-accent { color: var(--g400); }
+
+  @keyframes discLineReveal {
+    from { transform: translateY(120%); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes discFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 
   .section-sub {
     font-size: 17px;
@@ -319,6 +341,7 @@ const videos = [
       transform: scale(1.06);
     }
   }
+  .play-btn:active { transform: scale(0.95); }
 
   /* Cours type : 4 colonnes à plat sous un filet */
   .cours-type {
@@ -355,13 +378,38 @@ const videos = [
     gap: 32px;
   }
 
+  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
   .cours-step {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-top: 24px;
-    border-top: 1px solid var(--border-strong);
   }
+  .cours-step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--border-strong);
+    transform-origin: left;
+  }
+
+  /* Même geste que les valeurs d'About : filets dessinés, puis texte, en cascade */
+  :global(.js) .cours-steps.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .cours-step::before {
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
+  }
+  :global(.js) .cours-step > * {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
+      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
+  }
+  :global(.js) .cours-steps.visible .cours-step::before { transform: scaleX(1); }
+  :global(.js) .cours-steps.visible .cours-step > * { opacity: 1; transform: none; }
 
   .cours-duration {
     font-family: var(--font-display);
@@ -400,6 +448,25 @@ const videos = [
     font-weight: 600;
     color: var(--g400);
     white-space: nowrap;
+    transition: transform 160ms var(--ease-out);
+  }
+  .faq-link svg { transition: transform 200ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .faq-link a:hover svg { transform: translateX(3px); }
+  }
+  .faq-link a:active { transform: scale(0.97); }
+
+  /* Mouvement réduit : fondus seuls, filets déjà tracés, pas d'appui.
+     Plus spécifique que la règle globale (*), qui sinon coupe le fondu du titre. */
+  @media (prefers-reduced-motion: reduce) {
+    .title-text { animation: discFade 300ms ease both !important; }
+    :global(.js) .cours-step::before { transform: none; transition: none; }
+    :global(.js) .cours-step > * {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
+    .play-btn, .faq-link a, .faq-link svg { transition: none; }
+    .play-btn:active, .faq-link a:active, .faq-link a:hover svg { transform: none; }
   }
 
   @media (max-width: 900px) {
@@ -420,15 +487,32 @@ const videos = [
 </style>
 
 <script>
-  document.querySelectorAll('.video-facade').forEach(facade => {
+  // La miniature reste affichée pendant le chargement : l'iframe se pose
+  // par-dessus en fondu, puis la miniature est retirée (pas d'écran noir).
+  // Styles en ligne : les éléments créés en JS n'ont pas l'attribut de scope.
+  document.querySelectorAll<HTMLElement>('.video-facade').forEach(facade => {
     facade.addEventListener('click', () => {
+      if (facade.dataset.loading) return;
+      facade.dataset.loading = 'true';
       const id = facade.dataset.id;
       const iframe = document.createElement('iframe');
       iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
-      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none';
-      facade.replaceWith(iframe);
+      iframe.title = facade.querySelector('img')?.alt ?? 'Vidéo YouTube';
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;opacity:0;transition:opacity 200ms cubic-bezier(0.23, 1, 0.32, 1)';
+
+      let shown = false;
+      const show = () => {
+        if (shown) return;
+        shown = true;
+        iframe.style.opacity = '1';
+        iframe.focus();
+        setTimeout(() => facade.remove(), 250);
+      };
+      iframe.addEventListener('load', show, { once: true });
+      setTimeout(show, 4000); // filet de sécurité si « load » n'arrive jamais
+      facade.after(iframe);
     });
   });
 </script>

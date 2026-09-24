@@ -24,42 +24,42 @@ export const FAQ_CATEGORIES = [
     questions: [
       {
         id: 'experience',
-        q: "Faut-il avoir de l'expérience pour commencer le MMA ?",
+        q: "Faut-il avoir de l'expérience pour commencer le MMA ?",
         a: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux. Nos encadrants t'accompagnent pas à pas, en t'enseignant les bases avec pédagogie, pour te permettre de progresser à ton rythme.",
       },
       {
         id: 'age',
-        q: "À partir de quel âge peut-on pratiquer le MMA ?",
+        q: "À partir de quel âge peut-on pratiquer le MMA ?",
         a: "L'âge minimum pour adhérer à notre association est de 16 ans.",
       },
       {
         id: 'femmes',
-        q: "Y a-t-il des femmes au club ?",
-        a: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
+        q: "Y a-t-il des femmes au club ?",
+        a: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux. Le MMA est un sport mixte et nos entraînements sont ouverts à tous. Chacun travaille avec ses partenaires dans le respect mutuel, quelle que soit sa morphologie ou son genre.",
       },
       {
         id: 'equipement',
-        q: "Quel équipement est nécessaire pour débuter ?",
+        q: "Quel équipement est nécessaire pour débuter ?",
         a: "Pour venir essayer, il te suffit d'une tenue de sport confortable, d'une bouteille d'eau et éventuellement d'une serviette. Par la suite, il sera nécessaire d'acquérir gants, protège-tibias, protège-dents et coquille.",
       },
       {
         id: 'observer',
-        q: "Peut-on venir observer un cours sans s'inscrire ?",
-        a: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
+        q: "Peut-on venir observer un cours sans s'inscrire ?",
+        a: "Oui, bien sûr ! Tu peux venir observer un cours gratuitement pour découvrir l'ambiance et voir comment se déroule une séance, sans aucun engagement. Contacte-nous avant de venir pour qu'on te prévienne du meilleur créneau.",
       },
       {
         id: 'essai',
-        q: "Comment s'inscrire aux cours d'essai ?",
+        q: "Comment s'inscrire aux cours d'essai ?",
         a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre-octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
       },
       {
         id: 'duree-adhesion',
-        q: "L'adhésion couvre quelle période ?",
+        q: "L'adhésion couvre quelle période ?",
         a: `Il n'y a qu'une seule adhésion : elle démarre le jour de ton inscription et se termine fin juin, en même temps que la saison. Le plein tarif est de ${fullPrice} € pour la saison complète. Si tu nous rejoins en cours d'année, tu ne paies que les mois restants : ${reducedPrices}. Autrement dit, ${fullPrice} € ne couvre pas seulement septembre à décembre : c'est le prix de la saison entière quand on s'inscrit dès la rentrée.`,
       },
       {
         id: 'aides',
-        q: "Acceptez-vous le Pass'Sport et le Chèque jeunesse ?",
+        q: "Acceptez-vous le Pass'Sport et le Chèque jeunesse ?",
         a: "Oui, les deux. Le Pass'Sport est une aide de l'État accordée sous conditions d'éligibilité. Le Chèque jeunesse est une aide de 60 € de la mairie de Saint-Lunaire, destinée aux jeunes de 3 à 18 ans pour financer une inscription annuelle en association sportive ou culturelle. Chez nous, elle concerne donc les 16-18 ans, puisque l'âge minimum d'adhésion est de 16 ans. Dans les deux cas, le montant est déduit de ton adhésion : préviens-nous avant de finaliser ton inscription pour qu'on t'indique les justificatifs à fournir.",
       },
     ],
@@ -69,27 +69,27 @@ export const FAQ_CATEGORIES = [
     questions: [
       {
         id: 'certificat',
-        q: "Faut-il un certificat médical ?",
+        q: "Faut-il un certificat médical ?",
         a: "Oui, un certificat médical de non contre-indication à la pratique du MMA est obligatoire pour l'inscription. Il doit dater de moins d'un an. Pour les cours d'essai, il n'est pas nécessaire immédiatement.",
       },
       {
         id: 'frequence',
-        q: "Quelle est la fréquence d'entraînement recommandée ?",
+        q: "Quelle est la fréquence d'entraînement recommandée ?",
         a: "Pour progresser régulièrement, nous recommandons de participer à 2 à 3 séances par semaine. Même une séance hebdomadaire peut te permettre d'évoluer. L'essentiel reste la régularité et l'engagement lors des entraînements.",
       },
       {
         id: 'danger',
-        q: "Le MMA est-il dangereux ?",
+        q: "Le MMA est-il dangereux ?",
         a: "Comme tout sport de combat, le MMA comporte des risques. Mais encadré par nos coachs diplômés, avec un équipement adapté et des règles de sécurité strictes, la pratique reste maîtrisée. Nos cours sont progressifs, axés sur la technique et le respect du partenaire.",
       },
       {
         id: 'deroule',
-        q: "Comment se déroule un cours type ?",
+        q: "Comment se déroule un cours type ?",
         a: "Un cours dure entre 1h15 et 2h selon le créneau. Il débute par un échauffement spécifique MMA (debout, clinch, sol), suivi d'un travail technique, d'une mise en situation thématique, puis d'un retour au calme avec étirements.",
       },
       {
         id: 'competition',
-        q: "Est-ce que je dois participer à des compétitions ?",
+        q: "Est-ce que je dois participer à des compétitions ?",
         a: "Absolument pas. La compétition est entièrement optionnelle et s'adresse uniquement à ceux qui le souhaitent. La majorité de nos membres pratiquent pour le loisir, la condition physique ou simplement par plaisir.",
       },
     ],
