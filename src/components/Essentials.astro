@@ -33,15 +33,14 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
       {REGISTRATION_OPENING_SOON && (
         <p class="notice">
           <span class="notice-dot" aria-hidden="true"></span>
-          Inscriptions saison {SEASON} <strong>ouvertes très bientôt</strong> — tu peux déjà réserver ton cours d'essai.
+          Inscriptions saison {SEASON} <strong>ouvertes très bientôt</strong>. Tu peux déjà réserver ton cours d'essai.
         </p>
       )}
-      <p class="section-label">L'essentiel</p>
       <h2 class="section-title">
         Tout ce qu'il faut savoir,<br/>
         <span>en un coup d'œil.</span>
       </h2>
-      <p class="section-sub">Tarifs, créneaux et réponses aux questions les plus fréquentes — sans avoir à chercher.</p>
+      <p class="section-sub">Tarifs, créneaux et réponses aux questions les plus fréquentes, sans avoir à chercher.</p>
     </div>
 
     <div class="essentials-grid">
@@ -125,7 +124,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     <div class="essentials-cta reveal">
       <div class="cta-body">
         <p class="cta-title">Prêt à essayer ?</p>
-        <p class="cta-desc">2 cours d'essai pour te lancer — gratuits en début de saison, sans engagement.</p>
+        <p class="cta-desc">2 cours d'essai pour te lancer, gratuits en début de saison et sans engagement.</p>
       </div>
       <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="cta-btn">
         Réserver un cours d'essai
@@ -140,7 +139,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
 
 <style>
   .essentials {
-    padding: 120px 0;
+    padding: 112px 0;
     position: relative;
   }
 
@@ -192,14 +191,6 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
 
   @media (prefers-reduced-motion: reduce) {
     .notice-dot { animation: none; }
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
   }
 
   .section-title {
@@ -368,12 +359,9 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   .info-link svg { flex-shrink: 0; }
 
   /* mini-FAQ */
+  /* mini-FAQ sans conteneur : l'accordéon suffit à grouper */
   .mini-faq {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 36px;
-    margin-bottom: 24px;
+    margin: 72px 0 48px;
   }
 
   .mini-faq-head {
@@ -387,6 +375,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
 
   .mini-faq-title {
     font-family: var(--font-display);
+    line-height: 1.25;
     font-size: 20px;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -511,7 +500,9 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   }
 
   @media (max-width: 600px) {
-    .info-card, .mini-faq { padding: 28px 22px; }
+    .info-card { padding: 28px 22px; }
+    .info-title:not(.info-price) { font-size: 22px; }
+    .mini-faq { margin: 56px 0 40px; }
     .essentials-cta { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
     .accordion-summary { padding: 16px 18px; font-size: 14px; }
     .accordion-body { padding: 0 18px 16px; }
