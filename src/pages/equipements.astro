@@ -14,7 +14,6 @@ import Footer from '../components/Footer.astro';
       <div class="container">
 
         <div class="equip-header reveal">
-          <p class="section-label">Matériel</p>
           <h1 class="equip-title">Équipements MMA</h1>
           <p class="equip-sub">La liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au SLAMM en toute sécurité.</p>
         </div>
@@ -173,29 +172,12 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .equipements {
-    padding: 120px 0 80px;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .equipements::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
-  .equip-header { margin-bottom: 56px; }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 16px;
-  }
+  .equip-header { margin-bottom: 64px; max-width: 720px; }
 
   .equip-title {
     font-family: var(--font-display);
@@ -208,31 +190,29 @@ import Footer from '../components/Footer.astro';
   }
 
   .equip-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
     max-width: 600px;
   }
 
+  /* Colonne de lecture à plat + sommaire à droite */
   .equip-layout {
     display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: 48px;
+    grid-template-columns: minmax(0, 760px) 220px;
+    justify-content: space-between;
+    gap: 64px;
     align-items: start;
   }
 
   .equip-body {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 48px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 48px;
   }
 
   .intro-block p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-3);
     line-height: 1.8;
   }
@@ -242,30 +222,29 @@ import Footer from '../components/Footer.astro';
   /* Sections */
   .equip-section {
     padding-top: 40px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-strong);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    scroll-margin-top: 96px;
   }
 
   .equip-section h2 {
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 800;
-    color: var(--g400);
+    color: var(--text);
     letter-spacing: -0.02em;
   }
 
-  /* Alerts */
+  /* Encadré principal : filet vert à gauche, pas de boîte */
   .alert-primary {
-    background: rgba(34,197,94,0.05);
-    border: 1px solid rgba(34,197,94,0.2);
-    border-radius: var(--r-md);
-    padding: 16px 20px;
+    border-left: 2px solid var(--g500);
+    padding: 4px 0 4px 18px;
   }
 
   .alert-primary p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     margin-bottom: 10px;
     line-height: 1.7;
@@ -281,7 +260,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .alert-primary ul li {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text-3);
     padding-left: 14px;
     position: relative;
@@ -296,45 +275,43 @@ import Footer from '../components/Footer.astro';
     font-weight: 700;
   }
 
+  /* Alerte : seule couleur hors palette, réservée aux avertissements */
   .alert-warning {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    background: rgba(245,158,11,0.05);
-    border: 1px solid rgba(245,158,11,0.25);
-    border-radius: var(--r-sm);
+    background: var(--warn-bg);
+    border-left: 2px solid var(--warn);
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
     padding: 12px 16px;
-    color: #f59e0b;
+    color: var(--warn);
   }
 
-  .alert-warning svg { flex-shrink: 0; margin-top: 1px; }
+  .alert-warning svg { flex-shrink: 0; margin-top: 2px; }
 
   .alert-warning p {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    color: #f59e0b;
+    color: var(--warn);
     line-height: 1.5;
   }
 
   /* Two col */
   .two-col {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
   }
 
+  /* Colonne à plat : pastille ou titre, puis la liste */
   .col-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    padding: 16px 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .col-card-title {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-2);
   }
@@ -347,7 +324,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .col-card ul li {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text-3);
     padding-left: 14px;
     position: relative;
@@ -365,20 +342,19 @@ import Footer from '../components/Footer.astro';
   .col-card strong { color: var(--text-2); }
 
   /* Badges */
+  /* Pastilles de statut dans la palette du site */
   .badge {
     display: inline-block;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     border: 1px solid;
     border-radius: 100px;
-    padding: 2px 10px;
+    padding: 3px 12px;
     width: fit-content;
   }
 
-  .badge-required { color: #ef4444; border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.05); }
-  .badge-optional { color: #3b82f6; border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.05); }
+  .badge-required { color: var(--g400); border-color: rgba(74,222,128,0.45); background: rgba(34,197,94,0.1); }
+  .badge-optional { color: var(--text-3); border-color: var(--border-strong); background: transparent; }
 
   /* Simple list */
   .simple-list {
@@ -389,7 +365,7 @@ import Footer from '../components/Footer.astro';
   }
 
   .simple-list li {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     padding-left: 16px;
     position: relative;
@@ -412,17 +388,15 @@ import Footer from '../components/Footer.astro';
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background: rgba(34,197,94,0.05);
-    border: 1px solid rgba(34,197,94,0.15);
-    border-radius: var(--r-md);
-    padding: 16px 20px;
+    border-left: 2px solid var(--g500);
+    padding: 4px 0 4px 18px;
     color: var(--g400);
   }
 
   .order-note svg { flex-shrink: 0; margin-top: 2px; }
 
   .order-note p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     line-height: 1.7;
   }
@@ -431,17 +405,14 @@ import Footer from '../components/Footer.astro';
 
   /* Quote */
   .equip-quote {
-    border-left: 2px solid var(--g600);
-    padding: 12px 20px;
-    border-radius: 0 var(--r-sm) var(--r-sm) 0;
-    background: rgba(34,197,94,0.03);
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
   }
 
   .equip-quote p {
-    font-size: 14px;
-    color: var(--text-muted);
+    font-size: 15px;
+    color: var(--text-3);
     line-height: 1.7;
-    font-style: italic;
   }
 
   .equip-quote a {
@@ -451,22 +422,17 @@ import Footer from '../components/Footer.astro';
   }
 
   /* Sommaire */
+  /* Sommaire à plat, visible au défilement */
   .sommaire-inner {
     position: sticky;
-    top: 100px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 24px;
+    top: 104px;
   }
 
   .sommaire-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-bottom: 14px;
   }
 
   .sommaire-inner nav {
@@ -492,9 +458,9 @@ import Footer from '../components/Footer.astro';
   }
 
   @media (max-width: 900px) {
-    .equip-layout { grid-template-columns: 1fr; }
+    .equipements { padding: 128px 0 80px; }
+    .equip-layout { grid-template-columns: minmax(0, 1fr); }
     .sommaire { display: none; }
-    .equip-body { padding: 32px 24px; }
-    .two-col { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   }
 </style>

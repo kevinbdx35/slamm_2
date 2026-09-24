@@ -1,5 +1,5 @@
 ---
-import { ASSOCONNECT_URLS, SOCIAL_URLS } from '../config/urls.js';
+import { ASSOCONNECT_URLS, SOCIAL_URLS, CONTACT_INFO } from '../config/urls.js';
 const year = new Date().getFullYear();
 ---
 
@@ -7,12 +7,9 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Saint-Lunaire MMA">
+        <a href="/" class="footer-logo" aria-label="SLAMM, Saint-Lunaire MMA, accueil">
           <span class="logo-mark">SL</span>
-          <span class="logo-text">
-            Saint-Lunaire<br/>
-            <em>Arts Martiaux Mixtes</em>
-          </span>
+          <span class="logo-text">SLAMM<small>Saint-Lunaire MMA</small></span>
         </a>
         <p class="footer-tagline">
           L'excellence du combat<br/>sur la Côte d'Émeraude.
@@ -43,8 +40,8 @@ const year = new Date().getFullYear();
         </div>
         <div class="footer-col">
           <p class="footer-col-title">Rejoindre</p>
-          <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer">Cours d'essai</a>
-          <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer">S'inscrire</a>
+          <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="footer-action">Réserver un cours d'essai</a>
+          <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="footer-action">S'inscrire au club</a>
           <a href="/tarifs">Tarifs</a>
           <a href="/faq">FAQ</a>
           <a href="/contact">Contact</a>
@@ -60,8 +57,6 @@ const year = new Date().getFullYear();
           <p class="footer-col-title">À proximité</p>
           <a href="/mma-dinard">MMA à Dinard</a>
           <a href="/mma-saint-malo">MMA à Saint-Malo</a>
-          <a href="/mentions-legales">Mentions légales</a>
-          <a href="/politique-confidentialite">Politique de confidentialité</a>
         </div>
       </nav>
     </div>
@@ -76,25 +71,22 @@ const year = new Date().getFullYear();
             <path d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7 6 11 6 11S2.5 7 2.5 4.5A3.5 3.5 0 0 1 6 1z" stroke="currentColor" stroke-width="1.1"/>
             <circle cx="6" cy="4.5" r="1" fill="currentColor"/>
           </svg>
-          Saint-Lunaire, Bretagne, France
+          {CONTACT_INFO.TRAINING_ADDRESS}
         </p>
-        <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram @slamm35800">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-          </svg>
-          @slamm35800
-        </a>
+        <nav class="footer-legal" aria-label="Informations légales">
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/politique-confidentialite">Politique de confidentialité</a>
+        </nav>
       </div>
     </div>
   </div>
 </footer>
 
 <style>
+  /* Marge basse : le bouton flottant (52px + 28px) ne recouvre rien en fin de page */
   .footer {
     border-top: 1px solid var(--border);
-    padding: 80px 0 32px;
+    padding: 80px 0 104px;
   }
 
   .footer-top {
@@ -128,19 +120,25 @@ const year = new Date().getFullYear();
     flex-shrink: 0;
   }
 
+  /* Même composition que la nav : acronyme + nom complet en sous-titre */
   .logo-text {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--text-2);
-    letter-spacing: 0.01em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: 0.02em;
   }
 
-  .logo-text em {
-    font-style: normal;
+  .logo-text small {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: var(--g400);
-    font-weight: 600;
   }
 
   .footer-tagline {
@@ -208,11 +206,9 @@ const year = new Date().getFullYear();
   }
 
   .footer-col-title {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--text-2);
     margin-bottom: 4px;
   }
 
@@ -227,6 +223,14 @@ const year = new Date().getFullYear();
   .footer-col a:hover {
     color: var(--g400);
   }
+
+  /* Les deux actions de conversion ressortent dans la colonne « Rejoindre » */
+  .footer-col .footer-action {
+    color: var(--g400);
+    font-weight: 600;
+  }
+
+  .footer-col .footer-action:hover { color: var(--text); }
 
   /* Bottom */
   .footer-bottom {
@@ -257,20 +261,22 @@ const year = new Date().getFullYear();
   .footer-right {
     display: flex;
     align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal {
+    display: flex;
     gap: 20px;
   }
 
-  .instagram-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 500;
+  .footer-legal a {
+    font-size: 12px;
     color: var(--text-muted);
     transition: color 0.2s;
   }
 
-  .instagram-link:hover { color: var(--g400); }
+  .footer-legal a:hover { color: var(--g400); }
 
   @media (max-width: 900px) {
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
@@ -279,6 +285,8 @@ const year = new Date().getFullYear();
 
   @media (max-width: 600px) {
     .footer-nav { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .footer { padding-bottom: 96px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-right { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 </style>

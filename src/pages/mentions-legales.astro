@@ -16,7 +16,6 @@ const today = new Date().toLocaleDateString('fr-FR');
       <div class="container">
 
         <div class="legal-header reveal">
-          <p class="section-label">Informations légales</p>
           <h1 class="legal-title">Mentions légales</h1>
           <p class="legal-sub">Informations légales concernant le site web du club SLAMM MMA Saint-Lunaire.</p>
         </div>
@@ -95,30 +94,14 @@ const today = new Date().toLocaleDateString('fr-FR');
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .legal {
-    padding: 120px 0 80px;
-    position: relative;
-  }
-
-  .legal::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    padding: 152px 0 112px;
   }
 
   .legal-header {
-    margin-bottom: 48px;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 16px;
+    margin-bottom: 64px;
+    max-width: 720px;
   }
 
   .legal-title {
@@ -138,31 +121,27 @@ const today = new Date().toLocaleDateString('fr-FR');
     max-width: 600px;
   }
 
+  /* Texte à plat, colonne de lecture */
   .legal-body {
-    max-width: 800px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 56px;
+    max-width: 760px;
   }
 
   .legal-section {
-    padding-bottom: 40px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--border);
+    padding-top: 40px;
+    margin-bottom: 48px;
+    border-top: 1px solid var(--border-strong);
   }
 
   .legal-section:last-of-type {
-    border-bottom: none;
-    margin-bottom: 32px;
-    padding-bottom: 0;
+    margin-bottom: 40px;
   }
 
   .legal-section h2 {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
-    color: var(--g400);
+    color: var(--text);
+    line-height: 1.2;
     letter-spacing: -0.02em;
     margin-bottom: 20px;
   }
@@ -176,7 +155,7 @@ const today = new Date().toLocaleDateString('fr-FR');
   }
 
   .legal-section p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     line-height: 1.8;
     margin-bottom: 12px;
@@ -195,18 +174,23 @@ const today = new Date().toLocaleDateString('fr-FR');
   }
 
   .legal-section ul li {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     line-height: 1.7;
-    padding-left: 16px;
+    padding-left: 18px;
     position: relative;
   }
 
+  /* Puce : petit trait graphique (plus de tiret long dans le texte) */
   .legal-section ul li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--g600);
+    top: 0.85em;
+    width: 8px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--g500);
   }
 
   /* Grid infos éditeur */
@@ -224,16 +208,14 @@ const today = new Date().toLocaleDateString('fr-FR');
   }
 
   .legal-item span {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-muted);
     padding-top: 2px;
   }
 
   .legal-item p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-2);
     line-height: 1.7;
     margin-bottom: 0;
@@ -290,7 +272,7 @@ const today = new Date().toLocaleDateString('fr-FR');
   }
 
   @media (max-width: 768px) {
-    .legal-body { padding: 32px 24px; }
+    .legal { padding: 128px 0 80px; }
     .legal-item { grid-template-columns: 1fr; gap: 4px; }
   }
 </style>

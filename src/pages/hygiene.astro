@@ -114,11 +114,7 @@ const priorityLabel: Record<string, string> = {
   low: 'Conseil',
 };
 
-const priorityColor: Record<string, string> = {
-  high: '#ef4444',
-  medium: '#f59e0b',
-  low: '#3b82f6',
-};
+// Statut → style de pastille (palette du site, voir .rule-badge--*)
 ---
 
 <Layout
@@ -131,7 +127,6 @@ const priorityColor: Record<string, string> = {
       <div class="container">
 
         <div class="hygiene-header reveal">
-          <p class="section-label">Hygiène & Sécurité sanitaire</p>
           <h1 class="hygiene-title">
             La santé de tous,<br/>
             <span>la responsabilité de chacun.</span>
@@ -151,19 +146,19 @@ const priorityColor: Record<string, string> = {
           {categories.map((cat, ci) => (
             <div class={`category reveal reveal-delay-${(ci % 3) + 1}`}>
               <h2 class="cat-title">{cat.title}</h2>
-              <div class="rules-grid">
+              <ul class="rules-list">
                 {cat.rules.map(rule => (
-                  <div class="rule-card">
+                  <li class="rule-row">
                     <div class="rule-header">
-                      <p class="rule-title">{rule.title}</p>
-                      <span class="rule-badge" style={`color:${priorityColor[rule.priority]};border-color:${priorityColor[rule.priority]}22;background:${priorityColor[rule.priority]}10`}>
+                      <h3 class="rule-title">{rule.title}</h3>
+                      <span class={`rule-badge rule-badge--${rule.priority}`}>
                         {priorityLabel[rule.priority]}
                       </span>
                     </div>
                     <p class="rule-content">{rule.content}</p>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
@@ -198,34 +193,18 @@ const priorityColor: Record<string, string> = {
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .hygiene {
-    padding: 120px 0 80px;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .hygiene::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
+  /* En-tête empilé : titre puis texte */
   .hygiene-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: end;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 720px;
     margin-bottom: 40px;
-  }
-
-  .section-label {
-    grid-column: 1 / -1;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
   }
 
   .hygiene-title {
@@ -240,121 +219,126 @@ const priorityColor: Record<string, string> = {
   .hygiene-title span { color: var(--g400); }
 
   .hygiene-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
-    align-self: end;
+    max-width: 56ch;
   }
 
-  /* Alerts */
+  /* Alerte (seule teinte hors palette) et note neutre : filet à gauche, pas de boîte */
   .alert-warning, .alert-info {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    border-radius: var(--r-md);
-    padding: 16px 20px;
-    margin-bottom: 56px;
+    padding: 14px 18px;
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    max-width: 880px;
   }
 
   .alert-warning {
-    background: rgba(239,68,68,0.05);
-    border: 1px solid rgba(239,68,68,0.2);
-    color: #ef4444;
+    background: var(--warn-bg);
+    border-left: 2px solid var(--warn);
+    color: var(--warn);
+    margin-bottom: 96px;
   }
 
-  .alert-warning p { color: var(--text-3); font-size: 14px; line-height: 1.7; }
+  .alert-warning p { color: var(--text-2); font-size: 15px; line-height: 1.7; }
   .alert-warning svg { flex-shrink: 0; margin-top: 2px; }
 
   .alert-info {
-    background: rgba(59,130,246,0.05);
-    border: 1px solid rgba(59,130,246,0.2);
-    color: #3b82f6;
-    margin-top: 0;
-    margin-bottom: 0;
+    border-left: 2px solid var(--border-strong);
+    color: var(--text-3);
   }
 
-  .alert-info p { color: var(--text-3); font-size: 14px; line-height: 1.7; }
+  .alert-info p { color: var(--text-3); font-size: 15px; line-height: 1.7; }
   .alert-info strong { color: var(--text-2); }
   .alert-info svg { flex-shrink: 0; margin-top: 2px; }
 
-  /* Categories */
+  /* Catégorie : titre (4/12, visible au défilement) + règles à plat (8/12) */
   .categories {
     display: flex;
     flex-direction: column;
-    gap: 56px;
-    margin-bottom: 64px;
+    gap: 80px;
+    margin-bottom: 96px;
+  }
+
+  .category {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 48px;
+    align-items: start;
   }
 
   .cat-title {
+    position: sticky;
+    top: 104px;
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
+    line-height: 1.2;
     color: var(--text);
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
   }
 
-  .rules-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  .rules-list {
+    list-style: none;
+    border-top: 1px solid var(--border-strong);
   }
 
-  .rule-card {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    padding: 20px 24px;
+  .rule-row {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .rule-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
   }
 
   .rule-title {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 600;
     color: var(--text);
   }
 
+  /* Pastilles de statut dans la palette du site */
   .rule-badge {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     border: 1px solid;
     border-radius: 100px;
-    padding: 2px 10px;
+    padding: 3px 12px;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
+  .rule-badge--high   { color: var(--g400); border-color: rgba(74,222,128,0.45); background: rgba(34,197,94,0.1); }
+  .rule-badge--medium { color: var(--text-2); border-color: var(--border-strong); }
+  .rule-badge--low    { color: var(--text-muted); border-color: var(--border); }
+
   .rule-content {
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 15px;
+    color: var(--text-3);
     line-height: 1.75;
+    max-width: 64ch;
   }
 
-  /* Club measures */
+  /* Mesures du club : à plat */
   .club-measures {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 40px;
-    margin-bottom: 32px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-strong);
+    margin-bottom: 48px;
+    max-width: 880px;
   }
 
   .measures-title {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: clamp(24px, 2.4vw, 30px);
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.02em;
@@ -362,7 +346,7 @@ const priorityColor: Record<string, string> = {
   }
 
   .measures-sub {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-3);
     margin-bottom: 24px;
     line-height: 1.7;
@@ -378,19 +362,25 @@ const priorityColor: Record<string, string> = {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-2);
   }
 
   .measure-item svg {
     color: var(--g500);
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
-  @media (max-width: 768px) {
-    .hygiene-header { grid-template-columns: 1fr; gap: 20px; }
-    .rules-grid { grid-template-columns: 1fr; }
-    .club-measures { padding: 28px 20px; }
+  @media (max-width: 900px) {
+    .hygiene { padding: 128px 0 80px; }
+    .category { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .cat-title { position: static; }
+    .categories { gap: 56px; margin-bottom: 72px; }
+    .alert-warning { margin-bottom: 64px; }
+  }
+
+  @media (max-width: 480px) {
+    .rule-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 </style>

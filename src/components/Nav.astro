@@ -1,5 +1,5 @@
 ---
-import { ASSOCONNECT_URLS } from '../config/urls.js';
+import { ASSOCONNECT_URLS, SOCIAL_URLS } from '../config/urls.js';
 
 const links = [
   { href: '/disciplines',  label: 'Disciplines' },
@@ -18,9 +18,9 @@ const isActive = (href: string) => {
 
 <header id="nav">
   <div class="container nav-inner">
-    <a href="/" class="logo" aria-label="Saint-Lunaire MMA">
+    <a href="/" class="logo" aria-label="SLAMM, Saint-Lunaire MMA, accueil">
       <span class="logo-mark">SL</span>
-      <span class="logo-text">Saint-Lunaire<br/><em>MMA</em></span>
+      <span class="logo-text">SLAMM<small>Saint-Lunaire MMA</small></span>
     </a>
 
     <nav class="nav-links" aria-label="Navigation principale">
@@ -29,7 +29,10 @@ const isActive = (href: string) => {
       ))}
     </nav>
 
-    <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="nav-cta">Cours d'essai</a>
+    <div class="nav-actions">
+      <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="nav-join">S'inscrire</a>
+      <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="nav-cta">Cours d'essai</a>
+    </div>
 
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" id="burger">
       <span></span><span></span>
@@ -38,10 +41,24 @@ const isActive = (href: string) => {
 </header>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  {links.map((l, i) => (
-    <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} style={`--i: ${i}`} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
-  ))}
-  <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai</a>
+  <nav class="mobile-links" aria-label="Navigation mobile">
+    {links.map((l, i) => (
+      <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} style={`--i: ${i}`} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+    ))}
+  </nav>
+  <!-- Zone du pouce : les deux actions de conversion, puis Instagram -->
+  <div class="mobile-actions">
+    <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai</a>
+    <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="mobile-cta mobile-cta--ghost" style={`--i: ${links.length + 1}`}>S'inscrire au club</a>
+    <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="mobile-social" aria-label="Instagram @slamm35800">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+      </svg>
+      @slamm35800
+    </a>
+  </div>
 </div>
 
 <style>
@@ -101,19 +118,26 @@ const isActive = (href: string) => {
     flex-shrink: 0;
   }
 
+  /* Acronyme du club (police des titres), nom complet en sous-titre */
   .logo-text {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--text-2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
-  .logo-text em {
-    font-style: normal;
+  .logo-text small {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: var(--g400);
-    font-weight: 600;
   }
 
   .nav-links {
@@ -124,6 +148,7 @@ const isActive = (href: string) => {
   }
 
   .nav-link {
+    position: relative;
     font-size: 14px;
     font-weight: 500;
     color: var(--text-3);
@@ -138,9 +163,43 @@ const isActive = (href: string) => {
     background: var(--surface);
   }
 
+  /* Page courante : trait de 2px sous le libellé (le fond reste réservé au survol) */
   .nav-link.active {
-    color: var(--g400);
-    background: var(--surface);
+    color: var(--text);
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--g400);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Action secondaire : contour fin, un cran sous le bouton plein */
+  .nav-join {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    padding: 7px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+
+  .nav-join:hover {
+    color: var(--text);
+    border-color: rgba(74,222,128,0.5);
   }
 
   .nav-cta {
@@ -200,9 +259,11 @@ const isActive = (href: string) => {
     z-index: 90;
     background: var(--bg1);
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 32px;
+    /* Sous la barre de nav (68px) ; bas calé sur la zone de sécurité */
+    padding: 92px 16px calc(24px + env(safe-area-inset-bottom));
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -240,24 +301,59 @@ const isActive = (href: string) => {
     .mobile-link, .mobile-cta { transform: none; }
   }
 
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Liste alignée à gauche, un filet entre les entrées */
   .mobile-link {
     font-family: var(--font-display);
-    font-size: clamp(28px, 8vw, 44px);
+    font-size: clamp(24px, 7vw, 32px);
     font-weight: 800;
-    color: var(--text-3);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-2);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .mobile-link:hover,
   .mobile-link.active { color: var(--g400); }
 
+  .mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .mobile-cta {
-    margin-top: 16px;
+    display: block;
+    text-align: center;
     font-size: 15px;
     font-weight: 600;
     color: var(--bg);
     background: var(--g500);
-    padding: 12px 28px;
+    padding: 14px 28px;
     border-radius: 100px;
+  }
+
+  .mobile-cta--ghost {
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+  }
+
+  .mobile-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
   }
 
   .mobile-menu.open .mobile-cta:active {
@@ -266,7 +362,7 @@ const isActive = (href: string) => {
   }
 
   @media (max-width: 1100px) {
-    .nav-links, .nav-cta { display: none; }
+    .nav-links, .nav-actions { display: none; }
     .burger { display: flex; }
     .mobile-menu { display: flex; }
   }

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { ASSOCONNECT_URLS } from '../config/urls.js';
+import { CLUB_STATS } from '../config/club.js';
 import cagePhoto from '../assets/img/team/cage.webp';
 ---
 
@@ -11,8 +12,7 @@ import cagePhoto from '../assets/img/team/cage.webp';
 
       <h1 class="hero-title">
         <span class="title-line title-line-1">Saint-Lunaire</span>
-        <span class="title-line title-line-2">Arts Martiaux</span>
-        <span class="title-line title-line-3">Mixtes</span>
+        <span class="title-line title-line-2">Arts Martiaux Mixtes</span>
       </h1>
 
       <p class="hero-desc">
@@ -31,6 +31,15 @@ import cagePhoto from '../assets/img/team/cage.webp';
           S'inscrire au club
         </a>
       </div>
+
+      <dl class="hero-stats">
+        {CLUB_STATS.map(s => (
+          <div class="stat">
+            <dt class="stat-label">{s.label}</dt>
+            <dd class="stat-num">{s.num}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
 
     <div class="hero-media">
@@ -60,7 +69,7 @@ import cagePhoto from '../assets/img/team/cage.webp';
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
     align-items: center;
     gap: 64px;
-    padding-top: 112px;
+    padding-top: 96px;
     padding-bottom: 72px;
   }
 
@@ -81,7 +90,7 @@ import cagePhoto from '../assets/img/team/cage.webp';
     flex-direction: column;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(34px, 4.3vw, 62px);
+    font-size: clamp(34px, 3.8vw, 54px);
     line-height: 0.98;
     letter-spacing: -0.03em;
     margin-bottom: 28px;
@@ -93,17 +102,14 @@ import cagePhoto from '../assets/img/team/cage.webp';
     display: block;
     animation: slideIn 600ms var(--ease-out) both;
   }
+  /* Deux lignes, deux couleurs : le lieu en blanc, la discipline en vert */
   .title-line-1 {
-    color: var(--text-3);
+    color: var(--text);
     animation-delay: 60ms;
   }
   .title-line-2 {
-    color: var(--text);
-    animation-delay: 120ms;
-  }
-  .title-line-3 {
     color: var(--g400);
-    animation-delay: 180ms;
+    animation-delay: 120ms;
   }
 
   @keyframes slideIn {
@@ -161,13 +167,14 @@ import cagePhoto from '../assets/img/team/cage.webp';
     }
   }
 
+  /* Action secondaire : contour bien lisible (objectif de conversion n°2) */
   .btn-ghost {
     font-size: 15px;
     font-weight: 500;
-    color: var(--text-2);
+    color: var(--text);
     padding: 14px 24px;
     border-radius: 100px;
-    border: 1px solid var(--border-strong);
+    border: 1px solid rgba(74,222,128,0.45);
     white-space: nowrap;
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
   }
@@ -178,23 +185,61 @@ import cagePhoto from '../assets/img/team/cage.webp';
 
   .btn-ghost:hover {
     color: var(--text);
-    border-color: rgba(74,222,128,0.4);
-    background: rgba(34,197,94,0.04);
+    border-color: rgba(74,222,128,0.7);
+    background: rgba(34,197,94,0.06);
   }
 
-  /* Photo */
+  /* Chiffres clés : bloc de preuve sous les CTA, séparé par un filet */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 56px;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 500ms var(--ease-out) 380ms both;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 6px;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-3);
+  }
+
+  /* Photo : pleine hauteur de colonne, collée au bord droit de l'écran */
   .hero-media {
     position: relative;
+    align-self: stretch;
+    margin-right: calc(-1 * (max(0px, (100vw - 1200px) / 2) + 24px));
+    min-height: min(64svh, 560px);
     animation: heroPhotoIn 700ms var(--ease-out) 120ms both;
   }
 
+  /* Positionnée en absolu : c'est la colonne de texte qui fixe la hauteur, pas le ratio de l'image */
   .hero-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: min(68svh, 600px);
+    height: 100%;
     object-fit: cover;
-    object-position: 50% 30%;
-    border-radius: var(--r-lg);
-    border: 1px solid var(--border);
+    object-position: 50% 58%;
+    border-radius: var(--r-lg) 0 0 var(--r-lg);
   }
 
   @keyframes fadeUp {
@@ -216,15 +261,25 @@ import cagePhoto from '../assets/img/team/cage.webp';
       padding-top: 104px;
       padding-bottom: 48px;
     }
+    /* Photo de bord à bord, sous les chiffres */
+    .hero-media { margin-inline: -24px; min-height: 0; }
     .hero-photo {
+      position: static;
       height: auto;
       aspect-ratio: 4 / 3;
+      border-radius: 0;
     }
+  }
+
+  @media (max-width: 768px) {
+    .hero-media { margin-inline: -16px; }
   }
 
   @media (max-width: 600px) {
     .hero-eyebrow { font-size: 11px; letter-spacing: 0.06em; margin-bottom: 20px; }
-    .hero-title { font-size: 30px; }
+    .hero-title { font-size: 36px; }
+    .hero-stats { gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 36px; padding-top: 24px; }
+    .stat-num { font-size: 32px; }
     .hero-desc { margin-bottom: 32px; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .btn-primary, .btn-ghost { justify-content: center; text-align: center; }

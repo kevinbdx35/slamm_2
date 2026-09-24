@@ -39,7 +39,7 @@ export const EVENTS = [
     time: "14h30-16h30",
     location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
     price: "10€",
-    description: "Stage JJB No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte – ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
+    description: "Stage JJB No-Gi / Luta Livre avec Jonathan Allouche, champion de France No-Gi (adulte - ceinture noire), ceinture noire 1er degré de JJB et ceinture noire de Luta Livre. Une excellente opportunité d'améliorer son jeu au sol grâce à des techniques modernes, efficaces et actuelles.",
     performer: "Jonathan Allouche",
     maxParticipants: 30,
     registrationUrl: "https://slamm.assoconnect.com/collect/description/662218-o-stage-avec-jonathan-allouche",
@@ -177,7 +177,9 @@ export function getPastEvents(events, limit = 4) {
 export function formatEventDate(dateString) {
   const date = new Date(dateString);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return date.toLocaleDateString('fr-FR', options);
+  const formatted = date.toLocaleDateString('fr-FR', options);
+  // Premier jour du mois : « 1er mars 2026 » (et non « 1 mars 2026 »)
+  return date.getDate() === 1 ? formatted.replace(/^1 /, '1er ') : formatted;
 }
 
 /**

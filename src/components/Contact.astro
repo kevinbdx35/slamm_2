@@ -7,13 +7,10 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 
     <!-- Header -->
     <div class="contact-header reveal">
-      <div>
-        <p class="section-label">Nous rejoindre</p>
-        <h2 class="contact-title">
-          Prêt à franchir<br/>
-          <span>le premier pas ?</span>
-        </h2>
-      </div>
+      <h1 class="contact-title">
+        Prêt à franchir<br/>
+        <span>le premier pas ?</span>
+      </h1>
       <p class="contact-body">
         Les essais sont gratuits durant le premier mois suivant la date de reprise.
         En dehors de cette période, un essai est possible pour 5€.
@@ -27,12 +24,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
       <div class="contact-info reveal">
         <div class="contact-details">
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M9 2a5 5 0 0 1 5 5c0 3-5 9-5 9S4 10 4 7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-                <circle cx="9" cy="7" r="1.5" stroke="currentColor" stroke-width="1.3"/>
-              </svg>
-            </div>
             <div>
               <p class="contact-detail-label">Adresse</p>
               <a href="https://www.google.com/maps/dir/?api=1&destination=Saint-Lunaire+Arts+Martiaux+Mixtes" target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">{CONTACT_INFO.TRAINING_ADDRESS}</a>
@@ -41,12 +32,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M3 3h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.3"/>
-                <path d="M2 4l7 6 7-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              </svg>
-            </div>
             <div>
               <p class="contact-detail-label">Email</p>
               <a href="#" class="contact-detail-val contact-link" id="mail-link">slamm35800@gmail.com</a>
@@ -55,11 +40,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M3.5 2.5h2.8l1.2 3.2-1.7 1a10 10 0 0 0 5.5 5.5l1-1.7 3.2 1.2v2.8a1 1 0 0 1-1.1.9C6.7 15 2.5 10.8 2.6 3.6a1 1 0 0 1 .9-1.1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-              </svg>
-            </div>
             <div>
               <p class="contact-detail-label">WhatsApp</p>
               <a href={`https://api.whatsapp.com/send/?phone=${CONTACT_INFO.PHONE.replace(/[\s+]/g, '')}&text=Bonjour%2C+je+souhaite+des+informations+sur+le+club+de+MMA.&type=phone_number&app_absent=0`} target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">{CONTACT_INFO.PHONE}</a>
@@ -68,13 +48,6 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.3"/>
-                <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/>
-                <circle cx="13" cy="5" r="0.8" fill="currentColor"/>
-              </svg>
-            </div>
             <div>
               <p class="contact-detail-label">Instagram</p>
               <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="contact-detail-val contact-link">@slamm35800</a>
@@ -131,56 +104,27 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 
     <!-- Infos pratiques -->
     <div class="practical-info reveal">
-      <p class="practical-title">Informations pratiques</p>
+      <h2 class="practical-title">Informations pratiques</h2>
       <div class="practical-grid">
         <div class="practical-item">
-          <div class="practical-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <rect x="2" y="4" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M6 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M6 9h2.5a1.5 1.5 0 0 1 0 3H6V9z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-            </svg>
-          </div>
           <div>
             <p class="practical-label">Parking gratuit</p>
             <p class="practical-val">Stationnement disponible sur place</p>
           </div>
         </div>
         <div class="practical-item">
-          <div class="practical-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M2 8h14" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M9 8v8" stroke="currentColor" stroke-width="1.3"/>
-            </svg>
-          </div>
           <div>
             <p class="practical-label">Dojo à l'étage</p>
             <p class="practical-val">Premier étage du bâtiment</p>
           </div>
         </div>
         <div class="practical-item">
-          <div class="practical-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <circle cx="6.5" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/>
-              <circle cx="11.5" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M2 15c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <path d="M11 11.2c2 .2 3.5 1.6 3.5 3.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-          </div>
           <div>
             <p class="practical-label">Vestiaires séparés</p>
             <p class="practical-val">Homme et femme</p>
           </div>
         </div>
         <div class="practical-item">
-          <div class="practical-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="M9 2v4M7 3l2 3 2-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4 8h10a1 1 0 0 1 1 1v1H3V9a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M5 10v5M9 10v5M13 10v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-          </div>
           <div>
             <p class="practical-label">Douches</p>
             <p class="practical-val">Disponibles dans les vestiaires</p>
@@ -206,35 +150,18 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 </section>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .contact {
-    padding: 120px 0 80px;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .contact::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
-  /* Header */
+  /* En-tête empilé : titre puis texte */
   .contact-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: end;
-    margin-bottom: 56px;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 720px;
+    margin-bottom: 64px;
   }
 
   .contact-title {
@@ -249,72 +176,53 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   .contact-title span { color: var(--g400); }
 
   .contact-body {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
-    align-self: end;
+    max-width: 56ch;
   }
 
-  /* Grid coordonnées + formulaire */
+  /* Coordonnées à plat (5/12) + formulaire en carte (7/12) */
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: stretch;
-    margin-bottom: 48px;
-  }
-
-  .contact-info {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 36px;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 96px;
   }
 
   .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    border-top: 1px solid var(--border-strong);
   }
 
   .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .contact-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(34,197,94,0.08);
-    border: 1px solid var(--border);
-    border-radius: var(--r-sm);
-    display: grid;
-    place-items: center;
-    color: var(--g400);
-    flex-shrink: 0;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .contact-detail-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 6px;
   }
 
   .contact-detail-val {
-    font-size: 15px;
-    color: var(--text-2);
-    font-weight: 400;
-    line-height: 1.6;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
   }
 
   .contact-detail-note {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 2px;
+    font-size: 13px;
+    color: var(--text-3);
+    margin-top: 4px;
   }
 
   .contact-link { transition: color 0.2s; }
@@ -454,65 +362,58 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   }
 
   /* Infos pratiques */
+  /* Infos pratiques : 4 colonnes à plat sous un filet */
   .practical-info {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 36px;
-    margin-bottom: 24px;
+    margin-bottom: 64px;
   }
 
   .practical-title {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 24px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.4vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 28px;
   }
 
   .practical-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
   }
 
   .practical-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .practical-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(34,197,94,0.06);
-    border: 1px solid var(--border);
-    border-radius: var(--r-sm);
-    display: grid;
-    place-items: center;
-    color: var(--g400);
-    flex-shrink: 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-strong);
   }
 
   .practical-label {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--text-2);
-    margin-bottom: 2px;
+    color: var(--text);
+    margin-bottom: 4px;
   }
 
   .practical-val {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.5;
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.6;
   }
 
   /* Carte */
   .map-wrap {
     border-radius: var(--r-lg);
     overflow: hidden;
-    border: 1px solid var(--border);
+  }
+
+  /* Tuiles OSM assombries pour s'accorder au thème (le marqueur et la bulle restent intacts) */
+  .map :global(.leaflet-tile-pane) {
+    filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.35);
+  }
+
+  .map :global(.leaflet-container),
+  .map:global(.leaflet-container) {
+    background: var(--bg1);
   }
 
   .map {
@@ -533,14 +434,18 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   .map-note svg { color: var(--g500); flex-shrink: 0; }
 
   @media (max-width: 900px) {
-    .contact-header { grid-template-columns: 1fr; gap: 24px; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .practical-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact { padding: 128px 0 80px; }
+    .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; margin-bottom: 72px; }
+    .practical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   }
 
   @media (max-width: 500px) {
     .form-row { grid-template-columns: 1fr; }
-    .practical-grid { grid-template-columns: 1fr; }
+    .practical-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .practical-item { padding: 16px 0; border-top-color: var(--border); }
+    .practical-item:first-child { border-top-color: var(--border-strong); }
+    .contact-form-wrap { padding: 28px 20px; }
+    .map { height: 320px; }
   }
 </style>
 
@@ -593,9 +498,11 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
   const lat = 48.629217, lng = -2.112208, zoom = 16;
   const map = L.map('leaflet-map', { zoomControl: true, scrollWheelZoom: false }).setView([lat, lng], zoom);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd',
+  // Tuiles OpenStreetMap (CARTO exige désormais une clé API) ; domaine déjà
+  // autorisé par la CSP de public/_headers (*.tile.openstreetmap.org)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abc',
     maxZoom: 19,
   }).addTo(map);
 

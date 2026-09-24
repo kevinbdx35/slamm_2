@@ -19,7 +19,7 @@ export const SCHEDULE = [
     start: '18:00',
     end: '19:15',
     level: 'Tous niveaux',
-    inactive: true // pas encore actif en début de saison 2026–2027
+    inactive: true // pas encore actif en début de saison 2026-2027
   },
   {
     day: 'Mercredi',
@@ -56,7 +56,7 @@ export const SCHEDULE = [
 /**
  * Saison en cours
  */
-export const SEASON = '2026–2027';
+export const SEASON = '2026-2027';
 
 /**
  * Inscriptions pas encore ouvertes pour la saison à venir.
@@ -100,11 +100,11 @@ export const PRICING = {
 
 /**
  * Fin de saison : l'adhésion est valable jusque-là, quel que soit le tarif payé.
- * Dérivé de SEASON ('2026–2027' -> '2027').
+ * Dérivé de SEASON ('2026-2027' -> '2027').
  */
 export const SEASON_END = {
   month: 'juin',
-  year: SEASON.split('–')[1] ?? SEASON.split('-')[1] ?? ''
+  year: SEASON.split('-')[1] ?? ''
 };
 
 /**

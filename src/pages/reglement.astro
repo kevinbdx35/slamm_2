@@ -16,15 +16,18 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
       <div class="container">
 
         <div class="reglement-header reveal">
-          <p class="section-label">Association SLAMM</p>
           <h1 class="reglement-title">Règlement intérieur</h1>
           <p class="reglement-sub">Le règlement intérieur officiel de l'association Saint-Lunaire Arts Martiaux Mixtes. À lire et accepter par tout adhérent.</p>
+          <div class="pdf-actions">
+          <!-- Mobile : les lecteurs PDF intégrés s'affichent mal, on propose l'ouverture directe -->
+          <a href={pdfPath} target="_blank" rel="noopener" class="btn-open-pdf">Ouvrir le PDF</a>
           <a href={pdfPath} download class="btn-download">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             Télécharger le PDF
           </a>
+          </div>
         </div>
 
         <div class="pdf-wrapper reveal">
@@ -48,44 +51,19 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .reglement {
-    padding: 120px 0 80px;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .reglement::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
+  /* En-tête empilé : titre, texte, action */
   .reglement-header {
-    margin-bottom: 40px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 24px;
-  }
-
-  .reglement-header > * {
-    flex-shrink: 0;
-  }
-
-  .reglement-header .section-label,
-  .reglement-header h1,
-  .reglement-header .reglement-sub {
-    width: 100%;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 720px;
+    margin-bottom: 48px;
   }
 
   .reglement-title {
@@ -95,43 +73,52 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
     line-height: 1.05;
     letter-spacing: -0.03em;
     color: var(--text);
-    margin-bottom: 16px;
   }
 
   .reglement-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
-    max-width: 600px;
-    margin-bottom: 8px;
+    max-width: 56ch;
   }
 
-  .btn-download {
+  .pdf-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .btn-download,
+  .btn-open-pdf {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 10px 20px;
-    background: var(--g600);
-    color: #000;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: var(--r-sm);
+    padding: 12px 24px;
+    background: var(--g500);
+    color: var(--bg);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 100px;
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     text-decoration: none;
   }
 
-  .btn-download:active {
+  .btn-download:active,
+  .btn-open-pdf:active {
     transform: scale(0.97);
   }
 
-  .btn-download:hover {
+  .btn-download:hover,
+  .btn-open-pdf:hover {
     background: var(--g400);
   }
 
+  .btn-open-pdf { display: none; }
+
   .pdf-wrapper {
     width: 100%;
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
+    border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--bg1);
   }
@@ -157,10 +144,16 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
     text-underline-offset: 3px;
   }
 
+  @media (max-width: 900px) {
+    .reglement { padding: 128px 0 80px; }
+  }
+
+  /* Mobile : pas de PDF intégré, deux boutons (ouvrir en plein écran, télécharger) */
   @media (max-width: 768px) {
-    .pdf-frame {
-      height: 75vh;
-      min-height: 480px;
-    }
+    .pdf-wrapper { display: none; }
+    .reglement-header { align-items: stretch; margin-bottom: 0; }
+    .pdf-actions { flex-direction: column; }
+    .btn-open-pdf { display: flex; }
+    .btn-download { background: transparent; color: var(--text); border: 1px solid rgba(74,222,128,0.45); }
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import TrialCta from './TrialCta.astro';
 import { EVENTS, getUpcomingEvents, getPastEvents, formatEventDate } from '../config/events.js';
 
 const upcoming = getUpcomingEvents(EVENTS);
@@ -42,60 +43,58 @@ const stats = [
 
 <section class="events" id="evenements">
   <div class="container">
-    <div class="events-inner reveal">
-      <div class="events-header">
-        <p class="section-label">Nos événements</p>
-        <h2 class="events-title">
-          En mouvement<br/>
-          <span>depuis 2023.</span>
-        </h2>
-      </div>
-
-      <div class="events-stats">
-        {stats.map((s, i) => (
-          <div class={`stat-item reveal reveal-delay-${(i % 3) + 1}`}>
-            <span class="stat-num">{s.num}</span>
-            <span class="stat-label">{s.label}</span>
-          </div>
-        ))}
-      </div>
+    <!-- En-tête à plat : titre de page + chiffres sous un filet -->
+    <div class="events-header reveal">
+      <h1 class="events-title">
+        En mouvement<br/>
+        <span>depuis 2023.</span>
+      </h1>
     </div>
 
+    <dl class="events-stats reveal">
+      {stats.map((s) => (
+        <div class="stat-item">
+          <dt class="stat-label">{s.label}</dt>
+          <dd class="stat-num">{s.num}</dd>
+        </div>
+      ))}
+    </dl>
+
     <div class="upcoming reveal">
-      <h3 class="upcoming-title">Prochains événements</h3>
+      <h2 class="block-title">Prochains événements</h2>
       {upcoming.length > 0 ? (
         <div class="upcoming-list">
           {upcoming.map((e) => {
             const img = getEventImage(e.image);
             return (
-            <div class={`upcoming-card${img ? ' has-thumb' : ''}`}>
+            <article class:list={['upcoming-card', { 'has-thumb': img }]}>
               {img && (
                 <Image
                   src={img}
                   alt={e.imageAlt ?? `Affiche : ${e.title}`}
-                  widths={[400, 600]}
-                  sizes="(max-width: 640px) 220px, 200px"
+                  widths={[400, 600, 900]}
+                  sizes="(max-width: 900px) 100vw, 440px"
                   class="upcoming-thumb"
                   loading="lazy"
                 />
               )}
-              <div class="upcoming-date">
-                <span class="upcoming-day">{formatEventDate(e.date)}</span>
-                {e.time && <span class="upcoming-time">{e.time}</span>}
-              </div>
               <div class="upcoming-body">
-                <span class="upcoming-type">{getEventType(e)}</span>
-                <p class="upcoming-name">{e.title}</p>
+                <span class="event-type">{getEventType(e)}</span>
+                <h3 class="upcoming-name">{e.title}</h3>
+                <p class="upcoming-when">
+                  <span>{formatEventDate(e.date)}</span>
+                  {e.time && <span class="upcoming-time">{e.time}</span>}
+                </p>
+                <p class="upcoming-where">
+                  {getCity(e.location)}
+                  {e.price && <span class="upcoming-price">{e.price}</span>}
+                </p>
                 <p class="upcoming-desc">{e.description}</p>
-              </div>
-              <div class="upcoming-right">
-                <div class="upcoming-lieu">{getCity(e.location)}</div>
-                {e.price && <div class="upcoming-price">{e.price}</div>}
                 {e.registrationUrl && (
                   <a href={e.registrationUrl} target="_blank" rel="noopener noreferrer" class="upcoming-cta">S'inscrire</a>
                 )}
               </div>
-            </div>
+            </article>
             );
           })}
         </div>
@@ -109,69 +108,34 @@ const stats = [
 
     {past.length > 0 && (
       <div class="past reveal">
-        <h3 class="upcoming-title">Événements passés</h3>
-        <div class="past-list">
+        <h2 class="block-title">Événements passés</h2>
+        <ul class="past-list">
           {past.map((e) => (
-            <div class="past-card">
-              <div class="past-date">{formatEventDate(e.date)}</div>
-              <div class="upcoming-body">
-                <span class="upcoming-type">{getEventType(e)}</span>
-                <p class="upcoming-name">{e.title}</p>
-                <p class="upcoming-desc">{e.description}</p>
+            <li class="past-row">
+              <span class="past-date">{formatEventDate(e.date)}</span>
+              <div class="past-body">
+                <span class="event-type">{getEventType(e)}</span>
+                <h3 class="past-name">{e.title}</h3>
+                <p class="past-desc">{e.description}</p>
               </div>
-              <div class="upcoming-lieu">{getCity(e.location)}</div>
-            </div>
+              <span class="past-lieu">{getCity(e.location)}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     )}
+
+    <TrialCta />
   </div>
 </section>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .events {
-    padding: 120px 0;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .events::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
-  .events-inner {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 64px 72px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .events-inner::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 16px;
-  }
+  .events-header { margin-bottom: 56px; }
 
   .events-title {
     font-family: var(--font-display);
@@ -184,254 +148,219 @@ const stats = [
 
   .events-title span { color: var(--g400); }
 
-  /* Stats : une rangée de 5 (desktop), 2 colonnes + dernière pleine largeur (mobile) */
+  /* Chiffres : rangée à plat sous un filet */
   .events-stats {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border-strong);
+    margin-bottom: 112px;
   }
 
   .stat-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 8px;
-    padding: 8px 24px;
-    border-left: 1px solid var(--border);
-  }
-
-  .stat-item:first-child {
-    padding-left: 0;
-    border-left: none;
   }
 
   .stat-num {
     font-family: var(--font-display);
-    font-size: var(--fs-h2);
+    font-size: 48px;
     font-weight: 800;
-    color: var(--g400);
-    letter-spacing: -0.04em;
     line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--g400);
+    font-variant-numeric: tabular-nums;
   }
 
   .stat-label {
     font-size: 14px;
-    font-weight: 400;
     color: var(--text-3);
-    line-height: 1.4;
   }
 
-  /* Upcoming events */
-  .upcoming {
-    margin-top: 64px;
-  }
-
-  .upcoming-title {
+  .block-title {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: clamp(24px, 2.4vw, 30px);
     font-weight: 800;
-    color: var(--text);
     letter-spacing: -0.02em;
-    margin-bottom: 24px;
+    color: var(--text);
+    margin-bottom: 28px;
   }
+
+  .event-type {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--g400);
+  }
+
+  /* Prochain événement : affiche (5/12) + infos (7/12) */
+  .upcoming { margin-bottom: 112px; }
 
   .upcoming-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
-
-  .upcoming-card {
-    display: grid;
-    grid-template-columns: 140px 1fr auto;
-    align-items: center;
-    gap: 24px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    padding: 20px 28px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .upcoming-card:hover {
-    border-color: var(--border-strong);
-    background: var(--surface);
+    gap: 64px;
   }
 
   .upcoming-card.has-thumb {
-    grid-template-columns: 200px 140px 1fr auto;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: center;
   }
 
   .upcoming-thumb {
-    width: 200px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: var(--r-sm);
-    border: 1px solid var(--border);
-    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-lg);
   }
 
-  .upcoming-date {
+  .upcoming-body {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--g400);
-    white-space: nowrap;
-  }
-
-  .upcoming-time {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-3);
-  }
-
-  .upcoming-type {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--g500);
-    background: rgba(34,197,94,0.08);
-    border: 1px solid rgba(34,197,94,0.2);
-    border-radius: 100px;
-    padding: 2px 10px;
-    margin-bottom: 6px;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .upcoming-name {
-    font-size: 15px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.4vw, 30px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .upcoming-when {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 4px;
   }
 
-  .upcoming-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
+  .upcoming-time { color: var(--text-3); font-weight: 500; }
 
-  .upcoming-right {
+  .upcoming-where {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-
-  .upcoming-lieu {
-    font-size: 13px;
+    gap: 16px;
+    font-size: 15px;
     color: var(--text-3);
-    white-space: nowrap;
-    text-align: right;
   }
 
   .upcoming-price {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--g400);
     font-variant-numeric: tabular-nums;
-    color: var(--g400);
-    text-align: right;
   }
 
+  .upcoming-desc {
+    font-size: 16px;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 56ch;
+  }
+
+  /* Inscription à l'événement : l'action principale du bloc */
   .upcoming-cta {
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--g400);
-    border: 1px solid rgba(34,197,94,0.3);
+    color: var(--bg);
+    background: var(--g500);
+    padding: 14px 32px;
     border-radius: 100px;
-    padding: 4px 14px;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
+    transition: background-color 200ms ease, transform 160ms var(--ease-out);
   }
 
-  .upcoming-cta:hover {
-    background: var(--g600);
-    color: white;
-    border-color: var(--g600);
-  }
+  .upcoming-cta:active { transform: scale(0.97); }
 
-  .upcoming-empty {
-    background: var(--bg1);
-    border: 1px dashed var(--border);
-    border-radius: var(--r-md);
-    padding: 40px;
-    text-align: center;
+  @media (hover: hover) and (pointer: fine) {
+    .upcoming-cta:hover { background: var(--g400); }
   }
 
   .upcoming-empty p {
-    font-size: 15px;
-    color: var(--text-muted);
-    line-height: 1.7;
+    font-size: 16px;
+    color: var(--text-3);
   }
 
-  .upcoming-empty a {
-    color: var(--g400);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+  .upcoming-empty a { color: var(--g400); font-weight: 600; }
 
-  .past {
-    margin-top: 48px;
-  }
+  /* Événements passés : liste à plat, contraste normal */
+  .past { margin-bottom: 112px; }
 
   .past-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    list-style: none;
+    border-top: 1px solid var(--border-strong);
   }
 
-  .past-card {
+  .past-row {
     display: grid;
-    grid-template-columns: 140px 1fr auto;
-    align-items: center;
-    gap: 24px;
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    padding: 16px 28px;
-    opacity: 0.6;
-    transition: opacity 0.2s;
+    grid-template-columns: 140px minmax(0, 1fr) 140px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
   }
-
-  .past-card:hover { opacity: 1; }
 
   .past-date {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
   }
 
-  @media (max-width: 640px) {
-    .upcoming-card, .past-card,
-    .upcoming-card.has-thumb {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .upcoming-lieu, .upcoming-price { text-align: left; }
-    .upcoming-date { flex-direction: row; align-items: baseline; gap: 10px; }
-    .upcoming-thumb {
-      width: 220px;
-      height: 330px;
-    }
+  .past-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  @media (max-width: 1024px) {
-    .events-inner {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      padding: 48px;
-    }
+  .past-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
   }
 
-  @media (max-width: 640px) {
-    .events-inner { padding: 32px 24px; }
-    .events-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
-    .stat-item { padding: 20px 0 20px 20px; border-top: 1px solid var(--border); }
-    .stat-item:nth-child(odd) { padding-left: 0; border-left: none; }
-    .stat-item:nth-child(-n+2) { border-top: none; padding-top: 0; }
-    .stat-item:last-child { grid-column: 1 / -1; }
+  .past-desc {
+    font-size: 15px;
+    color: var(--text-3);
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+
+  .past-lieu {
+    justify-self: end;
+    font-size: 14px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 900px) {
+    .events { padding: 128px 0 80px; }
+    .events-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 80px; }
+    .upcoming, .past { margin-bottom: 80px; }
+    .upcoming-card.has-thumb { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .upcoming-thumb { max-width: 440px; }
+    .past-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .past-lieu { justify-self: start; }
+  }
+
+  /* Mobile : chiffres en liste compacte (chiffre à gauche, libellé à droite) */
+  @media (max-width: 580px) {
+    .events-stats { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
+    .stat-item {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-num { font-size: 32px; min-width: 32px; }
+    /* Mobile : les infos et le bouton d'abord, l'affiche ensuite */
+    .upcoming-thumb { max-width: none; order: 2; }
+    .upcoming-cta { align-self: stretch; text-align: center; }
   }
 </style>

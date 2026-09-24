@@ -45,7 +45,6 @@ const sparringSections = [
       <div class="container">
 
         <div class="sparring-header reveal">
-          <p class="section-label">Entraînement SLAMM</p>
           <h1 class="sparring-title">Sparring & Règles de sécurité</h1>
           <p class="sparring-sub">Philosophie du sparring et règles à respecter pour progresser ensemble dans le respect et la sécurité de chacun.</p>
         </div>
@@ -89,6 +88,8 @@ const sparringSections = [
         <div class="pdf-section reveal">
           <div class="pdf-section-header">
             <h2 id="regles-de-securite" class="chapter-title">Règles de sécurité</h2>
+            <!-- Mobile : les lecteurs PDF intégrés s'affichent mal, on propose l'ouverture directe -->
+            <a href={pdfPath} target="_blank" rel="noopener" class="btn-open-pdf">Ouvrir le PDF</a>
             <a href={pdfPath} download class="btn-download">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
@@ -118,30 +119,14 @@ const sparringSections = [
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .sparring {
-    padding: 120px 0 80px;
-    position: relative;
-  }
-
-  .sparring::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    padding: 152px 0 112px;
   }
 
   .sparring-header {
-    margin-bottom: 56px;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-    margin-bottom: 16px;
+    margin-bottom: 64px;
+    max-width: 720px;
   }
 
   .sparring-title {
@@ -155,29 +140,25 @@ const sparringSections = [
   }
 
   .sparring-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
     max-width: 600px;
   }
 
   /* Layout */
+  /* Colonne de lecture à plat + sommaire à droite */
   .sparring-layout {
     display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: 48px;
+    grid-template-columns: minmax(0, 760px) 240px;
+    justify-content: space-between;
+    gap: 64px;
     align-items: start;
   }
 
-  /* Body */
   .sparring-body {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 48px;
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .divider {
@@ -192,9 +173,10 @@ const sparringSections = [
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.02em;
-    margin-bottom: 28px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-strong);
+    scroll-margin-top: 96px;
   }
 
   .section-block {
@@ -207,15 +189,16 @@ const sparringSections = [
 
   .section-block h3 {
     font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--g400);
+    color: var(--text);
+    scroll-margin-top: 96px;
     letter-spacing: -0.01em;
     margin-bottom: 10px;
   }
 
   .section-block p {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-3);
     line-height: 1.8;
     margin-bottom: 10px;
@@ -263,35 +246,31 @@ const sparringSections = [
     font-weight: 600;
   }
 
+  /* Maxime du club : grande citation, filet vert, sans boîte */
   blockquote {
-    margin: 32px 0 4px;
-    padding: 20px 24px;
-    background: rgba(34,197,94,0.05);
-    border-left: 3px solid var(--g500);
-    border-radius: 0 var(--r-md) var(--r-md) 0;
-    font-size: 15px;
-    font-style: italic;
-    color: var(--text-2);
-    line-height: 1.7;
+    margin: 40px 0 4px;
+    padding-left: 20px;
+    border-left: 2px solid var(--g500);
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.35;
   }
 
   /* Sommaire */
+  /* Sommaire à plat, visible au défilement */
   .sommaire-inner {
     position: sticky;
-    top: 100px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 24px;
+    top: 104px;
   }
 
   .sommaire-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-bottom: 14px;
   }
 
   .sommaire-inner nav {
@@ -330,7 +309,7 @@ const sparringSections = [
 
   /* PDF section */
   .pdf-section {
-    margin-top: 56px;
+    margin-top: 96px;
   }
 
   .pdf-section-header {
@@ -348,16 +327,18 @@ const sparringSections = [
     border-bottom: none;
   }
 
-  .btn-download {
+  .btn-download,
+  .btn-open-pdf {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 10px 20px;
-    background: var(--g600);
-    color: #000;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: var(--r-sm);
+    padding: 12px 24px;
+    background: var(--g500);
+    color: var(--bg);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 100px;
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     text-decoration: none;
     flex-shrink: 0;
@@ -371,10 +352,11 @@ const sparringSections = [
     background: var(--g400);
   }
 
+  .btn-open-pdf { display: none; }
+
   .pdf-wrapper {
     width: 100%;
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
+    border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--bg1);
   }
@@ -401,9 +383,20 @@ const sparringSections = [
   }
 
   @media (max-width: 900px) {
-    .sparring-layout { grid-template-columns: 1fr; }
+    .sparring { padding: 128px 0 80px; }
+    .sparring-layout { grid-template-columns: minmax(0, 1fr); }
     .sommaire { display: none; }
-    .sparring-body { padding: 32px 24px; }
     .pdf-frame { height: 75vh; min-height: 480px; }
+    .pdf-section { margin-top: 72px; }
+  }
+
+  /* Mobile : pas de PDF intégré, deux boutons (ouvrir en plein écran, télécharger) */
+  @media (max-width: 768px) {
+    .pdf-wrapper { display: none; }
+    .pdf-section-header { flex-direction: column; align-items: stretch; }
+    .pdf-section-header { gap: 12px; margin-bottom: 0; }
+    .pdf-section-header .chapter-title { margin-bottom: 8px; }
+    .btn-open-pdf { display: flex; }
+    .btn-download { background: transparent; color: var(--text); border: 1px solid rgba(74,222,128,0.45); }
   }
 </style>

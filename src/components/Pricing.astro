@@ -57,11 +57,10 @@ const steps = [
   <div class="container">
 
     <div class="section-header reveal">
-      <p class="section-label">Tarifs {SEASON}</p>
-      <h2 class="section-title">
+      <h1 class="section-title">
         Transparent,<br/>
         <span>sans surprise.</span>
-      </h2>
+      </h1>
     </div>
 
     <div class="pricing-grid">
@@ -114,7 +113,7 @@ const steps = [
         </div>
 
         <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="btn-inscription">
-          S'inscrire maintenant
+          S'inscrire au club
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -166,7 +165,6 @@ const steps = [
       <div class="steps">
         {steps.map(s => (
           <div class="step">
-            <div class="step-num" aria-hidden="true">{s.num}</div>
             <div class="step-body">
               <p class="step-title">{s.title}</p>
               <p class="step-desc">{s.desc}</p>
@@ -195,17 +193,10 @@ const steps = [
 </section>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .pricing {
-    padding: 120px 0;
+    padding: 152px 0 112px;
     position: relative;
-  }
-
-  .pricing::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
   }
 
   .section-header {
@@ -213,14 +204,6 @@ const steps = [
     flex-direction: column;
     gap: 12px;
     margin-bottom: 64px;
-  }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
   }
 
   .section-title {
@@ -237,9 +220,10 @@ const steps = [
   /* ── Grid ── */
   .pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 112px;
   }
 
   /* ── Tarif cards ── */
@@ -282,13 +266,13 @@ const steps = [
     font-size: 12px;
   }
 
-  /* Prix — Inter au lieu de Syne, letter-spacing neutre */
+  /* Prix : police des titres, chiffres tabulaires (comme l'accueil) */
   .tarif-price {
-    font-family: var(--font-body);
-    font-size: 52px;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 800;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
     margin: 8px 0 6px;
@@ -383,29 +367,28 @@ const steps = [
     color: var(--text-muted);
   }
 
-  /* ── Tableau dégressif ── */
+  /* ── Tableau dégressif : à plat, à côté de la carte prix ── */
   .degressif {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding-top: 40px;
   }
 
   .degressif-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-3);
-    margin-bottom: 4px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
   }
 
   .degressif-sub {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-muted);
-    margin: -8px 0 4px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-3);
+    margin-bottom: 12px;
   }
 
   .periods-legend {
@@ -413,11 +396,9 @@ const steps = [
     grid-template-columns: 1fr auto;
     gap: 0 24px;
     align-items: baseline;
-    padding: 0 20px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    padding: 0 0 10px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--text-muted);
   }
 
@@ -429,9 +410,7 @@ const steps = [
   .periods {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    overflow: hidden;
+    border-top: 1px solid var(--border-strong);
   }
 
   .period {
@@ -439,14 +418,9 @@ const steps = [
     grid-template-columns: 1fr auto;
     gap: 0 24px;
     align-items: center;
-    padding: 18px 20px;
+    padding: 18px 0;
     border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
   }
-
-  .period:last-child { border-bottom: none; }
-  .period:hover { background: rgba(255,255,255,0.02); }
-  .period-current { background: rgba(34,197,94,0.05); }
 
   .period-label {
     display: flex;
@@ -458,10 +432,9 @@ const steps = [
   }
 
   .period-badge {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    white-space: nowrap;
     color: var(--bg);
     background: var(--g500);
     padding: 3px 8px;
@@ -469,9 +442,9 @@ const steps = [
   }
 
   .period-price {
-    font-family: var(--font-body);
-    font-size: 20px;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
     letter-spacing: -0.01em;
     font-variant-numeric: tabular-nums;
     min-width: 60px;
@@ -491,11 +464,8 @@ const steps = [
   .validity-note svg { flex-shrink: 0; }
 
   /* ── Pack découverte ── */
+  /* ── Pack découverte : à plat ── */
   .discovery {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 48px 56px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -509,8 +479,8 @@ const steps = [
 
   .discovery-label {
     font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 700;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
     color: var(--text);
     letter-spacing: -0.02em;
   }
@@ -522,38 +492,19 @@ const steps = [
 
   .steps {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
   }
 
   .step {
+    padding-top: 24px;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .step-body {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-right: 40px;
-    margin-right: 40px;
-    border-right: 1px solid var(--border);
-  }
-
-  .step:last-child {
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-  }
-
-  .step-num {
-    width: 36px;
-    height: 36px;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.2);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--g400);
-    flex-shrink: 0;
+    gap: 8px;
   }
 
   .step-title {
@@ -573,11 +524,8 @@ const steps = [
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background: rgba(34,197,94,0.05);
-    border: 1px solid rgba(34,197,94,0.15);
-    border-radius: var(--r-md);
-    padding: 16px 20px;
     color: var(--g500);
+    max-width: 72ch;
   }
 
   .btn-inscription {
@@ -609,12 +557,11 @@ const steps = [
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--g400);
-    background: rgba(34,197,94,0.08);
-    border: 1px solid rgba(34,197,94,0.25);
-    padding: 12px 24px;
+    color: var(--bg);
+    background: var(--g500);
+    padding: 14px 28px;
     border-radius: 100px;
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
     align-self: flex-start;
@@ -625,7 +572,7 @@ const steps = [
   }
 
   .btn-essai:hover {
-    background: rgba(34,197,94,0.14);
+    background: var(--g400);
   }
 
   .astuce svg { flex-shrink: 0; margin-top: 2px; }
@@ -639,15 +586,16 @@ const steps = [
   .astuce strong { color: var(--g400); font-weight: 600; }
 
   @media (max-width: 960px) {
-    .pricing-grid { grid-template-columns: 1fr; }
-    .discovery { padding: 40px 36px; }
+    .pricing { padding: 128px 0 80px; }
+    .pricing-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; margin-bottom: 80px; }
+    .degressif { padding-top: 0; }
   }
 
   @media (max-width: 700px) {
-    .tarif-cards { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; gap: 28px; }
-    .step { border-right: none; border-bottom: 1px solid var(--border); padding: 0 0 28px; margin: 0; }
-    .step:last-child { border-bottom: none; padding-bottom: 0; }
-    .discovery { padding: 28px 20px; }
+    .tarif-col { padding: 28px 22px; }
+    .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    /* Badge « En cours » sous le libellé : 2 lignes au lieu de 4 */
+    .period-label { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .btn-essai { align-self: stretch; }
   }
 </style>

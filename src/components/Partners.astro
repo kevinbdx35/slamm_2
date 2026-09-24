@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import fmmaf from '../assets/img/partenaires/fmmaf.webp';
-import progress from '../assets/img/partenaires/progress.webp';
-import rdx from '../assets/img/partenaires/rdx.webp';
-import stlunaire from '../assets/img/partenaires/stlunaire.webp';
+import fmmaf from '../assets/img/partenaires/fmmaf-mono.webp';
+import progress from '../assets/img/partenaires/progress-mono.webp';
+import rdx from '../assets/img/partenaires/rdx-mono.webp';
+import stlunaire from '../assets/img/partenaires/stlunaire-mono.webp';
 
 const partners = [
   { src: stlunaire, alt: 'Ville de Saint-Lunaire' },
@@ -66,34 +66,32 @@ const partners = [
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    gap: 32px;
+    align-items: center;
   }
 
-  /* Tuiles claires uniformes : les logos ont des fonds blancs, on les harmonise */
   .partner-tile {
     display: grid;
     place-items: center;
-    height: 120px;
-    padding: 18px;
-    background: #eef2ef;
-    border-radius: var(--r-md);
+    height: 72px;
   }
 
+  /* Logos en monochrome clair sur fond transparent (versions *-mono.webp
+     générées depuis les originaux) : posés directement sur le fond sombre */
   .partner-logo {
-    max-height: 72px;
+    max-height: 52px;
     max-width: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-    /* fond blanc des logos fondu dans la tuile */
-    mix-blend-mode: multiply;
+    opacity: 0.75;
   }
 
   @media (max-width: 900px) {
     .partners { padding: 72px 0; }
     .partners-inner { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .partners-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .partner-tile { height: 104px; }
-    .partner-logo { max-height: 60px; }
+    .partners-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+    .partner-tile { height: 56px; }
+    .partner-logo { max-height: 40px; }
   }
 </style>

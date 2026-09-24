@@ -13,12 +13,13 @@ const faqSchema = {
     { '@type': 'Question', name: "Y a-t-il des femmes au club ?", acceptedAnswer: { '@type': 'Answer', text: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux." } },
     { '@type': 'Question', name: "Quel équipement est nécessaire pour débuter ?", acceptedAnswer: { '@type': 'Answer', text: "Pour venir essayer : une tenue de sport, une bouteille d'eau. Ensuite : gants, protège-tibias, protège-dents et coquille." } },
     { '@type': 'Question', name: "Peut-on venir observer un cours sans s'inscrire ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, tu peux venir observer un cours gratuitement sans engagement." } },
-    { '@type': 'Question', name: "Comment s'inscrire aux cours d'essai ?", acceptedAnswer: { '@type': 'Answer', text: "2 cours d'essai gratuits en début de saison (septembre–octobre), ou 5€ par séance en cours d'année, déductibles si inscription." } },
+    { '@type': 'Question', name: "Comment s'inscrire aux cours d'essai ?", acceptedAnswer: { '@type': 'Answer', text: "2 cours d'essai gratuits en début de saison (septembre-octobre), ou 5€ par séance en cours d'année, déductibles si inscription." } },
     { '@type': 'Question', name: "Faut-il un certificat médical ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, un certificat médical de non contre-indication à la pratique du MMA datant de moins d'un an est obligatoire à l'inscription." } },
     { '@type': 'Question', name: "Le MMA est-il dangereux ?", acceptedAnswer: { '@type': 'Answer', text: "Encadré par nos coachs diplômés, avec équipement adapté et règles de sécurité strictes, la pratique reste maîtrisée." } },
   ],
 };
 
+import TrialCta from '../components/TrialCta.astro';
 ---
 
 <Layout
@@ -32,18 +33,18 @@ const faqSchema = {
       <div class="container">
 
         <div class="faq-header reveal">
-          <p class="section-label">Questions fréquentes</p>
           <h1 class="faq-title">
             Toutes les réponses<br/>
             <span>avant de te lancer.</span>
           </h1>
-          <p class="faq-sub">Toutes les réponses à tes questions sur la pratique du MMA au sein de notre association.</p>
         </div>
 
         <div class="faq-body">
           {categories.map((cat, ci) => (
             <div class={`faq-category reveal reveal-delay-${ci + 1}`}>
-              <h2 class="cat-title">{cat.title}</h2>
+              <div class="cat-head">
+                <h2 class="cat-title">{cat.title}</h2>
+              </div>
               <div class="accordion">
                 {cat.questions.map((item, qi) => (
                   <details class="accordion-item" name={`cat-${ci}`}>
@@ -63,18 +64,16 @@ const faqSchema = {
           ))}
         </div>
 
-        <div class="faq-cta reveal">
-          <div class="faq-cta-body">
-            <p class="faq-cta-title">Question non répondue ?</p>
-            <p class="faq-cta-desc">Contacte-nous, on te répond sous 24h.</p>
-          </div>
-          <a href="/contact" class="faq-cta-btn">
-            Nous contacter
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <p class="faq-contact reveal">
+          Question non répondue ? Contacte-nous, on te répond sous 24h.{' '}
+          <a href="/contact">Nous contacter
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-        </div>
+        </p>
+
+        <TrialCta />
 
       </div>
     </section>
@@ -83,34 +82,18 @@ const faqSchema = {
 </Layout>
 
 <style>
+  /* Première section de la page : dégage la nav fixe */
   .faq {
-    padding: 120px 0 80px;
-    position: relative;
+    padding: 152px 0 112px;
   }
 
-  .faq::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-  }
-
+  /* En-tête empilé : titre puis texte */
   .faq-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: end;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 720px;
     margin-bottom: 72px;
-  }
-
-  .section-label {
-    grid-column: 1 / -1;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
   }
 
   .faq-title {
@@ -124,59 +107,58 @@ const faqSchema = {
 
   .faq-title span { color: var(--g400); }
 
-  .faq-sub {
-    font-size: 16px;
-    color: var(--text-3);
-    line-height: 1.7;
-    align-self: end;
-  }
 
   .faq-body {
     display: flex;
     flex-direction: column;
-    gap: 56px;
-    margin-bottom: 56px;
+    gap: 80px;
+    margin-bottom: 96px;
+  }
+
+  /* Catégorie : titre (4/12, reste visible au défilement) + questions (8/12) */
+  .faq-category {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .cat-head {
+    position: sticky;
+    top: 104px;
   }
 
   .cat-title {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
+    line-height: 1.2;
     color: var(--text);
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
   }
 
-  /* Accordion */
+  /* Accordéon à plat, identique à l'accueil */
   .accordion {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    overflow: hidden;
+    border-top: 1px solid var(--border-strong);
   }
 
   .accordion-item {
     border-bottom: 1px solid var(--border);
   }
 
-  .accordion-item:last-child { border-bottom: none; }
-
   .accordion-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 20px 24px;
+    padding: 20px 0;
     cursor: pointer;
     list-style: none;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--text);
-    background: var(--bg1);
     transition: background 0.2s, color 0.2s;
     user-select: none;
   }
@@ -184,13 +166,11 @@ const faqSchema = {
   .accordion-summary::-webkit-details-marker { display: none; }
 
   .accordion-summary:hover {
-    background: var(--surface);
     color: var(--g400);
   }
 
   .accordion-item[open] .accordion-summary {
     color: var(--g400);
-    background: var(--surface);
   }
 
   .accordion-icon {
@@ -205,69 +185,43 @@ const faqSchema = {
   }
 
   .accordion-body {
-    padding: 0 24px 20px;
-    background: var(--surface);
+    padding: 0 40px 22px 0;
   }
 
   .accordion-body p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     line-height: 1.8;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
+    max-width: 62ch;
   }
 
-  /* CTA */
-  .faq-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 28px 36px;
+  /* Contact en ligne de texte, puis la bande d'appel */
+  .faq-contact {
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: var(--text-3);
   }
 
-  .faq-cta-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .faq-cta-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-
-  .faq-cta-btn {
+  .faq-contact a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    gap: 6px;
+    margin-left: 8px;
     font-weight: 600;
-    color: var(--bg);
-    background: var(--g500);
-    padding: 10px 22px;
-    border-radius: 100px;
+    color: var(--g400);
     white-space: nowrap;
-    flex-shrink: 0;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
   }
 
-  .faq-cta-btn:active {
-    transform: scale(0.97);
+  @media (max-width: 900px) {
+    .faq { padding: 128px 0 80px; }
+    .faq-category { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .cat-head { position: static; }
+    .faq-body { gap: 56px; margin-bottom: 72px; }
   }
 
-  .faq-cta-btn:hover {
-    background: var(--g400);
-  }
-
-  @media (max-width: 768px) {
-    .faq-header { grid-template-columns: 1fr; gap: 20px; }
-    .faq-cta { flex-direction: column; align-items: flex-start; }
-    .accordion-summary { padding: 16px 18px; font-size: 14px; }
-    .accordion-body { padding: 0 18px 16px; }
+  @media (max-width: 600px) {
+    .accordion-summary { padding: 18px 0; font-size: 15px; }
+    .accordion-body { padding: 0 0 18px; }
+    .faq-contact a { display: flex; margin: 8px 0 0; }
   }
 </style>

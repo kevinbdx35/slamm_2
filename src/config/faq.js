@@ -50,7 +50,7 @@ export const FAQ_CATEGORIES = [
       {
         id: 'essai',
         q: "Comment s'inscrire aux cours d'essai ?",
-        a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre–octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
+        a: "Tu peux participer à 2 cours d'essai. En début de saison (septembre-octobre), ils sont gratuits. En cours d'année, ils sont proposés au tarif de 5 € par séance, déductible de l'adhésion si tu t'inscris par la suite.",
       },
       {
         id: 'duree-adhesion',

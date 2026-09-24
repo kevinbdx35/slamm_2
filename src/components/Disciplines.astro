@@ -1,4 +1,12 @@
 ---
+import TrialCta from './TrialCta.astro';
+
+interface Props {
+  /** 'intro' : h1 + liste des disciplines · 'more' : vidéos, cours type, appel final */
+  part: 'intro' | 'more';
+}
+const { part } = Astro.props;
+
 const disciplines = [
   {
     name: 'MMA',
@@ -6,7 +14,6 @@ const disciplines = [
     desc: 'La discipline reine : debout, clinch, sol. Un sport complet qui synthétise les meilleures techniques de combat du monde.',
     level: 'Tous niveaux',
     sessions: 'Lun · Mer · Ven',
-    icon: '⬡',
   },
   {
     name: 'Sparring',
@@ -14,7 +21,6 @@ const disciplines = [
     desc: 'La mise en pratique libre. Appliquer ses techniques dans des échanges encadrés, en toute sécurité et dans le respect de l\'adversaire.',
     level: 'Tous niveaux',
     sessions: 'Vendredi 20h',
-    icon: '◆',
   },
   {
     name: 'Luta Livre',
@@ -22,162 +28,120 @@ const disciplines = [
     desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires : le grappling dans sa forme la plus pure.',
     level: 'Tous niveaux',
     sessions: 'Mardi 18h15',
-    icon: '◎',
   },
+];
+
+const steps = [
+  { title: 'Échauffement', duration: '18-20 min', desc: 'Debout, clinch, sol, et les transitions entre chaque phase. Des drills spécifiques MMA pour monter le cardio, activer les muscles et préparer le corps à la séance technique.' },
+  { title: 'Apprentissage technique', duration: '45-60 min', desc: 'Travail des techniques debout (frappes, déplacements) et au sol (contrôles, soumissions). On pratique par deux avec progressivité et bienveillance.' },
+  { title: 'Mise en situation', duration: '15-20 min', desc: 'Sparring thématique autour de la technique travaillée en séance. On remet en contexte ce qu\'on vient d\'apprendre, dans un cadre contrôlé et bienveillant.' },
+  { title: 'Retour au calme', duration: '10 min', desc: 'Étirements et récupération active. On termine en douceur pour favoriser la récupération musculaire et prévenir les courbatures.' },
+];
+
+const videos = [
+  { id: 'M2v4ckiaHTk', title: 'MMA en vidéo', sub: 'Les premiers grades MMA selon la FMMAF.', alt: 'Premiers grades MMA - FMMAF' },
+  { id: 'wC9kvJrO9aw', title: 'Luta Livre en vidéo', sub: 'Découvre la discipline en action : grappling No-Gi, soumissions et contrôles au sol.', alt: 'Présentation Luta Livre' },
 ];
 ---
 
-<section class="disciplines" id="disciplines">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-title">
-        Deux disciplines,<br/>
-        <span>une philosophie.</span>
-      </h2>
-      <p class="section-sub">
-        MMA technique, Sparring encadré, Luta Livre No-Gi : un programme cohérent
-        pour progresser à tous les niveaux.
-      </p>
-    </div>
+{part === 'intro' && (
+  <section class="disciplines disciplines-intro" id="disciplines">
+    <div class="container">
+      <div class="section-header reveal">
+        <h1 class="section-title">
+          <span class="title-line">Deux disciplines,</span>{' '}
+          <span class="title-line title-accent">une philosophie.</span>
+        </h1>
+        <p class="section-sub">
+          MMA technique, Sparring encadré, Luta Livre No-Gi : un programme cohérent
+          pour progresser à tous les niveaux.
+        </p>
+      </div>
 
-    <div class="disciplines-grid">
-      {disciplines.map((d, i) => (
-        <article class={`disc-card reveal reveal-delay-${(i % 3) + 1}`}>
-          <div class="disc-top">
-            <span class="disc-icon" aria-hidden="true">{d.icon}</span>
-            <div class="disc-meta">
-              {d.level === 'Membres'
-                ? <span class="members-badge">Membres uniquement</span>
-                : <span class="disc-level">{d.level}</span>
-              }
-              <span class="disc-sep" aria-hidden="true">·</span>
-              <span class="disc-sessions">{d.sessions}</span>
+      <!-- Liste éditoriale : une ligne par discipline, un filet entre chaque -->
+      <ul class="disc-list">
+        {disciplines.map((d, i) => (
+          <li class={`disc-row reveal reveal-delay-${i + 1}`}>
+            <div class="disc-head">
+              <h2 class="disc-name">{d.name}</h2>
+              <p class="disc-full">{d.full}</p>
             </div>
-          </div>
-          <div class="disc-body">
-            <h3 class="disc-name">{d.name}</h3>
-            <p class="disc-full">{d.full}</p>
             <p class="disc-desc">{d.desc}</p>
-          </div>
-          <div class="disc-arrow" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </article>
-      ))}
+            <dl class="disc-meta">
+              <div><dt class="sr-only">Niveau</dt><dd>{d.level}</dd></div>
+              <div><dt class="sr-only">Créneaux</dt><dd class="disc-sessions">{d.sessions}</dd></div>
+            </dl>
+          </li>
+        ))}
+      </ul>
     </div>
+  </section>
+)}
 
-    <div class="videos-section reveal">
-      <div class="videos-grid">
-        <div class="video-item">
-          <p class="section-label">MMA en vidéo</p>
-          <p class="video-item-sub">Les premiers grades MMA selon la FMMAF.</p>
-          <div class="video-wrap">
-            <div class="video-facade" data-id="M2v4ckiaHTk">
-              <img
-                src="https://img.youtube.com/vi/M2v4ckiaHTk/maxresdefault.jpg"
-                alt="Premiers grades MMA - FMMAF"
-                class="video-thumb"
-                loading="lazy"
-              />
-              <button class="play-btn" aria-label="Lire la vidéo">
-                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
-              </button>
+{part === 'more' && (
+  <section class="disciplines disciplines-more">
+    <div class="container">
+      <div class="videos-grid reveal">
+        {videos.map(v => (
+          <div class="video-item">
+            <h2 class="block-title">{v.title}</h2>
+            <p class="video-item-sub">{v.sub}</p>
+            <div class="video-wrap">
+              <div class="video-facade" data-id={v.id}>
+                <img
+                  src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`}
+                  alt={v.alt}
+                  class="video-thumb"
+                  loading="lazy"
+                />
+                <button class="play-btn" aria-label="Lire la vidéo">
+                  <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="video-item">
-          <p class="section-label">Luta Livre en vidéo</p>
-          <p class="video-item-sub">Découvre la discipline en action : grappling No-Gi, soumissions et contrôles au sol.</p>
-          <div class="video-wrap">
-            <div class="video-facade" data-id="wC9kvJrO9aw">
-              <img
-                src="https://img.youtube.com/vi/wC9kvJrO9aw/maxresdefault.jpg"
-                alt="Présentation Luta Livre"
-                class="video-thumb"
-                loading="lazy"
-              />
-              <button class="play-btn" aria-label="Lire la vidéo">
-                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-    </div>
 
-    <div class="cours-type reveal">
-      <div class="cours-header">
-        <p class="section-label">À quoi ressemble un cours ?</p>
-        <p class="cours-sub">Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois.</p>
+      <div class="cours-type">
+        <!-- En-tête empilé : titre puis texte -->
+        <div class="cours-header reveal">
+          <h2 class="cours-title">À quoi ressemble un cours ?</h2>
+          <p class="cours-sub">Nos cours durent entre 1h15 et 2h selon le créneau. Voici un aperçu d'une séance type pour te rassurer si c'est ta première fois.</p>
+        </div>
+        <ol class="cours-steps">
+          {steps.map((st, i) => (
+            <li class={`cours-step reveal reveal-delay-${i + 1}`}>
+              <span class="cours-duration">{st.duration}</span>
+              <h3 class="cours-step-title">{st.title}</h3>
+              <p class="cours-step-desc">{st.desc}</p>
+            </li>
+          ))}
+        </ol>
       </div>
-      <div class="cours-steps">
-        <div class="cours-step reveal reveal-delay-1">
-          <div class="cours-num">1</div>
-          <div class="cours-body">
-            <div class="cours-step-header">
-              <p class="cours-step-title">Échauffement</p>
-              <span class="cours-duration">18 – 20 min</span>
-            </div>
-            <p class="cours-step-desc">Debout, clinch, sol, et les transitions entre chaque phase. Des drills spécifiques MMA pour monter le cardio, activer les muscles et préparer le corps à la séance technique.</p>
-          </div>
-        </div>
-        <div class="cours-step reveal reveal-delay-2">
-          <div class="cours-num">2</div>
-          <div class="cours-body">
-            <div class="cours-step-header">
-              <p class="cours-step-title">Apprentissage technique</p>
-              <span class="cours-duration">45 – 60 min</span>
-            </div>
-            <p class="cours-step-desc">Travail des techniques debout (frappes, déplacements) et au sol (contrôles, soumissions). On pratique par deux avec progressivité et bienveillance.</p>
-          </div>
-        </div>
-        <div class="cours-step reveal reveal-delay-3">
-          <div class="cours-num">3</div>
-          <div class="cours-body">
-            <div class="cours-step-header">
-              <p class="cours-step-title">Mise en situation</p>
-              <span class="cours-duration">15 – 20 min</span>
-            </div>
-            <p class="cours-step-desc">Sparring thématique autour de la technique travaillée en séance. On remet en contexte ce qu'on vient d'apprendre, dans un cadre contrôlé et bienveillant.</p>
-          </div>
-        </div>
-        <div class="cours-step reveal reveal-delay-4">
-          <div class="cours-num">4</div>
-          <div class="cours-body">
-            <div class="cours-step-header">
-              <p class="cours-step-title">Retour au calme</p>
-              <span class="cours-duration">10 min</span>
-            </div>
-            <p class="cours-step-desc">Étirements et récupération active. On termine en douceur pour favoriser la récupération musculaire et prévenir les courbatures.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="faq-cta reveal">
-      <div class="faq-cta-body">
-        <p class="faq-cta-title">Des questions ?</p>
-        <p class="faq-cta-desc">Équipements, certificat médical, âge minimum, déroulement des cours…</p>
-      </div>
-      <a href="/faq" class="faq-cta-btn">
-        Voir la FAQ
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+      <p class="faq-link reveal">
+        Des questions ? Équipements, certificat médical, âge minimum, déroulement des cours…{' '}
+        <a href="/faq">Voir la FAQ
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </p>
+
+      <TrialCta />
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .disciplines {
-    padding: 120px 0;
-    position: relative;
-  }
+  .disciplines { position: relative; }
 
-  .disciplines::before {
+  /* Première section de la page : dégage la nav fixe */
+  .disciplines-intro { padding: 152px 0 104px; }
+  .disciplines-more { padding: 112px 0; }
+
+  .disciplines-more::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -185,22 +149,21 @@ const disciplines = [
     background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
   }
 
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .section-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     max-width: 720px;
     margin-bottom: 64px;
   }
-
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-  }
-
 
   .section-title {
     font-family: var(--font-display);
@@ -209,173 +172,107 @@ const disciplines = [
     line-height: 1.05;
     letter-spacing: -0.03em;
     color: var(--text);
+    text-wrap: initial;
   }
 
-  .section-title span { color: var(--g400); }
+  .title-line { display: block; }
+  .title-accent { color: var(--g400); }
 
   .section-sub {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-3);
     line-height: 1.7;
-    font-weight: 400;
-    align-self: end;
+    max-width: 56ch;
   }
 
-  /* Grid */
-  .disciplines-grid {
+  /* Disciplines : nom (3) · description (5) · infos (3) */
+  .disc-list {
+    list-style: none;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .disc-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .disc-card {
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    cursor: default;
-    transition: border-color 200ms ease, background-color 200ms ease, transform 250ms var(--ease-out);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .disc-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 0% 100%, rgba(34,197,94,0.06) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 250ms ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .disc-card:hover {
-      border-color: rgba(74,222,128,0.3);
-      background: var(--bg2);
-      transform: translateY(-3px);
-    }
-  }
-
-  .disc-card:hover::after {
-    opacity: 1;
-  }
-
-  .disc-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .disc-icon {
-    font-size: 24px;
-    color: var(--g400);
-    line-height: 1;
-    font-style: normal;
-  }
-
-  .disc-meta {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-
-  .disc-sep { color: var(--text-muted); }
-
-  .members-badge {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--g500);
-    border: 1px solid rgba(34,197,94,0.25);
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-
-  .disc-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 3fr);
+    gap: 40px;
+    align-items: baseline;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .disc-name {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: clamp(30px, 3.2vw, 40px);
     font-weight: 800;
     color: var(--text);
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1;
   }
 
   .disc-full {
-    font-size: 12px;
+    margin-top: 10px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--g500);
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    color: var(--g400);
   }
 
   .disc-desc {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-3);
     line-height: 1.7;
-    font-weight: 400;
+    max-width: 52ch;
   }
 
-  .disc-arrow {
+  .disc-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-self: end;
+    text-align: right;
+    font-size: 14px;
     color: var(--text-muted);
-    transition: color 200ms ease, transform 200ms var(--ease-out);
-    align-self: flex-end;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .disc-card:hover .disc-arrow {
-      color: var(--g400);
-      transform: translateX(4px);
-    }
+  .disc-sessions {
+    font-weight: 600;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
   }
 
-  /* Videos */
-  .videos-section {
-    margin-top: 64px;
-    padding-top: 64px;
-    border-top: 1px solid var(--border);
-  }
-
+  /* Vidéos */
   .videos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 32px;
   }
 
   .video-item {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .block-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
   }
 
   .video-item-sub {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-3);
     line-height: 1.7;
+    margin-bottom: 8px;
   }
 
   .video-wrap {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: var(--r-xl);
+    border-radius: var(--r-lg);
     overflow: hidden;
-    border: 1px solid var(--border);
   }
 
   .video-wrap iframe {
@@ -423,176 +320,102 @@ const disciplines = [
     }
   }
 
-  /* Cours type */
+  /* Cours type : 4 colonnes à plat sous un filet */
   .cours-type {
-    margin-top: 80px;
-    padding-top: 64px;
-    border-top: 1px solid var(--border);
+    margin-top: 112px;
   }
 
   .cours-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: end;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 640px;
     margin-bottom: 48px;
   }
 
+  .cours-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
   .cours-sub {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-3);
     line-height: 1.7;
   }
 
   .cours-steps {
+    list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    overflow: hidden;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
   }
 
   .cours-step {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 32px 28px;
-    border-right: 1px solid var(--border);
-  }
-
-  .cours-step:last-child { border-right: none; }
-
-  .cours-num {
-    width: 36px;
-    height: 36px;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.2);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--g400);
-    flex-shrink: 0;
-  }
-
-  .cours-body {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    flex: 1;
-  }
-
-  .cours-step-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .cours-step-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .cours-optional {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 2px 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-strong);
   }
 
   .cours-duration {
-    font-size: 13px;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--g400);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .cours-step-title {
+    font-size: 16px;
     font-weight: 600;
-    color: var(--g500);
+    color: var(--text);
   }
 
   .cours-step-desc {
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 14px;
+    color: var(--text-3);
     line-height: 1.7;
   }
 
-  /* FAQ CTA */
-  .faq-cta {
-    margin-top: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    background: var(--bg1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 28px 36px;
+  /* Lien FAQ en texte, puis la bande d'appel */
+  .faq-link {
+    margin: 96px 0 32px;
+    font-size: 15px;
+    color: var(--text-3);
   }
 
-  .faq-cta-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .faq-cta-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-
-  .faq-cta-btn {
+  .faq-link a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    gap: 6px;
+    margin-left: 8px;
     font-weight: 600;
-    color: var(--bg);
-    background: var(--g500);
-    padding: 10px 22px;
-    border-radius: 100px;
+    color: var(--g400);
     white-space: nowrap;
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
-    flex-shrink: 0;
-  }
-
-  .faq-cta-btn:active {
-    transform: scale(0.97);
-  }
-
-  .faq-cta-btn:hover {
-    background: var(--g400);
-  }
-
-  @media (max-width: 600px) {
-    .faq-cta { flex-direction: column; align-items: flex-start; }
   }
 
   @media (max-width: 900px) {
-    .section-header { grid-template-columns: 1fr; }
-    .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
-    .videos-grid { grid-template-columns: 1fr; }
-    .cours-header { grid-template-columns: 1fr; }
-    .cours-steps { grid-template-columns: repeat(2, 1fr); }
-    .cours-step:nth-child(2) { border-right: none; }
-    .cours-step:nth-child(3) { border-top: 1px solid var(--border); }
-    .cours-step:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+    .disciplines-intro { padding: 128px 0 80px; }
+    .disciplines-more { padding: 80px 0; }
+    .disc-row { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 28px 0; }
+    .disc-meta { justify-self: start; text-align: left; flex-direction: row; gap: 16px; }
+    .videos-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .cours-type { margin-top: 80px; }
+    .cours-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+    .faq-link { margin-top: 72px; }
   }
 
   @media (max-width: 580px) {
-    .disciplines-grid { grid-template-columns: 1fr; }
-    .cours-steps { grid-template-columns: 1fr; }
-    .cours-step { border-right: none; border-bottom: 1px solid var(--border); }
-    .cours-step:last-child { border-bottom: none; }
+    .cours-steps { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .faq-link a { margin-left: 0; margin-top: 8px; display: flex; }
   }
 </style>
 

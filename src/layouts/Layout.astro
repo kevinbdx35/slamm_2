@@ -5,12 +5,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
 import { SUMMER_BREAK } from '../config/schedule.js';
 
 // Polices auto-hébergées (perf + RGPD/CSP, plus de dépendance à Google Fonts)
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/syne/700.css';
-import '@fontsource/syne/800.css';
+import '../styles/fonts.css';
 interface Props {
   title?: string;
   description?: string;
@@ -183,8 +178,9 @@ const schema = {
     --text-3:  #a9b5ad;
     --text-muted: #87948b;
 
-    --font-display: 'Syne', sans-serif;
-    --font-body:    'Inter', sans-serif;
+    /* Une seule famille : Archivo élargie (titres) / largeur normale (texte) */
+    --font-display: 'Archivo Expanded', 'Archivo Variable', sans-serif;
+    --font-body:    'Archivo Variable', sans-serif;
 
     /* Arrondis : boutons en pilule (100px), cartes 20px, éléments internes 12px */
     --r-sm: 8px;
@@ -192,8 +188,12 @@ const schema = {
     --r-lg: 20px;
     --r-xl: 20px;
 
-    /* Échelle des titres de section (Syne 800 est très large : min 28px pour tenir à 375px) */
+    /* Échelle des titres de section (Archivo élargie 800 : min 28px pour tenir à 375px) */
     --fs-h2: clamp(28px, 4.4vw, 52px);
+
+    /* Avertissements (pages ressources) : seule teinte hors palette, porteuse de sens */
+    --warn: #f5b546;
+    --warn-bg: rgba(245,181,70,0.07);
 
     /* Courbes fortes : ease-out pour entrées/réponses, ease-in-out pour déplacements */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
