@@ -44,24 +44,24 @@ const stats = [
 <section class="events" id="evenements">
   <div class="container">
     <!-- En-tête à plat : titre de page + chiffres sous un filet -->
-    <div class="events-header reveal">
+    <div class="events-header">
       <h1 class="events-title">
-        En mouvement<br/>
-        <span>depuis 2023.</span>
+        <span class="title-slot"><span class="title-slot-text">En mouvement</span></span>{' '}
+        <span class="title-slot title-accent"><span class="title-slot-text">depuis 2023.</span></span>
       </h1>
     </div>
 
     <dl class="events-stats reveal">
-      {stats.map((s) => (
-        <div class="stat-item">
+      {stats.map((s, i) => (
+        <div class="stat-item" style={`--stagger: ${i * 40}ms`}>
           <dt class="stat-label">{s.label}</dt>
           <dd class="stat-num">{s.num}</dd>
         </div>
       ))}
     </dl>
 
-    <div class="upcoming reveal">
-      <h2 class="block-title">Prochains événements</h2>
+    <div class="upcoming">
+      <h2 class="block-title reveal">Prochains événements</h2>
       {upcoming.length > 0 ? (
         <div class="upcoming-list">
           {upcoming.map((e) => {
@@ -74,11 +74,11 @@ const stats = [
                   alt={e.imageAlt ?? `Affiche : ${e.title}`}
                   widths={[400, 600, 900]}
                   sizes="(max-width: 900px) 100vw, 440px"
-                  class="upcoming-thumb"
+                  class="upcoming-thumb reveal"
                   loading="lazy"
                 />
               )}
-              <div class="upcoming-body">
+              <div class="upcoming-body reveal reveal-delay-1">
                 <span class="event-type">{getEventType(e)}</span>
                 <h3 class="upcoming-name">{e.title}</h3>
                 <p class="upcoming-when">
@@ -99,7 +99,7 @@ const stats = [
           })}
         </div>
       ) : (
-        <div class="upcoming-empty">
+        <div class="upcoming-empty reveal">
           <p>Aucun événement programmé pour le moment.</p>
           <p>Reviens bientôt ou <a href="/contact">contacte-nous</a> pour en savoir plus.</p>
         </div>
@@ -107,11 +107,11 @@ const stats = [
     </div>
 
     {past.length > 0 && (
-      <div class="past reveal">
-        <h2 class="block-title">Événements passés</h2>
-        <ul class="past-list">
-          {past.map((e) => (
-            <li class="past-row">
+      <div class="past">
+        <h2 class="block-title reveal">Événements passés</h2>
+        <ul class="past-list reveal">
+          {past.map((e, i) => (
+            <li class="past-row" style={`--stagger: ${i * 40}ms`}>
               <span class="past-date">{formatEventDate(e.date)}</span>
               <div class="past-body">
                 <span class="event-type">{getEventType(e)}</span>
@@ -146,7 +146,7 @@ const stats = [
     color: var(--text);
   }
 
-  .events-title span { color: var(--g400); }
+  .events-title .title-accent { color: var(--g400); }
 
   /* Chiffres : rangée à plat sous un filet */
   .events-stats {
@@ -335,6 +335,29 @@ const stats = [
     justify-self: end;
     font-size: 14px;
     color: var(--text-3);
+  }
+
+  /* Chiffres et événements passés en cascade (40ms) : la liste garde .reveal
+     pour l'observer, mais ce sont ses éléments qui bougent */
+  :global(.js) .events-stats.reveal,
+  :global(.js) .past-list.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .stat-item,
+  :global(.js) .past-row {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 400ms var(--ease-out) var(--stagger, 0ms),
+      transform 400ms var(--ease-out) var(--stagger, 0ms);
+  }
+  :global(.js) .events-stats.visible .stat-item,
+  :global(.js) .past-list.visible .past-row { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .stat-item,
+    :global(.js) .past-row {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
   }
 
   @media (max-width: 900px) {
