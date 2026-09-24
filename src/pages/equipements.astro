@@ -33,9 +33,9 @@ import Footer from '../components/Footer.astro';
               <div class="alert-primary">
                 <p>Exclusivement des <strong>mitaines homologuées MMA amateur</strong> :</p>
                 <ul>
-                  <li><strong>Pouce attaché</strong> — solidaire du gant</li>
-                  <li><strong>Paume ouverte</strong> — permet les saisies et le grappling</li>
-                  <li><strong>Rembourrage en mousse préformée "boule", entre 6 et 8 oz</strong> — empêche de tendre les doigts, protège les phalanges</li>
+                  <li><strong>Pouce attaché</strong> : solidaire du gant</li>
+                  <li><strong>Paume ouverte</strong> : permet les saisies et le grappling</li>
+                  <li><strong>Rembourrage en mousse préformée "boule", entre 6 et 8 oz</strong> : empêche de tendre les doigts, protège les phalanges</li>
                   <li>Toujours porter des <strong>bandes ou sous-gants de boxe</strong> en dessous</li>
                 </ul>
               </div>
@@ -63,7 +63,7 @@ import Footer from '../components/Footer.astro';
                 <div class="col-card">
                   <span class="badge badge-optional">Optionnel</span>
                   <ul>
-                    <li>Gants de boxe — <strong>16 oz</strong> (moins de 90 kg) ou <strong>18 à 20 oz</strong> (plus de 90 kg)</li>
+                    <li>Gants de boxe : <strong>16 oz</strong> (moins de 90 kg) ou <strong>18 à 20 oz</strong> (plus de 90 kg)</li>
                     <li>Casque</li>
                     <li>Protège-poitrine (femme)</li>
                     <li>Coudières / genouillères</li>
@@ -110,7 +110,7 @@ import Footer from '../components/Footer.astro';
                 <div class="col-card">
                   <span class="badge badge-required">Obligatoire</span>
                   <ul>
-                    <li>Tongs / claquettes — pour se déplacer hors tatami</li>
+                    <li>Tongs / claquettes, pour se déplacer hors tatami</li>
                     <li>Bouteille / gourde d'eau</li>
                     <li>Serviette éponge</li>
                   </ul>
@@ -141,7 +141,7 @@ import Footer from '../components/Footer.astro';
                 <circle cx="7" cy="15" r="1" fill="currentColor"/>
                 <circle cx="12" cy="15" r="1" fill="currentColor"/>
               </svg>
-              <p><strong>Commande groupée à tarif préférentiel</strong> — Via nos partenaires techniques, il nous est possible de passer des commandes groupées. Renseigne-toi auprès d'un coach si tu souhaites en profiter.</p>
+              <p><strong>Commande groupée à tarif préférentiel :</strong> via nos partenaires techniques, il nous est possible de passer des commandes groupées. Renseigne-toi auprès d'un coach si tu souhaites en profiter.</p>
             </div>
 
             <!-- Blockquote -->
@@ -397,10 +397,14 @@ import Footer from '../components/Footer.astro';
   }
 
   .simple-list li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--g600);
+    top: 0.85em;
+    width: 8px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--g600);
   }
 
   /* Order note */

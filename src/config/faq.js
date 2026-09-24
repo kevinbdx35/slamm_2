@@ -55,12 +55,12 @@ export const FAQ_CATEGORIES = [
       {
         id: 'duree-adhesion',
         q: "L'adhésion couvre quelle période ?",
-        a: `Il n'y a qu'une seule adhésion : elle démarre le jour de ton inscription et se termine fin juin, en même temps que la saison. Le plein tarif est de ${fullPrice} € pour la saison complète. Si tu nous rejoins en cours d'année, tu ne paies que les mois restants : ${reducedPrices}. Autrement dit, ${fullPrice} € ne couvre pas seulement septembre à décembre — c'est le prix de la saison entière quand on s'inscrit dès la rentrée.`,
+        a: `Il n'y a qu'une seule adhésion : elle démarre le jour de ton inscription et se termine fin juin, en même temps que la saison. Le plein tarif est de ${fullPrice} € pour la saison complète. Si tu nous rejoins en cours d'année, tu ne paies que les mois restants : ${reducedPrices}. Autrement dit, ${fullPrice} € ne couvre pas seulement septembre à décembre : c'est le prix de la saison entière quand on s'inscrit dès la rentrée.`,
       },
       {
         id: 'aides',
         q: "Acceptez-vous le Pass'Sport et le Chèque jeunesse ?",
-        a: "Oui, les deux. Le Pass'Sport est une aide de l'État accordée sous conditions d'éligibilité. Le Chèque jeunesse est une aide de 60 € de la mairie de Saint-Lunaire, destinée aux jeunes de 3 à 18 ans pour financer une inscription annuelle en association sportive ou culturelle — chez nous, elle concerne donc les 16-18 ans, puisque l'âge minimum d'adhésion est de 16 ans. Dans les deux cas, le montant est déduit de ton adhésion : préviens-nous avant de finaliser ton inscription pour qu'on t'indique les justificatifs à fournir.",
+        a: "Oui, les deux. Le Pass'Sport est une aide de l'État accordée sous conditions d'éligibilité. Le Chèque jeunesse est une aide de 60 € de la mairie de Saint-Lunaire, destinée aux jeunes de 3 à 18 ans pour financer une inscription annuelle en association sportive ou culturelle. Chez nous, elle concerne donc les 16-18 ans, puisque l'âge minimum d'adhésion est de 16 ans. Dans les deux cas, le montant est déduit de ton adhésion : préviens-nous avant de finaliser ton inscription pour qu'on t'indique les justificatifs à fournir.",
       },
     ],
   },

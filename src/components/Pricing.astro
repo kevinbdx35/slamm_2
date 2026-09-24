@@ -107,7 +107,7 @@ const steps = [
           </p>
           <ul class="aides-list">
             {FINANCIAL_AID.schemes.map(s => (
-              <li><strong>{s.name}</strong> — {s.detail}</li>
+              <li><strong>{s.name}</strong> : {s.detail}</li>
             ))}
           </ul>
           <p class="aides-note">Signale-le nous avant de finaliser ton inscription : le montant est déduit de l'adhésion.</p>
@@ -151,7 +151,7 @@ const steps = [
             <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
             <path d="M7 4.5V7l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
           </svg>
-          {isOffSeason ? 'Inscriptions ouvertes pour la prochaine saison — reprise en septembre' : `Tarif en vigueur jusqu'à fin ${tarifValidUntil} · CB en 3 fois possible`}
+          {isOffSeason ? 'Inscriptions ouvertes pour la prochaine saison, reprise en septembre' : `Tarif en vigueur jusqu'à fin ${tarifValidUntil} · CB en 3 fois possible`}
         </p>
       </div>
     </div>
@@ -187,7 +187,7 @@ const steps = [
           <path d="M8 2a4 4 0 0 1 1.5 7.7V11h-3V9.7A4 4 0 0 1 8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
           <path d="M6.5 13h3M7 15h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
-        <p><strong>Astuce —</strong> Profite de tes séances d'essai pour découvrir les techniques, rencontrer les coachs et t'imprégner de l'ambiance du club.</p>
+        <p><strong>Astuce :</strong> Profite de tes séances d'essai pour découvrir les techniques, rencontrer les coachs et t'imprégner de l'ambiance du club.</p>
       </div>
     </div>
 
@@ -259,20 +259,14 @@ const steps = [
     gap: 16px;
   }
 
+  /* Bloc prix à plat dans la carte (plus de carte dans la carte) */
   .tarif-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 24px 20px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  .tarif-card-accent {
-    border-color: rgba(34,197,94,0.25);
-    background: rgba(34,197,94,0.04);
-  }
 
   .tarif-age {
     font-size: 13px;

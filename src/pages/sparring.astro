@@ -248,11 +248,14 @@ const sparringSections = [
   }
 
   .section-block ul li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--g600);
-    font-weight: 600;
+    top: 0.85em;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--g600);
   }
 
   .section-block ul li strong {

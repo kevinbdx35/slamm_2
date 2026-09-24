@@ -86,7 +86,6 @@ const coaches = [
 <section class="team" id="equipe">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-label">L'équipe</p>
       <h2 class="section-title">
         L'équipe<br/>
         <span>encadrante.</span>
@@ -97,10 +96,7 @@ const coaches = [
     </div>
 
     <div class="team-photo-wrap reveal">
-      <Image src={teamPhoto} alt="L'équipe SLAMM" class="team-photo" />
-      <div class="team-photo-overlay">
-        <span>Saint-Lunaire Arts Martiaux Mixtes</span>
-      </div>
+      <Image src={teamPhoto} alt="L'équipe SLAMM réunie sur le tatami" class="team-photo" />
     </div>
 
     <div class="carousel-wrap reveal">
@@ -193,20 +189,12 @@ const coaches = [
 
   .section-header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    max-width: 720px;
     margin-bottom: 48px;
   }
 
-  .section-label {
-    grid-column: 1 / -1;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--g500);
-  }
 
   .section-title {
     font-family: var(--font-display);
@@ -243,20 +231,7 @@ const coaches = [
     display: block;
   }
 
-  .team-photo-overlay {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 24px 32px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-  }
 
-  .team-photo-overlay span {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-  }
 
   /* Carousel */
   .carousel-wrap {

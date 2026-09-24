@@ -35,7 +35,7 @@ const stats = [
   { num: '5',  label: 'stages organisés' },
   { num: '4',  label: 'échanges inter-clubs' },
   { num: '3',  label: 'compétitions' },
-  { num: '3',  label: 'médailles No-Gi' },
+  { num: '3',  label: 'médailles No‑Gi' },
   { num: '1',  label: 'victoire MMA interclub' },
 ];
 ---
@@ -72,7 +72,7 @@ const stats = [
               {img && (
                 <Image
                   src={img}
-                  alt={e.imageAlt ?? `Affiche — ${e.title}`}
+                  alt={e.imageAlt ?? `Affiche : ${e.title}`}
                   widths={[400, 600]}
                   sizes="(max-width: 640px) 220px, 200px"
                   class="upcoming-thumb"
@@ -148,9 +148,8 @@ const stats = [
     border-radius: var(--r-xl);
     padding: 64px 72px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 64px;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
     position: relative;
     overflow: hidden;
   }
@@ -185,35 +184,23 @@ const stats = [
 
   .events-title span { color: var(--g400); }
 
-  /* Stats */
+  /* Stats : une rangée de 5 (desktop), 2 colonnes + dernière pleine largeur (mobile) */
   .events-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .stat-item {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 24px 28px;
+    gap: 8px;
+    padding: 8px 24px;
     border-left: 1px solid var(--border);
-    position: relative;
-    transition: background 0.3s;
   }
 
-  .stat-item:hover {
-    background: rgba(34,197,94,0.04);
-  }
-
-  .stat-item:nth-child(4),
-  .stat-item:nth-child(5) {
-    border-top: 1px solid var(--border);
-  }
-
-  .stat-item:nth-child(4) {
-    grid-column: 1 / 2;
-    border-left: 1px solid var(--border);
+  .stat-item:first-child {
+    padding-left: 0;
+    border-left: none;
   }
 
   .stat-num {
@@ -441,9 +428,10 @@ const stats = [
 
   @media (max-width: 640px) {
     .events-inner { padding: 32px 24px; }
-    .events-stats { grid-template-columns: repeat(2, 1fr); }
-    .stat-item:nth-child(4) { border-top: none; }
-    .stat-item:nth-child(3),
-    .stat-item:nth-child(5) { border-top: 1px solid var(--border); }
+    .events-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+    .stat-item { padding: 20px 0 20px 20px; border-top: 1px solid var(--border); }
+    .stat-item:nth-child(odd) { padding-left: 0; border-left: none; }
+    .stat-item:nth-child(-n+2) { border-top: none; padding-top: 0; }
+    .stat-item:last-child { grid-column: 1 / -1; }
   }
 </style>

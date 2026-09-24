@@ -70,7 +70,7 @@ export const REGISTRATION_OPENING_SOON = false;
  */
 export const SUMMER_BREAK = {
   active: false,
-  message: 'Club fermé pour l\'été — reprise des cours le mercredi 16 septembre 2026. Inscriptions déjà ouvertes.'
+  message: 'Club fermé pour l\'été. Reprise des cours le mercredi 16 septembre 2026. Inscriptions déjà ouvertes.'
 };
 
 /**

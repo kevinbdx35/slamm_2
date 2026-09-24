@@ -19,7 +19,7 @@ const disciplines = [
   {
     name: 'Luta Livre',
     full: 'Luta Livre · No-Gi',
-    desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires — le grappling dans sa forme la plus pure.',
+    desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires : le grappling dans sa forme la plus pure.',
     level: 'Tous niveaux',
     sessions: 'Mardi 18h15',
     icon: '◎',
@@ -30,13 +30,12 @@ const disciplines = [
 <section class="disciplines" id="disciplines">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-label">Notre programme</p>
       <h2 class="section-title">
         Deux disciplines,<br/>
         <span>une philosophie.</span>
       </h2>
       <p class="section-sub">
-        MMA technique, Sparring encadré, Luta Livre No-Gi — un programme cohérent
+        MMA technique, Sparring encadré, Luta Livre No-Gi : un programme cohérent
         pour progresser à tous les niveaux.
       </p>
     </div>
@@ -90,7 +89,7 @@ const disciplines = [
         </div>
         <div class="video-item">
           <p class="section-label">Luta Livre en vidéo</p>
-          <p class="video-item-sub">Découvre la discipline en action — grappling No-Gi, soumissions et contrôles au sol.</p>
+          <p class="video-item-sub">Découvre la discipline en action : grappling No-Gi, soumissions et contrôles au sol.</p>
           <div class="video-wrap">
             <div class="video-facade" data-id="wC9kvJrO9aw">
               <img
@@ -121,7 +120,7 @@ const disciplines = [
               <p class="cours-step-title">Échauffement</p>
               <span class="cours-duration">18 – 20 min</span>
             </div>
-            <p class="cours-step-desc">Debout, clinch, sol — et les transitions entre chaque phase. Des drills spécifiques MMA pour monter le cardio, activer les muscles et préparer le corps à la séance technique.</p>
+            <p class="cours-step-desc">Debout, clinch, sol, et les transitions entre chaque phase. Des drills spécifiques MMA pour monter le cardio, activer les muscles et préparer le corps à la séance technique.</p>
           </div>
         </div>
         <div class="cours-step reveal reveal-delay-2">
@@ -188,20 +187,20 @@ const disciplines = [
 
   .section-header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    max-width: 720px;
     margin-bottom: 64px;
   }
 
   .section-label {
-    grid-column: 1 / -1;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--g500);
   }
+
 
   .section-title {
     font-family: var(--font-display);

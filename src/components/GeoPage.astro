@@ -23,7 +23,7 @@ const { title, description, canonical, city, distance, areaServed, schema } = As
 const disciplines = [
   { name: 'MMA', icon: '⬡', desc: 'La discipline reine : debout, clinch, sol. Un sport complet qui synthétise les meilleures techniques de combat du monde.', sessions: 'Lun · Mer · Ven' },
   { name: 'Sparring', icon: '◆', desc: 'La mise en pratique libre. Appliquer ses techniques dans des échanges encadrés, en toute sécurité et dans le respect de l\'adversaire.', sessions: 'Vendredi 20h' },
-  { name: 'Luta Livre', icon: '◎', desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires — le grappling dans sa forme la plus pure.', sessions: 'Mardi 18h15' },
+  { name: 'Luta Livre', icon: '◎', desc: 'Lutte brésilienne sans kimono. Soumissions, contrôles au sol, étranglements et clés articulaires : le grappling dans sa forme la plus pure.', sessions: 'Mardi 18h15' },
 ];
 
 const activeIdx = getActivePeriodIndex();
@@ -40,7 +40,7 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
       <div class="geo-hero-inner">
         <div class="container">
           <p class="section-label">Club de MMA · À {distance} de {city}</p>
-          <h1 class="geo-h1">MMA à {city} —<br/><span>le club SLAMM est à {distance}</span></h1>
+          <h1 class="geo-h1">MMA à {city},<br/><span>le club SLAMM est à {distance}</span></h1>
           <p class="geo-hero-sub">Pratique le MMA dans un club sérieux et convivial, à Saint-Lunaire.<br/>À partir de 16 ans · Tous niveaux · Coachs diplômés FMMAF</p>
           <div class="geo-actions">
             <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary">
@@ -65,7 +65,7 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
             <span>le plus proche de {city}</span>
           </h2>
           <p class="geo-body">Tu habites {areaServed.join(', ')} ? SLAMM est ton club de MMA le plus proche, à Saint-Lunaire, à seulement {distance} en voiture. Grappling, No-Gi, boxe, kickboxing et lutte pour tous les niveaux.</p>
-          <p class="geo-body">Des coachs diplômés FMMAF, une vraie communauté — sans faire des kilomètres.</p>
+          <p class="geo-body">Des coachs diplômés FMMAF, une vraie communauté, sans faire des kilomètres.</p>
           <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary btn-inline">
             Réserver un essai gratuit
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -74,7 +74,7 @@ const adultPrice = PRICING.adult.periods[displayIdx].price;
           </a>
         </div>
         <div class="reveal reveal-delay-2">
-          <Image src={teamImg} alt={`L'équipe SLAMM — club MMA proche de ${city}`} class="geo-img" />
+          <Image src={teamImg} alt={`L'équipe SLAMM, club MMA proche de ${city}`} class="geo-img" />
         </div>
       </div>
     </section>
