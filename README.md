@@ -31,7 +31,7 @@ npm run dev        # serveur de dev avec hot reload
 
 ```
 src/
-├── layouts/Layout.astro   # <head>/SEO, tokens CSS globaux, fond du site, footer
+├── layouts/Layout.astro   # <head>/SEO, tokens CSS, fond du site, utilitaires d'animation globaux
 ├── pages/                 # une route = un .astro (URLs propres)
 ├── components/            # sections réutilisables (Hero, Essentials, Pricing, Schedule…)
 └── config/                # données centralisées
@@ -48,6 +48,40 @@ Toutes les infos pratiques vivent dans `src/config/` et se propagent partout :
 - **Tarifs / horaires / saison** → `src/config/schedule.js`
 - **Questions FAQ** → `src/config/faq.js` (la mini-FAQ de l'accueil en réutilise une sélection via `getFaqByIds()`)
 - **Liens d'inscription, réseaux, contact** → `src/config/urls.js`
+
+## Design et animations
+
+Thème sombre unique (vert accessible sur quasi-noir). Les tokens (couleurs `--g400`/`--g500`,
+polices, rayons, courbes `--ease-out` / `--ease-in-out`) sont définis une seule fois dans
+le `:root` de `Layout.astro` ; le reste du CSS est scopé par composant.
+
+Les effets d'animation réutilisables vivent dans `Layout.astro`. On les réutilise au lieu
+de recoder l'effet dans un composant :
+
+| Classe | Effet | Utilisé sur |
+|--------|-------|-------------|
+| `.reveal` (+ `.reveal-delay-1..4`) | Apparition en fondu au défilement | Partout |
+| `.title-slot` > `.title-slot-text` | Titre `<h1>` révélé ligne par ligne au chargement | Pages intérieures, 404, pages locales |
+| `.reveal .reveal-photo` | Photo dévoilée de haut en bas, zoom qui se pose | About (accueil), Équipe |
+| `.reveal .rule-cascade` + `.rule-item` | Filets dessinés depuis la gauche, puis texte, en cascade | Valeurs (accueil), cours type, infos pratiques, étapes Tarifs |
+| `details.accordion-item` | Ouverture/fermeture, fondu de la réponse, retour au clic | FAQ de l'accueil et `/faq` |
+| `.sommaire-link` | Section en cours marquée (`aria-current`) | Équipements, Sparring |
+
+Conventions à respecter pour toute nouvelle interaction :
+
+- **Survols** réservés à la souris : les règles `:hover` vont dans
+  `@media (hover: hover) and (pointer: fine)`. Les styles de base restent **en dehors**,
+  sinon l'élément perd son style sur mobile.
+- **Retour au clic** sur tout ce qui se presse : `:active { transform: scale(0.97) }`.
+- **Transitions** sur des propriétés explicites (jamais `all`), courtes (200 ms environ) ;
+  `ease` pour les couleurs, `--ease-out` pour les mouvements.
+- **Mouvement réduit** (`prefers-reduced-motion`) : chaque animation a un repli en simple
+  fondu, sans déplacement.
+- Ne pas poser `.reveal` directement sur un bouton : sa transition écrase celle du bouton.
+  Le mettre sur un conteneur.
+- Une image dans `.reveal-photo` doit être en `loading="eager" fetchpriority="low"`
+  (Chrome ne charge jamais une image `lazy` entièrement masquée). Ne pas l'utiliser sur
+  l'image principale en haut de page, pour ne pas retarder son affichage (LCP).
 
 ## Déploiement
 
