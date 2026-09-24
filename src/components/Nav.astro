@@ -1,4 +1,6 @@
 ---
+import { ASSOCONNECT_URLS } from '../config/urls.js';
+
 const links = [
   { href: '/disciplines',  label: 'Disciplines' },
   { href: '/equipe',       label: 'Équipe' },
@@ -23,11 +25,11 @@ const isActive = (href: string) => {
 
     <nav class="nav-links" aria-label="Navigation principale">
       {links.map(l => (
-        <a href={l.href} class={`nav-link${isActive(l.href) ? ' active' : ''}`}>{l.label}</a>
+        <a href={l.href} class={`nav-link${isActive(l.href) ? ' active' : ''}`} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
 
-    <a href="/contact" class="nav-cta">Nous rejoindre</a>
+    <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="nav-cta">Cours d'essai</a>
 
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" id="burger">
       <span></span><span></span>
@@ -37,9 +39,9 @@ const isActive = (href: string) => {
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   {links.map(l => (
-    <a href={l.href} class="mobile-link">{l.label}</a>
+    <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
   ))}
-  <a href="/contact" class="mobile-cta">Nous rejoindre</a>
+  <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta">Réserver un cours d'essai</a>
 </div>
 
 <style>
@@ -173,10 +175,10 @@ const isActive = (href: string) => {
   }
 
   .burger.open span:first-child {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(3.5px) rotate(45deg);
   }
   .burger.open span:last-child {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-3.5px) rotate(-45deg);
   }
 
   .mobile-menu {
@@ -203,13 +205,14 @@ const isActive = (href: string) => {
 
   .mobile-link {
     font-family: var(--font-display);
-    font-size: clamp(32px, 8vw, 48px);
+    font-size: clamp(28px, 8vw, 44px);
     font-weight: 800;
     color: var(--text-3);
     transition: color 0.2s;
   }
 
-  .mobile-link:hover { color: var(--g400); }
+  .mobile-link:hover,
+  .mobile-link.active { color: var(--g400); }
 
   .mobile-cta {
     margin-top: 16px;
