@@ -66,7 +66,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
       </div>
 
       <!-- Horaires (aperçu) -->
-      <div class="info-col reveal reveal-delay-2">
+      <div class="info-col reveal reveal-delay-1">
         <div class="info-head">
           <p class="info-label">Créneaux</p>
           <h3 class="info-title">Tes entraînements</h3>
@@ -164,22 +164,32 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   .notice strong { color: var(--g400); font-weight: 700; }
 
   .notice-dot {
+    position: relative;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: var(--g500);
     flex-shrink: 0;
+  }
+
+  /* Halo en scale + opacity (composité) plutôt qu'en box-shadow (repeint à
+     chaque image), puisque l'animation tourne en continu */
+  .notice-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--g500);
     animation: notice-pulse 2s ease-out infinite;
   }
 
   @keyframes notice-pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.45); }
-    70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
-    100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    0%        { transform: scale(1); opacity: 0.45; }
+    70%, 100% { transform: scale(3); opacity: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .notice-dot { animation: none; }
+    .notice-dot::after { animation: none; opacity: 0; }
   }
 
   .section-title {
@@ -326,13 +336,20 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     font-size: 14px;
     font-weight: 600;
     color: var(--g400);
-    transition: gap 0.2s var(--ease-out);
+    transition: transform 160ms var(--ease-out);
     margin-top: auto;
     align-self: flex-start;
   }
 
-  .info-link:hover { gap: 12px; }
-  .info-link svg { flex-shrink: 0; }
+  /* La flèche glisse (transform) au lieu d'élargir le gap (relayout) */
+  .info-link svg {
+    flex-shrink: 0;
+    transition: transform 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .info-link:hover svg { transform: translateX(3px); }
+  }
+  .info-link:active { transform: scale(0.97); }
 
   /* mini-FAQ */
   /* mini-FAQ sans conteneur : l'accordéon suffit à grouper */
@@ -382,15 +399,19 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     font-size: 16px;
     font-weight: 500;
     color: var(--text);
-    transition: background 0.2s, color 0.2s;
     user-select: none;
+    transition: color 200ms ease, opacity 100ms ease;
   }
 
   .accordion-summary::-webkit-details-marker { display: none; }
 
-  .accordion-summary:hover {
-    color: var(--g400);
+  @media (hover: hover) and (pointer: fine) {
+    .accordion-summary:hover { color: var(--g400); }
   }
+
+  /* Appui : la question s'estompe, le chevron s'enfonce d'1px */
+  .accordion-summary:active { opacity: 0.8; }
+  .accordion-summary:active .accordion-icon { translate: 0 1px; }
 
   .accordion-item[open] .accordion-summary {
     color: var(--g400);
@@ -399,7 +420,7 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
   .accordion-icon {
     flex-shrink: 0;
     color: var(--text-muted);
-    transition: transform 250ms var(--ease-out), color 200ms ease;
+    transition: transform 250ms var(--ease-out), translate 100ms var(--ease-out), color 200ms ease;
   }
 
   .accordion-item[open] .accordion-icon {
@@ -407,8 +428,37 @@ const faq = getFaqByIds(['experience', 'age', 'equipement', 'deroule']);
     color: var(--g400);
   }
 
+  /* La réponse se pose une fois le panneau lancé (60ms), et s'efface
+     aussitôt à la fermeture */
   .accordion-body {
     padding: 0 40px 22px 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 100ms ease, transform 100ms ease;
+  }
+
+  .accordion-item[open] .accordion-body {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 200ms var(--ease-out) 60ms,
+      transform 200ms var(--ease-out) 60ms;
+  }
+
+  /* Le contenu fermé est ignoré par le rendu : sans état de départ explicite,
+     la transition d'ouverture ne se déclencherait pas */
+  @starting-style {
+    .accordion-item[open] .accordion-body { opacity: 0; transform: translateY(-4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accordion-icon { transition: color 200ms ease; }
+    .accordion-item[open] .accordion-icon { transform: none; }
+    .accordion-summary:active .accordion-icon { translate: none; }
+    .accordion-body,
+    .accordion-item[open] .accordion-body { transform: none; }
+    .info-link, .info-link svg { transition: none; }
+    .info-link:hover svg, .info-link:active { transform: none; }
   }
 
   .accordion-body p {

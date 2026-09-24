@@ -55,6 +55,24 @@ const [featured, ...others] = [testimonials[2], testimonials[0], testimonials[1]
   </div>
 </section>
 
+<script>
+  // « Réduire » : l'extrait revient en fondu, et si le haut de l'avis est passé
+  // sous la nav (avis long replié), on y ramène le lecteur sans animation.
+  document.querySelectorAll<HTMLDetailsElement>('.quote-more').forEach((more) => {
+    more.addEventListener('toggle', () => {
+      if (more.open) return;
+      const testi = more.closest<HTMLElement>('.testi');
+      if (!testi) return;
+      // Simple fondu : conservé en mouvement réduit
+      testi.querySelector('.quote-excerpt')?.animate({ opacity: [0, 1] }, { duration: 150, easing: 'ease' });
+      const navOffset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      if (testi.getBoundingClientRect().top < navOffset) {
+        testi.scrollIntoView({ block: 'start', behavior: 'instant' });
+      }
+    });
+  });
+</script>
+
 <style>
   .testimonials {
     padding: 112px 0;
@@ -147,13 +165,33 @@ const [featured, ...others] = [testimonials[2], testimonials[0], testimonials[1]
     font-weight: 600;
     color: var(--g400);
     border-radius: 4px;
+    transform-origin: left center;
+    transition: transform 160ms var(--ease-out);
   }
+  .quote-more summary:active { transform: scale(0.97); }
   .quote-more summary::-webkit-details-marker { display: none; }
   .quote-more .less-label { display: none; }
   .quote-more[open] .more-label { display: none; }
   .quote-more[open] .less-label { display: inline; }
   /* Ouvert : le texte complet d'abord, le lien « Réduire » dessous */
   .quote-more[open] { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 12px; }
+
+  /* Avis complet : se pose en fondu, comme la réponse de la FAQ */
+  .quote-more[open] .quote-text {
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  @starting-style {
+    .quote-more[open] .quote-text { opacity: 0; transform: translateY(-4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .quote-more summary { transition: none; }
+    .quote-more summary:active { transform: none; }
+    .quote-more[open] .quote-text { transition: opacity 200ms ease; }
+    @starting-style {
+      .quote-more[open] .quote-text { transform: none; }
+    }
+  }
 
   .testi-featured .quote-more .quote-text {
     font-size: 17px;

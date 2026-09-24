@@ -23,8 +23,8 @@ const values = [
 
     <!-- 1. Titre en tête, sur la largeur -->
     <h2 class="about-title reveal">
-      <span class="about-title-line">Nés de la passion,</span>
-      <span class="about-title-line about-title-accent">construits ensemble.</span>
+      <span class="about-title-line"><span class="about-title-text">Nés de la passion,</span></span>
+      <span class="about-title-line about-title-accent"><span class="about-title-text">construits ensemble.</span></span>
     </h2>
 
     <!-- 2. Photo large (7/12) + texte étroit (5/12) -->
@@ -36,10 +36,12 @@ const values = [
           class="about-photo"
           widths={[660, 990, 1320]}
           sizes="(max-width: 900px) 100vw, 660px"
+          loading="eager"
+          fetchpriority="low"
         />
       </div>
 
-      <div class="about-text reveal reveal-delay-1">
+      <div class="about-text reveal">
         <p class="about-body">
           Association loi 1901 fondée par trois passionnés locaux. Ici, la technique
           prime sur l'ego et chaque progression nourrit le collectif.
@@ -69,6 +71,19 @@ const values = [
   </div>
 </section>
 
+<script>
+  // Le rideau ne s'ouvre qu'une fois l'image chargée, sinon il se déroulerait
+  // sur un cadre vide (connexion lente). L'image est en eager + priorité basse :
+  // en lazy, Chrome ne la chargerait jamais tant que le clip-path la masque.
+  const photo = document.querySelector<HTMLImageElement>('.about-photo');
+  if (photo && !photo.complete) {
+    photo.classList.add('is-loading');
+    const ready = () => photo.classList.remove('is-loading');
+    photo.addEventListener('load', ready, { once: true });
+    photo.addEventListener('error', ready, { once: true });
+  }
+</script>
+
 <style>
   .about {
     padding: 112px 0;
@@ -94,7 +109,15 @@ const values = [
     text-wrap: initial;
   }
 
-  .about-title-line { display: block; }
+  /* Chaque ligne est une fente, comme le titre du hero : le texte en sort par
+     le bas. Marge de 0.08em (compensée) pour ne pas rogner accents et jambages. */
+  .about-title-line {
+    display: block;
+    overflow: clip;
+    padding-block: 0.08em;
+    margin-block: -0.08em;
+  }
+  .about-title-text { display: block; }
   .about-title-accent { color: var(--g400); }
 
   /* Photo large à gauche, texte étroit à droite (asymétrie 7/5) */
@@ -154,9 +177,20 @@ const values = [
     gap: 48px;
   }
 
+  /* Filet en pseudo-élément (et non border-top) pour pouvoir le dessiner */
   .value {
+    --rule: var(--border-strong);
+    position: relative;
     padding-top: 24px;
-    border-top: 1px solid var(--border-strong);
+  }
+
+  .value::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--rule);
+    transform-origin: left;
   }
 
   .value h3 {
@@ -182,11 +216,79 @@ const values = [
     /* Photo de bord à bord, comme dans le hero */
     .about-photo-wrap { margin-inline: -24px; border-radius: 0; }
     .about-values { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .value { padding: 24px 0; border-top-color: var(--border); }
-    .value:first-child { border-top-color: var(--border-strong); }
+    .value { padding: 24px 0; --rule: var(--border); }
+    .value:first-child { --rule: var(--border-strong); }
   }
 
   @media (max-width: 768px) {
     .about-photo-wrap { margin-inline: -16px; }
+  }
+
+  /* ── Entrées au scroll ──────────────────────────────────────────────
+     Les blocs gardent la classe .reveal (l'observer du layout pose .visible),
+     mais on remplace le fondu générique par un geste propre à chacun. */
+
+  /* Titre : lignes qui sortent de leur fente, 60ms d'écart */
+  :global(.js) .about-title.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .about-title-text {
+    transform: translateY(120%);
+    transition: transform 600ms var(--ease-out);
+  }
+  :global(.js) .about-title-accent .about-title-text { transition-delay: 60ms; }
+  :global(.js) .about-title.visible .about-title-text { transform: translateY(0); }
+
+  /* Photo : dévoilée de haut en bas, zoom qui se pose. Le rideau est sur
+     l'image, pas sur le wrapper observé : un clip-path total sur la cible
+     empêcherait l'IntersectionObserver de la voir. Les coins arrondis
+     restent gérés par l'overflow du wrapper. */
+  :global(.js) .about-photo-wrap.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .about-photo-wrap .about-photo {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.04);
+    transition:
+      clip-path 700ms var(--ease-out),
+      transform 1000ms var(--ease-out);
+  }
+  :global(.js) .about-photo-wrap.visible .about-photo:not(.is-loading) {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+
+  /* Texte : part pendant la fin du dévoilement de la photo */
+  :global(.js) .about-text.reveal { transition-delay: 150ms; }
+
+  /* Valeurs : filets dessinés depuis la gauche, puis texte, en cascade */
+  :global(.js) .about-values.reveal { opacity: 1; transform: none; transition: none; }
+  .value:nth-child(2) { --stagger: 60ms; }
+  .value:nth-child(3) { --stagger: 120ms; }
+  :global(.js) .value::before {
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-out) var(--stagger, 0ms);
+  }
+  :global(.js) .value > * {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms),
+      transform 400ms var(--ease-out) calc(var(--stagger, 0ms) + 150ms);
+  }
+  :global(.js) .about-values.visible .value::before { transform: scaleX(1); }
+  :global(.js) .about-values.visible .value > * { opacity: 1; transform: none; }
+
+  /* Mouvement réduit : fondus seuls, ni fente, ni rideau, ni zoom, filets déjà tracés */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .about-title.reveal { opacity: 0; transition: opacity 300ms ease; }
+    :global(.js) .about-title.reveal.visible { opacity: 1; }
+    :global(.js) .about-title-text { transform: none; transition: none; }
+
+    :global(.js) .about-photo-wrap.reveal { opacity: 0; transition: opacity 300ms ease; }
+    :global(.js) .about-photo-wrap.reveal.visible { opacity: 1; }
+    :global(.js) .about-photo-wrap .about-photo { clip-path: none; transform: none; transition: none; }
+
+    :global(.js) .value::before { transform: none; transition: none; }
+    :global(.js) .value > * {
+      transform: none;
+      transition: opacity 300ms ease calc(var(--stagger, 0ms) + 0ms);
+    }
   }
 </style>

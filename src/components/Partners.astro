@@ -13,13 +13,13 @@ const partners = [
 ];
 ---
 
-<section class="partners reveal" aria-labelledby="partners-title">
+<section class="partners" aria-labelledby="partners-title">
   <div class="container partners-inner">
-    <div class="partners-header">
+    <div class="partners-header reveal">
       <h2 class="partners-title" id="partners-title">Ils soutiennent <span>le club.</span></h2>
       <p class="partners-sub">Merci aux institutions, partenaires et sponsors qui soutiennent notre projet associatif et sportif.</p>
     </div>
-    <ul class="partners-grid">
+    <ul class="partners-grid reveal">
       {partners.map(p => (
         <li class="partner-tile">
           <Image src={p.src} alt={p.alt} class="partner-logo" widths={[160, 320]} sizes="160px" />
@@ -85,6 +85,28 @@ const partners = [
     height: auto;
     object-fit: contain;
     opacity: 0.75;
+  }
+
+  /* Logos en cascade (40ms) une fois la liste visible : la liste garde
+     .reveal pour l'observer, mais ce sont les tuiles qui bougent */
+  :global(.js) .partners-grid.reveal { opacity: 1; transform: none; transition: none; }
+  :global(.js) .partner-tile {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 400ms var(--ease-out) var(--stagger, 0ms),
+      transform 400ms var(--ease-out) var(--stagger, 0ms);
+  }
+  .partner-tile:nth-child(2) { --stagger: 40ms; }
+  .partner-tile:nth-child(3) { --stagger: 80ms; }
+  .partner-tile:nth-child(4) { --stagger: 120ms; }
+  :global(.js) .partners-grid.visible .partner-tile { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .partner-tile {
+      transform: none;
+      transition: opacity 300ms ease var(--stagger, 0ms);
+    }
   }
 
   @media (max-width: 900px) {

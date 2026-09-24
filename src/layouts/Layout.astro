@@ -337,10 +337,12 @@ const schema = {
   .accordion-item::details-content {
     block-size: 0;
     overflow: clip;
-    transition: block-size 250ms var(--ease-out), content-visibility 250ms allow-discrete;
+    /* Fermeture plus rapide que l'ouverture */
+    transition: block-size 180ms var(--ease-out), content-visibility 180ms allow-discrete;
   }
   .accordion-item[open]::details-content {
     block-size: auto;
+    transition: block-size 250ms var(--ease-out), content-visibility 250ms allow-discrete;
   }
 
   /* Mouvement réduit : on retire les déplacements, on garde les fondus
@@ -357,6 +359,7 @@ const schema = {
       transform: none;
       transition: opacity 300ms ease;
     }
-    .accordion-item::details-content { transition: none; }
+    .accordion-item::details-content,
+    .accordion-item[open]::details-content { transition: none; }
   }
 </style>
