@@ -15,10 +15,10 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
     <section class="reglement">
       <div class="container">
 
-        <div class="reglement-header reveal">
-          <h1 class="reglement-title">Règlement intérieur</h1>
-          <p class="reglement-sub">Le règlement intérieur officiel de l'association Saint-Lunaire Arts Martiaux Mixtes. À lire et accepter par tout adhérent.</p>
-          <div class="pdf-actions">
+        <div class="reglement-header">
+          <h1 class="reglement-title"><span class="title-slot"><span class="title-slot-text">Règlement intérieur</span></span></h1>
+          <p class="reglement-sub reveal reveal-delay-2">Le règlement intérieur officiel de l'association Saint-Lunaire Arts Martiaux Mixtes. À lire et accepter par tout adhérent.</p>
+          <div class="pdf-actions reveal reveal-delay-2">
           <!-- Mobile : les lecteurs PDF intégrés s'affichent mal, on propose l'ouverture directe -->
           <a href={pdfPath} target="_blank" rel="noopener" class="btn-open-pdf">Ouvrir le PDF</a>
           <a href={pdfPath} download class="btn-download">
@@ -109,9 +109,11 @@ const pdfPath = '/SLAMM_reglement_interieur.pdf';
     transform: scale(0.97);
   }
 
-  .btn-download:hover,
-  .btn-open-pdf:hover {
-    background: var(--g400);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-download:hover,
+    .btn-open-pdf:hover {
+      background: var(--g400);
+    }
   }
 
   .btn-open-pdf { display: none; }

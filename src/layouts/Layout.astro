@@ -145,6 +145,38 @@ const schema = {
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
+    // Sommaires latéraux (équipements, sparring) : marque la section en cours
+    // de lecture (aria-current) — la dernière dont le titre est passé juste
+    // sous la nav (même repère qu'un clic dans le sommaire : scroll-padding de la
+    // page + scroll-margin de la section),
+    // ou la dernière section une fois en bas de page. Scroll + rAF plutôt
+    // qu'IntersectionObserver : une seule section active, même entre deux titres.
+    const tocPairs = [...document.querySelectorAll<HTMLAnchorElement>('.sommaire-link[href^="#"]')]
+      .map((link) => ({ link, target: document.getElementById(decodeURIComponent(link.hash.slice(1))) }))
+      .filter((p): p is { link: HTMLAnchorElement; target: HTMLElement } => p.target !== null);
+    if (tocPairs.length) {
+      let ticking = false;
+      const updateToc = () => {
+        ticking = false;
+        const padding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+        let current = -1;
+        tocPairs.forEach(({ target }, i) => {
+          const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+          if (target.getBoundingClientRect().top <= padding + margin + 40) current = i;
+        });
+        const atBottom = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+        if (atBottom && current !== -1) current = tocPairs.length - 1;
+        tocPairs.forEach(({ link }, i) => {
+          if (i === current) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(updateToc); }
+      }, { passive: true });
+      updateToc();
+    }
+
     // .reveal-photo : le rideau ne s'ouvre qu'une fois l'image chargée, sinon
     // il se déroulerait sur un cadre vide (connexion lente)
     document.querySelectorAll<HTMLImageElement>('.reveal-photo img').forEach((img) => {

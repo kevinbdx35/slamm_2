@@ -126,12 +126,12 @@ const priorityLabel: Record<string, string> = {
     <section class="hygiene">
       <div class="container">
 
-        <div class="hygiene-header reveal">
+        <div class="hygiene-header">
           <h1 class="hygiene-title">
-            La santé de tous,<br/>
-            <span>la responsabilité de chacun.</span>
+            <span class="title-slot"><span class="title-slot-text">La santé de tous,</span></span>{' '}
+            <span class="title-slot title-accent"><span class="title-slot-text">la responsabilité de chacun.</span></span>
           </h1>
-          <p class="hygiene-sub">Pour le bien-être de tous les pratiquants, le respect de ces règles d'hygiène est essentiel dans la pratique du MMA.</p>
+          <p class="hygiene-sub reveal reveal-delay-2">Pour le bien-être de tous les pratiquants, le respect de ces règles d'hygiène est essentiel dans la pratique du MMA.</p>
         </div>
 
         <div class="alert-warning reveal">
@@ -142,7 +142,7 @@ const priorityLabel: Record<string, string> = {
           <p>Le non-respect des règles d'hygiène peut entraîner l'exclusion temporaire ou définitive des entraînements pour préserver la santé de la communauté.</p>
         </div>
 
-        <div class="categories reveal">
+        <div class="categories">
           {categories.map((cat, ci) => (
             <div class={`category reveal reveal-delay-${(ci % 3) + 1}`}>
               <h2 class="cat-title">{cat.title}</h2>
@@ -216,7 +216,7 @@ const priorityLabel: Record<string, string> = {
     color: var(--text);
   }
 
-  .hygiene-title span { color: var(--g400); }
+  .hygiene-title .title-accent { color: var(--g400); }
 
   .hygiene-sub {
     font-size: 17px;

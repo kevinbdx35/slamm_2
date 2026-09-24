@@ -13,14 +13,14 @@ import Footer from '../components/Footer.astro';
     <section class="equipements">
       <div class="container">
 
-        <div class="equip-header reveal">
-          <h1 class="equip-title">Équipements MMA</h1>
-          <p class="equip-sub">La liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au SLAMM en toute sécurité.</p>
+        <div class="equip-header">
+          <h1 class="equip-title"><span class="title-slot"><span class="title-slot-text">Équipements MMA</span></span></h1>
+          <p class="equip-sub reveal reveal-delay-2">La liste complète des équipements obligatoires et recommandés pour pratiquer le MMA au SLAMM en toute sécurité.</p>
         </div>
 
         <div class="equip-layout">
 
-          <article class="equip-body reveal">
+          <article class="equip-body">
 
             <div class="intro-block">
               <p>Le matériel de chacun doit toujours être <strong>propre et en bon état</strong>. L'association SLAMM se réserve le droit d'interdire à tout moment tout équipement jugé dangereux ou non adapté à la pratique de nos activités.</p>
@@ -448,13 +448,22 @@ import Footer from '../components/Footer.astro';
     padding: 6px 10px 6px 12px;
     border-left: 2px solid var(--border);
     border-radius: 0 var(--r-sm) var(--r-sm) 0;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
   }
 
-  .sommaire-link:hover {
+  /* Section en cours (aria-current, posé par Layout.astro) : même rendu que le survol */
+  .sommaire-link[aria-current="location"] {
     color: var(--g400);
     border-color: var(--g500);
     background: rgba(34,197,94,0.05);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .sommaire-link:hover {
+      color: var(--g400);
+      border-color: var(--g500);
+      background: rgba(34,197,94,0.05);
+    }
   }
 
   @media (max-width: 900px) {

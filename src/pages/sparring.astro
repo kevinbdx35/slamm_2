@@ -44,14 +44,14 @@ const sparringSections = [
     <section class="sparring">
       <div class="container">
 
-        <div class="sparring-header reveal">
-          <h1 class="sparring-title">Sparring & Règles de sécurité</h1>
-          <p class="sparring-sub">Philosophie du sparring et règles à respecter pour progresser ensemble dans le respect et la sécurité de chacun.</p>
+        <div class="sparring-header">
+          <h1 class="sparring-title"><span class="title-slot"><span class="title-slot-text">Sparring & Règles de sécurité</span></span></h1>
+          <p class="sparring-sub reveal reveal-delay-2">Philosophie du sparring et règles à respecter pour progresser ensemble dans le respect et la sécurité de chacun.</p>
         </div>
 
         <div class="sparring-layout">
 
-          <article class="sparring-body reveal">
+          <article class="sparring-body">
 
             <div class="chapter">
               <h2 id="philosophie-du-sparring" class="chapter-title">Philosophie du sparring</h2>
@@ -286,7 +286,7 @@ const sparringSections = [
     padding: 5px 10px 5px 12px;
     border-left: 2px solid var(--border);
     border-radius: 0 var(--r-sm) var(--r-sm) 0;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
   }
 
   .sommaire-link--parent {
@@ -301,10 +301,19 @@ const sparringSections = [
     padding-left: 20px;
   }
 
-  .sommaire-link:hover {
+  /* Section en cours (aria-current, posé par Layout.astro) : même rendu que le survol */
+  .sommaire-link[aria-current="location"] {
     color: var(--g400);
     border-color: var(--g500);
     background: rgba(34,197,94,0.05);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .sommaire-link:hover {
+      color: var(--g400);
+      border-color: var(--g500);
+      background: rgba(34,197,94,0.05);
+    }
   }
 
   /* PDF section */
@@ -348,8 +357,10 @@ const sparringSections = [
     transform: scale(0.97);
   }
 
-  .btn-download:hover {
-    background: var(--g400);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-download:hover {
+      background: var(--g400);
+    }
   }
 
   .btn-open-pdf { display: none; }
