@@ -79,6 +79,10 @@ const schema = {
   sport: 'Arts martiaux mixtes (MMA)',
   sameAs: [SOCIAL_URLS.INSTAGRAM],
 };
+
+// JSON-LD injecté via set:html : « < » échappé pour qu'une chaîne contenant
+// « </script> » ne puisse jamais refermer la balise (JSON toujours valide)
+const toJsonLd = (data: object) => JSON.stringify(data).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -113,9 +117,9 @@ const schema = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Schema.org -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
-    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    <script type="application/ld+json" set:html={toJsonLd(schema)} />
+    {pageSchema && <script type="application/ld+json" set:html={toJsonLd(pageSchema)} />}
+    {breadcrumbSchema && <script type="application/ld+json" set:html={toJsonLd(breadcrumbSchema)} />}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
