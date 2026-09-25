@@ -5,6 +5,12 @@
 # Les en-têtes de sécurité (CSP, HSTS, etc.) sont définis dans `public/_headers`
 # (source unique). Ne pas les dupliquer ici pour éviter les conflits.
 
+[build.environment] 
+  NODE_VERSION = "22" 
+  # Les en-têtes de sécurité (CSP, HSTS, etc.) sont définis dans `public/_headers` 
+  # (source unique). Ne pas les dupliquer ici pour éviter les conflits.
+
+
 [[redirects]]
   from = "/cours"
   to = "/disciplines/"
