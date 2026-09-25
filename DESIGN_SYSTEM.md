@@ -170,10 +170,10 @@
 
 ## Carte interactive (Contact)
 
-- **Librairie** : Leaflet 1.9.4 via CDN
-- **Tuiles** : CartoDB Light (`basemaps.cartocdn.com/light_all`)
+- **Librairie** : Leaflet 1.9.4 (paquet npm `leaflet`, intégré au build)
+- **Tuiles** : OpenStreetMap (`tile.openstreetmap.org`, domaine autorisé par la CSP de `public/_headers`)
 - `scrollWheelZoom: false`
-- Chargement différé via `IntersectionObserver` sur le conteneur map
+- Animations de zoom et de fondu coupées si `prefers-reduced-motion: reduce`
 
 ---
 
