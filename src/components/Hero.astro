@@ -36,14 +36,16 @@ import cagePhoto from '../assets/img/team/cage.webp';
 
       <div class="hero-actions">
         <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Réserver un cours d'essai
+          Réserver un cours d'essai<span class="sr-only"> (nouvel onglet, AssoConnect)</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="btn-ghost">
-          S'inscrire au club
-        </a>
+        <!-- L'adhésion reste accessible, un cran sous l'essai (action principale) -->
+        <p class="join-link">
+          Déjà décidé ?{' '}
+          <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer">S'inscrire au club<span class="sr-only"> (nouvel onglet, AssoConnect)</span></a>
+        </p>
       </div>
 
       <dl class="hero-stats">
@@ -150,7 +152,7 @@ import cagePhoto from '../assets/img/team/cage.webp';
   .hero-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 12px 28px;
     flex-wrap: wrap;
     animation: fadeUp 500ms var(--ease-out) 320ms both;
   }
@@ -182,27 +184,26 @@ import cagePhoto from '../assets/img/team/cage.webp';
   @media (hover: hover) and (pointer: fine) {
     .btn-primary:hover { background: var(--g400); }
     .btn-primary:hover svg { transform: translateX(3px); }
-    .btn-ghost:hover {
-      border-color: rgba(74,222,128,0.7);
-      background: rgba(34,197,94,0.06);
-    }
+    .join-link a:hover { color: var(--g400); text-decoration-color: currentColor; }
   }
 
-  /* Action secondaire : contour bien lisible (objectif de conversion n°2) */
-  .btn-ghost {
-    font-size: 15px;
-    font-weight: 500;
+  /* Adhésion : lien texte discret, jamais au même rang que l'essai */
+  .join-link {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .join-link a {
+    display: inline-block;
+    padding: 12px 0;
+    margin: -12px 0; /* zone de tap de 44px sans décaler la ligne */
     color: var(--text);
-    padding: 14px 24px;
-    border-radius: 100px;
-    border: 1px solid rgba(74,222,128,0.45);
-    white-space: nowrap;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(74,222,128,0.5);
+    text-underline-offset: 4px;
     -webkit-tap-highlight-color: transparent;
-    transition: background-color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
-  }
-
-  .btn-ghost:active {
-    transform: scale(0.97);
+    transition: color 200ms ease, text-decoration-color 200ms ease;
   }
 
   /* Chiffres clés : bloc de preuve sous les CTA, séparé par un filet */
@@ -225,14 +226,6 @@ import cagePhoto from '../assets/img/team/cage.webp';
   /* Compteur : largeur réservée (chiffres tabulaires) pour que le « + » ne bouge pas */
   .count {
     display: inline-block;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
 
   .stat-num {
@@ -332,7 +325,8 @@ import cagePhoto from '../assets/img/team/cage.webp';
     .stat-num { font-size: 32px; }
     .hero-desc { margin-bottom: 32px; }
     .hero-actions { flex-direction: column; align-items: stretch; }
-    .btn-primary, .btn-ghost { justify-content: center; text-align: center; }
+    .btn-primary { justify-content: center; text-align: center; }
+    .join-link { text-align: center; }
   }
 </style>
 

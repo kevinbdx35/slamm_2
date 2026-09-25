@@ -70,7 +70,8 @@ There is no `src/utils/` and no separate schema generator: Schema.org JSON-LD is
 
 **Styling conventions (no utility framework):**
 - Design tokens (colors `--g500`, fonts `--font-display`/`--font-body`, radii `--r-sm`…`--r-xl`, easings) are defined once in the `:root` of `Layout.astro`'s `<style is:global>`.
-- Globally available classes: `.container` (max-width wrapper) and the reveal-on-scroll system `.reveal` / `.reveal-delay-1..4` (driven by an IntersectionObserver in the layout).
+- Globally available classes: `.container` (max-width wrapper), `.sr-only` (screen-reader-only text) and the reveal-on-scroll system `.reveal` / `.reveal-delay-1..4` (driven by an IntersectionObserver in the layout).
+- CTA hierarchy: the trial booking is the single primary action ("Réserver un cours d'essai" everywhere). Membership ("S'inscrire au club") is a discreet `.join-link` text link ("Déjà décidé ? …") except on `/tarifs`. Every AssoConnect link carries `<span class="sr-only"> (nouvel onglet, AssoConnect)</span>`.
 - Global motion utilities (also in `Layout.astro`) — reuse them instead of re-coding the effect in a component:
   - `.title-slot` > `.title-slot-text`: page `<h1>` lines revealed from a slot on load (one `.title-slot` per line; colour the accent line with a scoped `.title-accent` class, never a bare `span` selector).
   - `.reveal .reveal-photo` on an image wrapper: photo unveiled top-to-bottom with a settling zoom. The `<img>` must be `loading="eager" fetchpriority="low"` (Chrome never loads a fully clipped lazy image). Don't use it on an above-the-fold LCP image.

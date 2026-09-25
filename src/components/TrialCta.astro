@@ -25,14 +25,16 @@ const {
   </div>
   <div class="cta-actions">
     <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="cta-btn">
-      Réserver un cours d'essai
+      Réserver un cours d'essai<span class="sr-only"> (nouvel onglet, AssoConnect)</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </a>
-    <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn--ghost">
-      S'inscrire au club
-    </a>
+    <!-- L'adhésion reste accessible, un cran sous l'essai (action principale) -->
+    <p class="join-link">
+      Déjà décidé ?{' '}
+      <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer">S'inscrire au club<span class="sr-only"> (nouvel onglet, AssoConnect)</span></a>
+    </p>
   </div>
 </div>
 
@@ -66,10 +68,12 @@ const {
     max-width: 44ch;
   }
 
+  /* Bouton d'essai, puis l'adhésion en lien discret dessous */
   .cta-actions {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     flex-shrink: 0;
   }
 
@@ -92,22 +96,31 @@ const {
     transform: scale(0.97);
   }
 
-  .cta-btn:hover {
-    background: var(--g400);
-  }
-
   .cta-btn svg { flex-shrink: 0; }
 
-  .cta-btn--ghost {
-    color: var(--text);
-    background: transparent;
-    border: 1px solid rgba(74,222,128,0.45);
-    padding: 13px 25px; /* compense la bordure : même hauteur que le bouton plein */
+  /* Adhésion : lien texte discret, jamais au même rang que l'essai */
+  .join-link {
+    font-size: 14px;
+    color: var(--text-muted);
   }
 
-  .cta-btn--ghost:hover {
-    background: rgba(34,197,94,0.08);
-    border-color: rgba(74,222,128,0.7);
+  .join-link a {
+    display: inline-block;
+    padding: 12px 0;
+    margin: -12px 0; /* zone de tap de 44px sans décaler la ligne */
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(74,222,128,0.5);
+    text-underline-offset: 4px;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 200ms ease, text-decoration-color 200ms ease;
+  }
+
+  /* Survols réservés aux pointeurs fins : pas d'état collé après un tap */
+  @media (hover: hover) and (pointer: fine) {
+    .cta-btn:hover { background: var(--g400); }
+    .join-link a:hover { color: var(--g400); text-decoration-color: currentColor; }
   }
 
   @media (max-width: 960px) {
@@ -116,7 +129,8 @@ const {
 
   @media (max-width: 600px) {
     .essentials-cta { padding: 36px 20px; }
-    .cta-actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .cta-actions { align-items: stretch; width: 100%; }
     .cta-btn { justify-content: center; }
+    .join-link { text-align: center; }
   }
 </style>

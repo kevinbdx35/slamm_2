@@ -364,6 +364,15 @@ const schema = {
     .container { padding: 0 16px; }
   }
 
+  /* Texte réservé aux lecteurs d'écran (ex. « nouvel onglet » sur les liens AssoConnect) */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   /* Reveal animation — appliquée uniquement si le JS est actif (sinon le
      contenu reste visible : pas de page blanche si l'observer ne tourne pas) */
   .js .reveal {

@@ -30,8 +30,7 @@ const isActive = (href: string) => {
     </nav>
 
     <div class="nav-actions">
-      <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="nav-join">S'inscrire</a>
-      <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="nav-cta">Cours d'essai</a>
+      <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="nav-cta">Réserver un cours d'essai<span class="sr-only"> (nouvel onglet, AssoConnect)</span></a>
     </div>
 
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" id="burger">
@@ -46,10 +45,13 @@ const isActive = (href: string) => {
       <a href={l.href} class:list={['mobile-link', { active: isActive(l.href) }]} style={`--i: ${i}`} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
     ))}
   </nav>
-  <!-- Zone du pouce : les deux actions de conversion, puis Instagram -->
+  <!-- Zone du pouce : l'essai (action principale), l'adhésion en lien discret, puis Instagram -->
   <div class="mobile-actions">
-    <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai</a>
-    <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" class="mobile-cta mobile-cta--ghost" style={`--i: ${links.length + 1}`}>S'inscrire au club</a>
+    <a href={ASSOCONNECT_URLS.TRIAL_BOOKING} target="_blank" rel="noopener noreferrer" class="mobile-cta" style={`--i: ${links.length}`}>Réserver un cours d'essai<span class="sr-only"> (nouvel onglet, AssoConnect)</span></a>
+    <p class="mobile-join" style={`--i: ${links.length + 1}`}>
+      Déjà décidé ?{' '}
+      <a href={ASSOCONNECT_URLS.ANNUAL_MEMBERSHIP} target="_blank" rel="noopener noreferrer">S'inscrire au club<span class="sr-only"> (nouvel onglet, AssoConnect)</span></a>
+    </p>
     <a href={SOCIAL_URLS.INSTAGRAM} target="_blank" rel="noopener noreferrer" class="mobile-social" style={`--i: ${links.length + 2}`} aria-label="Instagram @slamm35800">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
@@ -192,22 +194,6 @@ const isActive = (href: string) => {
     flex-shrink: 0;
   }
 
-  /* Action secondaire : contour fin, un cran sous le bouton plein */
-  .nav-join {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-2);
-    padding: 7px 16px;
-    border: 1px solid var(--border-strong);
-    border-radius: 100px;
-    letter-spacing: 0.02em;
-    transition: color 200ms ease, border-color 200ms ease, transform 160ms var(--ease-out);
-  }
-
-  .nav-join:active {
-    transform: scale(0.97);
-  }
-
   .nav-cta {
     flex-shrink: 0;
     font-size: 13px;
@@ -228,16 +214,13 @@ const isActive = (href: string) => {
   @media (hover: hover) and (pointer: fine) {
     .nav-link:hover { color: var(--text); }
     .nav-link:hover::after { transform: scaleX(1); }
-    .nav-join:hover {
-      color: var(--text);
-      border-color: rgba(74,222,128,0.5);
-    }
     .nav-cta:hover { background: var(--g400); }
     .mobile-link:hover { color: var(--g400); }
+    .mobile-join a:hover { color: var(--g400); }
   }
 
   /* Le press state remplace le flash gris du tap (iOS/Android) */
-  .logo, .nav-link, .nav-join, .nav-cta, .burger, .mobile-link, .mobile-cta, .mobile-social {
+  .logo, .nav-link, .nav-cta, .burger, .mobile-link, .mobile-cta, .mobile-join a, .mobile-social {
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -305,6 +288,7 @@ const isActive = (href: string) => {
   /* Liens, boutons et Instagram : montée de 8px en cascade (30ms) à l'ouverture, sortie groupée */
   .mobile-link,
   .mobile-cta,
+  .mobile-join,
   .mobile-social {
     opacity: 0;
     transform: translateY(8px);
@@ -313,6 +297,7 @@ const isActive = (href: string) => {
 
   .mobile-menu.open .mobile-link,
   .mobile-menu.open .mobile-cta,
+  .mobile-menu.open .mobile-join,
   .mobile-menu.open .mobile-social {
     opacity: 1;
     transform: none;
@@ -331,7 +316,7 @@ const isActive = (href: string) => {
 
   /* Mouvement réduit : pas de déplacement ni de rotation, on garde les fondus */
   @media (prefers-reduced-motion: reduce) {
-    .mobile-link, .mobile-cta, .mobile-social { transform: none; }
+    .mobile-link, .mobile-cta, .mobile-join, .mobile-social { transform: none; }
     .burger span { transition: none; }
     .nav-link::after { transition: none; }
   }
@@ -372,10 +357,22 @@ const isActive = (href: string) => {
     border-radius: 100px;
   }
 
-  .mobile-cta--ghost {
+  /* Adhésion : lien texte discret sous l'essai, jamais au même rang */
+  .mobile-join {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .mobile-join a {
+    display: inline-block;
+    padding: 12px 0;
+    margin: -12px 0; /* zone de tap de 44px sans décaler la ligne */
     color: var(--text);
-    background: transparent;
-    border: 1px solid var(--border-strong);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(74,222,128,0.5);
+    text-underline-offset: 4px;
   }
 
   .mobile-social {
