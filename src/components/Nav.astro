@@ -2,12 +2,12 @@
 import { ASSOCONNECT_URLS, SOCIAL_URLS } from '../config/urls.js';
 
 const links = [
-  { href: '/disciplines',  label: 'Disciplines' },
-  { href: '/equipe',       label: 'Équipe' },
-  { href: '/evenements',   label: 'Événements' },
-  { href: '/tarifs',       label: 'Tarifs' },
-  { href: '/faq',          label: 'FAQ' },
-  { href: '/contact',      label: 'Contact' },
+  { href: '/disciplines/',  label: 'Disciplines' },
+  { href: '/equipe/',       label: 'Équipe' },
+  { href: '/evenements/',   label: 'Événements' },
+  { href: '/tarifs/',       label: 'Tarifs' },
+  { href: '/faq/',          label: 'FAQ' },
+  { href: '/contact/',      label: 'Contact' },
 ];
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => {

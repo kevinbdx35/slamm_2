@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-const today = new Date().toLocaleDateString('fr-FR');
+// Date fixe : à mettre à jour à chaque modification du texte (un new Date()
+// changerait à chaque build sans que le contenu ait changé)
+const lastUpdated = '24/09/2026';
 ---
 
 <Layout
@@ -84,7 +86,7 @@ const today = new Date().toLocaleDateString('fr-FR');
             <p>Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront les seuls compétents.</p>
           </div>
 
-          <p class="legal-date">Dernière mise à jour : {today}</p>
+          <p class="legal-date">Dernière mise à jour : {lastUpdated}</p>
         </div>
 
       </div>

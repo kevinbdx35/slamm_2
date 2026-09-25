@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-const today = new Date().toLocaleDateString('fr-FR');
+// Date fixe : à mettre à jour à chaque modification du texte (un new Date()
+// changerait à chaque build sans que le contenu ait changé)
+const lastUpdated = '24/09/2026';
 ---
 
 <Layout
@@ -110,7 +112,7 @@ const today = new Date().toLocaleDateString('fr-FR');
             <p>Cette politique de confidentialité peut être mise à jour pour refléter des évolutions légales ou des changements dans le fonctionnement du site. La date de dernière mise à jour est indiquée ci-dessous.</p>
           </div>
 
-          <p class="legal-date">Dernière mise à jour : {today}</p>
+          <p class="legal-date">Dernière mise à jour : {lastUpdated}</p>
 
         </div>
       </div>

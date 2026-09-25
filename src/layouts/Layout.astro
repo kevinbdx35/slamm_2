@@ -12,6 +12,8 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   pageSchema?: object | object[];
+  /** Page à exclure de l'index (404) : robots noindex, sans canonical */
+  noindex?: boolean;
 }
 const {
   title = 'Saint-Lunaire Arts Martiaux Mixtes',
@@ -19,6 +21,7 @@ const {
   canonical,
   ogImage,
   pageSchema,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = Astro.site?.origin ?? 'https://mma-saint-lunaire.fr';
@@ -46,18 +49,19 @@ const breadcrumbSchema = pathname !== '/' && pageNames[pathname] ? {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: siteUrl },
-    { '@type': 'ListItem', position: 2, name: pageNames[pathname], item: `${siteUrl}${pathname}` },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${siteUrl}/` },
+    { '@type': 'ListItem', position: 2, name: pageNames[pathname], item: `${siteUrl}${pathname}/` },
   ],
 } : null;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SportsClub',
+  '@id': `${siteUrl}/#club`,
   name: 'Saint-Lunaire Arts Martiaux Mixtes',
   alternateName: 'SLAMM',
   description: 'Club de MMA à Saint-Lunaire, Bretagne. Association loi 1901.',
-  url: siteUrl,
+  url: `${siteUrl}/`,
   telephone: CONTACT_INFO.PHONE,
   email: CONTACT_INFO.EMAIL,
   address: {
@@ -85,8 +89,10 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
 
-    <!-- Canonical -->
-    <link rel="canonical" href={canonicalUrl} />
+    <!-- Canonical (absente d'une page noindex : elle ne doit pas être indexée) -->
+    {noindex
+      ? <meta name="robots" content="noindex" />
+      : <link rel="canonical" href={canonicalUrl} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

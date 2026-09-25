@@ -97,7 +97,7 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
           <p class="form-consent">
             En envoyant ce formulaire, tu acceptes que tes données soient utilisées
             uniquement pour répondre à ta demande. Consulte notre
-            <a href="/politique-confidentialite">politique de confidentialité</a>.
+            <a href="/politique-confidentialite/">politique de confidentialité</a>.
           </p>
 
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -564,11 +564,11 @@ import { CONTACT_INFO, SOCIAL_URLS } from '../config/urls.js';
     markerZoomAnimation: !reduce,
   }).setView([lat, lng], zoom);
 
-  // Tuiles OpenStreetMap (CARTO exige désormais une clé API) ; domaine déjà
-  // autorisé par la CSP de public/_headers (*.tile.openstreetmap.org)
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  // Tuiles OpenStreetMap (CARTO exige désormais une clé API) ; domaine unique
+  // tile.openstreetmap.org (OSM ne recommande plus les sous-domaines a/b/c),
+  // autorisé par la CSP de public/_headers
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    subdomains: 'abc',
     maxZoom: 19,
   }).addTo(map);
 

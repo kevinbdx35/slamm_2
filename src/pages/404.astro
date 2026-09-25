@@ -7,6 +7,7 @@ import Footer from '../components/Footer.astro';
 <Layout
   title="Page introuvable — Saint-Lunaire MMA"
   description="La page que tu cherches n'existe pas ou a été déplacée."
+  noindex
 >
   <Nav />
   <main id="main">
@@ -25,15 +26,15 @@ import Footer from '../components/Footer.astro';
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
-            <a href="/contact" class="btn-ghost">Nous contacter</a>
+            <a href="/contact/" class="btn-ghost">Nous contacter</a>
           </div>
 
           <nav class="quick-links reveal reveal-delay-4" aria-label="Pages principales">
-            <a href="/disciplines">Disciplines</a>
-            <a href="/equipe">Équipe</a>
-            <a href="/evenements">Événements</a>
-            <a href="/tarifs">Tarifs</a>
-            <a href="/faq">FAQ</a>
+            <a href="/disciplines/">Disciplines</a>
+            <a href="/equipe/">Équipe</a>
+            <a href="/evenements/">Événements</a>
+            <a href="/tarifs/">Tarifs</a>
+            <a href="/faq/">FAQ</a>
           </nav>
         </div>
 

@@ -12,12 +12,8 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Saint-Lunaire MMA',
-  url: 'https://mma-saint-lunaire.fr',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://mma-saint-lunaire.fr/?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
+  url: 'https://mma-saint-lunaire.fr/',
+  publisher: { '@id': 'https://mma-saint-lunaire.fr/#club' },
 };
 ---
 

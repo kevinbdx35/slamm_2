@@ -23,8 +23,9 @@ const eventsSchema = {
       description: e.description,
       organizer: {
         '@type': 'SportsClub',
+        '@id': 'https://mma-saint-lunaire.fr/#club',
         name: 'Saint-Lunaire Arts Martiaux Mixtes',
-        url: 'https://mma-saint-lunaire.fr',
+        url: 'https://mma-saint-lunaire.fr/',
       },
       ...(e.performer ? { performer: { '@type': 'Person', name: e.performer } } : {}),
     },

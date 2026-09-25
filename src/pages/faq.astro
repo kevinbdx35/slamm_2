@@ -2,24 +2,22 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import TrialCta from '../components/TrialCta.astro';
 import { FAQ_CATEGORIES as categories } from '../config/faq.js';
 
+// JSON-LD construit depuis la source unique (config/faq.js) : le balisage
+// reprend exactement les questions et réponses affichées sur la page
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: "Faut-il avoir de l'expérience pour commencer le MMA ?", acceptedAnswer: { '@type': 'Answer', text: "Non, aucune expérience n'est nécessaire. Nos cours sont ouverts à tous les niveaux." } },
-    { '@type': 'Question', name: "À partir de quel âge peut-on pratiquer le MMA ?", acceptedAnswer: { '@type': 'Answer', text: "L'âge minimum pour adhérer à notre association est de 16 ans." } },
-    { '@type': 'Question', name: "Y a-t-il des femmes au club ?", acceptedAnswer: { '@type': 'Answer', text: "Oui ! Nous accueillons des femmes et des hommes de tous niveaux." } },
-    { '@type': 'Question', name: "Quel équipement est nécessaire pour débuter ?", acceptedAnswer: { '@type': 'Answer', text: "Pour venir essayer : une tenue de sport, une bouteille d'eau. Ensuite : gants, protège-tibias, protège-dents et coquille." } },
-    { '@type': 'Question', name: "Peut-on venir observer un cours sans s'inscrire ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, tu peux venir observer un cours gratuitement sans engagement." } },
-    { '@type': 'Question', name: "Comment s'inscrire aux cours d'essai ?", acceptedAnswer: { '@type': 'Answer', text: "2 cours d'essai gratuits en début de saison (septembre-octobre), ou 5€ par séance en cours d'année, déductibles si inscription." } },
-    { '@type': 'Question', name: "Faut-il un certificat médical ?", acceptedAnswer: { '@type': 'Answer', text: "Oui, un certificat médical de non contre-indication à la pratique du MMA datant de moins d'un an est obligatoire à l'inscription." } },
-    { '@type': 'Question', name: "Le MMA est-il dangereux ?", acceptedAnswer: { '@type': 'Answer', text: "Encadré par nos coachs diplômés, avec équipement adapté et règles de sécurité strictes, la pratique reste maîtrisée." } },
-  ],
+  mainEntity: categories.flatMap((cat) =>
+    cat.questions.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    }))
+  ),
 };
-
-import TrialCta from '../components/TrialCta.astro';
 ---
 
 <Layout
@@ -66,7 +64,7 @@ import TrialCta from '../components/TrialCta.astro';
 
         <p class="faq-contact reveal">
           Question non répondue ? Contacte-nous, on te répond sous 24h.{' '}
-          <a href="/contact">Nous contacter
+          <a href="/contact/">Nous contacter
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

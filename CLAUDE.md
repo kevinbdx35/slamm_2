@@ -27,7 +27,7 @@ Static marketing site for the SLAMM MMA Saint-Lunaire club, built with **Astro 6
 - **Plain CSS** — design tokens as CSS custom properties + component-scoped `<style>` blocks. **No Tailwind, no CSS framework.**
 - **@astrojs/sitemap** — sitemap auto-generation
 - **Leaflet** (`leaflet`, vanilla JS) — interactive map in `Contact.astro`
-- **@fontsource/inter** + **@fontsource/syne** — typography (Inter = body, Syne = display)
+- **@fontsource-variable/archivo** — typography, self-hosted via `src/styles/fonts.css`: `Archivo Variable` = body (`--font-body`), `Archivo Expanded` (same file, width axis fixed at 112%) = display (`--font-display`)
 
 ### Project Structure
 
@@ -79,14 +79,17 @@ There is no `src/utils/` and no separate schema generator: Schema.org JSON-LD is
   - Table-of-contents links (`.sommaire-link[href^="#"]`) get `aria-current="location"` for the section being read; style that state in the page.
 - Motion conventions: hovers go inside `@media (hover: hover) and (pointer: fine)` (only the `:hover` rules — base styles must stay outside); pressables get `:active { transform: scale(0.97) }`; transitions list explicit properties; every animation has a `prefers-reduced-motion` fallback (fades only). Don't put `.reveal` directly on a button — its transition overrides the button's own; put it on a wrapper.
 - Everything else (`.section-label`, `.section-title`, buttons, cards…) is **scoped per component** — these class names are re-declared inside each component's `<style>` block following the same pattern. When adding a section, copy the established `section-header` / `section-label` / `section-title` structure.
-- Single dark theme: accessible green on near-black. Prices use Inter + `tabular-nums` for legibility (see `Pricing.astro` / `Essentials.astro`).
+- Single dark theme: accessible green on near-black. Prices use the display font + `tabular-nums` for legibility (see `Pricing.astro` / `Essentials.astro`).
 
 **Astro template gotchas:**
 - `.astro` files use `class` (not `className`), even inside expressions.
 - Use `set:html` for raw HTML injection (e.g. SVG strings from data).
 - Heading order: one `<h1>` in `Hero`, `<h2>` per section, `<h3>` for cards/sub-blocks.
 
-**SEO:** each page passes `title`, `description` (and optional `pageSchema`) to `<Layout>`. The home FAQ does **not** emit FAQPage JSON-LD — that schema lives only on `/faq` to avoid duplication.
+**SEO:** each page passes `title`, `description` (and optional `pageSchema`) to `<Layout>`. The home FAQ does **not** emit FAQPage JSON-LD — that schema lives only on `/faq` (built from `faq.js`) to avoid duplication.
+- URLs end with a slash (`trailingSlash: 'always'`, matching the sitemap and Netlify): write internal links as `href="/tarifs/"` / `"/disciplines/#horaires"`; a link without the slash shows Astro's warning page in dev.
+- The club entity is the `SportsClub` in `Layout.astro`, `@id` `https://mma-saint-lunaire.fr/#club`; reference it by that `@id` instead of declaring another business (see the geo pages).
+- Pages that must not be indexed pass `noindex` to `<Layout>` (robots noindex, no canonical) — e.g. `404.astro`.
 
 ## Development Notes
 

@@ -1,35 +1,24 @@
 ---
 import GeoPage from '../components/GeoPage.astro';
-import { CONTACT_INFO } from '../config/urls.js';
 
+const AREA_SERVED = ["Saint-Malo", "Paramé", "Saint-Servan", "Rothéneuf", "Saint-Coulomb"];
+
+// Même entité que le SportsClub global du Layout (même @id) : on ne fait
+// qu'ajouter la zone desservie, sans déclarer un second établissement
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': 'https://mma-saint-lunaire.fr/mma-saint-malo',
-  name: 'Saint-Lunaire Arts Martiaux Mixtes — Club MMA proche de Saint-Malo',
-  description: 'Club de MMA à Saint-Lunaire, à 15 minutes de Saint-Malo. Grappling, No-Gi, boxe, kickboxing, lutte. Tous niveaux, coachs diplômés FMMAF.',
-  url: 'https://mma-saint-lunaire.fr/mma-saint-malo',
-  telephone: CONTACT_INFO.PHONE,
-  email: CONTACT_INFO.EMAIL,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '361 Rue de la Saudrais',
-    addressLocality: 'Saint-Lunaire',
-    postalCode: '35800',
-    addressCountry: 'FR',
-  },
-  geo: { '@type': 'GeoCoordinates', latitude: 48.629217, longitude: -2.112208 },
-  areaServed: ['Saint-Malo', 'Paramé', 'Saint-Servan', 'Rothéneuf', 'Saint-Coulomb'],
-  sport: 'Arts martiaux mixtes (MMA)',
+  '@type': 'SportsClub',
+  '@id': 'https://mma-saint-lunaire.fr/#club',
+  areaServed: AREA_SERVED,
 };
 ---
 
 <GeoPage
   title="Club MMA Saint-Malo – À 15 min de Saint-Malo | SLAMM Saint-Lunaire"
   description="Tu cherches un club de MMA proche de Saint-Malo ? SLAMM est à 15 min à Saint-Lunaire. Grappling, No-Gi, boxe, kickboxing, lutte. Tous niveaux, coachs FMMAF."
-  canonical="/mma-saint-malo"
+  canonical="/mma-saint-malo/"
   city="Saint-Malo"
   distance="15 min"
-  areaServed={["Saint-Malo", "Paramé", "Saint-Servan", "Rothéneuf", "Saint-Coulomb"]}
+  areaServed={AREA_SERVED}
   {schema}
 />

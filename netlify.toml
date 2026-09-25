@@ -7,12 +7,12 @@
 
 [[redirects]]
   from = "/cours"
-  to = "/disciplines"
+  to = "/disciplines/"
   status = 301
 
 [[redirects]]
   from = "/cours/"
-  to = "/disciplines"
+  to = "/disciplines/"
   status = 301
 
 # Catch-all 404. ATTENTION : ne JAMAIS ajouter `force = true` sur cette règle.
