@@ -6,7 +6,7 @@ Site vitrine du club **SLAMM — Saint-Lunaire Arts Martiaux Mixtes** (associati
 
 ## Stack
 
-- **[Astro 6](https://astro.build/)** — générateur de site statique, composants `.astro`, sortie 100 % statique (aucun framework client).
+- **[Astro 7](https://astro.build/)** — générateur de site statique, composants `.astro`, sortie 100 % statique (aucun framework client).
 - **CSS natif** — tokens de design en variables CSS (`:root` dans `Layout.astro`) + `<style>` scopés par composant. Pas de Tailwind ni de framework CSS.
 - **Leaflet** (vanilla) — carte interactive sur la page Contact.
 - **@fontsource-variable/archivo** — Archivo auto-hébergée (`src/styles/fonts.css`) : largeur normale pour le corps, « Archivo Expanded » (axe wdth figé à 112 %) pour les titres.

@@ -20,10 +20,10 @@ Static site deployed on **Netlify** with the custom domain `mma-saint-lunaire.fr
 
 ## Architecture Overview
 
-Static marketing site for the SLAMM MMA Saint-Lunaire club, built with **Astro 6**. Zero client framework: every component is a `.astro` file producing static HTML. The only client-side JS is small inline scripts (nav burger, `.reveal` IntersectionObserver in the layout, and the Leaflet map).
+Static marketing site for the SLAMM MMA Saint-Lunaire club, built with **Astro 7**. Zero client framework: every component is a `.astro` file producing static HTML. The only client-side JS is small inline scripts (nav burger, `.reveal` IntersectionObserver in the layout, and the Leaflet map).
 
 ### Tech Stack
-- **Astro 6** (`^6.1.8`) — Static Site Generator, default `output: 'static'` (no adapter configured)
+- **Astro 7** (`^7.3.5`) — Static Site Generator, default `output: 'static'` (no adapter configured). Rust compiler: every non-void tag must be closed (a stray `</div>` fails the build). `compressHTML: true` is set on purpose: Astro 7's default `'jsx'` strips spaces between inline elements and glues words together in the text Google reads
 - **Plain CSS** — design tokens as CSS custom properties + component-scoped `<style>` blocks. **No Tailwind, no CSS framework.**
 - **@astrojs/sitemap** — sitemap auto-generation
 - **Leaflet** (`leaflet`, vanilla JS) — interactive map in `Contact.astro`
