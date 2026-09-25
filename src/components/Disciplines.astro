@@ -1,5 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import TrialCta from './TrialCta.astro';
+// Miniatures hébergées sur le site : aucune requête vers YouTube avant le clic (RGPD)
+import thumbMma from '../assets/img/videos/M2v4ckiaHTk.jpg';
+import thumbLuta from '../assets/img/videos/wC9kvJrO9aw.jpg';
 
 interface Props {
   /** 'intro' : h1 + liste des disciplines · 'more' : vidéos, cours type, appel final */
@@ -39,8 +43,8 @@ const steps = [
 ];
 
 const videos = [
-  { id: 'M2v4ckiaHTk', title: 'MMA en vidéo', sub: 'Les premiers grades MMA selon la FMMAF.', alt: 'Premiers grades MMA - FMMAF' },
-  { id: 'wC9kvJrO9aw', title: 'Luta Livre en vidéo', sub: 'Découvre la discipline en action : grappling No-Gi, soumissions et contrôles au sol.', alt: 'Présentation Luta Livre' },
+  { id: 'M2v4ckiaHTk', thumb: thumbMma, title: 'MMA en vidéo', sub: 'Les premiers grades MMA selon la FMMAF.', alt: 'Premiers grades MMA - FMMAF' },
+  { id: 'wC9kvJrO9aw', thumb: thumbLuta, title: 'Luta Livre en vidéo', sub: 'Découvre la discipline en action : grappling No-Gi, soumissions et contrôles au sol.', alt: 'Présentation Luta Livre' },
 ];
 ---
 
@@ -88,10 +92,12 @@ const videos = [
             <p class="video-item-sub">{v.sub}</p>
             <div class="video-wrap">
               <div class="video-facade" data-id={v.id}>
-                <img
-                  src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`}
+                <Image
+                  src={v.thumb}
                   alt={v.alt}
                   class="video-thumb"
+                  widths={[640, 960, 1280]}
+                  sizes="(max-width: 900px) 100vw, 560px"
                   loading="lazy"
                 />
                 <button class="play-btn" aria-label="Lire la vidéo">
@@ -433,7 +439,8 @@ const videos = [
       facade.dataset.loading = 'true';
       const id = facade.dataset.id;
       const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      // Mode « confidentialité renforcée » de YouTube, chargé seulement au clic
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
       iframe.title = facade.querySelector('img')?.alt ?? 'Vidéo YouTube';
