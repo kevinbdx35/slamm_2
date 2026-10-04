@@ -10,7 +10,7 @@
  * @property {string} start - Heure de début (format HH:MM)
  * @property {string} end - Heure de fin (format HH:MM)
  * @property {string} level - Niveau des participants
- * @property {boolean} [inactive] - Créneau affiché mais pas encore actif (ex. début de saison)
+ * @property {boolean} [inactive] - Créneau masqué partout tant qu'il n'est pas actif (ex. début de saison)
  */
 export const SCHEDULE = [
   {

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import TrialCta from './TrialCta.astro';
+import { SCHEDULE } from '../config/schedule.js';
 // Miniatures hébergées sur le site : aucune requête vers YouTube avant le clic (RGPD)
 import thumbMma from '../assets/img/videos/M2v4ckiaHTk.jpg';
 import thumbLuta from '../assets/img/videos/wC9kvJrO9aw.jpg';
@@ -11,13 +12,16 @@ interface Props {
 }
 const { part } = Astro.props;
 
+// Jours MMA dérivés de schedule.js : créneaux actifs sans label (Sparring / Luta Livre ont le leur)
+const mmaDays = [...new Set(SCHEDULE.filter((s) => !s.label && !s.inactive).map((s) => s.day.slice(0, 3)))].join(' · ');
+
 const disciplines = [
   {
     name: 'MMA',
     full: 'Mixed Martial Arts',
     desc: 'La discipline reine : debout, clinch, sol. Un sport complet qui synthétise les meilleures techniques de combat du monde.',
     level: 'Tous niveaux',
-    sessions: 'Lun · Mer · Ven',
+    sessions: mmaDays,
   },
   {
     name: 'Sparring',

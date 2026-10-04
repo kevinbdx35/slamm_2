@@ -22,7 +22,8 @@ function getDuration(start: string, end: string): string {
   return h > 0 && m > 0 ? `${h}h${String(m).padStart(2, '0')}` : h > 0 ? `${h}h00` : `${m}min`;
 }
 
-const enriched = SCHEDULE.map((s: any) => ({
+// Les créneaux `inactive` (pas encore repris) ne sont pas affichés
+const enriched = SCHEDULE.filter((s: any) => !s.inactive).map((s: any) => ({
   ...s,
   discipline: getDiscipline(s),
   time: formatTimeDisplay(s.start),
@@ -31,11 +32,7 @@ const enriched = SCHEDULE.map((s: any) => ({
 
 const byDay = days.map(day => {
   const slots = enriched.filter((s: any) => s.day === day);
-  return {
-    day,
-    slots,
-    activeCount: slots.filter((s: any) => !s.inactive).length,
-  };
+  return { day, slots };
 });
 ---
 
@@ -60,14 +57,13 @@ const byDay = days.map(day => {
               <div class="slot-empty">Repos</div>
             ) : (
               col.slots.map(slot => (
-                <div class={`slot${slot.inactive ? ' slot-inactive' : ''}`} style={`--disc-color: ${disciplineColors[slot.discipline] ?? '#22c55e'}`}>
+                <div class="slot" style={`--disc-color: ${disciplineColors[slot.discipline] ?? '#22c55e'}`}>
                   <div class="slot-time">{slot.time}</div>
                   <div class="slot-info">
                     <div class="slot-disc-row">
                       <span class="slot-disc">{slot.discipline}</span>
                       {slot.discipline === 'Luta Livre' && <span class="slot-nogi">No-Gi</span>}
                       {slot.label === 'Sparring' && <span class="slot-nogi">Sparring</span>}
-                      {slot.inactive && <span class="slot-soon">À venir</span>}
                     </div>
                     <div class="slot-meta">
                       <span>{slot.level}</span>
@@ -239,27 +235,6 @@ const byDay = days.map(day => {
     text-transform: uppercase;
     color: var(--bg);
     background: var(--disc-color, var(--g500));
-    padding: 2px 6px;
-    border-radius: 4px;
-    line-height: 1.4;
-  }
-
-  .slot-inactive {
-    border-left-color: var(--border-strong);
-    opacity: 0.6;
-  }
-
-  .slot-inactive .slot-time {
-    color: var(--text-muted);
-  }
-
-  .slot-soon {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border-strong);
     padding: 2px 6px;
     border-radius: 4px;
     line-height: 1.4;
