@@ -125,6 +125,23 @@ export const EVENTS = [
     imageHeight: 1536,
     status: "upcoming"
   },
+  {
+    id: 8,
+    title: "Stage de Muay Thai appliqué au MMA avec Rodrigo Alamos",
+    date: "2026-11-29", // Format YYYY-MM-DD — dimanche
+    time: "14h30",
+    location: "Dojo SLAMM, 361 Rue de la Saudrais, 35800 Saint-Lunaire",
+    price: "15€",
+    description: "Stage de Muay Thai appliqué au MMA avec Rodrigo Alamos, ancien combattant (33 combats, 28 victoires) et entraîneur de champions de Muay Thai (Damien Alamos, Albert Chey, Sandra Sevilla, Aziz Hlali). Membre de la Team Nicolas Ott, il travaille avec Nassourdine Imavov, Benoît Saint-Denis et Baki. Tous niveaux, ouvert aux extérieurs, sur inscription.",
+    performer: "Rodrigo Alamos",
+    maxParticipants: null,
+    registrationUrl: null,
+    image: "/img/events/stage_29-11-26.webp",
+    imageAlt: "Affiche du stage de Muay Thai appliqué au MMA avec Rodrigo Alamos, le dimanche 29 novembre à 14h30 au dojo SLAMM de Saint-Lunaire, 15 €, tous niveaux",
+    imageWidth: 1200,
+    imageHeight: 1697,
+    status: "upcoming"
+  },
 ];
 
 /**
