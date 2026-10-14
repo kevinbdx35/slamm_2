@@ -32,8 +32,13 @@ function getCity(location: string): string {
   return parts[parts.length - 1].trim().replace(/^\d{5}\s*/, '');
 }
 
+// Compté depuis events.js : chaque stage ajouté (hors annulé) incrémente le chiffre.
+const stagesCount = EVENTS.filter(
+  (e) => getEventType(e) === 'Stage' && e.status !== 'cancelled'
+).length;
+
 const stats = [
-  { num: '5',  label: 'stages organisés' },
+  { num: String(stagesCount), label: 'stages organisés' },
   { num: '4',  label: 'échanges inter-clubs' },
   { num: '3',  label: 'compétitions' },
   { num: '3',  label: 'médailles No‑Gi' },
