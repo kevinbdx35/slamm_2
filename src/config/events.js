@@ -135,7 +135,7 @@ export const EVENTS = [
     description: "Stage de Muay Thai appliqué au MMA avec Rodrigo Alamos, ancien combattant (33 combats, 28 victoires) et entraîneur de champions de Muay Thai (Damien Alamos, Albert Chey, Sandra Sevilla, Aziz Hlali). Membre de la Team Nicolas Ott, il travaille avec Nassourdine Imavov, Benoît Saint-Denis et Baki. Tous niveaux, ouvert aux extérieurs, sur inscription.",
     performer: "Rodrigo Alamos",
     maxParticipants: null,
-    registrationUrl: null,
+    registrationUrl: "https://slamm.assoconnect.com/collect/description/770825-o-stage-avec-rodrigo-alamos",
     image: "/img/events/stage_29-11-26.webp",
     imageAlt: "Affiche du stage de Muay Thai appliqué au MMA avec Rodrigo Alamos, le dimanche 29 novembre à 14h30 au dojo SLAMM de Saint-Lunaire, 15 €, tous niveaux",
     imageWidth: 1200,
