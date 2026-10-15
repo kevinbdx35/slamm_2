@@ -123,7 +123,7 @@ export const EVENTS = [
     imageAlt: "Affiche du stage de Luta Livre avec Emilien Bouillart, le 11 octobre à 14h30 au dojo SLAMM de Saint-Lunaire, 10 €",
     imageWidth: 1024,
     imageHeight: 1536,
-    status: "upcoming"
+    status: "past"
   },
   {
     id: 8,
@@ -156,15 +156,15 @@ export function sortEventsByDate(events) {
 /**
  * Fonction utilitaire pour filtrer les événements à venir
  * @param {Array} events - Tableau d'événements
- * @returns {Array} Événements futurs uniquement
+ * @returns {Array} Événements futurs uniquement, du plus proche au plus lointain
  */
 export function getUpcomingEvents(events) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  return events.filter(event => {
+  return sortEventsByDate(events.filter(event => {
     const eventDate = new Date(event.date);
     return eventDate >= today && event.status !== "past" && event.status !== "cancelled";
-  });
+  }));
 }
 
 /**
@@ -184,6 +184,18 @@ export function getPastEvents(events, limit = 4) {
   return [...pastEvents]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, limit);
+}
+
+/**
+ * Type d'un événement, déduit de son titre
+ * @param {Object} event - Événement
+ * @returns {string} "Stage", "Compétition" ou "Événement"
+ */
+export function getEventType(event) {
+  const t = event.title.toLowerCase();
+  if (t.includes('stage')) return 'Stage';
+  if (t.includes('tour') || t.includes('tournoi') || t.includes('daymat') || t.includes('compétition')) return 'Compétition';
+  return 'Événement';
 }
 
 /**
@@ -207,5 +219,6 @@ export default {
   sortEventsByDate,
   getUpcomingEvents,
   getPastEvents,
+  getEventType,
   formatEventDate,
 };

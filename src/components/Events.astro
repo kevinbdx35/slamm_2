@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import TrialCta from './TrialCta.astro';
-import { EVENTS, getUpcomingEvents, getPastEvents, formatEventDate } from '../config/events.js';
+import { EVENTS, getUpcomingEvents, getPastEvents, getEventType, formatEventDate } from '../config/events.js';
 
 const upcoming = getUpcomingEvents(EVENTS);
 const past = getPastEvents(EVENTS, 4);
@@ -17,13 +17,6 @@ function getEventImage(path: string | null): ImageMetadata | null {
   const file = path.split('/').pop();
   const match = Object.entries(eventImages).find(([key]) => key.endsWith(`/${file}`));
   return match ? match[1].default : null;
-}
-
-function getEventType(event: any): string {
-  const t = event.title.toLowerCase();
-  if (t.includes('stage')) return 'Stage';
-  if (t.includes('tour') || t.includes('tournoi') || t.includes('daymat') || t.includes('compétition')) return 'Compétition';
-  return 'Événement';
 }
 
 function getCity(location: string): string {

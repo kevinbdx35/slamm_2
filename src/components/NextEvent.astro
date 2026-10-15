@@ -1,0 +1,211 @@
+---
+import { EVENTS, getUpcomingEvents, getEventType } from '../config/events.js';
+
+// Prochain événement à venir (liste triée par date) ; rien n'est rendu s'il n'y en a pas.
+const next = getUpcomingEvents(EVENTS)[0];
+
+const labels: Record<string, string> = {
+  Stage: 'Prochain stage',
+  Compétition: 'Prochaine compétition',
+  Événement: 'Prochain événement',
+};
+
+let label = '';
+let fullDate = '';
+let day = '';
+let month = '';
+let weekday = '';
+let details: string[] = [];
+if (next) {
+  label = labels[getEventType(next)];
+  // UTC pour ne pas décaler le jour selon le fuseau du build
+  const date = new Date(next.date);
+  const fmt = (o: Intl.DateTimeFormatOptions) => date.toLocaleDateString('fr-FR', { ...o, timeZone: 'UTC' });
+  fullDate = fmt({ weekday: 'long', day: 'numeric', month: 'long' }); // « dimanche 29 novembre »
+  day = fmt({ day: 'numeric' });                                     // « 29 »
+  month = fmt({ month: 'short' }).replace('.', '');                  // « nov »
+  weekday = fmt({ weekday: 'long' });                                // « dimanche »
+  if (next.time) details.push(`${next.time.charAt(0).toUpperCase()}${next.time.slice(1)}`);
+  if (next.price) details.push(next.price);
+}
+
+// Le site n'est reconstruit que le lundi : le script inline (juste après la section, donc
+// exécuté avant l'affichage, sans flash) masque la bande dès le lendemain de l'événement.
+---
+
+{next && (
+  <section class="next-event" aria-labelledby="next-event-label" data-date={next.date}>
+    <div class="container next-event-inner">
+      <!-- La date, en grand : l'info clé, dans le langage des chiffres du hero -->
+      <time class="next-event-date reveal" datetime={next.date}>
+        <span class="sr-only">{fullDate}</span>
+        <span class="date-day" aria-hidden="true">{day}</span>
+        <span class="date-month" aria-hidden="true">{month}</span>
+        <span class="date-weekday" aria-hidden="true">{weekday}</span>
+      </time>
+      <div class="next-event-body reveal reveal-delay-1">
+        <p class="next-event-label" id="next-event-label">{label}</p>
+        <h2 class="next-event-title">{next.title}</h2>
+        {details.length > 0 && (
+          <p class="next-event-meta">
+            {details.map((d) => <span>{d}</span>)}
+          </p>
+        )}
+      </div>
+      <!-- .reveal sur un wrapper : sa transition écraserait celle du lien -->
+      <div class="next-event-cta reveal reveal-delay-2">
+        <a href="/evenements/" class="next-event-link">
+          Voir l'événement
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <script is:inline>
+    (function () {
+      var el = document.currentScript.previousElementSibling;
+      var d = new Date();
+      var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      if (el && today > el.dataset.date) el.hidden = true;
+    })();
+  </script>
+)}
+
+<style>
+  .next-event {
+    position: relative;
+    background: var(--bg1);
+  }
+
+  .next-event[hidden] { display: none; }
+
+  .next-event::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  .next-event-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 40px;
+    padding-block: 32px;
+  }
+
+  /* Bloc calendrier : jour en grand, mois et jour de la semaine dessous, filet à droite */
+  .next-event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 88px;
+    padding-right: 40px;
+    border-right: 1px solid var(--border-strong);
+    line-height: 1;
+  }
+
+  .date-day {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+
+  .date-month {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--g400);
+  }
+
+  .date-weekday {
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-3);
+  }
+
+  .next-event-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--g400);
+    margin-bottom: 6px;
+  }
+
+  .next-event-title {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.9vw, 22px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  .next-event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .next-event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--g400);
+    white-space: nowrap;
+    transition: transform 160ms var(--ease-out);
+  }
+
+  /* La flèche glisse (transform) au lieu d'élargir le gap (relayout) */
+  .next-event-link svg {
+    flex-shrink: 0;
+    transition: transform 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .next-event-link:hover svg { transform: translateX(3px); }
+  }
+  .next-event-link:active { transform: scale(0.97); }
+
+  /* Mobile : la date reste à gauche, le texte et le lien s'empilent à droite */
+  @media (max-width: 768px) {
+    .next-event-inner {
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 20px;
+      row-gap: 4px;
+      align-items: start;
+      padding-block: 28px 16px;
+    }
+    .next-event-date {
+      grid-row: span 2;
+      min-width: 0;
+      padding-right: 20px;
+      align-self: stretch;
+    }
+    .date-day { font-size: 40px; }
+    .next-event-title { font-size: 18px; }
+    .next-event-meta { font-size: 14px; }
+    .next-event-cta { grid-column: 2; justify-self: start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .next-event-link svg { transition: none; }
+    .next-event-link:hover svg { transform: none; }
+  }
+</style>
